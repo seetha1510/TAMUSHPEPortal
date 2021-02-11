@@ -2,9 +2,9 @@ Rails.application.routes.draw do
   
   root "users#index"
 
-  resource :users
-  resource :user_profiles
-  resource :employees 
-  resource :employers
+  resources :users
+  resources :user_profiles
+  resources :employees 
+  resources :employers
 
 end
