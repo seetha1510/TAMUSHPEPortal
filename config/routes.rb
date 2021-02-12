@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
-  
-    root "user_profiles#index"
+
+  devise_for :accounts
+    root "users#index"
+
 
     resources :users
     resources :user_profiles
