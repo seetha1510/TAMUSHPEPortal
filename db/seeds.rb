@@ -5,13 +5,13 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-User.create(user_email: 'fakeuser1@email',
+user1 = User.create(user_email: 'fakeuser1@email',
             admin_status: false)
 
-User.create(user_email: 'fakeuser2@email',
+user2 = User.create(user_email: 'fakeuser2@email',
             admin_status: true)
 
-UserProfile.create(user_email: 'fakeuser1@email',
+UserProfile.create!(user_email: user1[:user_email],
                 user_display_email_status: true,
                 user_current_member_status: true,
                 user_facebook_profile_url: "facebook.com",
@@ -25,7 +25,7 @@ UserProfile.create(user_email: 'fakeuser1@email',
                 user_portfolio_url: "",
                 user_profile_picture_url: "")
 
-UserProfile.create(user_email: 'fakeuser2@email',
+UserProfile.create!(user_email: user2[:user_email],
                 user_display_email_status: true,
                 user_current_member_status: false,
                 user_facebook_profile_url: "facebook.com",
@@ -38,3 +38,6 @@ UserProfile.create(user_email: 'fakeuser2@email',
                 user_last_name: "abclast",
                 user_portfolio_url: "",
                 user_profile_picture_url: "")
+
+Employer.create(employer_description: "Microsoft", employer_industry: "tech")
+Employer.create(employer_description: "Google", employer_industry: "tech")
