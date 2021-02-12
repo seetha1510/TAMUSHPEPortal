@@ -8,6 +8,7 @@ class CreateEmployees < ActiveRecord::Migration[6.1]
       t.integer :user_id
       t.integer :employer_id
       t.string :employee_position
+      t.index [:user_id, :employer_id, :employee_position], unique: true, name: "employed"
 
       t.timestamps
     end

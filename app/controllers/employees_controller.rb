@@ -17,10 +17,9 @@ class EmployeesController < ApplicationController
         #change to session id later
         @user_id = 1
 
+        #try to use exists instead of where
+
         @employer_name = @form_params[:employer_name]
-        #find the employer_id based on the employer_name
-        #if the find returns false then need to add the employer
-        #then create the new employee using the new employer_id
         @employer_object = Employer.where(employer_name: @employer_name).first
 
         if @employer_object
@@ -42,9 +41,38 @@ class EmployeesController < ApplicationController
     end
 
     def edit
+        @employee = Employee.find(params[:id])
+        @employer_name = Employer.find(@employee.employer_id).employer_name
     end
 
     def update
+        @form_params = params[:employee]
+        @employee = Employee.find(params[:id])
+
+        #change to session id later
+        @user_id = 1
+
+        @employer_name = @form_params[:employer_name]
+        @employer_object = Employer.where(employer_name: @employer_name).first
+
+        if @employer_object
+            if @employee.update(user_id: @user_id, employer_id: @employer_object[:employer_id], employee_position: @form_params[:employee_position])
+                redirect_to employees_path
+            else
+                render :edit
+            end
+        else
+            @new_employer = Employer.new(employer_name: @employer_name)
+            if @new_employer.save
+                if @employee.update(user_id: @user_id, employer_id: @new_employer[:employer_id], employee_position: @form_params[:employee_position])
+                    redirect_to employees_path
+                else
+                    render :edit
+                end
+            else
+                render :edit
+            end
+        end
     end
 
     def destory

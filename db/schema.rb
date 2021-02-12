@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 2021_02_11_025433) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["employee_id"], name: "index_employees_on_employee_id"
+    t.index ["user_id", "employer_id", "employee_position"], name: "employed", unique: true
   end
 
   create_table "employers", primary_key: "employer_id", id: :serial, force: :cascade do |t|
