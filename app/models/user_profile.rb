@@ -3,5 +3,4 @@ class UserProfile < ApplicationRecord
         belongs_to :user
         has_many :employees
         has_many :employers, through: :employees
-
 end
