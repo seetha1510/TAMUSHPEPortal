@@ -7,6 +7,7 @@ class CreateEmployers < ActiveRecord::Migration[6.1]
       t.string :employer_description
       t.string :employer_industry
       t.string :employer_website_url
+      t.string :employer_name
 
       t.timestamps
     end

@@ -39,5 +39,5 @@ UserProfile.create!(user_email: user2[:user_email],
                 user_portfolio_url: "",
                 user_profile_picture_url: "")
 
-Employer.create(employer_description: "Microsoft", employer_industry: "tech")
-Employer.create(employer_description: "Google", employer_industry: "tech")
+Employer.create(employer_name: "Microsoft", employer_industry: "tech")
+Employer.create(employer_name: "Google", employer_industry: "tech")

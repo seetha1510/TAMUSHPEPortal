@@ -1,0 +1,19 @@
+<h1>Employees</h1>
+
+<table class="table">
+    <tr>
+        <th>user id</th>
+        <th>employer id</th>
+        <th>position</th>
+    </tr>
+        <% @employees.each do |employee| %>
+            <tr>
+                <td><%= employee.user_id %></td>
+                <td><%= employee.employer_id %></td>
+                <td><%= employee.employee_position %></td>
+            </tr>
+        <% end %>
+    <tr>
+        <td><%= link_to "+", new_employee_path %></td>
+    </tr>
+<table>
