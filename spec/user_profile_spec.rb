@@ -20,7 +20,7 @@ RSpec.describe UserProfile, :type => :model do
     it "is valid with valid attributes" do
 
         expect(subject).to be_valid
-      end
+    end
 
     it "is not valid without a user_email" do
         subject.user_email = nil
@@ -32,9 +32,18 @@ RSpec.describe UserProfile, :type => :model do
         expect(subject).to_not be_valid
     end
 
-    it "is not valid if user enter a nil user_phone_number " do
+    it "is valid if user enter a nil user_phone_number " do
         subject.user_phone_number = nil
         expect(subject).to be_valid
+    end
+
+    it "is valid if user enter a valid facebook link " do
+
+        expect(subject).to be_valid
+    end
+    it "is not valid if user enter a in-valid facebook link " do
+        subject.user_facebook_profile_url = "asdas"
+        expect(subject).to_not be_valid
     end
 
 
