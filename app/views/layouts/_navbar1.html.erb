@@ -1,0 +1,26 @@
+<nav id="sidebar">
+    <div class="p-4 pt-3" style="min-height:100%;position: relative;">
+        <div class="header mb-4" style="top:50px;">
+            <%= image_tag "tamuSHPE_app_logo.png", style: 'height:auto;width:90%;' %>
+        </div>
+        <a href="#" class="img logo rounded-circle mb-4" style="background-image: url(<%= asset_path 'Jonathan_Square.jpg' %>);"></a>
+        <h2 style="color:white;">Welcome, Jonathan</h2>
+        <ul class="list-unstyled components mb-5">
+            <li class="active">
+                <%= link_to 'Home' , root_path, class:"nav-link"%>
+            </li>
+            <li>
+                <%= link_to 'People' , test_path, class:"nav-link"%>
+            </li>
+            <li>
+                <a href="#">Profile</a>
+            </li>
+            <li>
+                <a href="#">Settings</a>
+            </li>
+        </ul>
+        <div class="footer" style="position:absolute;bottom:10px;">
+            &copy; Copyright 2021
+        </div>
+    </div>
+</nav>
