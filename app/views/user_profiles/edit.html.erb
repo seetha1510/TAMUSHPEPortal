@@ -1,0 +1,15 @@
+<%= link_to("<< Back to Book Collection", user_profiles_path, :class => 'back-link') %>
+
+<div class="books edit">
+  <h2>Update Book</h2>
+
+  <%= form_for(@user_profile) do |f| %>
+  
+       <%= render(:partial => 'form', :locals => {:f=>f})%>
+
+    <div class="form-buttons">
+      <%= f.submit("Update Book") %>
+    </div>
+
+  <% end %>
+</div>

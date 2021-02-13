@@ -1,23 +1,22 @@
+<div class="subjects index">
+  <h2>Subjects</h2>
 
-<div class="User_profile index">
-  <h2>User Profiles</h2>
+  <%= link_to("Add New Subject", new_user_profile_path, :class => 'action new') %>
 
-  <%= link_to("Add New User Profile", new_user_profile_path, :class => 'action new') %>
-
-  <table class="listing" summary="User Profile list">
+  <table class="listing" summary="Subject list">
     <tr class="header">
-      <th>#</th>
-      <th>User_name</th>
-      <th>Visible</th>
-      <th>Pages</th>
+      <th>Name</th>
+      <th>Email</th>
       <th>Actions</th>
     </tr>
-    <% @user_profiles.each do |user_profile| %>
+    <% @user_profiles.each do |subject| %>
     <tr>
-      <td><%= user_profile.user_first_name + " " + user_profile.user_last_name %></td>
-        <%# <%= link_to("Show", subject_path(subject), :class => 'action show') %> %>
-        <%# <%= link_to("Edit", edit_subject_path(subject), :class => 'action edit') %> %>
-        <%# <%= link_to("Delete", delete_subject_path(subject), :class => 'action delete') %> %>
+      <td><%= subject.user_first_name + " "+ subject.user_last_name %></td>
+      <td><%= subject.user_email %></td>
+      <td class="actions">
+        <%= link_to("Show", user_profile_path(subject), :class => 'action show') %>
+        <%= link_to("Edit", edit_user_profile_path(subject), :class => 'action edit') %>
+        <%= link_to("Delete", "delete_subject_path(subject)", :class => 'action delete') %>
       </td>
     </tr>
     <% end %>
