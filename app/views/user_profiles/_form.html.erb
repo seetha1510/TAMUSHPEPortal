@@ -13,6 +13,14 @@
         <td><%= f.text_field(:user_email) %></td>
       </tr>
       <tr>
+        <th>Hide Email</th>
+        <td><%= f.check_box :user_display_email_status %></td>
+      </tr>
+      <tr>
+        <th>Current Member?</th>
+        <td>  Yes <%= f.check_box :user_current_member_status %></td>
+      </tr>
+      <tr>
         <th>FaceBook</th>
         <td><%= f.text_field(:user_facebook_profile_url) %></td>
       </tr>

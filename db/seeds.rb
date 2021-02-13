@@ -26,7 +26,7 @@ UserProfile.create!(user_email: user1[:user_email],
                 user_profile_picture_url: "")
 
 UserProfile.create!(user_email: user2[:user_email],
-                user_display_email_status: true,
+                user_display_email_status: false,
                 user_current_member_status: false,
                 user_facebook_profile_url: "facebook.com",
                 user_instagram_profile_url: "instagram.com",
