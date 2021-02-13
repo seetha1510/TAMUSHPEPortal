@@ -8,6 +8,7 @@ class CreateEmployers < ActiveRecord::Migration[6.1]
       t.string :employer_industry
       t.string :employer_website_url
       t.string :employer_name
+      t.index :employer_name, unique: true
 
       t.timestamps
     end

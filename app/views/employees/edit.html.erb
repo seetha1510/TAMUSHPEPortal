@@ -3,7 +3,7 @@
 <%= form_with model: @employee do |form| %>
     
     <%= form.label :employer_name, "Employer Name"%>
-    <%= form.text_field :employer_name %>
+    <%= form.text_field :employer_name, value: @employer_name %>
 
     <%= form.label :employee_position, "Position"%>
     <%= form.text_field :employee_position %>
