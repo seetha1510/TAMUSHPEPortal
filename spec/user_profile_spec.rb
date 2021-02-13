@@ -27,6 +27,71 @@ RSpec.describe UserProfile, :type => :model do
         expect(subject).to_not be_valid
     end
 
+
+
+
+    ## Facebook link Test
+
+    it "is valid if user enter a valid facebook link " do
+
+        expect(subject).to be_valid
+    end
+    it "is valid if user enter a nil facebook link " do
+        subject.user_facebook_profile_url = nil
+        expect(subject).to be_valid
+    end
+    it "is not valid if user enter a in-valid facebook link " do
+        subject.user_facebook_profile_url = "asdas"
+        expect(subject).to_not be_valid
+    end
+
+    ## Instagram link Test
+    it "is valid if user enter a valid instagram link " do
+
+        expect(subject).to be_valid
+    end
+    it "is valid if user enter a nil instagram link " do
+        subject.user_instagram_profile_url = nil
+        expect(subject).to be_valid
+    end
+    it "is not valid if user enter a in-valid instagram link " do
+        subject.user_instagram_profile_url = "asdas"
+        expect(subject).to_not be_valid
+    end
+
+
+    ## Linkedin url test
+    it "is valid if user enter a valid linkedin link " do
+
+        expect(subject).to be_valid
+    end
+    it "is valid if user enter a nil linkedin link " do
+        subject.user_linkedin_profile_url = nil
+        expect(subject).to be_valid
+    end
+    it "is not valid if user enter a in-valid linkedin link " do
+        subject.user_linkedin_profile_url = "asdas"
+        expect(subject).to_not be_valid
+    end
+
+    ## graduating year testing
+    it "is valid if user enter a valid graduating year " do
+
+        expect(subject).to be_valid
+    end
+    it "is valid if user enter a nil graduating year " do
+        subject.user_graduating_year = nil
+        expect(subject).to be_valid
+    end
+    it "is not valid if user enter a in-valid graduating year " do
+        subject.user_graduating_year = "123"
+        expect(subject).to_not be_valid
+    end
+
+
+    
+    ## phone number test
+
     it "is not valid if user enter a 9 digit user_phone_number " do
         subject.user_phone_number = "213123"
         expect(subject).to_not be_valid
@@ -35,15 +100,6 @@ RSpec.describe UserProfile, :type => :model do
     it "is valid if user enter a nil user_phone_number " do
         subject.user_phone_number = nil
         expect(subject).to be_valid
-    end
-
-    it "is valid if user enter a valid facebook link " do
-
-        expect(subject).to be_valid
-    end
-    it "is not valid if user enter a in-valid facebook link " do
-        subject.user_facebook_profile_url = "asdas"
-        expect(subject).to_not be_valid
     end
 
 
