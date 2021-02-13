@@ -7,4 +7,6 @@ Rails.application.routes.draw do
   resource :employees 
   resource :employers
 
+  get "users/test", to: "users#test", as: "test"
+
 end
