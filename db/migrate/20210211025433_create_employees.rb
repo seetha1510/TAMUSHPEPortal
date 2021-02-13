@@ -4,9 +4,11 @@ class CreateEmployees < ActiveRecord::Migration[6.1]
 
       #composite primary key
       #since there could be many past employers for a user
-      t.integer :user_id, index: true, null: false
-      t.integer :employer_id, index: true, null: false
+      t.integer :employee_id, primary_key: true, index: true, null: false, unique: true
+      t.integer :user_id
+      t.integer :employer_id
       t.string :employee_position
+      t.index [:user_id, :employer_id, :employee_position], unique: true, name: "employed"
 
       t.timestamps
     end
@@ -16,7 +18,7 @@ class CreateEmployees < ActiveRecord::Migration[6.1]
     add_foreign_key :employees, :employers, column: :employer_id, primary_key: :employer_id
 
     #have to add primary keys here because rails doesnt allow composite keys syntatically
-    execute "ALTER TABLE employees ADD PRIMARY KEY (user_id, employer_id);"
+    #execute "ALTER TABLE employees ADD PRIMARY KEY (user_id, employer_id);"
 
   end
 end
