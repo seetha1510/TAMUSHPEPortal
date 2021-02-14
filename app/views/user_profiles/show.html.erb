@@ -8,7 +8,6 @@
       <th scope="col">Status</th>
       <th scope="col">Graduation</th>
       <th scope="col">Phone Number</th>
-      
     </tr>
   </thead>
 
@@ -23,12 +22,7 @@
         <%else%>
             <td>Alum</td>
         <% end %>
-
-        <%
-=begin%>
- <td><%= user_profile.user_current_member_status %></td> 
-<%
-=end%>
+        
         <td><%= user_profile.user_graduating_year %></td>
         <td><%= user_profile.user_phone_number %></td>
       </tr>
