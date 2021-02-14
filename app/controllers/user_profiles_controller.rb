@@ -4,6 +4,7 @@ class UserProfilesController < ApplicationController
     end
 
     def show
+        @user_profiles = UserProfile.all
     end
 
     def new
@@ -20,5 +21,5 @@ class UserProfilesController < ApplicationController
 
     def destory
     end
-    
+
 end

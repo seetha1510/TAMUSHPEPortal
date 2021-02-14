@@ -1,0 +1,37 @@
+<h1 >People</h1>
+
+<table class="table table-hover">
+  <thead class="table" style="background-color:#001F5B;color:white">
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Email</th>
+      <th scope="col">Status</th>
+      <th scope="col">Graduation</th>
+      <th scope="col">Phone Number</th>
+      
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @user_profiles.each do |user_profile| %>
+      <tr class="table-light">
+        <td><%= user_profile.user_first_name[0].upcase %><%= user_profile.user_first_name[1..-1].downcase %> <%= user_profile.user_last_name[0].upcase %><%= user_profile.user_last_name[1..-1].downcase %></td>
+        <td><%= user_profile.user_email %></td>
+
+        <%if user_profile.user_current_member_status?%>
+            <td>Member</td>
+        <%else%>
+            <td>Alum</td>
+        <% end %>
+
+        <%
+=begin%>
+ <td><%= user_profile.user_current_member_status %></td> 
+<%
+=end%>
+        <td><%= user_profile.user_graduating_year %></td>
+        <td><%= user_profile.user_phone_number %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
