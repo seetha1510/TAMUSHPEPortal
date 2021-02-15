@@ -9,6 +9,5 @@ Rails.application.routes.draw do
     resources :employers
 
   get "users/test", to: "users#test", as: "test"
-  get "user_profiles/show", to: "user_profiles#show", as: "people"
 
 end
