@@ -3,7 +3,6 @@ class Account < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-  
   after_commit :create_in_user_table, on: :create
   after_commit :delete_in_user_table, on: :destroy
   

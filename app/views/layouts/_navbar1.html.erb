@@ -6,14 +6,28 @@
         <a href="#" class="img logo rounded-circle mb-4" style="background-image: url(<%= asset_path 'Jonathan_Square.jpg' %>);"></a>
         <h2 style="color:white;">Welcome, Jonathan</h2>
         <ul class="list-unstyled components mb-5">
-            <li class="active">
+            <% if current_page?(:controller => 'users', :action => 'home') %>
+                <li class="active">
+            <% else %>
+                <li>
+            <%end%>
                 <%= link_to 'Home' , root_path, class:"nav-link"%>
             </li>
-            <li>
-                <%= link_to 'People' , test_path, class:"nav-link"%>
+
+            <% if current_page?(:controller => 'user_profiles', :action => 'index') %>
+                <li class="active">
+            <% else %>
+                <li>
+            <%end%>
+                <%= link_to 'People' , user_profiles_path, class:"nav-link"%>
             </li>
-            <li>
-                <a href="#">Profile</a>
+
+            <% if current_page?(:controller => 'employees', :action => 'index') %>
+                <li class="active">
+            <% else %>
+                <li>
+            <%end%>
+                <%= link_to 'Profile' , employee_path(1), class:"nav-link"%>
             </li>
             <li>
                 <a href="#">Settings</a>
