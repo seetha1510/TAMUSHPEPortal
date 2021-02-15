@@ -1,0 +1,53 @@
+  
+    <table summary="Subject form fields">
+      <tr>
+        <th>First Name</th>
+        <td><%= f.text_field(:user_first_name) %></td>
+      </tr>
+      <tr>
+        <th>Last name</th>
+        <td><%= f.text_field(:user_last_name) %></td>
+      </tr>
+      <tr>
+        <th>Email</th>
+        <td><%= f.text_field(:user_email) %></td>
+      </tr>
+      <tr>
+        <th>Hide Email</th>
+        <td><%= f.check_box :user_display_email_status %></td>
+      </tr>
+      <tr>
+        <th>Current Member?</th>
+        <td>  Yes <%= f.check_box :user_current_member_status %></td>
+      </tr>
+      <tr>
+        <th>FaceBook</th>
+        <td><%= f.text_field(:user_facebook_profile_url) %></td>
+      </tr>
+      <tr>
+        <th>Instagram</th>
+        <td><%= f.text_field(:user_instagram_profile_url) %></td>
+      </tr>
+      <tr>
+        <th>Linkedin</th>
+        <td><%= f.text_field(:user_linkedin_profile_url) %></td>
+      </tr>
+      <tr>
+        <th>Graduating Year</th>
+        <td><%= f.text_field(:user_graduating_year) %></td>
+      </tr>
+      <tr>
+        <th>About me</th>
+        <td><%= f.text_area(:user_about_me_description) %></td>
+      </tr>
+      <tr>
+        <th>Phone Number</th>
+        <td><%= f.text_field(:user_phone_number) %></td>
+      </tr>
+      <tr>
+        <th>Image url</th>
+        <td><%= f.text_field(:user_profile_picture_url) %></td>
+      </tr>
+
+      
+    </table>

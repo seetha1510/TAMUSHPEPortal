@@ -23,6 +23,9 @@
         <!-- Page Content  -->
         <div id="content" class="p-4 p-md-5">
             <%= render 'layouts/navbar2' unless @disable_nav %>
+            <%# need flash notices for devise%>
+            <p class="notice"><%= notice %></p>
+            <p class="alert"><%= alert %></p>
             <%= yield %>
         </div>
     </div>
@@ -31,5 +34,3 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <%= javascript_pack_tag 'home' %>
 </body>
-
-</html>
