@@ -1,8 +1,37 @@
 <h1 >People</h1>
 <%= form_tag "/user_profiles/show", method: "GET" do %>
-  <%= label_tag :search_by_first_name %>
-  <%= text_field_tag :search_by_first_name, params[:search_by_first_name] %>
-  <%= submit_tag "Search" %>
+  <%
+=begin%>
+ <%= text_field_tag :search_by_first_name, params[:search_by_first_name] %>
+  <%= submit_tag "Search" %> 
+<%
+=end%>
+
+
+
+
+
+ <div class="input-group mb-3">
+ <div class="col-sm-2">
+    <select class="form-select" id="inputGroupSelect02">
+      <option selected>Name</option>
+      <option value="1">Major</option>
+      <option value="2">Industry</option>
+      <option value="3">Class Year</option>
+    </select>
+  </div>
+  <div class="col-sm-9">
+    <%= text_field_tag :search_by_first_name, params[:search_by_first_name], aria_label: "Text input with dropdown button",  class: "form-control", type: "text" %>
+  </div>
+  <div class="col-sm-1">
+    <%= submit_tag "Search" , class: "btn btn-primary"%>
+  </div>
+</div> 
+
+
+
+
+
 <% end %>
 <table class="table table-hover mt-3">
   <thead class="table" style="background-color:#001F5B;color:white">
@@ -18,8 +47,17 @@
   <tbody>
     <% @user_profiles.each do |user_profile| %>
       <tr class="table-light">
-        <td><%= user_profile.user_first_name[0].upcase %><%= user_profile.user_first_name[1..-1].downcase %> <%= user_profile.user_last_name[0].upcase %><%= user_profile.user_last_name[1..-1].downcase %></td>
-        <td><%= user_profile.user_email %></td>
+        <%if user_profile.user_first_name.blank? && user_profile.user_last_name.blank?%>
+            <td></td>
+        <%else%>
+            <td><%= user_profile.user_first_name[0].upcase %><%= user_profile.user_first_name[1..-1].downcase %> <%= user_profile.user_last_name[0].upcase %><%= user_profile.user_last_name[1..-1].downcase %></td>
+        <% end %>
+        
+        <%if user_profile.user_email.blank? %>
+          <td></td>
+        <%else%>
+          <td><%= user_profile.user_email %></td>
+        <% end %>
 
         <%if user_profile.user_current_member_status?%>
             <td>Member</td>
@@ -27,8 +65,18 @@
             <td>Alum</td>
         <% end %>
         
-        <td><%= user_profile.user_graduating_year %></td>
-        <td><%= user_profile.user_phone_number %></td>
+
+        <%if user_profile.user_graduating_year.blank? %>
+          <td></td>
+        <%else%>
+          <td><%= user_profile.user_graduating_year %></td>
+        <% end %>
+
+        <%if user_profile.user_phone_number.blank? %>
+          <td></td>
+        <%else%>
+          <td>(<%= user_profile.user_phone_number[0..2] %>)<%=user_profile.user_phone_number[3..5] %>-<%=user_profile.user_phone_number[6..9]%></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>

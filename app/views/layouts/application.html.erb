@@ -19,10 +19,10 @@
 
 <body>
     <div class="wrapper d-flex align-items-stretch">
-        <%= render 'layouts/navbar1' %>
+        <%= render 'layouts/navbar1' unless @disable_nav %>
         <!-- Page Content  -->
         <div id="content" class="p-4 p-md-5">
-            <%= render 'layouts/navbar2' %>
+            <%= render 'layouts/navbar2' unless @disable_nav %>
             <%= yield %>
         </div>
     </div>
