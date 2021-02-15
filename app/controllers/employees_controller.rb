@@ -5,6 +5,20 @@ class EmployeesController < ApplicationController
     end
 
     def show
+        @user_profile = UserProfile.find(params[:id])
+        @employees = Employee.where(user_id:params[:id])
+        # @employees = @user_profile.employee
+
+        if(@user_profile.user_display_email_status)
+            @email = "*************"
+        else
+            @email = @user_profile.user_email
+        end
+        if(@user_profile.user_current_member_status)
+            @membership = "Current Member"
+        else
+            @membership = "Alumni"
+        end
     end
 
     def new
@@ -39,7 +53,7 @@ class EmployeesController < ApplicationController
     end
 
     def edit
-        @employee = Employee.find(params[:id])
+        @employees = Employee.find(params[:id])
         @employer_name = Employer.find(@employee.employer_id).employer_name
     end
 

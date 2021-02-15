@@ -1,2 +1,75 @@
-<h1>Employee</h1>
+<div class="subjects show">
+  <h1>General Information</h1>
+
+  <table summary="Subject detail view">
+    <tr>
+      <th>First name</th>
+      <td><%= @user_profile.user_first_name  %></td>
+    </tr>
+    <tr>
+      <th>Last name</th>
+      <td><%= @user_profile.user_last_name %></td>
+    </tr>
+    <tr>
+      <th>Email</th>
+      <td><%= @email %></td>
+    </tr>
+    <tr>
+      <th>Membership</th>
+      <td><%= @membership %></td>
+    </tr>
+    <tr>
+      <th>FaceBook</th>
+      <td><%= @user_profile.user_facebook_profile_url %></td>
+    </tr>
+    <tr>
+      <th>Instagram</th>
+      <td><%= @user_profile.user_instagram_profile_url %></td>
+    </tr>
+    <tr>
+      <th>Linkedin</th>
+      <td><%= @user_profile.user_linkedin_profile_url %></td>
+    </tr>
+    <tr>
+      <th>Graduating Year</th>
+      <td><%= @user_profile.user_graduating_year %></td>
+    </tr>
+    <tr>
+      <th>About me</th>
+      <td><%= @user_profile.user_about_me_description %></td>
+    </tr>
+    <tr>
+      <th>Phone Number</th>
+      <td><%= @user_profile.user_phone_number %></td>
+    </tr>
+    <tr>
+      <th>Selfie</th>
+      <td><%= image_tag image_url(@user_profile.user_profile_picture_url) %></td>
+    </tr>
+  </table>
+</div>
+
+
+<h1>Positions</h1>
+<table class="table table-hover mt-3">
+    <thead class="table" style="background-color:#001F5B;color:white">
+        <tr>
+            <th scope="col">User ID</th>
+            <th scope="col">Company</th>
+            <th scope="col">Position</th>
+            <th scope="col">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% @employees.each do |employee| %>
+            <tr class="table-light">
+                <td><%= employee.user_id %></td>
+                <td><%= employee.employer.employer_name %></td>
+                <td><%= employee.employee_position %></td>
+                <td><%= link_to "Edit", edit_employee_path(employee)%></td>
+            </tr>
+        <% end %>
+    </tbody>
+<table>
+<%= link_to "Add", new_employee_path ,class:"btn btn-primary"%>
 
