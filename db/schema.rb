@@ -27,23 +27,26 @@ ActiveRecord::Schema.define(version: 2021_02_12_184716) do
     t.index ["reset_password_token"], name: "index_accounts_on_reset_password_token", unique: true
   end
 
-  create_table "employees", primary_key: ["user_id", "employer_id"], force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "employer_id", null: false
+  create_table "employees", primary_key: "employee_id", id: :serial, force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "employer_id"
+
     t.string "employee_position"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["employer_id"], name: "index_employees_on_employer_id"
-    t.index ["user_id"], name: "index_employees_on_user_id"
+    t.index ["employee_id"], name: "index_employees_on_employee_id"
+    t.index ["user_id", "employer_id", "employee_position"], name: "employed", unique: true
   end
 
   create_table "employers", primary_key: "employer_id", id: :serial, force: :cascade do |t|
     t.string "employer_description"
     t.string "employer_industry"
     t.string "employer_website_url"
+    t.string "employer_name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["employer_id"], name: "index_employers_on_employer_id"
+    t.index ["employer_name"], name: "index_employers_on_employer_name", unique: true
   end
 
   create_table "user_profiles", primary_key: "user_id", id: :serial, force: :cascade do |t|
