@@ -23,7 +23,7 @@ class CreateUserProfiles < ActiveRecord::Migration[6.1]
     end
 
     #creates the fk. user_email in this table is FK for user_email attribute in users table
-    add_foreign_key :user_profiles, :users, column: :user_email, primary_key: :user_email
+    add_foreign_key :user_profiles, :users, column: :user_email, primary_key: :user_profile_picture_url
 
   end
 end

@@ -1,0 +1,16 @@
+<%= @user_profile.errors.full_messages[0] %>
+<%= link_to("<< Back to List", user_profiles_path, :class => 'back-link') %>
+
+<div class="Create Profile">
+  <h2>Create Subject</h2>
+
+  <%= form_for(@user_profile, :url => user_profiles_path, :method => 'post') do |f| %>
+  
+    <%= render(:partial => 'form', :locals => {:f=>f})%>
+
+    <div class="form-buttons">
+      <%= f.submit("Create profile") %>
+    </div>
+
+  <% end %>
+</div>
