@@ -11,5 +11,12 @@ Rails.application.routes.draw do
     resources :employers
 
   get "users/test", to: "users#test", as: "test"
+  get "users/home", to: "users#home", as: "home"
+
+# namespace :account do
+#   root :to => "users#home"
+# end
+
+  get '/account' => "users#home", :as => :account_root
 
 end
