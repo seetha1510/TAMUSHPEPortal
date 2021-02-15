@@ -30,7 +30,6 @@ ActiveRecord::Schema.define(version: 2021_02_12_184716) do
   create_table "employees", primary_key: "employee_id", id: :serial, force: :cascade do |t|
     t.integer "user_id"
     t.integer "employer_id"
-
     t.string "employee_position"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
