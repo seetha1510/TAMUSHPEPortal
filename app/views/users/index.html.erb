@@ -1,11 +1,11 @@
-<h1>SHPE landing page</h1>
-
-<% if account_signed_in? %>
-    <p> Signed in as <%=current_account.email %> </p>
-    <%=link_to "Sign Out", destroy_account_session_path, method: :delete %>
-    </br>
-<% else %>
+<% if !account_signed_in? %>
     <%=link_to "Sign Up", new_account_registration_path %>
     </br>
     <%=link_to "Log In", new_account_session_path %>
+    
+<% else %>
+    <p> Signed in as <%=current_account.email %> </p>
+    <%=link_to "Sign Out", destroy_account_session_path, method: :delete %>
+    </br>
+    <%= link_to "Cancel my account", registration_path(current_account), data: { confirm: "Are you sure?" }, method: :delete %>
 <% end %>
