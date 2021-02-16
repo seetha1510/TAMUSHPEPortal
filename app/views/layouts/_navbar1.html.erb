@@ -30,7 +30,7 @@
             <% else %>
                 <li>
             <%end%>
-                <%= link_to 'Profile' , employee_path(1), class:"nav-link"%>
+                <%= link_to 'Profile' , employee_path(User.get_current_user(current_account).user_id), class:"nav-link"%>
             </li>
             <li>
                 <a href="#">Settings</a>

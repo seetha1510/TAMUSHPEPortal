@@ -29,7 +29,7 @@ class EmployeesController < ApplicationController
         @form_params = params[:employee]
         
         #change to session id later
-        @user_id = 1
+        @user_id = User.get_current_user(current_account).user_id
 
         @employer_name = @form_params[:employer_name]
         @employer_object = Employer.where(employer_name: @employer_name).first
@@ -46,7 +46,7 @@ class EmployeesController < ApplicationController
         end
 
         if @employee_object.save
-            redirect_to employees_path
+            redirect_to employee_path(User.get_current_user(current_account).user_id)
         else
             render :new
         end
@@ -54,7 +54,8 @@ class EmployeesController < ApplicationController
 
     def edit
         @employees = Employee.find(params[:id])
-        @employer_name = Employer.find(@employee.employer_id).employer_name
+        @employer_name = Employer.find(@employees.employer_id).employer_name
+        @employee_position = Employee.find(params[:id]).employee_position
     end
 
     def update
@@ -62,14 +63,14 @@ class EmployeesController < ApplicationController
         @employee_object = Employee.find(params[:id])
 
         #change to session id later
-        @user_id = 1
+        @user_id = User.get_current_user(current_account).user_id
 
         @employer_name = @form_params[:employer_name]
         @employer_object = Employer.where(employer_name: @employer_name).first
 
         if @employer_object
             if @employee_object.update(user_id: @user_id, employer_id: @employer_object.employer_id, employee_position: @form_params[:employee_position])
-                redirect_to employees_path
+                redirect_to employee_path(User.get_current_user(current_account).user_id)
             else
                 render :edit
             end
@@ -77,7 +78,7 @@ class EmployeesController < ApplicationController
             @new_employer = Employer.new(employer_name: @employer_name)
             if @new_employer.save
                 if @employee_object.update(user_id: @user_id, employer_id: @new_employer.employer_id, employee_position: @form_params[:employee_position])
-                    redirect_to employees_path
+                    redirect_to employee_path(User.get_current_user(current_account).user_id)
                 else
                     render :edit
                 end
