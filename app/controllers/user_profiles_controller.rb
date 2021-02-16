@@ -30,7 +30,7 @@ class UserProfilesController < ApplicationController
     def create
         
         @user_profile = UserProfile.new(user_profile_params)
-        if @user_profile.save
+        if @user_profile.save!
             redirect_to(show_path)
         else
             render('new')
@@ -55,6 +55,6 @@ class UserProfilesController < ApplicationController
     end
     private 
         def user_profile_params
-            params.require(:user_profile).permit(:user_first_name,:user_last_name,:user_email,:user_display_email_status,:user_current_member_status,:user_facebook_profile_url,:user_instagram_profile_url,:user_linkedin_profile_url,:user_graduating_year,:user_about_me_description,:user_phone_number,:user_profile_picture_url)
+            params.require(:user_profile).permit(:user_first_name,:user_last_name,:user_email,:user_display_email_status,:user_current_member_status,:user_facebook_profile_url,:user_instagram_profile_url,:user_linkedin_profile_url,:user_graduating_year,:user_about_me_description,:user_phone_number,:user_profile_picture_url,:user_portfolio_url)
         end
 end
