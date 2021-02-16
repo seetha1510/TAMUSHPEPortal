@@ -1,16 +1,16 @@
-<%= @user_profile.errors.full_messages[0] %>
-<%= link_to("<< Back to List", user_profiles_path, :class => 'back-link') %>
+<div class="col-md-6 text-center">
+    <%= @user_profile.errors.full_messages[0] %>
+    <%= image_tag "tamuSHPE_app_logo.png", style: 'height:auto;width:50%;' , class:"mb-3"%>
+    <h2 class="blue-text mb-3 big-title">Create Profile</h2>
+    <%= form_for(@user_profile, :url => user_profiles_path, :method => 'post') do |f| %>
+    <div class="container white-text form-div">
+        <div class="col-md-12">
+            <%= render(:partial => 'form', :locals => {:f=>f})%>
+        </div>
 
-<div class="Create Profile">
-  <h2>Create Profile</h2>
+        <div class="row g-3 align-items-center mb-3">
+            <%= f.submit "Create profile", class:"btn btn-primary"%>
+        </div>
 
-  <%= form_for(@user_profile, :url => user_profiles_path, :method => 'post') do |f| %>
-  
-    <%= render(:partial => 'form', :locals => {:f=>f})%>
-
-    <div class="form-buttons">
-      <%= f.submit("Create profile") %>
+        <% end %>
     </div>
-
-  <% end %>
-</div>

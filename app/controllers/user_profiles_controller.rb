@@ -28,6 +28,7 @@ class UserProfilesController < ApplicationController
     end
 
     def create
+        
         @user_profile = UserProfile.new(user_profile_params)
         if @user_profile.save
             redirect_to(show_path)
@@ -44,7 +45,7 @@ class UserProfilesController < ApplicationController
     def update
         @user_profile = UserProfile.find(params[:id])
         if @user_profile.update(user_profile_params)
-            redirect_to (user_profile_path(@user_profile))
+            redirect_to (employee_path(User.get_current_user(current_account).user_id))
         else
             render('edit')
         end
