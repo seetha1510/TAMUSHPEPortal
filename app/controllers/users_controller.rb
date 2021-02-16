@@ -5,6 +5,10 @@ class UsersController < ApplicationController
     end
 
     def show
+        if UserProfile.exists?(user_email:current_account.email)
+        else
+            redirect_to(new_user_profile_path)
+        end
     end
 
     def new

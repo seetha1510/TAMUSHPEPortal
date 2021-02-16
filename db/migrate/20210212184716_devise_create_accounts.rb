@@ -2,10 +2,10 @@
 
 class DeviseCreateAccounts < ActiveRecord::Migration[6.1]
   def change
-    create_table :accounts do |t|
+    create_table :accounts, :primary_key => :email, id: false do |t|
       ## Database authenticatable
-      t.string :email,              null: false, default: ""
-      t.string :encrypted_password, null: false, default: ""
+      t.string :email, primary_key: true, null: false, unique: true
+      t.string :encrypted_password, null: false
 
       ## Recoverable
       t.string   :reset_password_token

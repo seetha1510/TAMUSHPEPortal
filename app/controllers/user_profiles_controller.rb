@@ -30,7 +30,7 @@ class UserProfilesController < ApplicationController
     def create
         @user_profile = UserProfile.new(user_profile_params)
         if @user_profile.save
-            redirect_to(user_profiles_path)
+            redirect_to(show_path)
         else
             render('new')
         end

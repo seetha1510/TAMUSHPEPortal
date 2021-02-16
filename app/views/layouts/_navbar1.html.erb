@@ -1,4 +1,4 @@
- <% if current_page?(new_account_registration_path) || current_page?(root_url) || current_page?(new_account_session_path)   %> 
+ <% if current_page?(new_account_registration_path) || current_page?(root_url) || current_page?(new_account_session_path) || current_page?(new_user_profile_path)  %> 
 
 <% else %>
 <nav id="sidebar">
@@ -7,14 +7,14 @@
             <%= image_tag "tamuSHPE_app_logo.png", style: 'height:auto;width:90%;' %>
         </div>
         <a href="#" class="img logo rounded-circle mb-4" style="background-image: url(<%= asset_path 'Jonathan_Square.jpg' %>);"></a>
-        <h2 style="color:white;">Welcome, Jonathan</h2>
+        <h2 style="color:white;">Welcome, <%= User.get_current_user(current_account).user_first_name %></h2>
         <ul class="list-unstyled components mb-5">
-            <% if current_page?(:controller => 'users', :action => 'home') %>
+            <% if current_page?(:controller => 'users', :action => 'show') %>
                 <li class="active">
             <% else %>
                 <li>
             <%end%>
-                <%= link_to 'Home' , root_path, class:"nav-link"%>
+                <%= link_to 'Home' , show_path, class:"nav-link"%>
             </li>
 
             <% if current_page?(:controller => 'user_profiles', :action => 'index') %>

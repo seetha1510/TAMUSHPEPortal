@@ -10,7 +10,7 @@
       </tr>
       <tr>
         <th>Email</th>
-        <td><%= f.text_field(:user_email) %></td>
+        <td><%=f.text_field(:user_email,:readonly=>true,value:current_account.email) %></td>
       </tr>
       <tr>
         <th>Hide Email</th>
@@ -48,6 +48,4 @@
         <th>Image url</th>
         <td><%= f.text_field(:user_profile_picture_url) %></td>
       </tr>
-
-      
     </table>

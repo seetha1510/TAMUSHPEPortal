@@ -15,9 +15,8 @@ ActiveRecord::Schema.define(version: 2021_02_12_184716) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "accounts", force: :cascade do |t|
-    t.string "email", default: "", null: false
-    t.string "encrypted_password", default: "", null: false
+  create_table "accounts", primary_key: "email", id: :string, force: :cascade do |t|
+    t.string "encrypted_password", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -77,4 +76,5 @@ ActiveRecord::Schema.define(version: 2021_02_12_184716) do
   add_foreign_key "employees", "employers", primary_key: "employer_id"
   add_foreign_key "employees", "user_profiles", column: "user_id", primary_key: "user_id"
   add_foreign_key "user_profiles", "users", column: "user_email", primary_key: "user_email"
+  add_foreign_key "users", "accounts", column: "user_email", primary_key: "email"
 end
