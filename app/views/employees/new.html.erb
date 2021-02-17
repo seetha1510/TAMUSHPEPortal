@@ -8,6 +8,6 @@
     <%= form.label :employee_position, "Position"%>
     <%= form.text_field :employee_position %>
     
-    <%= form.submit %>
+    <%= form.submit class:"btn btn-primary"%>
 <% end %>
-<td><%= link_to "Back", employee_path(User.get_current_user(current_account).user_id) , class:"btn btn-primary"%></td>
+<td><%= link_to "Back", employee_path(User.get_current_user(current_account).user_id) , class:"btn btn-secondary"%></td>
