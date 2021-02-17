@@ -1,69 +1,63 @@
-<h1 class="mb-4"> Profile </h1>
-<div class="subjects show">
-
-  <% if current_account.email == @true_email %>
-    <h3>My General Information</h3>
-  <%else%>
-    <h3><%= @user_profile.user_first_name[0].upcase%><%= @user_profile.user_first_name[1..-1]%>'s General Information</h3>
-  <%end%>
-  <table summary="Subject detail view">
-    <tr>
-      <th>First name</th>
-      <td><%= @user_profile.user_first_name[0].upcase%><%= @user_profile.user_first_name[1..-1]  %></td>
-    </tr>
-    <tr>
-      <th>Last name</th>
-      <td><%= @user_profile.user_last_name[0].upcase%><%= @user_profile.user_last_name[1..-1] %></td>
-    </tr>
-    <tr>
-      <th>Email</th>
-      <td><%= @email %></td>
-    </tr>
-    <tr>
-      <th>Membership</th>
-      <td><%= @membership %></td>
-    </tr>
-    <tr>
-      <th>FaceBook</th>
-      <td><%= @user_profile.user_facebook_profile_url %></td>
-    </tr>
-    <tr>
-      <th>Instagram</th>
-      <td><%= @user_profile.user_instagram_profile_url %></td>
-    </tr>
-    <tr>
-      <th>Linkedin</th>
-      <td ><%= @user_profile.user_linkedin_profile_url %></td>
-    </tr>
-    <tr>
-      <th>Graduating Year</th>
-      <td><%= @user_profile.user_graduating_year %></td>
-    </tr>
-    <tr>
-      <th>About me</th>
-      <td><%= @user_profile.user_about_me_description %></td>
-    </tr>
-    <tr>
-      <th>Phone Number</th>
-      <td>(<%= @user_profile.user_phone_number[0..2] %>)<%=@user_profile.user_phone_number[3..5] %>-<%=@user_profile.user_phone_number[6..9]%></td>
-    </tr>
-    <tr>
-      <th>Selfie</th>
-      <td><%= image_tag image_url(@user_profile.user_profile_picture_url) %></td>
-    </tr>
-  </table>
-  <% if current_account.email == @true_email %>
-      <%= link_to "Edit", edit_user_profile_path ,class:"btn btn-primary"%>
-  <%else%>
-  <%end%>
+<% if current_account.email == @true_email %>
+<h1 class="mb-4">My Profile </h1>
+<%else%>
+<h1><%= @user_profile.user_first_name[0].upcase%><%= @user_profile.user_first_name[1..-1]%>'s Profile</h1>
+<%end%>
+<div class="subjects show mb-4">
+    <h3>General Information</h3>
+    <table summary="Subject detail view">
+        <tr>
+            <th>First name</th>
+            <td><%= @user_profile.user_first_name[0].upcase%><%= @user_profile.user_first_name[1..-1]  %></td>
+        </tr>
+        <tr>
+            <th>Last name</th>
+            <td><%= @user_profile.user_last_name[0].upcase%><%= @user_profile.user_last_name[1..-1] %></td>
+        </tr>
+        <tr>
+            <th>Email</th>
+            <td><%= @email %></td>
+        </tr>
+        <tr>
+            <th>Membership</th>
+            <td><%= @membership %></td>
+        </tr>
+        <tr>
+            <th>FaceBook</th>
+            <td><%= @user_profile.user_facebook_profile_url %></td>
+        </tr>
+        <tr>
+            <th>Instagram</th>
+            <td><%= @user_profile.user_instagram_profile_url %></td>
+        </tr>
+        <tr>
+            <th>Linkedin</th>
+            <td><%= @user_profile.user_linkedin_profile_url %></td>
+        </tr>
+        <tr>
+            <th>Graduating Year</th>
+            <td><%= @user_profile.user_graduating_year %></td>
+        </tr>
+        <tr>
+            <th>About me</th>
+            <td><%= @user_profile.user_about_me_description %></td>
+        </tr>
+        <tr>
+            <th>Phone Number</th>
+            <td>(<%= @user_profile.user_phone_number[0..2] %>)<%=@user_profile.user_phone_number[3..5] %>-<%=@user_profile.user_phone_number[6..9]%></td>
+        </tr>
+        <tr>
+            <th>Selfie</th>
+            <td><%= image_tag image_url(@user_profile.user_profile_picture_url) %></td>
+        </tr>
+    </table>
+    <% if current_account.email == @true_email %>
+    <%= link_to "Edit", edit_user_profile_path ,class:"btn btn-primary"%>
+    <%else%>
+    <%end%>
 </div>
 
-
- <% if current_account.email == @true_email %>
-    <h3>My Positions</h3>
-  <%else%>
-    <h3><%= @user_profile.user_first_name[0].upcase%><%= @user_profile.user_first_name[1..-1]%>'s Positions</h3>
-  <%end%>
+<h3>Positions</h3>
 <table class="table table-hover mt-3">
     <thead class="table" style="background-color:#001F5B;color:white">
         <tr>
@@ -75,16 +69,16 @@
     </thead>
     <tbody>
         <% @employees.each do |employee| %>
-            <tr class="table-light">
-                <td><%= employee.user_id %></td>
-                <td><%= employee.employer.employer_name %></td>
-                <td><%= employee.employee_position %></td>
-                <td><%= link_to "Edit", edit_employee_path(employee)%></td>
-            </tr>
+        <tr class="table-light">
+            <td><%= employee.user_id %></td>
+            <td><%= employee.employer.employer_name %></td>
+            <td><%= employee.employee_position %></td>
+            <td><%= link_to "Edit", edit_employee_path(employee)%></td>
+        </tr>
         <% end %>
     </tbody>
-<table>
-  <% if current_account.email == @true_email %>
-  <%= link_to "Add", new_employee_path ,class:"btn btn-primary"%>
-  <%else%>
-  <%end%>
+    <table>
+        <% if current_account.email == @true_email %>
+        <%= link_to "Add", new_employee_path ,class:"btn btn-primary"%>
+        <%else%>
+        <%end%>

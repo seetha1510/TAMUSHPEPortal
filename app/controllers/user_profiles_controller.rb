@@ -40,7 +40,6 @@ class UserProfilesController < ApplicationController
 
     def edit
         @user_profile = UserProfile.find(params[:id])
-        @true_email = @user_profile.user_email
     end
 
     def update
@@ -50,6 +49,7 @@ class UserProfilesController < ApplicationController
         else
             render('edit')
         end
+    
     end
 
     def destory
