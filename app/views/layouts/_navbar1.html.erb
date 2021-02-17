@@ -7,7 +7,7 @@
             <%= image_tag "tamuSHPE_app_logo.png", style: 'height:auto;width:90%;' %>
         </div>
         <a href="#" class="img logo rounded-circle mb-4" style="background-image: url(<%= asset_path 'Jonathan_Square.jpg' %>);"></a>
-        <h2 style="color:white;">Welcome, <%= User.get_current_user(current_account).user_first_name %></h2>
+        <h2 style="color:white;">Welcome, <%= User.get_current_user(current_account).user_first_name[0].upcase %><%= User.get_current_user(current_account).user_first_name[1..-1] %></h2>
         <ul class="list-unstyled components mb-5">
             <% if current_page?(:controller => 'users', :action => 'show') %>
                 <li class="active">

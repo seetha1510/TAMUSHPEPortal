@@ -7,6 +7,7 @@ class EmployeesController < ApplicationController
     def show
         @user_profile = UserProfile.find(params[:id])
         @employees = Employee.where(user_id:params[:id])
+        @true_email = UserProfile.find(params[:id]).user_email
         # @employees = @user_profile.employee
 
         if(@user_profile.user_display_email_status)
