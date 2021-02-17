@@ -10,6 +10,7 @@ Rails.application.routes.draw do
 
   get "users/test", to: "users#test", as: "test"
   get "users/show", to: "users#show", as: "show"
+  get "setting", to: "users#setting", as: "setting"
 
 # namespace :account do
 #   root :to => "users#home"

@@ -32,8 +32,15 @@
             <%end%>
                 <%= link_to 'Profile' , employee_path(User.get_current_user(current_account).user_id), class:"nav-link"%>
             </li>
-            <li>
+            <%# <li>
                 <a href="#">Settings</a>
+            </li> %>
+            <% if current_page?(:controller => 'users', :action => 'setting') %>
+                <li class="active">
+            <% else %>
+                <li>
+            <%end%>
+                <%= link_to 'Settings', setting_path, class:"nav-link"%>
             </li>
         </ul>
         <div class="footer" style="position:absolute;bottom:10px;">
