@@ -21,7 +21,7 @@
                     <%= link_to 'Profile' , employee_path(User.get_current_user(current_account).user_id), class:"nav-link"%>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Settings</a>
+                     <%= link_to 'Settings' , setting_path, class:"nav-link"%>
                 </li>
             </ul>
         </div>

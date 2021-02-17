@@ -11,6 +11,5 @@ class CreateUsers < ActiveRecord::Migration[6.1]
       #adds created_at and updated_at attributes
       t.timestamps
     end
-    add_foreign_key :users, :accounts, column: :user_email, primary_key: :email
   end
 end

@@ -14,8 +14,8 @@ class CreateEmployees < ActiveRecord::Migration[6.1]
     end
 
     #creates the fks. user_id in this table is FK for user_id attribute in user_profiles table
-    add_foreign_key :employees, :user_profiles, column: :user_id, primary_key: :user_id
-    add_foreign_key :employees, :employers, column: :employer_id, primary_key: :employer_id
+    add_foreign_key :employees, :user_profiles, column: :user_id, primary_key: :user_id, on_delete: :cascade
+    add_foreign_key :employees, :employers, column: :employer_id, primary_key: :employer_id, on_delete: :cascade
 
     #have to add primary keys here because rails doesnt allow composite keys syntatically
     #execute "ALTER TABLE employees ADD PRIMARY KEY (user_id, employer_id);"
