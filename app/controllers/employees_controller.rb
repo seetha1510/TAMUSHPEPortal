@@ -27,9 +27,9 @@ class EmployeesController < ApplicationController
     end
 
     def create
+        puts "here"
         @form_params = params[:employee]
         
-        #change to session id later
         @user_id = User.get_current_user(current_account).user_id
 
         @employer_name = @form_params[:employer_name]
@@ -37,19 +37,23 @@ class EmployeesController < ApplicationController
 
         if @employer_object
             @employee_object = Employee.new(user_id: @user_id, employer_id: @employer_object.employer_id, employee_position: @form_params[:employee_position])
+            if @employee_object.save
+                redirect_to employee_path(User.get_current_user(current_account).user_id)
+            else
+                render :new
+            end
         else
             @new_employer = Employer.new(employer_name: @employer_name)
             if @new_employer.save
                 @employee_object = Employee.new(user_id: @user_id, employer_id: @new_employer.employer_id, employee_position: @form_params[:employee_position])
+                if @employee_object.save
+                    redirect_to employee_path(User.get_current_user(current_account).user_id)
+                else
+                    render :new
+                end
             else
                 render :new
             end
-        end
-
-        if @employee_object.save
-            redirect_to employee_path(User.get_current_user(current_account).user_id)
-        else
-            render :new
         end
     end
 
