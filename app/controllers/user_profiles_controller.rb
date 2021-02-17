@@ -40,16 +40,16 @@ class UserProfilesController < ApplicationController
 
     def edit
         @user_profile = UserProfile.find(params[:id])
+        
     end
 
     def update
         @user_profile = UserProfile.find(params[:id])
-        if @user_profile.update(user_profile_params)
+        if @user_profile.update!(user_profile_params)
             redirect_to (employee_path(User.get_current_user(current_account).user_id))
         else
             render('edit')
         end
-    
     end
 
     def destory
