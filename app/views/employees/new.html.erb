@@ -1,6 +1,21 @@
-<h1>New Employee</h1>
+<h1>Add a Position</h1>
 
 <%= form_with model: @employee do |form| %>
+<%
+=begin%>
+ <% if @employee.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(book.errors.count, "error") %> prohibited this book from being saved:</h2>
+
+      <ul>
+        <% @employee.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %> 
+<%
+=end%>
     
     <%= form.label :employer_name, "Employer Name"%>
     <%= form.text_field :employer_name %>
