@@ -1,6 +1,9 @@
 class UsersController < ApplicationController
 
     def index
+        if account_signed_in?
+            redirect_to(show_path)
+        end
         
     end
 
