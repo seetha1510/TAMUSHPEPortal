@@ -9,7 +9,7 @@
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    
+
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -18,6 +18,15 @@
 </head>
 
 <body>
+    <% if current_page?(new_account_registration_path) || current_page?(root_url) || current_page?(new_account_session_path) || current_page?(new_user_profile_path)  %>
+    <div class="contrainer-fluid" style="min-height:100vh;background-color:#001F5B">
+        <div class="row h-100 justify-content-center">
+            <p class="notice"><%= notice %></p>
+            <p class="alert"><%= alert %></p>
+            <%= yield %>
+        </div>
+    </div>
+    <% else %>
     <div class="wrapper d-flex align-items-stretch">
         <%= render 'layouts/navbar1' unless @disable_nav %>
         <!-- Page Content  -->
@@ -29,6 +38,7 @@
             <%= yield %>
         </div>
     </div>
+    <%end%>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

@@ -63,7 +63,7 @@ h1, h2, h3, h4, h5,
   background: #fff;
   border: none;
   border-radius: 0;
-  margin-bottom: 40px;
+  margin-bottom: 10px;
   -webkit-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
   box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
   }
@@ -162,4 +162,23 @@ a[data-toggle="collapse"] {
 
 .footer p {
   color: rgba(255, 255, 255, 0.5);
+ }
+
+ .blue-text{
+  color:#60d2ff !important;
+ }
+ .white-text{
+  color:#777777 !important;
+ }
+ .form-div{
+   padding-left: 5rem !important;
+   padding-right: 5rem !important;
+   padding-top: 2rem !important;
+   padding-bottom: 2rem !important;
+   background-color: white;
+   margin-bottom: 10vh;
+   border-radius: 10px 70px;
+ }
+ .big-title{
+  font-size: calc(1.825rem + .9vw) !important;
  }

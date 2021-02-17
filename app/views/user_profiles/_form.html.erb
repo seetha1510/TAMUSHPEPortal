@@ -1,51 +1,125 @@
-  
-    <table summary="Subject form fields">
-      <tr>
-        <th>First Name</th>
-        <td><%= f.text_field(:user_first_name) %></td>
-      </tr>
-      <tr>
-        <th>Last name</th>
-        <td><%= f.text_field(:user_last_name) %></td>
-      </tr>
-      <tr>
-        <th>Email</th>
-        <td><%=f.text_field(:user_email,:readonly=>true,value:current_account.email) %></td>
-      </tr>
-      <tr>
-        <th>Hide Email</th>
-        <td><%= f.check_box :user_display_email_status %></td>
-      </tr>
-      <tr>
-        <th>Current Member?</th>
-        <td>  Yes <%= f.check_box :user_current_member_status %></td>
-      </tr>
-      <tr>
-        <th>FaceBook</th>
-        <td><%= f.text_field(:user_facebook_profile_url) %></td>
-      </tr>
-      <tr>
-        <th>Instagram</th>
-        <td><%= f.text_field(:user_instagram_profile_url) %></td>
-      </tr>
-      <tr>
-        <th>Linkedin</th>
-        <td><%= f.text_field(:user_linkedin_profile_url) %></td>
-      </tr>
-      <tr>
-        <th>Graduating Year</th>
-        <td><%= f.text_field(:user_graduating_year) %></td>
-      </tr>
-      <tr>
-        <th>About me</th>
-        <td><%= f.text_area(:user_about_me_description) %></td>
-      </tr>
-      <tr>
-        <th>Phone Number</th>
-        <td><%= f.text_field(:user_phone_number) %></td>
-      </tr>
-      <tr>
-        <th>Image url</th>
-        <td><%= f.text_field(:user_profile_picture_url) %></td>
-      </tr>
-    </table>
+
+ <form>
+
+    <div class="row g-3 align-items-center mb-3">
+  <div class="col-lg-3">
+    <label class="col-form-label">First Name</label>
+  </div>
+  <div class="col-lg-9">
+    <%= f.text_field :user_first_name,class:"form-control",placeholder:"Enter First Name" %>
+  </div>
+</div>
+
+<div class="row g-3 align-items-center mb-3">
+  <div class="col-lg-3">
+    <label class="col-form-label">Last Name</label>
+  </div>
+  <div class="col-lg-9">
+    <%= f.text_field :user_last_name,class:"form-control",placeholder:"Enter Last Name" %>
+  </div>
+</div>
+
+<div class="row g-3 align-items-center mb-3">
+  <div class="col-lg-3">
+    <label class="col-form-label">Email Address</label>
+  </div>
+  <div class="col-lg-9">
+    <%= f.text_field :user_email,class:"form-control",placeholder:"Enter Email", value:current_account.email, readonly:true %>
+  </div>
+</div>
+
+<div class="row g-3 align-items-center mb-3">
+  <div class="col-lg-3">
+    <label class="col-form-label">Current Member</label>
+  </div>
+  <div class="col-lg-9">
+  Yes
+    <%= f.check_box :user_current_member_status %>
+  </div>
+</div>
+
+<div class="row g-3 align-items-center mb-3">
+  <div class="col-lg-3">
+    <label class="col-form-label">Display Email</label>
+  </div>
+  <div class="col-lg-9">
+  Yes
+    <%= f.check_box :user_display_email_status %>
+  </div>
+</div>
+
+<div class="row g-3 align-items-center mb-3">
+  <div class="col-lg-3">
+    <label class="col-form-label">Facebook</label>
+  </div>
+  <div class="col-lg-9">
+  <%= f.text_field :user_facebook_profile_url,class:"form-control",placeholder:"Enter Facebook URL" %>
+  </div>
+</div>
+
+<div class="row g-3 align-items-center mb-3">
+  <div class="col-lg-3">
+    <label class="col-form-label">Instagram</label>
+  </div>
+  <div class="col-lg-9">
+  <%= f.text_field :user_instagram_profile_url,class:"form-control",placeholder:"Enter Instagram URL" %>
+  </div>
+</div>
+
+<div class="row g-3 align-items-center mb-3">
+  <div class="col-lg-3">
+    <label class="col-form-label">Linkedin</label>
+  </div>
+  <div class="col-lg-9">
+  <%= f.text_field :user_linkedin_profile_url,class:"form-control",placeholder:"Enter Linkedin URL" %>
+  </div>
+</div>
+
+<div class="row g-3 align-items-center mb-3">
+  <div class="col-lg-3">
+    <label class="col-form-label">Portfolio</label>
+  </div>
+  <div class="col-lg-9">
+  <%= f.text_field :user_portfolio_url,class:"form-control",placeholder:"Enter Portfolio URL" %>
+  </div>
+</div>
+
+<div class="row g-3 align-items-center mb-3">
+  <div class="col-lg-3">
+    <label class="col-form-label">Image</label>
+  </div>
+  <div class="col-lg-9">
+  <%= f.text_field :user_profile_picture_url,class:"form-control",placeholder:"Enter Image URL" %>
+  </div>
+</div>
+
+<div class="row g-3 align-items-center mb-3">
+  <div class="col-lg-3">
+    <label class="col-form-label">Phone Number</label>
+  </div>
+  <div class="col-lg-9">
+  <%= f.text_field :user_phone_number,class:"form-control",placeholder:"Enter Phone Number" %>
+  </div>
+</div>
+
+<div class="row g-3 align-items-center mb-3">
+  <div class="col-lg-3">
+    <label class="col-form-label">About Me</label>
+  </div>
+  <div class="col-lg-9">
+  <%= f.text_field :user_about_me_description,class:"form-control",placeholder:"Describe Yourself" %>
+  </div>
+</div>
+
+<div class="row g-3 align-items-center mb-3">
+  <div class="col-lg-3">
+    <label class="col-form-label">Graduating Year</label>
+  </div>
+  <div class="col-lg-9">
+  <%= f.text_field :user_graduating_year,class:"form-control",placeholder:"Enter Graduating Year" %>
+  </div>
+</div>
+<div class="form-buttons">
+      <%= f.submit %>
+    </div>
+</form> 
