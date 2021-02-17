@@ -19,11 +19,11 @@ class CreateUserProfiles < ActiveRecord::Migration[6.1]
       #profile picture may need to be url to hosted image
       t.string :user_profile_picture_url
 
-      t.timestamps
+      t.timestamps  
     end
 
     #creates the fk. user_email in this table is FK for user_email attribute in users table
-    add_foreign_key :user_profiles, :users, column: :user_email, primary_key: :user_email
+    add_foreign_key :user_profiles, :users, column: :user_email, primary_key: :user_email, on_delete: :cascade
 
   end
 end

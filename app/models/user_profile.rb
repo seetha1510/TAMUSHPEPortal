@@ -9,4 +9,10 @@ class UserProfile < ApplicationRecord
         belongs_to :user
         has_many :employees
         has_many :employers, through: :employees
+
+        before_save {
+                user_first_name.downcase!
+                user_last_name.downcase!
+         }
+
 end

@@ -1,11 +1,14 @@
-<h1>SHPE landing page</h1>
-
-<% if account_signed_in? %>
-    <p> Signed in as <%=current_account.email %> </p>
-    <%=link_to "Sign Out", destroy_account_session_path, method: :delete %>
-    </br>
-<% else %>
-    <%=link_to "Sign Up", new_account_registration_path %>
-    </br>
-    <%=link_to "Log In", new_account_session_path %>
-<% end %>
+<% if !account_signed_in? %>
+    <div class="contrainer-fluid" style="min-height:100vh;padding-top:20vh;background-color:#001F5B">
+        <div class="row h-100 justify-content-center">
+            <div class="col-md-6 text-center">
+                <%= image_tag "tamuSHPE_app_logo.png", style: 'height:auto;width:70%;' , class:"mb-3"%>
+                <h1 class="blue-text">Welcome to the memberSHPE Portal!</h1>
+                <div class="row" style="padding-left:10vh;padding-right:10vh;">
+                    <%=link_to "Sign Up", new_account_registration_path , class: "btn btn-primary mb-2",style:"color:#FFFFFF;border-color:#FD652F"%>
+                    <%=link_to "Log In", new_account_session_path , class: "btn btn-outline",style:"color:#FD652F;border-color:#FD652F"%>
+                </div>
+            </div>
+        </div>
+    </div>
+<%end%>

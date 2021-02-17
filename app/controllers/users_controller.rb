@@ -1,10 +1,17 @@
 class UsersController < ApplicationController
 
     def index
+        if account_signed_in?
+            redirect_to(show_path)
+        end
         
     end
 
     def show
+        if UserProfile.exists?(user_email:current_account.email)
+        else
+            redirect_to(new_user_profile_path)
+        end
     end
 
     def new
@@ -23,6 +30,9 @@ class UsersController < ApplicationController
     end
 
     def test
+    end
+
+    def setting
     end
     
 end

@@ -1,13 +1,13 @@
-<h1>Edit Employee</h1>
+<h1>Edit Position</h1>
 
-<%= form_with model: @employee do |form| %>
+<%= form_for(@employees) do |form| %>
     
     <%= form.label :employer_name, "Employer Name"%>
     <%= form.text_field :employer_name, value: @employer_name %>
 
     <%= form.label :employee_position, "Position"%>
-    <%= form.text_field :employee_position %>
+    <%= form.text_field :employee_position, value: @employee_position %>
     
     <%= form.submit %>
 <% end %>
-<%= link_to "Back", employees_path , class:"btn btn-primary"%>
+<%= link_to "Back", employee_path(User.get_current_user(current_account).user_id) , class:"btn btn-primary"%>
