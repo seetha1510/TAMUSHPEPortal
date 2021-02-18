@@ -1,6 +1,6 @@
 <h1>Edit Position</h1>
 
-<%= form_for(@employees) do |form| %>
+<%= form_with model: @employees do |form| %>
     
     <%= form.label :employer_name, "Employer Name"%>
     <%= form.text_field :employer_name, value: @employer_name %>
