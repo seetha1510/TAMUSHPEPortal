@@ -16,6 +16,7 @@ RSpec.describe 'Tamu ship ', type: :system do
         fill_in "Password", with: "zx453359523"
         fill_in "Password confirmation", with: "zx453359523"
         click_on "Sign up"
+        expect(page).to have_content('Facebook')
       end
     end
       
@@ -52,6 +53,17 @@ RSpec.describe 'Tamu ship ', type: :system do
             click_on "Sign up"
             
             ## to do test creating new profile page
+            fill_in "Enter First Name",	with: "Yifei"
+            fill_in "Enter Last Name",	with: "Liang"
+            fill_in "Enter Facebook URL" ,    with: "facebook.com"
+            fill_in "Enter Instagram URL",	with: "instagram.com"
+            fill_in "Enter Linkedin URL",	    with: "linkedin.com"
+            fill_in "Enter Phone Number",	with: "8327589525"
+            fill_in "Enter Graduating Year",	with: "2022"
+            click_on "Create User profile"
+            expect(page).to have_content('Yifei')
+            expect(page).to have_content('Setting')
+            
         end
             
             
