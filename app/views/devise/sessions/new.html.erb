@@ -5,6 +5,9 @@
     <%= render "devise/shared/error_messages", resource: resource %>
 
     <div class="container white-text form-div">
+        <%if alert%>
+            <p class="alert", style="color:#D30000"><%= alert %></p>
+        <%end%>
         <div class="field form-group mb-4">
             <%= f.label :email %><br />
             <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"form-control" %>
