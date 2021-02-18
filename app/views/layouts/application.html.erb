@@ -18,11 +18,17 @@
 </head>
 
 <body>
-    <% if current_page?(new_account_registration_path) || current_page?(root_url) || current_page?(new_account_session_path) || current_page?(new_user_profile_path)  %>
+    <% if current_page?(new_account_registration_path) || current_page?(root_url) || current_page?(new_account_session_path) || current_page?(new_user_profile_path) || controller.controller_name == "sessions" || controller.controller_name == "registrations"%>
     <div class="contrainer-fluid" style="min-height:100vh;background-color:#001F5B">
         <div class="row h-100 justify-content-center">
-            <p class="notice"><%= notice %></p>
-            <p class="alert"><%= alert %></p>
+            <% if notice %>
+                <%=render 'layouts/alerts'%>
+            <%end%>
+            <%
+=begin%>
+ <p class="alert"><%= alert %></p> 
+<%
+=end%>
             <%= yield %>
         </div>
     </div>
@@ -33,7 +39,9 @@
         <div id="content" class="p-4 p-md-5">
             <%= render 'layouts/navbar2' unless @disable_nav %>
             <%# need flash notices for devise%>
-            <p class="notice"><%= notice %></p>
+            <% if notice  %>
+                <%=render 'layouts/alerts'%>
+            <%end%>
             <p class="alert"><%= alert %></p>
             <%= yield %>
         </div>
