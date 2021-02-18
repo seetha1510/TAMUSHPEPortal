@@ -27,9 +27,9 @@ class EmployeesController < ApplicationController
     end
 
     def create
+        puts "here"
         @form_params = params[:employee]
         
-        #change to session id later
         @user_id = User.get_current_user(current_account).user_id
 
         @employer_name = @form_params[:employer_name]
@@ -55,7 +55,6 @@ class EmployeesController < ApplicationController
                 redirect_to new_employee_path
             end
         end
-
     end
 
     def edit
