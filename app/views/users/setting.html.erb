@@ -7,7 +7,7 @@
     
 <% else %>
     <p> Signed in as <%=current_account.email %> </p>
-    <%=link_to "Sign Out", destroy_account_session_path, method: :delete %>
+    <%=link_to "Sign Out", destroy_account_session_path, method: :delete , class:"btn btn-primary mb-3"%>
     </br>
-    <%= link_to "Cancel my account", registration_path(current_account), data: { confirm: "Are you sure?" }, method: :delete %>
+    <%= link_to "Cancel my account", registration_path(current_account), data: { confirm: "Are you sure?" }, method: :delete, class:"btn btn-primary" %>
 <% end %>

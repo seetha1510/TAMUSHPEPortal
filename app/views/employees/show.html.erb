@@ -73,7 +73,11 @@
             <td><%= employee.user_id %></td>
             <td><%= employee.employer.employer_name %></td>
             <td><%= employee.employee_position %></td>
+            <% if current_account.email == @true_email %>
             <td><%= link_to "Edit", edit_employee_path(employee)%></td>
+            <%else%>
+            <%end%>
+            
         </tr>
         <% end %>
     </tbody>
