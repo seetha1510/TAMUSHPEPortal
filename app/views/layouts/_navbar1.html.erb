@@ -1,4 +1,4 @@
- <% if current_page?(new_account_registration_path) || current_page?(root_url) || current_page?(new_account_session_path) || current_page?(new_user_profile_path)%> 
+ <% if current_page?(new_account_registration_path) || current_page?(root_url) || current_page?(new_account_session_path) || current_page?(new_user_profile_path) || controller.controller_name == "sessions" || controller.controller_name == "registrations"%> 
 
 <% else %>
 <nav id="sidebar">

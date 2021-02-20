@@ -1,11 +1,19 @@
 <div class="col-md-6 text-center">
-    <%= @user_profile.errors.full_messages[0] %>
     <%= image_tag "tamuSHPE_app_logo.png", style: 'height:auto;width:50%;' , class:"mb-3"%>
     <h2 class="blue-text mb-3 big-title">Create Profile</h2>
     <%= form_for(@user_profile, :url => user_profiles_path, :method => 'post') do |f| %>
     <div class="container white-text form-div">
         <div class="col-md-12">
-            <%= render(:partial => 'form', :locals => {:f=>f})%>
+        
+            <% if @user_profile.errors.any? %>
+                <div id="error_explanation">
+                    <% @user_profile.errors.full_messages.each do |msg| %>
+                        <p class="mb-1" id="error-message" style="color:#D30000"><%= msg %></p>
+                    <% end %>
+                </div>
+            <% end %> 
+
+            <%= render(:partial => 'form', :locals => {:f=>f})%>          
         </div>
 
 

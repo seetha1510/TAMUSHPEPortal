@@ -1,4 +1,11 @@
 
+  <%
+=begin%>
+ <% if @user_profile.errors.any? %>
+  <%= @user_profile.errors.full_messages %>
+<% end %> 
+<%
+=end%>
  <form>
     <div class="row g-3 align-items-center mb-3">
   <div class="col-lg-3">
