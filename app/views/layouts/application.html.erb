@@ -18,10 +18,10 @@
 </head>
 
 <body>
-    <% if current_page?(new_account_registration_path) || current_page?(root_url) || current_page?(new_account_session_path) || current_page?(new_user_profile_path) || controller.controller_name == "sessions" || controller.controller_name == "registrations"%>
+    <% if current_page?(new_account_registration_path) || current_page?(root_url) || current_page?(new_account_session_path) || current_page?(new_user_profile_path) || controller.controller_name == "sessions" || controller.controller_name == "registrations" || (controller.controller_name == "user_profiles"&& controller.action_name == "create") %>
     <div class="contrainer-fluid" style="min-height:100vh;padding-top:10vh;background-color:#001F5B">
         <div class="row h-100 justify-content-center">
-            <% if notice %>
+            <% if notice && !new_account_session_path%>
                 <%=render 'layouts/alerts'%>
             <%end%>
             <%
