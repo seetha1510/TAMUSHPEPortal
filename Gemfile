@@ -64,3 +64,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # Simple Cov
 gem 'simplecov', require: false, group: :test
+
+
+# Fix unable to load file 
+gem 'rexml'
