@@ -2,6 +2,7 @@ require "rails_helper"
 
 RSpec.describe 'Tamu ship ', type: :system do
     describe 'settings page' do
+        
         it 'shows the right content' do
             visit new_account_registration_path
             fill_in "Email",    with: "yifei.liang@tamu.edu"
@@ -45,7 +46,7 @@ RSpec.describe 'Tamu ship ', type: :system do
             visit setting_path
             click_on "Sign Out"
             expect(page).to have_content('Welcome to the memberSHPE Portal!')
-            sleep(10)
+
         end
 
         it 'goes to the right page after delete my account' do
