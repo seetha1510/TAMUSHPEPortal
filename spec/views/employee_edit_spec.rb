@@ -1,12 +1,12 @@
 require "rails_helper"
 
-RSpec.describe "employee edit page", type: :view do
+RSpec.describe "employee edit page", type: :system do
 
     it "displays the edit employee form correctly" do
         visit new_account_registration_path
         ## to get an account to log in
         fill_in "Email",	with: "yifei.liang@tamu.edu"
-        fil_in "Password", with: "zx453359523"
+        fill_in "Password", with: "zx453359523"
         fill_in "Password confirmation", with: "zx453359523"
         click_on "Sign up"
             
@@ -20,7 +20,7 @@ RSpec.describe "employee edit page", type: :view do
         fill_in "Enter Graduating Year",	with: "2022"
         click_on "Create User profile"
 
-        click_link("profile", match: :first)
+        click_link("Profile", match: :first)
         click_on "Add"
 
         fill_in "Employer Name", with: "Microsoft"
@@ -39,7 +39,7 @@ RSpec.describe "employee edit page", type: :view do
         visit new_account_registration_path
         ## to get an account to log in
         fill_in "Email",	with: "yifei.liang@tamu.edu"
-        fil_in "Password", with: "zx453359523"
+        fill_in "Password", with: "zx453359523"
         fill_in "Password confirmation", with: "zx453359523"
         click_on "Sign up"
             
@@ -53,7 +53,7 @@ RSpec.describe "employee edit page", type: :view do
         fill_in "Enter Graduating Year",	with: "2022"
         click_on "Create User profile"
 
-        click_link("profile", match: :first)
+        click_link("Profile", match: :first)
         click_on "Add"
 
         fill_in "Employer Name", with: "Microsoft"
@@ -73,7 +73,7 @@ RSpec.describe "employee edit page", type: :view do
         visit new_account_registration_path
         ## to get an account to log in
         fill_in "Email",	with: "yifei.liang@tamu.edu"
-        fil_in "Password", with: "zx453359523"
+        fill_in "Password", with: "zx453359523"
         fill_in "Password confirmation", with: "zx453359523"
         click_on "Sign up"
             
@@ -87,7 +87,7 @@ RSpec.describe "employee edit page", type: :view do
         fill_in "Enter Graduating Year",	with: "2022"
         click_on "Create User profile"
 
-        click_link("profile", match: :first)
+        click_link("Profile", match: :first)
         click_on "Add"
 
         fill_in "Employer Name", with: "Microsoft"
