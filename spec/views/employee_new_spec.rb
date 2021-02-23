@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe "employee new page", type: :view do
+RSpec.describe "employee new page", type: :system do
     
     #
     # Test new employee form funcitonality
@@ -10,7 +10,7 @@ RSpec.describe "employee new page", type: :view do
         visit new_account_registration_path
         ## to get an account to log in
         fill_in "Email",	with: "yifei.liang@tamu.edu"
-        fil_in "Password", with: "zx453359523"
+        fill_in "Password", with: "zx453359523"
         fill_in "Password confirmation", with: "zx453359523"
         click_on "Sign up"
             
@@ -36,7 +36,7 @@ RSpec.describe "employee new page", type: :view do
         visit new_account_registration_path
         ## to get an account to log in
         fill_in "Email",	with: "yifei.liang@tamu.edu"
-        fil_in "Password", with: "zx453359523"
+        fill_in "Password", with: "zx453359523"
         fill_in "Password confirmation", with: "zx453359523"
         click_on "Sign up"
             
@@ -50,22 +50,22 @@ RSpec.describe "employee new page", type: :view do
         fill_in "Enter Graduating Year",	with: "2022"
         click_on "Create User profile"
 
-        click_link("profile", match: :first)
+        click_link("Profile", match: :first)
         click_on "Add"
 
         fill_in "Employer Name", with: "Microsoft"
         fill_in "Position", with: "Software Engineer"
         click_on "Create Employee"
 
-        expect(Employer.find(Employee.last.employer_id)).to eq("Microsoft")
-        expect(Employee.last.employee_position).to eq("Software Engineer")
+        expect(page).to have_content("Microsoft")
+        expect(page).to have_content("Software Engineer")
     end
 
     it "redirects the correct page upon submitting" do
         visit new_account_registration_path
         ## to get an account to log in
         fill_in "Email",	with: "yifei.liang@tamu.edu"
-        fil_in "Password", with: "zx453359523"
+        fill_in "Password", with: "zx453359523"
         fill_in "Password confirmation", with: "zx453359523"
         click_on "Sign up"
             
@@ -79,13 +79,13 @@ RSpec.describe "employee new page", type: :view do
         fill_in "Enter Graduating Year",	with: "2022"
         click_on "Create User profile"
 
-        click_link("profile", match: :first)
+        click_link("Profile", match: :first)
         click_on "Add"
 
         fill_in "Employer Name", with: "Google"
         fill_in "Position", with: "Software Engineer"
         click_on "Create Employee"
-
+        sleep(10)
         expect(page).to have_content("My Profile")
         expect(page).to have_content("General Information")
         expect(page).to have_content("Positions")
