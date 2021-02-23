@@ -18,7 +18,7 @@ RSpec.describe "employee edit page", type: :system do
         fill_in "Enter Linkedin URL",	    with: "linkedin.com"
         fill_in "Enter Phone Number",	with: "8327589525"
         fill_in "Enter Graduating Year",	with: "2022"
-        click_on "Create User profile"
+        click_on "Create User profile" 
 
         click_link("Profile", match: :first)
         click_on "Add"
@@ -27,7 +27,9 @@ RSpec.describe "employee edit page", type: :system do
         fill_in "Position", with: "Software Engineer"
         click_on "Create Employee"
 
-        visit edit_employee_path(Employee.last.employer_id)
+        within("tbody", :id => "positions") do
+            click_link("Edit",match: :first)
+        end
 
         expect(page).to have_field('Employer Name')
         expect(page).to have_field('Position')
@@ -60,13 +62,15 @@ RSpec.describe "employee edit page", type: :system do
         fill_in "Position", with: "Software Engineer"
         click_on "Create Employee"
 
-        visit edit_employee_path(Employee.last.employer_id)
+        within("tbody", :id => "positions") do
+            click_link("Edit",match: :first)
+        end
 
         fill_in "Employer Name", with: "Google"
         fill_in "Position", with: "Software Engineer"
         click_on "Update Employee"
 
-        expect(Employer.find(Employee.last.employer_id)).to eq("Google")
+        expect(page).to have_content("Google")
     end
 
     it "redirects to the correct page after updating" do
@@ -93,8 +97,10 @@ RSpec.describe "employee edit page", type: :system do
         fill_in "Employer Name", with: "Microsoft"
         fill_in "Position", with: "Software Engineer"
         click_on "Create Employee"
-
-        visit edit_employee_path(Employee.last.employer_id)
+        within("tbody", :id => "positions") do
+            click_link("Edit",match: :first)
+        end
+        
 
         fill_in "Employer Name", with: "Google"
         fill_in "Position", with: "Software Engineer"
