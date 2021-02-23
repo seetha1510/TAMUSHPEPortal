@@ -50,7 +50,7 @@ RSpec.describe "employee new page", type: :view do
         fill_in "Enter Graduating Year",	with: "2022"
         click_on "Create User profile"
 
-        click_on "Profile"
+        click_link("profile", match: :first)
         click_on "Add"
 
         fill_in "Employer Name", with: "Microsoft"
@@ -79,7 +79,7 @@ RSpec.describe "employee new page", type: :view do
         fill_in "Enter Graduating Year",	with: "2022"
         click_on "Create User profile"
 
-        click_on "Profile"
+        click_link("profile", match: :first)
         click_on "Add"
 
         fill_in "Employer Name", with: "Google"
