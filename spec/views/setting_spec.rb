@@ -45,7 +45,9 @@ RSpec.describe 'Tamu ship ', type: :system do
             click_on "Create User profile"
             visit setting_path
             click_on "Sign Out"
-            expect(page).to have_content('Signed out successfully.')
+            a = page.driver.browser.switch_to.alert
+            expect(a.text).to eq("Signed out successfully.")
+            # expect(page).to have_content('Signed out successfully.')
             expect(page).to have_content('Welcome to the memberSHPE Portal!')
 
         end
@@ -75,12 +77,13 @@ RSpec.describe 'Tamu ship ', type: :system do
             click_on "Log in"
             visit setting_path
             click_on "Cancel my account"
-            # expect(page).to have_content('Are you sure?')
             a = page.driver.browser.switch_to.alert
             expect(a.text).to eq("Are you sure?")
             a.accept
             expect(page).to have_content('Welcome to the memberSHPE Portal!')
-            expect(page).to have_content('Bye! Your account has been successfully cancelled.')
+            # expect(page).to have_content('Bye! Your account has been successfully cancelled.')
+            # subject.current_user.should be_nil
+            # expect(controller.current_user).to be_nil
         end
 
         it 'goes to the right page after cancelling delete my account' do
@@ -108,10 +111,9 @@ RSpec.describe 'Tamu ship ', type: :system do
             click_on "Log in"
             visit setting_path
             click_on "Cancel my account"
-            # expect(page).to have_content('Are you sure?')
             a = page.driver.browser.switch_to.alert
             expect(a.text).to eq("Are you sure?")
-            a.decline
+            a.dismiss
             expect(page).to have_content('Settings')
             expect(page).to have_content('Signed in as')
         end
