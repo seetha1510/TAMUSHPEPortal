@@ -27,7 +27,6 @@ class EmployeesController < ApplicationController
     end
 
     def create
-        puts "here"
         @form_params = params[:employee]
         
         @user_id = User.get_current_user(current_account).user_id
