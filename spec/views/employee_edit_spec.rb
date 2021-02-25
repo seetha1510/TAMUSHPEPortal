@@ -34,7 +34,6 @@ RSpec.describe "employee edit page", type: :view do
         expect(page).to have_button('Update Employee')
     end
 
-
     it "updates an employee upon submitting" do
         visit new_account_registration_path
         ## to get an account to log in
@@ -102,5 +101,4 @@ RSpec.describe "employee edit page", type: :view do
 
         expect(page).to have_content("My Profile")
     end
-
 end

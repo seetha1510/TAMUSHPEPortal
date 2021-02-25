@@ -1,26 +1,84 @@
 {
   "RSpec": {
     "coverage": {
-      "/Users/yifeiliang/Documents/GitHub/TAMUSHPEMemberPortal/spec/helpers/employees_helper_spec.rb": {
+      "/Users/jonathangaytan/Desktop/Spring 2021/CSCE 431/memberSHPE_Portal/spec/views/log_in_spec.rb": {
         "lines": [
           1,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
           null,
           null,
           1,
           1,
+          null,
+          1,
+          1,
+          1,
+          1,
+          null,
+          null,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          null,
+          null,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          null,
+          null,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          null,
+          null,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          null,
+          null,
           null
         ]
       },
-      "/Users/yifeiliang/Documents/GitHub/TAMUSHPEMemberPortal/spec/rails_helper.rb": {
+      "/Users/jonathangaytan/Desktop/Spring 2021/CSCE 431/memberSHPE_Portal/spec/rails_helper.rb": {
         "lines": [
           null,
           1,
@@ -89,7 +147,7 @@
           null
         ]
       },
-      "/Users/yifeiliang/Documents/GitHub/TAMUSHPEMemberPortal/config/environment.rb": {
+      "/Users/jonathangaytan/Desktop/Spring 2021/CSCE 431/memberSHPE_Portal/config/environment.rb": {
         "lines": [
           null,
           1,
@@ -98,7 +156,7 @@
           1
         ]
       },
-      "/Users/yifeiliang/Documents/GitHub/TAMUSHPEMemberPortal/config/application.rb": {
+      "/Users/jonathangaytan/Desktop/Spring 2021/CSCE 431/memberSHPE_Portal/config/application.rb": {
         "lines": [
           1,
           null,
@@ -140,7 +198,7 @@
           null
         ]
       },
-      "/Users/yifeiliang/Documents/GitHub/TAMUSHPEMemberPortal/config/boot.rb": {
+      "/Users/jonathangaytan/Desktop/Spring 2021/CSCE 431/memberSHPE_Portal/config/boot.rb": {
         "lines": [
           1,
           null,
@@ -148,7 +206,7 @@
           1
         ]
       },
-      "/Users/yifeiliang/Documents/GitHub/TAMUSHPEMemberPortal/config/environments/test.rb": {
+      "/Users/jonathangaytan/Desktop/Spring 2021/CSCE 431/memberSHPE_Portal/config/environments/test.rb": {
         "lines": [
           1,
           null,
@@ -212,7 +270,7 @@
           null
         ]
       },
-      "/Users/yifeiliang/Documents/GitHub/TAMUSHPEMemberPortal/config/initializers/application_controller_renderer.rb": {
+      "/Users/jonathangaytan/Desktop/Spring 2021/CSCE 431/memberSHPE_Portal/config/initializers/application_controller_renderer.rb": {
         "lines": [
           null,
           null,
@@ -224,7 +282,7 @@
           null
         ]
       },
-      "/Users/yifeiliang/Documents/GitHub/TAMUSHPEMemberPortal/config/initializers/assets.rb": {
+      "/Users/jonathangaytan/Desktop/Spring 2021/CSCE 431/memberSHPE_Portal/config/initializers/assets.rb": {
         "lines": [
           null,
           null,
@@ -242,7 +300,7 @@
           null
         ]
       },
-      "/Users/yifeiliang/Documents/GitHub/TAMUSHPEMemberPortal/config/initializers/backtrace_silencers.rb": {
+      "/Users/jonathangaytan/Desktop/Spring 2021/CSCE 431/memberSHPE_Portal/config/initializers/backtrace_silencers.rb": {
         "lines": [
           null,
           null,
@@ -254,7 +312,7 @@
           1
         ]
       },
-      "/Users/yifeiliang/Documents/GitHub/TAMUSHPEMemberPortal/config/initializers/content_security_policy.rb": {
+      "/Users/jonathangaytan/Desktop/Spring 2021/CSCE 431/memberSHPE_Portal/config/initializers/content_security_policy.rb": {
         "lines": [
           null,
           null,
@@ -288,7 +346,7 @@
           null
         ]
       },
-      "/Users/yifeiliang/Documents/GitHub/TAMUSHPEMemberPortal/config/initializers/cookies_serializer.rb": {
+      "/Users/jonathangaytan/Desktop/Spring 2021/CSCE 431/memberSHPE_Portal/config/initializers/cookies_serializer.rb": {
         "lines": [
           null,
           null,
@@ -297,7 +355,7 @@
           1
         ]
       },
-      "/Users/yifeiliang/Documents/GitHub/TAMUSHPEMemberPortal/config/initializers/devise.rb": {
+      "/Users/jonathangaytan/Desktop/Spring 2021/CSCE 431/memberSHPE_Portal/config/initializers/devise.rb": {
         "lines": [
           null,
           null,
@@ -612,7 +670,7 @@
           null
         ]
       },
-      "/Users/yifeiliang/Documents/GitHub/TAMUSHPEMemberPortal/config/initializers/filter_parameter_logging.rb": {
+      "/Users/jonathangaytan/Desktop/Spring 2021/CSCE 431/memberSHPE_Portal/config/initializers/filter_parameter_logging.rb": {
         "lines": [
           null,
           null,
@@ -622,7 +680,7 @@
           null
         ]
       },
-      "/Users/yifeiliang/Documents/GitHub/TAMUSHPEMemberPortal/config/initializers/inflections.rb": {
+      "/Users/jonathangaytan/Desktop/Spring 2021/CSCE 431/memberSHPE_Portal/config/initializers/inflections.rb": {
         "lines": [
           null,
           null,
@@ -642,7 +700,7 @@
           null
         ]
       },
-      "/Users/yifeiliang/Documents/GitHub/TAMUSHPEMemberPortal/config/initializers/mime_types.rb": {
+      "/Users/jonathangaytan/Desktop/Spring 2021/CSCE 431/memberSHPE_Portal/config/initializers/mime_types.rb": {
         "lines": [
           null,
           null,
@@ -650,12 +708,12 @@
           null
         ]
       },
-      "/Users/yifeiliang/Documents/GitHub/TAMUSHPEMemberPortal/config/initializers/new_framework_defaults.rb": {
+      "/Users/jonathangaytan/Desktop/Spring 2021/CSCE 431/memberSHPE_Portal/config/initializers/new_framework_defaults.rb": {
         "lines": [
           1
         ]
       },
-      "/Users/yifeiliang/Documents/GitHub/TAMUSHPEMemberPortal/config/initializers/permissions_policy.rb": {
+      "/Users/jonathangaytan/Desktop/Spring 2021/CSCE 431/memberSHPE_Portal/config/initializers/permissions_policy.rb": {
         "lines": [
           null,
           null,
@@ -670,7 +728,7 @@
           null
         ]
       },
-      "/Users/yifeiliang/Documents/GitHub/TAMUSHPEMemberPortal/config/initializers/wrap_parameters.rb": {
+      "/Users/jonathangaytan/Desktop/Spring 2021/CSCE 431/memberSHPE_Portal/config/initializers/wrap_parameters.rb": {
         "lines": [
           null,
           null,
@@ -688,7 +746,7 @@
           null
         ]
       },
-      "/Users/yifeiliang/Documents/GitHub/TAMUSHPEMemberPortal/config/routes.rb": {
+      "/Users/jonathangaytan/Desktop/Spring 2021/CSCE 431/memberSHPE_Portal/config/routes.rb": {
         "lines": [
           1,
           1,
@@ -714,7 +772,7 @@
           null
         ]
       },
-      "/Users/yifeiliang/Documents/GitHub/TAMUSHPEMemberPortal/app/models/account.rb": {
+      "/Users/jonathangaytan/Desktop/Spring 2021/CSCE 431/memberSHPE_Portal/app/models/account.rb": {
         "lines": [
           1,
           null,
@@ -725,7 +783,7 @@
           1,
           null,
           1,
-          4,
+          1,
           null,
           null,
           1,
@@ -734,575 +792,81 @@
           null
         ]
       },
-      "/Users/yifeiliang/Documents/GitHub/TAMUSHPEMemberPortal/app/models/application_record.rb": {
+      "/Users/jonathangaytan/Desktop/Spring 2021/CSCE 431/memberSHPE_Portal/app/models/application_record.rb": {
         "lines": [
           1,
           1,
           null
         ]
       },
-      "/Users/yifeiliang/Documents/GitHub/TAMUSHPEMemberPortal/app/helpers/application_helper.rb": {
+      "/Users/jonathangaytan/Desktop/Spring 2021/CSCE 431/memberSHPE_Portal/app/helpers/application_helper.rb": {
         "lines": [
           1,
           null
         ]
       },
-      "/Users/yifeiliang/Documents/GitHub/TAMUSHPEMemberPortal/app/helpers/employees_helper.rb": {
+      "/Users/jonathangaytan/Desktop/Spring 2021/CSCE 431/memberSHPE_Portal/app/helpers/employees_helper.rb": {
         "lines": [
           1,
           null
         ]
       },
-      "/Users/yifeiliang/Documents/GitHub/TAMUSHPEMemberPortal/app/helpers/employers_helper.rb": {
+      "/Users/jonathangaytan/Desktop/Spring 2021/CSCE 431/memberSHPE_Portal/app/helpers/employers_helper.rb": {
         "lines": [
           1,
           null
         ]
       },
-      "/Users/yifeiliang/Documents/GitHub/TAMUSHPEMemberPortal/app/helpers/hello_world_helper.rb": {
+      "/Users/jonathangaytan/Desktop/Spring 2021/CSCE 431/memberSHPE_Portal/app/helpers/hello_world_helper.rb": {
         "lines": [
           1,
           null
         ]
       },
-      "/Users/yifeiliang/Documents/GitHub/TAMUSHPEMemberPortal/app/helpers/user_profiles_helper.rb": {
+      "/Users/jonathangaytan/Desktop/Spring 2021/CSCE 431/memberSHPE_Portal/app/helpers/user_profiles_helper.rb": {
         "lines": [
           1,
           null
         ]
       },
-      "/Users/yifeiliang/Documents/GitHub/TAMUSHPEMemberPortal/app/helpers/users_helper.rb": {
+      "/Users/jonathangaytan/Desktop/Spring 2021/CSCE 431/memberSHPE_Portal/app/helpers/users_helper.rb": {
         "lines": [
           1,
           null
         ]
       },
-      "/Users/yifeiliang/Documents/GitHub/TAMUSHPEMemberPortal/spec/helpers/employers_helper_spec.rb": {
+      "/Users/jonathangaytan/Desktop/Spring 2021/CSCE 431/memberSHPE_Portal/app/controllers/application_controller.rb": {
         "lines": [
-          1,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          1,
           1,
           null
         ]
       },
-      "/Users/yifeiliang/Documents/GitHub/TAMUSHPEMemberPortal/spec/helpers/hello_world_helper_spec.rb": {
+      "/Users/jonathangaytan/Desktop/Spring 2021/CSCE 431/memberSHPE_Portal/app/models/user.rb": {
         "lines": [
           1,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
           1,
           1,
+          1,
+          1,
+          13,
           null
         ]
       },
-      "/Users/yifeiliang/Documents/GitHub/TAMUSHPEMemberPortal/spec/helpers/user_profiles_helper_spec.rb": {
+      "/Users/jonathangaytan/Desktop/Spring 2021/CSCE 431/memberSHPE_Portal/app/controllers/users_controller.rb": {
         "lines": [
           1,
           null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          1,
-          1,
-          null
-        ]
-      },
-      "/Users/yifeiliang/Documents/GitHub/TAMUSHPEMemberPortal/spec/helpers/users_helper_spec.rb": {
-        "lines": [
-          1,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          1,
-          1,
-          null
-        ]
-      },
-      "/Users/yifeiliang/Documents/GitHub/TAMUSHPEMemberPortal/spec/models/employee_spec.rb": {
-        "lines": [
-          1,
-          null,
-          1,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          1,
-          null,
-          4,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          1,
-          1,
-          null,
-          null,
-          1,
-          1,
-          1,
-          null,
-          null,
-          1,
-          1,
-          1,
-          null,
-          null,
-          1,
-          1,
-          1,
-          null,
-          null
-        ]
-      },
-      "/Users/yifeiliang/Documents/GitHub/TAMUSHPEMemberPortal/app/models/employee.rb": {
-        "lines": [
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          null
-        ]
-      },
-      "/Users/yifeiliang/Documents/GitHub/TAMUSHPEMemberPortal/spec/models/employer_spec.rb": {
-        "lines": [
-          1,
-          null,
-          1,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          1,
-          null,
-          2,
-          null,
-          null,
-          null,
-          null,
-          1,
-          1,
-          null,
-          null,
-          1,
-          1,
-          1,
-          null,
-          null
-        ]
-      },
-      "/Users/yifeiliang/Documents/GitHub/TAMUSHPEMemberPortal/app/models/employer.rb": {
-        "lines": [
-          1,
-          1,
-          1,
-          1,
-          1,
-          null
-        ]
-      },
-      "/Users/yifeiliang/Documents/GitHub/TAMUSHPEMemberPortal/spec/models/user_profile_spec.rb": {
-        "lines": [
-          1,
-          null,
-          1,
-          null,
-          1,
-          16,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          1,
-          null,
-          1,
-          null,
-          null,
-          1,
-          1,
-          1,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          1,
-          null,
-          1,
-          null,
-          1,
-          1,
-          1,
-          null,
-          1,
-          1,
-          1,
-          null,
-          null,
-          null,
-          1,
-          null,
-          1,
-          null,
-          1,
-          1,
-          1,
-          null,
-          1,
-          1,
-          1,
-          null,
-          null,
-          null,
-          null,
-          1,
-          null,
-          1,
-          null,
-          1,
-          1,
-          1,
-          null,
-          1,
-          1,
-          1,
-          null,
-          null,
-          null,
-          1,
-          null,
-          1,
-          null,
-          1,
-          1,
-          1,
-          null,
-          1,
-          1,
-          1,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          1,
-          1,
-          1,
-          null,
-          null,
-          1,
-          1,
-          1,
-          null,
-          null,
-          null,
-          null
-        ]
-      },
-      "/Users/yifeiliang/Documents/GitHub/TAMUSHPEMemberPortal/app/models/user_profile.rb": {
-        "lines": [
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          null,
-          1,
-          1,
-          1,
-          null,
-          null,
-          null
-        ]
-      },
-      "/Users/yifeiliang/Documents/GitHub/TAMUSHPEMemberPortal/spec/requests/employees_request_spec.rb": {
-        "lines": [
-          1,
-          null,
-          1,
-          null,
-          null
-        ]
-      },
-      "/Users/yifeiliang/Documents/GitHub/TAMUSHPEMemberPortal/spec/requests/employers_request_spec.rb": {
-        "lines": [
-          1,
-          null,
-          1,
-          null,
-          null
-        ]
-      },
-      "/Users/yifeiliang/Documents/GitHub/TAMUSHPEMemberPortal/spec/requests/hello_world_request_spec.rb": {
-        "lines": [
-          1,
-          null,
-          1,
-          null,
-          1,
           1,
           1,
           0,
           null,
           null,
           null,
-          null
-        ]
-      },
-      "/Users/yifeiliang/Documents/GitHub/TAMUSHPEMemberPortal/spec/requests/user_profiles_request_spec.rb": {
-        "lines": [
-          1,
           null,
           1,
-          null,
-          null
-        ]
-      },
-      "/Users/yifeiliang/Documents/GitHub/TAMUSHPEMemberPortal/spec/requests/users_request_spec.rb": {
-        "lines": [
-          1,
+          3,
           null,
           1,
-          null,
-          null
-        ]
-      },
-      "/Users/yifeiliang/Documents/GitHub/TAMUSHPEMemberPortal/spec/views/employee_new_spec.rb": {
-        "lines": [
-          1,
-          null,
-          1,
-          null,
-          null,
-          null,
-          null,
-          null,
-          1,
-          1,
-          null,
-          0,
-          0,
-          0,
-          null,
-          null,
-          1,
-          1,
-          null,
-          0,
-          0,
-          0,
-          null,
-          0,
-          0,
-          null,
-          null,
-          1,
-          1,
-          null,
-          0,
-          0,
-          0,
-          null,
-          0,
-          0,
-          0,
-          null,
-          null
-        ]
-      },
-      "/Users/yifeiliang/Documents/GitHub/TAMUSHPEMemberPortal/spec/views/sign_up_spec.rb": {
-        "lines": [
-          1,
-          null,
-          1,
-          1,
-          1,
-          1,
-          null,
-          1,
-          1,
-          1,
-          null,
-          1,
-          1,
-          null,
-          1,
-          1,
-          1,
-          1,
-          1,
-          null,
-          null,
-          null,
-          1,
-          1,
-          1,
-          null,
-          1,
-          1,
-          1,
-          1,
-          null,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          null,
-          null,
-          1,
-          1,
-          null,
-          1,
-          1,
-          1,
-          1,
-          null,
-          null,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          null,
-          null,
-          null,
-          1,
-          1,
-          null,
-          1,
-          1,
-          1,
-          1,
-          null,
-          null,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ]
-      },
-      "/Users/yifeiliang/Documents/GitHub/TAMUSHPEMemberPortal/app/controllers/application_controller.rb": {
-        "lines": [
-          1,
-          null
-        ]
-      },
-      "/Users/yifeiliang/Documents/GitHub/TAMUSHPEMemberPortal/app/models/user.rb": {
-        "lines": [
-          1,
-          1,
-          1,
-          1,
-          5,
-          null
-        ]
-      },
-      "/Users/yifeiliang/Documents/GitHub/TAMUSHPEMemberPortal/app/controllers/users_controller.rb": {
-        "lines": [
-          1,
-          null,
-          1,
-          0,
-          0,
-          null,
-          null,
-          null,
-          null,
-          1,
-          5,
-          null,
-          4,
           null,
           null,
           null,
@@ -1330,7 +894,31 @@
           null
         ]
       },
-      "/Users/yifeiliang/Documents/GitHub/TAMUSHPEMemberPortal/app/controllers/user_profiles_controller.rb": {
+      "/Users/jonathangaytan/Desktop/Spring 2021/CSCE 431/memberSHPE_Portal/app/models/user_profile.rb": {
+        "lines": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          null,
+          1,
+          1,
+          1,
+          null,
+          null,
+          null
+        ]
+      },
+      "/Users/jonathangaytan/Desktop/Spring 2021/CSCE 431/memberSHPE_Portal/app/controllers/user_profiles_controller.rb": {
         "lines": [
           1,
           null,
@@ -1358,16 +946,16 @@
           null,
           null,
           1,
-          4,
+          1,
           null,
           null,
           1,
           null,
-          2,
-          2,
+          1,
+          1,
           1,
           null,
-          1,
+          0,
           null,
           null,
           null,
@@ -1390,12 +978,12 @@
           null,
           1,
           1,
-          2,
+          1,
           null,
           null
         ]
       }
     },
-    "timestamp": 1613847469
+    "timestamp": 1614253258
   }
 }
