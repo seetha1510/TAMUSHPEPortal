@@ -1,12 +1,12 @@
 require "rails_helper"
 
-RSpec.describe "employee edit page", type: :view do
+RSpec.describe "employee edit page", type: :system do
 
     it "displays the edit employee form correctly" do
         visit new_account_registration_path
         ## to get an account to log in
         fill_in "Email",	with: "yifei.liang@tamu.edu"
-        fil_in "Password", with: "zx453359523"
+        fill_in "Password", with: "zx453359523"
         fill_in "Password confirmation", with: "zx453359523"
         click_on "Sign up"
             
@@ -18,16 +18,18 @@ RSpec.describe "employee edit page", type: :view do
         fill_in "Enter Linkedin URL",	    with: "linkedin.com"
         fill_in "Enter Phone Number",	with: "8327589525"
         fill_in "Enter Graduating Year",	with: "2022"
-        click_on "Create User profile"
+        click_on "Create User profile" 
 
-        click_on "Profile"
+        click_link("Profile", match: :first)
         click_on "Add"
 
         fill_in "Employer Name", with: "Microsoft"
         fill_in "Position", with: "Software Engineer"
         click_on "Create Employee"
 
-        visit edit_employee_path(1)
+        within("tbody", :id => "positions") do
+            click_link("Edit",match: :first)
+        end
 
         expect(page).to have_field('Employer Name')
         expect(page).to have_field('Position')
@@ -38,7 +40,7 @@ RSpec.describe "employee edit page", type: :view do
         visit new_account_registration_path
         ## to get an account to log in
         fill_in "Email",	with: "yifei.liang@tamu.edu"
-        fil_in "Password", with: "zx453359523"
+        fill_in "Password", with: "zx453359523"
         fill_in "Password confirmation", with: "zx453359523"
         click_on "Sign up"
             
@@ -52,27 +54,29 @@ RSpec.describe "employee edit page", type: :view do
         fill_in "Enter Graduating Year",	with: "2022"
         click_on "Create User profile"
 
-        click_on "Profile"
+        click_link("Profile", match: :first)
         click_on "Add"
 
         fill_in "Employer Name", with: "Microsoft"
         fill_in "Position", with: "Software Engineer"
         click_on "Create Employee"
 
-        visit edit_employee_path(1)
+        within("tbody", :id => "positions") do
+            click_link("Edit",match: :first)
+        end
 
         fill_in "Employer Name", with: "Google"
         fill_in "Position", with: "Software Engineer"
         click_on "Update Employee"
 
-        expect(Employer.find(Employee.last.employer_id)).to eq("Google")
+        expect(page).to have_content("Google")
     end
 
     it "redirects to the correct page after updating" do
         visit new_account_registration_path
         ## to get an account to log in
         fill_in "Email",	with: "yifei.liang@tamu.edu"
-        fil_in "Password", with: "zx453359523"
+        fill_in "Password", with: "zx453359523"
         fill_in "Password confirmation", with: "zx453359523"
         click_on "Sign up"
             
@@ -86,14 +90,16 @@ RSpec.describe "employee edit page", type: :view do
         fill_in "Enter Graduating Year",	with: "2022"
         click_on "Create User profile"
 
-        click_on "Profile"
+        click_link("Profile", match: :first)
         click_on "Add"
 
         fill_in "Employer Name", with: "Microsoft"
         fill_in "Position", with: "Software Engineer"
         click_on "Create Employee"
-
-        visit edit_employee_path(1)
+        within("tbody", :id => "positions") do
+            click_link("Edit",match: :first)
+        end
+        
 
         fill_in "Employer Name", with: "Google"
         fill_in "Position", with: "Software Engineer"
