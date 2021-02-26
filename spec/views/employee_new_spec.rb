@@ -85,7 +85,7 @@ RSpec.describe "employee new page", type: :system do
         fill_in "Employer Name", with: "Google"
         fill_in "Position", with: "Software Engineer"
         click_on "Create Employee"
-        sleep(10)
+
         expect(page).to have_content("My Profile")
         expect(page).to have_content("General Information")
         expect(page).to have_content("Positions")

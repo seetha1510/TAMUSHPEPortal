@@ -1,12 +1,12 @@
 require "rails_helper"
 
-RSpec.describe "My Profile", type: :view do
+RSpec.describe "My Profile", type: :system do
 
     it "displays my profile correctly" do
         visit new_account_registration_path
         ## to get an account to log in
         fill_in "Email",	with: "yifei.liang@tamu.edu"
-        fil_in "Password", with: "zx453359523"
+        fill_in "Password", with: "zx453359523"
         fill_in "Password confirmation", with: "zx453359523"
         click_on "Sign up"
             
@@ -20,10 +20,11 @@ RSpec.describe "My Profile", type: :view do
         fill_in "Enter Graduating Year",	with: "2022"
         click_on "Create User profile"
 
-        click_on "Profile"
+        click_link("Profile", match: :first)
 
         expect(page).to have_content("My Profile")
-        expect(page).to have_button("Add")
-        expect(page).to have_button("Edit")
+
+        expect(page).to have_content("Add")
+        expect(page).to have_content("Edit")
     end
 end
