@@ -9,17 +9,17 @@ class UserProfilesController < ApplicationController
     end
 
     def show
-        @user_profile = UserProfile.find(params[:id])
-        if(@user_profile.user_display_email_status)
-            @email = "*************"
-        else
-            @email = @user_profile.user_email
-        end
-        if(@user_profile.user_current_member_status)
-            @membership = "Current Member"
-        else
-            @membership = "Alumni"
-        end
+        # @user_profile = UserProfile.find(params[:id])
+        # if(@user_profile.user_display_email_status)
+        #     @email = "*************"
+        # else
+        #     @email = @user_profile.user_email
+        # end
+        # if(@user_profile.user_current_member_status)
+        #     @membership = "Current Member"
+        # else
+        #     @membership = "Alumni"
+        # end
 
     end
 
