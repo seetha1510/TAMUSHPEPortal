@@ -1,7 +1,7 @@
-#TAMUSHPEMemberPortal
+<h1>TAMUSHPEMemberPortal</h1>
 
-##Deployment
+<h2>Deployment</h2>
 https://tamu-shpe-member-portal.herokuapp.com/
 
-##Dependency
+<h2>Dependency</h2>
 Ruby 3.0
