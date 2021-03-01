@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Account < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
@@ -5,12 +7,12 @@ class Account < ApplicationRecord
          :recoverable, :rememberable, :validatable
   after_commit :create_in_user_table, on: :create
   after_commit :delete_in_user_table, on: :destroy
-  
+
   def create_in_user_table
-    User.create!(user_email: self.email, admin_status: false)
+    User.create!(user_email: email, admin_status: false)
   end
 
   def delete_in_user_table
-    User.destroy(self.email)
+    User.destroy(email)
   end
 end

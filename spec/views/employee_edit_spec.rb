@@ -1,110 +1,110 @@
-require "rails_helper"
+# frozen_string_literal: true
 
-RSpec.describe "employee edit page", type: :system do
+require 'rails_helper'
 
-    it "displays the edit employee form correctly" do
-        visit new_account_registration_path
-        ## to get an account to log in
-        fill_in "Email",	with: "yifei.liang@tamu.edu"
-        fill_in "Password", with: "zx453359523"
-        fill_in "Password confirmation", with: "zx453359523"
-        click_on "Sign up"
-            
-        ## create new profile page
-        fill_in "Enter First Name",	with: "Yifei"
-        fill_in "Enter Last Name",	with: "Liang"
-        fill_in "Enter Facebook URL" ,    with: "facebook.com"
-        fill_in "Enter Instagram URL",	with: "instagram.com"
-        fill_in "Enter Linkedin URL",	    with: "linkedin.com"
-        fill_in "Enter Phone Number",	with: "8327589525"
-        fill_in "Enter Graduating Year",	with: "2022"
-        click_on "Create User profile" 
+RSpec.describe 'employee edit page', type: :system do
+  it 'displays the edit employee form correctly' do
+    visit new_account_registration_path
+    ## to get an account to log in
+    fill_in 'Email',	with: 'yifei.liang@tamu.edu'
+    fill_in 'Password', with: 'zx453359523'
+    fill_in 'Password confirmation', with: 'zx453359523'
+    click_on 'Sign up'
 
-        click_link("Profile", match: :first)
-        click_on "Add"
+    ## create new profile page
+    fill_in 'Enter First Name',	with: 'Yifei'
+    fill_in 'Enter Last Name',	with: 'Liang'
+    fill_in 'Enter Facebook URL', with: 'facebook.com'
+    fill_in 'Enter Instagram URL',	with: 'instagram.com'
+    fill_in 'Enter Linkedin URL', with: 'linkedin.com'
+    fill_in 'Enter Phone Number',	with: '8327589525'
+    fill_in 'Enter Graduating Year',	with: '2022'
+    click_on 'Create User profile'
 
-        fill_in "Employer Name", with: "Microsoft"
-        fill_in "Position", with: "Software Engineer"
-        click_on "Create Employee"
+    click_link('Profile', match: :first)
+    click_on 'Add'
 
-        within("tbody", :id => "positions") do
-            click_link("Edit",match: :first)
-        end
+    fill_in 'Employer Name', with: 'Microsoft'
+    fill_in 'Position', with: 'Software Engineer'
+    click_on 'Create Employee'
 
-        expect(page).to have_field('Employer Name')
-        expect(page).to have_field('Position')
-        expect(page).to have_button('Update Employee')
+    within('tbody', id: 'positions') do
+      click_link('Edit', match: :first)
     end
 
-    it "updates an employee upon submitting" do
-        visit new_account_registration_path
-        ## to get an account to log in
-        fill_in "Email",	with: "yifei.liang@tamu.edu"
-        fill_in "Password", with: "zx453359523"
-        fill_in "Password confirmation", with: "zx453359523"
-        click_on "Sign up"
-            
-        ## create new profile page
-        fill_in "Enter First Name",	with: "Yifei"
-        fill_in "Enter Last Name",	with: "Liang"
-        fill_in "Enter Facebook URL" ,    with: "facebook.com"
-        fill_in "Enter Instagram URL",	with: "instagram.com"
-        fill_in "Enter Linkedin URL",	    with: "linkedin.com"
-        fill_in "Enter Phone Number",	with: "8327589525"
-        fill_in "Enter Graduating Year",	with: "2022"
-        click_on "Create User profile"
+    expect(page).to have_field('Employer Name')
+    expect(page).to have_field('Position')
+    expect(page).to have_button('Update Employee')
+  end
 
-        click_link("Profile", match: :first)
-        click_on "Add"
+  it 'updates an employee upon submitting' do
+    visit new_account_registration_path
+    ## to get an account to log in
+    fill_in 'Email',	with: 'yifei.liang@tamu.edu'
+    fill_in 'Password', with: 'zx453359523'
+    fill_in 'Password confirmation', with: 'zx453359523'
+    click_on 'Sign up'
 
-        fill_in "Employer Name", with: "Microsoft"
-        fill_in "Position", with: "Software Engineer"
-        click_on "Create Employee"
+    ## create new profile page
+    fill_in 'Enter First Name',	with: 'Yifei'
+    fill_in 'Enter Last Name',	with: 'Liang'
+    fill_in 'Enter Facebook URL', with: 'facebook.com'
+    fill_in 'Enter Instagram URL',	with: 'instagram.com'
+    fill_in 'Enter Linkedin URL', with: 'linkedin.com'
+    fill_in 'Enter Phone Number',	with: '8327589525'
+    fill_in 'Enter Graduating Year',	with: '2022'
+    click_on 'Create User profile'
 
-        within("tbody", :id => "positions") do
-            click_link("Edit",match: :first)
-        end
+    click_link('Profile', match: :first)
+    click_on 'Add'
 
-        fill_in "Employer Name", with: "Google"
-        fill_in "Position", with: "Software Engineer"
-        click_on "Update Employee"
+    fill_in 'Employer Name', with: 'Microsoft'
+    fill_in 'Position', with: 'Software Engineer'
+    click_on 'Create Employee'
 
-        expect(page).to have_content("Google")
+    within('tbody', id: 'positions') do
+      click_link('Edit', match: :first)
     end
 
-    it "redirects to the correct page after updating" do
-        visit new_account_registration_path
-        ## to get an account to log in
-        fill_in "Email",	with: "yifei.liang@tamu.edu"
-        fill_in "Password", with: "zx453359523"
-        fill_in "Password confirmation", with: "zx453359523"
-        click_on "Sign up"
-            
-        ## create new profile page
-        fill_in "Enter First Name",	with: "Yifei"
-        fill_in "Enter Last Name",	with: "Liang"
-        fill_in "Enter Facebook URL" ,    with: "facebook.com"
-        fill_in "Enter Instagram URL",	with: "instagram.com"
-        fill_in "Enter Linkedin URL",	    with: "linkedin.com"
-        fill_in "Enter Phone Number",	with: "8327589525"
-        fill_in "Enter Graduating Year",	with: "2022"
-        click_on "Create User profile"
+    fill_in 'Employer Name', with: 'Google'
+    fill_in 'Position', with: 'Software Engineer'
+    click_on 'Update Employee'
 
-        click_link("Profile", match: :first)
-        click_on "Add"
+    expect(page).to have_content('Google')
+  end
 
-        fill_in "Employer Name", with: "Microsoft"
-        fill_in "Position", with: "Software Engineer"
-        click_on "Create Employee"
-        within("tbody", :id => "positions") do
-            click_link("Edit",match: :first)
-        end
-        
+  it 'redirects to the correct page after updating' do
+    visit new_account_registration_path
+    ## to get an account to log in
+    fill_in 'Email',	with: 'yifei.liang@tamu.edu'
+    fill_in 'Password', with: 'zx453359523'
+    fill_in 'Password confirmation', with: 'zx453359523'
+    click_on 'Sign up'
 
-        fill_in "Employer Name", with: "Google"
-        fill_in "Position", with: "Software Engineer"
-        click_on "Update Employee"
+    ## create new profile page
+    fill_in 'Enter First Name',	with: 'Yifei'
+    fill_in 'Enter Last Name',	with: 'Liang'
+    fill_in 'Enter Facebook URL', with: 'facebook.com'
+    fill_in 'Enter Instagram URL',	with: 'instagram.com'
+    fill_in 'Enter Linkedin URL', with: 'linkedin.com'
+    fill_in 'Enter Phone Number',	with: '8327589525'
+    fill_in 'Enter Graduating Year',	with: '2022'
+    click_on 'Create User profile'
 
-        expect(page).to have_content("My Profile")
+    click_link('Profile', match: :first)
+    click_on 'Add'
+
+    fill_in 'Employer Name', with: 'Microsoft'
+    fill_in 'Position', with: 'Software Engineer'
+    click_on 'Create Employee'
+    within('tbody', id: 'positions') do
+      click_link('Edit', match: :first)
     end
+
+    fill_in 'Employer Name', with: 'Google'
+    fill_in 'Position', with: 'Software Engineer'
+    click_on 'Update Employee'
+
+    expect(page).to have_content('My Profile')
+  end
 end
