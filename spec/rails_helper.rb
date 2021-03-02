@@ -9,16 +9,12 @@ require File.expand_path('../config/environment', __dir__)
 # Prevent database truncation if the environment is production
 abort('The Rails environment is running in production mode!') if Rails.env.production?
 require 'rspec/rails'
-caps = Selenium::WebDriver::Remote::Capabilities.chrome("chromeOptions" => {"binary" => "Actual Path"})
-Capybara.default_driver = :selenium_chrome
+
 Capybara.register_driver :headless_chrome do |app|
   capabilities = Selenium::WebDriver::Remote::Capabilities.chrome(
-    chromeOptions: { args: %w[headless disable-gpu no-sandbox disable-dev-shm-usage] }
-  )
+      'goog:chromeOptions': { args: %w(no-sandbox headless disable-gpu window-size=1280,1024 disable-features=VizDisplayCompositor) } )
 
-  Capybara::Selenium::Driver.new app,
-                                 browser: :chrome,
-                                 desired_capabilities: capabilities
+  Capybara::Selenium::Driver.new(app, browser: :chrome, desired_capabilities: capabilities)
 end
 # Add additional requires below this line. Rails is not loaded until this point!
 
