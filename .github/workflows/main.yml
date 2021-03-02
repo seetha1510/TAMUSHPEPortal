@@ -24,6 +24,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v1
+      - uses: nanasess/setup-chromedriver@master
       - name: Setup Ruby
         uses: actions/setup-ruby@v1
         with:
@@ -39,6 +40,9 @@ jobs:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: password
         run: |
+          export DISPLAY=:99
+          chromedriver --url-base=/wd/hub &
+          sudo Xvfb -ac :99 -screen 0 1280x1024x24 > /dev/null 2>&1 & # optional
           sudo apt-get -yqq install libpq-dev
           gem install bundler
           bundle install --jobs 4 --retry 3
