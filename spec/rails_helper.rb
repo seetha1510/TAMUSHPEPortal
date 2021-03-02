@@ -10,7 +10,7 @@ require File.expand_path('../config/environment', __dir__)
 abort('The Rails environment is running in production mode!') if Rails.env.production?
 require 'rspec/rails'
 
-
+Capybara.default_driver = :selenium_chrome
 Capybara.register_driver :headless_chrome do |app|
   capabilities = Selenium::WebDriver::Remote::Capabilities.chrome(
     chromeOptions: { args: %w[headless disable-gpu no-sandbox disable-dev-shm-usage] }
@@ -77,6 +77,6 @@ RSpec.configure do |config|
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
 end
-Capybara.default_driver = :selenium_chrome
+
 require 'simplecov'
 SimpleCov.start
