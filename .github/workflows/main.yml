@@ -39,7 +39,6 @@ jobs:
           sudo mv -f ~/chromedriver /usr/local/bin/google-chrome
           sudo chown root:root /usr/local/bin/google-chrome
           sudo chmod 0755 /usr/local/bin/google-chrome
-
           sudo apt-get -yqq install libpq-dev
           gem install bundler
           bundle install --jobs 4 --retry 3
