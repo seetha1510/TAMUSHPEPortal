@@ -72,3 +72,5 @@ gem 'simplecov', require: false, group: :test
 
 # Fix unable to load file
 gem 'rexml'
+
+gem 'selenium-webdriver'
