@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    redirect_to(new_user_profile_path) unless UserProfile.exists?(user_email: current_account.email)
+    redirect_to(new_user_profile_path) unless UserProfile.exists?(user_id: User.get_current_user(current_account).id)
   end
 
   def new; end

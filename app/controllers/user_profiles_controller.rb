@@ -28,7 +28,22 @@ class UserProfilesController < ApplicationController
   end
 
   def create
-    @user_profile = UserProfile.new(user_profile_params)
+    #@user_profile = UserProfile.new(user_profile_params)
+    @form_params = params[:user_profile]
+    @user_id = User.get_current_user(current_account).id
+    @user_profile = UserProfile.new(user_first_name: @form_params[:user_first_name],
+                                    user_last_name: @form_params[:user_last_name],
+                                    user_id: @user_id,
+                                    user_display_email_status: @form_params[:user_display_email_status],
+                                    user_current_member_status: @form_params[:user_current_member_status],
+                                    user_facebook_profile_url: @form_params[:user_facebook_profile_url],
+                                    user_instagram_profile_url: @form_params[:user_instagram_profile_url],
+                                    user_linkedin_profile_url: @form_params[:user_linkedin_profile_url],
+                                    user_graduating_year: @form_params[:user_graduating_year],
+                                    user_about_me_description: @form_params[:user_about_me_description],
+                                    user_phone_number: @form_params[:user_phone_number],
+                                    user_portfolio_url: @form_params[:user_portfolio_url]
+                                    )
     if @user_profile.save && @user_profile.valid?
       redirect_to(show_path)
     else
@@ -43,7 +58,7 @@ class UserProfilesController < ApplicationController
   def update
     @user_profile = UserProfile.find(params[:id])
     if @user_profile.update(user_profile_params)
-      redirect_to(employee_path(User.get_current_user(current_account).user_id))
+      redirect_to(employee_path(User.get_current_user_profile(current_account).id))
     else
       render 'edit'
     end
@@ -54,7 +69,7 @@ class UserProfilesController < ApplicationController
   private
 
   def user_profile_params
-    params.require(:user_profile).permit(:user_first_name, :user_last_name, :user_email,
+    params.require(:user_profile).permit(:user_first_name, :user_last_name, :user_id,
                                          :user_display_email_status, :user_current_member_status,
                                          :user_facebook_profile_url, :user_instagram_profile_url,
                                          :user_linkedin_profile_url, :user_graduating_year,

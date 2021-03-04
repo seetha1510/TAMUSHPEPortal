@@ -48,7 +48,7 @@
         </tr>
         <tr>
             <th>Selfie</th>
-            <td><%= image_tag image_url(@user_profile.user_profile_picture_url) %></td>
+            <td><%#= image_tag image_url(@user_profile.user_profile_picture_url) %></td>
         </tr>
     </table>
     <% if current_account.email == @true_email %>
@@ -72,7 +72,7 @@
     
         <% @employees.each do |employee| %>
         <tr class="table-light">
-            <td><%= employee.user_id %></td>
+            <td><%= employee.user_profile_id %></td>
             <td><%= employee.employer.employer_name %></td>
             <td><%= employee.employee_position %></td>
             <% if current_account.email == @true_email %>
