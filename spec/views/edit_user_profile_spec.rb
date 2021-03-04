@@ -54,7 +54,7 @@ RSpec.describe 'user profile edit page', type: :system do
         click_on 'Edit'
       end
       expect(page).to have_content('Update General Information')
-      visit edit_user_profile_path(UserProfile.find_by(user_email: 'jonathan09@tamu.edu').user_id)
+      visit edit_user_profile_path(UserProfile.find_by(user_id: User.find_by(user_email: 'jonathan09@tamu.edu').id).id)
       expect(page).to have_content('Update General Information')
     end
 
@@ -76,7 +76,7 @@ RSpec.describe 'user profile edit page', type: :system do
       fill_in 'Enter Graduating Year', with: '2022'
       click_on 'Create User profile'
       expect(page).to have_content('Profile')
-      visit edit_user_profile_path(UserProfile.find_by(user_email: 'jonathan09@tamu.edu').user_id)
+      visit edit_user_profile_path(UserProfile.find_by(user_id: User.find_by(user_email: 'jonathan09@tamu.edu').id).id)
       expect(page).to have_content('Update General Information')
       fill_in 'Enter Facebook URL', with: 'facebook.com/jonathan'
       fill_in 'Enter Instagram URL', with: 'instagram.com/jonathan'
@@ -106,7 +106,7 @@ RSpec.describe 'user profile edit page', type: :system do
       fill_in 'Enter Graduating Year', with: '2022'
       click_on 'Create User profile'
       expect(page).to have_content('Profile')
-      visit edit_user_profile_path(UserProfile.find_by(user_email: 'jonathan09@tamu.edu').user_id)
+      visit edit_user_profile_path(UserProfile.find_by(user_id: User.find_by(user_email: 'jonathan09@tamu.edu').id).id)
       expect(page).to have_content('Update General Information')
       fill_in 'Enter First Name', with: ''
       click_on 'Update User profile'
@@ -131,7 +131,7 @@ RSpec.describe 'user profile edit page', type: :system do
       fill_in 'Enter Graduating Year', with: '2022'
       click_on 'Create User profile'
       expect(page).to have_content('Profile')
-      visit edit_user_profile_path(UserProfile.find_by(user_email: 'jonathan09@tamu.edu').user_id)
+      visit edit_user_profile_path(UserProfile.find_by(user_id: User.find_by(user_email: 'jonathan09@tamu.edu').id).id)
       expect(page).to have_content('Update General Information')
       fill_in 'Enter Last Name', with: ''
       click_on 'Update User profile'
@@ -156,7 +156,7 @@ RSpec.describe 'user profile edit page', type: :system do
       fill_in 'Enter Graduating Year', with: '2022'
       click_on 'Create User profile'
       expect(page).to have_content('Profile')
-      visit edit_user_profile_path(UserProfile.find_by(user_email: 'jonathan09@tamu.edu').user_id)
+      visit edit_user_profile_path(UserProfile.find_by(user_id: User.find_by(user_email: 'jonathan09@tamu.edu').id).id)
       expect(page).to have_content('Update General Information')
       fill_in 'Enter Facebook URL', with: 'faceboo.com'
       click_on 'Update User profile'
@@ -181,7 +181,7 @@ RSpec.describe 'user profile edit page', type: :system do
       fill_in 'Enter Graduating Year', with: '2022'
       click_on 'Create User profile'
       expect(page).to have_content('Profile')
-      visit edit_user_profile_path(UserProfile.find_by(user_email: 'jonathan09@tamu.edu').user_id)
+      visit edit_user_profile_path(UserProfile.find_by(user_id: User.find_by(user_email: 'jonathan09@tamu.edu').id).id)
       expect(page).to have_content('Update General Information')
       fill_in 'Enter Instagram URL', with: 'insta.com'
       click_on 'Update User profile'
@@ -206,7 +206,7 @@ RSpec.describe 'user profile edit page', type: :system do
       fill_in 'Enter Graduating Year', with: '2022'
       click_on 'Create User profile'
       expect(page).to have_content('Profile')
-      visit edit_user_profile_path(UserProfile.find_by(user_email: 'jonathan09@tamu.edu').user_id)
+      visit edit_user_profile_path(UserProfile.find_by(user_id: User.find_by(user_email: 'jonathan09@tamu.edu').id).id)
       expect(page).to have_content('Update General Information')
       fill_in 'Enter Linkedin URL', with: 'link.com'
       click_on 'Update User profile'
@@ -231,7 +231,7 @@ RSpec.describe 'user profile edit page', type: :system do
       fill_in 'Enter Graduating Year', with: '2022'
       click_on 'Create User profile'
       expect(page).to have_content('Profile')
-      visit edit_user_profile_path(UserProfile.find_by(user_email: 'jonathan09@tamu.edu').user_id)
+      visit edit_user_profile_path(UserProfile.find_by(user_id: User.find_by(user_email: 'jonathan09@tamu.edu').id).id)
       expect(page).to have_content('Update General Information')
       fill_in 'Enter First Name', with: ''
       fill_in 'Enter Last Name', with: ''

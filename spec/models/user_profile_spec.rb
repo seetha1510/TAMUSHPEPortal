@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe UserProfile, type: :model do
   subject do
-    described_class.new(user_email: '1136692066@qq.com',
+    described_class.new(user_id: 1,
                         user_display_email_status: true,
                         user_current_member_status: true,
                         user_facebook_profile_url: 'facebook.com',
@@ -22,8 +22,8 @@ RSpec.describe UserProfile, type: :model do
     expect(subject).to be_valid
   end
 
-  it 'is not valid without a user_email' do
-    subject.user_email = nil
+  it 'is not valid without a user_id' do
+    subject.user_id = nil
     expect(subject).not_to be_valid
   end
 

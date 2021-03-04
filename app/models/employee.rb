@@ -1,10 +1,9 @@
 # frozen_string_literal: true
 
 class Employee < ApplicationRecord
-  self.primary_key = 'employee_id'
-  belongs_to :user_profile, foreign_key: 'user_id', inverse_of: :employees
+  belongs_to :user_profile, inverse_of: :employees
   belongs_to :employer
-  validates :user_id, presence: true, uniqueness: { scope: %i[employer_id employee_position] },
+  validates :user_profile_id, presence: true, uniqueness: { scope: %i[employer_id employee_position] },
                       allow_blank: false
   validates :employer_id, presence: true, allow_blank: false
   validates :employee_position, presence: true, allow_blank: false

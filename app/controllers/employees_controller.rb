@@ -7,13 +7,13 @@ class EmployeesController < ApplicationController
 
   def show
     @user_profile = UserProfile.find(params[:id])
-    @employees = Employee.where(user_id: params[:id])
-    @true_email = UserProfile.find(params[:id]).user_email
+    @employees = Employee.where(user_profile_id: params[:id])
+    @true_email = User.find(UserProfile.find(params[:id]).user_id).user_email
 
     @email = if @user_profile.user_display_email_status
                '*************'
              else
-               @user_profile.user_email
+                User.get_current_user(current_account).user_email
              end
     @membership = if @user_profile.user_current_member_status
                     'Current Member'
@@ -29,26 +29,26 @@ class EmployeesController < ApplicationController
   def create
     @form_params = params[:employee]
 
-    @user_id = User.get_current_user(current_account).user_id
+    @user_profile_id = User.get_current_user_profile(current_account).id
 
     @employer_name = @form_params[:employer_name]
     @employer_object = Employer.where(employer_name: @employer_name).first
 
     if @employer_object
-      @employee_object = Employee.new(user_id: @user_id,
-                                      employer_id: @employer_object.employer_id, employee_position: @form_params[:employee_position])
+      @employee_object = Employee.new(user_profile_id: @user_profile_id,
+                                      employer_id: @employer_object.id, employee_position: @form_params[:employee_position])
       if @employee_object.save
-        redirect_to employee_path(User.get_current_user(current_account).user_id)
+        redirect_to employee_path(User.get_current_user_profile(current_account).id)
       else
         redirect_to new_employee_path
       end
     else
       @new_employer = Employer.new(employer_name: @employer_name)
       if @new_employer.save
-        @employee_object = Employee.new(user_id: @user_id,
-                                        employer_id: @new_employer.employer_id, employee_position: @form_params[:employee_position])
+        @employee_object = Employee.new(user_profile_id: @user_profile_id,
+                                        employer_id: @new_employer.id, employee_position: @form_params[:employee_position])
         if @employee_object.save
-          redirect_to employee_path(User.get_current_user(current_account).user_id)
+          redirect_to employee_path(User.get_current_user_profile(current_account).id)
         else
           redirect_to new_employee_path
         end
@@ -69,24 +69,24 @@ class EmployeesController < ApplicationController
     @employee_object = Employee.find(params[:id])
 
     # change to session id later
-    @user_id = User.get_current_user(current_account).user_id
+    @user_profile_id = User.get_current_user_profile(current_account).id
 
     @employer_name = @form_params[:employer_name]
     @employer_object = Employer.where(employer_name: @employer_name).first
 
     if @employer_object
-      if @employee_object.update(user_id: @user_id,
-                                 employer_id: @employer_object.employer_id, employee_position: @form_params[:employee_position])
-        redirect_to employee_path(User.get_current_user(current_account).user_id)
+      if @employee_object.update(user_profile_id: @user_profile_id,
+                                 employer_id: @employer_object.id, employee_position: @form_params[:employee_position])
+        redirect_to employee_path(User.get_current_user_profile(current_account).id)
       else
         render :edit
       end
     else
       @new_employer = Employer.new(employer_name: @employer_name)
       if @new_employer.save
-        if @employee_object.update(user_id: @user_id,
-                                   employer_id: @new_employer.employer_id, employee_position: @form_params[:employee_position])
-          redirect_to employee_path(User.get_current_user(current_account).user_id)
+        if @employee_object.update(user_profile_id: @user_profile_id,
+                                   employer_id: @new_employer.id, employee_position: @form_params[:employee_position])
+          redirect_to employee_path(User.get_current_user_profile(current_account).id)
         else
           render :edit
         end

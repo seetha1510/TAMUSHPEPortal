@@ -42,10 +42,10 @@
             <td><%= user_profile.user_first_name[0].upcase %><%= user_profile.user_first_name[1..-1].downcase %> <%= user_profile.user_last_name[0].upcase %><%= user_profile.user_last_name[1..-1].downcase %></td>
         <% end %>
         
-        <%if user_profile.user_email.blank? %>
+        <%if User.find_by(id: user_profile.user_id).user_email.blank? %>
           <td></td>
         <%else%>
-          <td><%= user_profile.user_email %></td>
+          <td><%= User.find_by(id: user_profile.user_id).user_email %></td>
         <% end %>
 
         <%if user_profile.user_current_member_status?%>
@@ -68,7 +68,7 @@
         <% end %>
 
         
-        <td><%= link_to 'View Profile', employee_path(user_profile.user_id) %></td>
+        <td><%= link_to 'View Profile', employee_path(user_profile.id) %></td>
         
       </tr>
     <% end %>

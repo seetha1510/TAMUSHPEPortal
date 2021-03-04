@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class UserProfile < ApplicationRecord
-  validates :user_email, presence: true
+  validates :user_id, presence: true
   validates :user_facebook_profile_url,
             format: { with: /.*facebook.com.*/, message: 'Use a Valid Facebook URL' }, allow_blank: true
   validates :user_instagram_profile_url,
@@ -15,7 +15,6 @@ class UserProfile < ApplicationRecord
   validates :user_first_name, presence: { message: 'Enter Your First Name' },
                               allow_blank: false
   validates :user_last_name, presence: { message: 'Enter Your Last Name' }, allow_blank: false
-  self.primary_key = 'user_id'
   belongs_to :user
   has_many :employees
   has_many :employers, through: :employees
