@@ -13,6 +13,6 @@ class Account < ApplicationRecord
   end
 
   def delete_in_user_table
-    User.destroy(email)
+    User.destroy(User.find_by(user_email: email).id)
   end
 end

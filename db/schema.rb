@@ -27,29 +27,24 @@ ActiveRecord::Schema.define(version: 2021_02_12_184716) do
     t.index ["reset_password_token"], name: "index_accounts_on_reset_password_token", unique: true
   end
 
-  create_table "employees", primary_key: "employee_id", id: :serial, force: :cascade do |t|
-    t.integer "user_id"
+  create_table "employees", force: :cascade do |t|
+    t.integer "user_profile_id"
     t.integer "employer_id"
     t.string "employee_position"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["employee_id"], name: "index_employees_on_employee_id"
-    t.index ["user_id", "employer_id", "employee_position"], name: "employed", unique: true
+    t.index ["user_profile_id", "employer_id", "employee_position"], name: "employed", unique: true
   end
 
-  create_table "employers", primary_key: "employer_id", id: :serial, force: :cascade do |t|
-    t.string "employer_description"
-    t.string "employer_industry"
-    t.string "employer_website_url"
-    t.string "employer_name"
+  create_table "employers", force: :cascade do |t|
+    t.string "employer_name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["employer_id"], name: "index_employers_on_employer_id"
-    t.index ["employer_name"], name: "index_employers_on_employer_name", unique: true
+    t.index ["employer_name"], name: "index_employers_on_employer_name"
   end
 
-  create_table "user_profiles", primary_key: "user_id", id: :serial, force: :cascade do |t|
-    t.string "user_email"
+  create_table "user_profiles", force: :cascade do |t|
+    t.integer "user_id"
     t.boolean "user_display_email_status"
     t.boolean "user_current_member_status"
     t.string "user_facebook_profile_url"
@@ -64,17 +59,17 @@ ActiveRecord::Schema.define(version: 2021_02_12_184716) do
     t.string "user_profile_picture_url"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id"], name: "index_user_profiles_on_user_id"
   end
 
-  create_table "users", primary_key: "user_email", id: :string, force: :cascade do |t|
+  create_table "users", force: :cascade do |t|
+    t.string "user_email", null: false
     t.boolean "admin_status"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_email"], name: "index_users_on_user_email"
   end
 
-  add_foreign_key "employees", "employers", primary_key: "employer_id", on_delete: :cascade
-  add_foreign_key "employees", "user_profiles", column: "user_id", primary_key: "user_id", on_delete: :cascade
-  add_foreign_key "user_profiles", "users", column: "user_email", primary_key: "user_email", on_delete: :cascade
+  add_foreign_key "employees", "employers"
+  add_foreign_key "employees", "user_profiles"
+  add_foreign_key "user_profiles", "users"
 end

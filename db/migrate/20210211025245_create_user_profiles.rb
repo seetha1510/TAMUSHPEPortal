@@ -1,9 +1,8 @@
 class CreateUserProfiles < ActiveRecord::Migration[6.1]
   def change
-    create_table :user_profiles, id: false do |t|
+    create_table :user_profiles do |t|
 
-      t.integer :user_id, primary_key: true, index: true, unique: true, null: false
-      t.string :user_email
+      t.integer :user_id
       t.boolean :user_display_email_status
       t.boolean :user_current_member_status
       t.string :user_facebook_profile_url
@@ -22,8 +21,7 @@ class CreateUserProfiles < ActiveRecord::Migration[6.1]
       t.timestamps  
     end
 
-    #creates the fk. user_email in this table is FK for user_email attribute in users table
-    add_foreign_key :user_profiles, :users, column: :user_email, primary_key: :user_email, on_delete: :cascade
+    add_foreign_key :user_profiles, :users
 
   end
 end
