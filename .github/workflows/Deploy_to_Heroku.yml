@@ -14,4 +14,4 @@ jobs:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: "tamu-shpe-member-portal"
           heroku_email: "jasongilman@tamu.edu"
-          usedocker: true
+          # usedocker: true
