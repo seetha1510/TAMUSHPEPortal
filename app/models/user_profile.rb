@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class UserProfile < ApplicationRecord
+  validates :user_id, presence: true, unique: true
   validates :user_facebook_profile_url,
             format: { with: /.*facebook.com.*/, message: 'Use a Valid Facebook URL' }, allow_blank: true
   validates :user_instagram_profile_url,
