@@ -10,7 +10,7 @@ RSpec.describe Employee, type: :model do
 
   subject do
     described_class.new(
-      user_id: 1,
+      user_profile_id: 1,
       employer_id: 1,
       employee_position: 'Software Engineer'
     )
@@ -21,7 +21,7 @@ RSpec.describe Employee, type: :model do
   end
 
   it 'Employee is not valid without a user_id' do
-    subject.user_id = nil
+    subject.user_profile_id = nil
     expect(subject).not_to be_valid
   end
 
