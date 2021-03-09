@@ -1,4 +1,4 @@
-name: Rspec Test
+name: Rspec_Test
 on:
   push:
     branches-ignore:
@@ -7,7 +7,7 @@ on:
     branches:
       - master
 jobs:
-  Rspec Test:
+  Rspec_Test:
     runs-on: ubuntu-latest
 
     services:

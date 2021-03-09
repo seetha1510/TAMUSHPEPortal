@@ -5,7 +5,7 @@ on:
     branches:
       - master
 jobs:
-  Rspec-Test:
+  Rspec_Test:
     runs-on: ubuntu-latest
 
     services:
@@ -55,8 +55,8 @@ jobs:
           bundle exec rake db:migrate
           bundle exec rspec .
   Deploy:
-    name: Deploy to Heroku
-    needs: [Rspec-Test] # pass Rspec and then deploy
+    name: Deploy_to_Heroku
+    needs: [Rspec_Test] # pass Rspec and then deploy
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
