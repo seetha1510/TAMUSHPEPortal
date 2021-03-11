@@ -31,6 +31,11 @@ ActiveRecord::Schema.define(version: 2021_02_12_184716) do
     t.integer "user_profile_id"
     t.integer "employer_id"
     t.string "employee_position"
+    t.datetime "position_start_date"
+    t.datetime "position_end_date"
+    t.string "position_location_state"
+    t.string "position_location_city"
+    t.string "position_industry"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_profile_id", "employer_id", "employee_position"], name: "employed", unique: true

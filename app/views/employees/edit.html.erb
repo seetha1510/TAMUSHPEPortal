@@ -1,13 +1,107 @@
 <h1>Edit Position</h1>
 
 <%= form_with model: @employees do |form| %>
-    
-    <%= form.label :employer_name, "Employer Name"%>
-    <%= form.text_field :employer_name, value: @employer_name %>
 
-    <%= form.label :employee_position, "Position"%>
-    <%= form.text_field :employee_position, value: @employee_position %>
+    <div class="row g-3 align-items-center mb-3">
+        <div class="col-lg-3">
+            <%= form.label :employer_name, "Company *"%>
+        </div>
+        <div class="col-lg-3">
+            <%= form.text_field :employer_name, value: @employer_name, class:"form-control"%>
+        </div>
+    </div>
+
+    <div class="row g-3 align-items-center mb-3">
+        <div class="col-lg-3">
+            <%= form.label :employee_position, "Title *"%>
+        </div>
+        <div class="col-lg-3">
+            <%= form.text_field :employee_position, value: @employee_position, class:"form-control"%>
+        </div>
+    </div>
+
+    <div class="row g-3 align-items-center mb-3">
+        <div class="col-lg-3">
+            <%= form.label :current_role, "I currently work in this role"%>
+        </div>
+        <div class="col-lg-3">
+            <%= form.check_box :current_role, {checked: @current_position, class:"form-check-input"}, checked_value="1", unchecked_value="0" %>
+        </div>
+    </div>
+
+    <div class="row g-3 align-items-center mb-3">
+        <div class="col-lg-3">
+            <%= form.label :position_start_date, "Start Date *"%>
+        </div>
+        <div class="col-lg-3">
+            <%= form.date_select :position_start_date, {order: [:month, :year], start_year: 1950, end_year: Date.today.year, discard_day: true, pompt: {month: "Month", year: "Year"}}, {style: "margin-bottom: 10px;", class:"form-select"} %>
+        </div>
+    </div>
+
+    <div class="row g-3 align-items-center mb-3">
+        <div class="col-lg-3">
+            <%= form.label :position_end_date, "End Date *"%>
+        </div>
+        <div class="col-lg-3">
+            <label id="newEmployeeEndDateLabel" style=<%= @current_position ? "display:inline-block;" : "display:none;"%>>Present</label>
+            <%= form.date_select :position_end_date, {order: [:month, :year], start_year: 1950, end_year: Date.today.year, discard_day: true, pompt: {month: "Month", year: "Year"}}, {style:  @current_position ? "display:none;" : "display:block;margin-bottom:10px;", class:"form-select"} %>
+        </div>
+    </div>
+
+    <div class="row g-3 align-items-center mb-3">
+        <div class="col-lg-3">
+            <%= form.label :position_location_city, "City *"%>
+        </div>
+        <div class="col-lg-3">
+            <%= form.text_field :position_location_city, class:"form-control"%>
+        </div>
+    </div>
+
+    <div class="row g-3 align-items-center mb-3">
+        <div class="col-lg-3">
+            <%= form.label :position_location_state, "State *"%>
+        </div>
+        <div class="col-lg-3">
+            <%= form.text_field :position_location_state, class:"form-control"%>
+        </div>
+    </div>
     
-    <%= form.submit %>
+    <div class="row g-3 align-items-center mb-3">
+        <div class="col-lg-3">
+            <%= form.label :position_industry, "Industry"%>
+        </div>
+        <div class="col-lg-3">
+            <%= form.select :position_industry, @industries, {}, {class:"form-select"}%>
+        </div>
+    </div>
+    
+    <%= form.submit class:"btn btn-primary", style:"margin-bottom:15px;" %>
 <% end %>
 <%= link_to "Back", employee_path(User.get_current_user_profile(current_account).id) , class:"btn btn-primary"%>
+
+
+<script>
+  var checkbox = document.getElementById("employee_current_role");
+  var endDateSelectYear = document.getElementById("employee_position_end_date_1i");
+  var endDateSelectMonth = document.getElementById("employee_position_end_date_2i");
+  var endDateLabel = document.getElementById("newEmployeeEndDateLabel");
+
+  checkbox.addEventListener("change", function() {
+    if(this.checked)
+    {
+      //position is current
+      endDateSelectYear.style.display = "none";
+      endDateSelectMonth.style.display = "none";
+      endDateLabel.style.display = "inline-block";
+    }
+    else
+    {
+      //position is not current
+      endDateLabel.style.display = "none";
+      endDateSelectYear.style.display = "block";
+      endDateSelectMonth.style.display = "block";
+      endDateSelectMonth.style.marginBottom = "10px";
+      endDateSelectYear.style.marginBottom = "10px";
+    }
+  });
+</script>
