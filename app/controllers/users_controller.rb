@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class UsersController < ApplicationController
+  before_action :authenticate_account!
+
   def index
     redirect_to(show_path) if account_signed_in?
   end

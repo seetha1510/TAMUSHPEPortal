@@ -1,8 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  devise_for :accounts
-  # root "users#home"
+  
   root 'users#index'
 
   resources :users
@@ -14,9 +13,12 @@ Rails.application.routes.draw do
   get 'users/show', to: 'users#show', as: 'show'
   get 'setting', to: 'users#setting', as: 'setting'
 
-  # namespace :account do
-  #   root :to => "users#home"
-  # end
-
   get '/account' => 'users#show', :as => :account_root
+
+  devise_for :accounts, controller: {omniauth_callbacks: 'accounts/omniauth_callbacks'}
+  devise_scope :account do
+    get 'accounts/sign_in', to: 'accounts/sessions#new', as: :new_account_session
+    get 'accounts/sign_out', to: 'accounts/sessions#destroy', as: :destory_account_session
+  end
+
 end

@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class UserProfilesController < ApplicationController
+  before_action :authenticate_account!
+  
   def index
     @user_profiles = UserProfile.all
     return unless params[:search_by_first_name] && params[:search_by_first_name] != ''

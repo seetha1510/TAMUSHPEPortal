@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class EmployeesController < ApplicationController
+  before_action :authenticate_account!
+  
   helper_method :getIndustries
   
   def index

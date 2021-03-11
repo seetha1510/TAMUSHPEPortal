@@ -17,14 +17,12 @@ ActiveRecord::Schema.define(version: 2021_02_12_184716) do
 
   create_table "accounts", force: :cascade do |t|
     t.string "email", null: false
-    t.string "encrypted_password", null: false
-    t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
+    t.string "full_name"
+    t.string "uid"
+    t.string "avatar_url"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_accounts_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_accounts_on_reset_password_token", unique: true
   end
 
   create_table "employees", force: :cascade do |t|
