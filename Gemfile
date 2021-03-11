@@ -73,7 +73,7 @@ gem 'rexml'
 
 gem 'selenium-webdriver'
 
-gem 'omniauth', '>= 1.0.0'
+gem 'omniauth', '~> 1.9.1'
 
 gem 'omniauth-google-oauth2'
 gem 'devise', github: 'heartcombo/devise', branch: 'ca-omniauth-2'
