@@ -124,7 +124,18 @@ class EmployeesController < ApplicationController
     end
   end
 
-  def destory; end
+  def destroy
+    @employee = Employee.find(params[:id])
+    @employer = Employer.find(@employee.employer_id)
+    @employee.destroy
+
+    @employee_with_same_employer = Employee.where(employer_id: @employer.id)
+    if @employee_with_same_employer.length() == 0
+      @employer.destroy
+    end
+
+    redirect_to employee_path(User.get_current_user_profile(current_account).id)
+  end
 
   def getIndustries
     return ["Accounting", "Airline/Aviation", "Alternative Dispute Resolution", "Alternative Medicine", "Animation", "Apparel & Fashion",
