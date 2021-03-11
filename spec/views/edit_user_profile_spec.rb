@@ -20,7 +20,7 @@ RSpec.describe 'user profile edit page', type: :system do
   #     user_first_name: 'Jonathan',
   #     user_last_name: "Gaytan",
   #     user_portfolio_url: "",
-  #     user_profile_picture_url: "")
+  #     user_profile_picture: "")
   # end
 
   #

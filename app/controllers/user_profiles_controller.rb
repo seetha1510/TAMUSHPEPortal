@@ -42,6 +42,7 @@ class UserProfilesController < ApplicationController
                                     user_graduating_year: @form_params[:user_graduating_year],
                                     user_about_me_description: @form_params[:user_about_me_description],
                                     user_phone_number: @form_params[:user_phone_number],
+                                    user_profile_picture: @form_params[:user_profile_picture],
                                     user_portfolio_url: @form_params[:user_portfolio_url]
                                     )
     if @user_profile.save && @user_profile.valid?
@@ -74,6 +75,16 @@ class UserProfilesController < ApplicationController
                                          :user_facebook_profile_url, :user_instagram_profile_url,
                                          :user_linkedin_profile_url, :user_graduating_year,
                                          :user_about_me_description, :user_phone_number,
-                                         :user_profile_picture_url, :user_portfolio_url)
+                                         :user_profile_picture, :user_portfolio_url)
+  end
+
+  def delete_image
+    image = ActiveStorage::Attachment.find(params[:image_id])
+    if current_user == image.record
+      image.purge
+      redirect_bacl(fallback_location: request.referer)
+    else
+      redirect_to root_url, notice: "Something is wrong..."
+    end
   end
 end

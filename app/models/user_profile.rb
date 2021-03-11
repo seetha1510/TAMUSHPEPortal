@@ -19,6 +19,10 @@ class UserProfile < ApplicationRecord
   has_many :employees
   has_many :employers, through: :employees
 
+  # Profile Picture 
+  has_one_attached :user_profile_picture, dependent: :destroy
+  validates :user_profile_picture, content_type: [:png, :jpg, :jpeg]
+
   before_save do
     user_first_name.downcase!
     user_last_name.downcase!
