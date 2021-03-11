@@ -3,7 +3,7 @@
 class Account < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  devise :omniauthable, omniauth_providers: [:google_oauth2] 
+  devise :omniauthable, omniauth_providers: [:google_oauth2]
   after_commit :create_in_user_table, on: :create
 
   def self.from_google(auth)
