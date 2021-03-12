@@ -10,17 +10,21 @@ class UserProfilesController < ApplicationController
   end
 
   def show
-    # @user_profile = UserProfile.find(params[:id])
-    # if(@user_profile.user_display_email_status)
-    #     @email = "*************"
-    # else
-    #     @email = @user_profile.user_email
-    # end
-    # if(@user_profile.user_current_member_status)
-    #     @membership = "Current Member"
-    # else
-    #     @membership = "Alumni"
-    # end
+    @user_profile = UserProfile.find(params[:id])
+    @employees = Employee.where(user_profile_id: params[:id])
+    @students = Student.where(user_profile_id: params[:id])
+    @true_email = User.find(UserProfile.find(params[:id]).user_id).user_email
+
+    @email = if @user_profile.user_display_email_status
+               '*************'
+             else
+               User.get_current_user(current_account).user_email
+             end
+    @membership = if @user_profile.user_current_member_status
+                    'Current Member'
+                  else
+                    'Alumni'
+                  end
   end
 
   def new
@@ -28,7 +32,7 @@ class UserProfilesController < ApplicationController
   end
 
   def create
-    #@user_profile = UserProfile.new(user_profile_params)
+    # @user_profile = UserProfile.new(user_profile_params)
     @form_params = params[:user_profile]
     @user_id = User.get_current_user(current_account).id
     @user_profile = UserProfile.new(user_first_name: @form_params[:user_first_name],
@@ -42,8 +46,7 @@ class UserProfilesController < ApplicationController
                                     user_graduating_year: @form_params[:user_graduating_year],
                                     user_about_me_description: @form_params[:user_about_me_description],
                                     user_phone_number: @form_params[:user_phone_number],
-                                    user_portfolio_url: @form_params[:user_portfolio_url]
-                                    )
+                                    user_portfolio_url: @form_params[:user_portfolio_url])
     if @user_profile.save && @user_profile.valid?
       redirect_to(show_path)
     else
@@ -58,7 +61,7 @@ class UserProfilesController < ApplicationController
   def update
     @user_profile = UserProfile.find(params[:id])
     if @user_profile.update(user_profile_params)
-      redirect_to(employee_path(User.get_current_user_profile(current_account).id))
+      redirect_to(user_profile_path(User.get_current_user_profile(current_account).id))
     else
       render 'edit'
     end

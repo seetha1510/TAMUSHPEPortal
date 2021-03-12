@@ -6,20 +6,20 @@ class EmployeesController < ApplicationController
   end
 
   def show
-    @user_profile = UserProfile.find(params[:id])
-    @employees = Employee.where(user_profile_id: params[:id])
-    @true_email = User.find(UserProfile.find(params[:id]).user_id).user_email
+    # @user_profile = UserProfile.find(params[:id])
+    # @employees = Employee.where(user_profile_id: params[:id])
+    # @true_email = User.find(UserProfile.find(params[:id]).user_id).user_email
 
-    @email = if @user_profile.user_display_email_status
-               '*************'
-             else
-                User.get_current_user(current_account).user_email
-             end
-    @membership = if @user_profile.user_current_member_status
-                    'Current Member'
-                  else
-                    'Alumni'
-                  end
+    # @email = if @user_profile.user_display_email_status
+    #            '*************'
+    #          else
+    #            User.get_current_user(current_account).user_email
+    #          end
+    # @membership = if @user_profile.user_current_member_status
+    #                 'Current Member'
+    #               else
+    #                 'Alumni'
+    #               end
   end
 
   def new
@@ -38,7 +38,7 @@ class EmployeesController < ApplicationController
       @employee_object = Employee.new(user_profile_id: @user_profile_id,
                                       employer_id: @employer_object.id, employee_position: @form_params[:employee_position])
       if @employee_object.save
-        redirect_to employee_path(User.get_current_user_profile(current_account).id)
+        redirect_to user_profile_path(User.get_current_user_profile(current_account).id)
       else
         redirect_to new_employee_path
       end
@@ -48,7 +48,7 @@ class EmployeesController < ApplicationController
         @employee_object = Employee.new(user_profile_id: @user_profile_id,
                                         employer_id: @new_employer.id, employee_position: @form_params[:employee_position])
         if @employee_object.save
-          redirect_to employee_path(User.get_current_user_profile(current_account).id)
+          redirect_to user_profile_path(User.get_current_user_profile(current_account).id)
         else
           redirect_to new_employee_path
         end
@@ -77,7 +77,7 @@ class EmployeesController < ApplicationController
     if @employer_object
       if @employee_object.update(user_profile_id: @user_profile_id,
                                  employer_id: @employer_object.id, employee_position: @form_params[:employee_position])
-        redirect_to employee_path(User.get_current_user_profile(current_account).id)
+        redirect_to user_profile_path(User.get_current_user_profile(current_account).id)
       else
         render :edit
       end
@@ -86,7 +86,7 @@ class EmployeesController < ApplicationController
       if @new_employer.save
         if @employee_object.update(user_profile_id: @user_profile_id,
                                    employer_id: @new_employer.id, employee_position: @form_params[:employee_position])
-          redirect_to employee_path(User.get_current_user_profile(current_account).id)
+          redirect_to user_profile_path(User.get_current_user_profile(current_account).id)
         else
           render :edit
         end
