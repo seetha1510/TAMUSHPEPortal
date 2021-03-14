@@ -36,9 +36,6 @@ class EmployeesController < ApplicationController
 
     @user_profile_id = User.get_current_user_profile(current_account).id
 
-    @employer_name = @form_params[:employer_name]
-    @employer_object = Employer.where(employer_name: @employer_name).first
-
     @start_date = Date.new(@form_params["position_start_date(1i)"].to_i, @form_params["position_start_date(2i)"].to_i)
     if @form_params[:current_role] == "1"
       @end_date = nil
@@ -46,6 +43,32 @@ class EmployeesController < ApplicationController
       @end_date = Date.new(@form_params["position_end_date(1i)"].to_i, @form_params["position_end_date(2i)"].to_i)
     end
 
+    @employer_name = @form_params[:employer_name]
+    @employer_object = Employer.where(employer_name: @employer_name).first
+
+    if !@employer_object
+      @employer_object = Employer.new(employer_name: @employer_name)
+      if !@employer_object.save
+        #redirect_to new_employee_path and return
+        @industries = getIndustries
+        render "new" and return
+      end
+    end
+
+    @employee_object = Employee.new(user_profile_id: @user_profile_id,
+                                      employer_id: @employer_object.id, employee_position: @form_params[:employee_position],
+                                      position_start_date: @start_date, position_end_date: @end_date, position_location_state: @form_params[:position_location_state],
+                                      position_location_city: @form_params[:position_location_city], position_industry: @form_params[:position_industry])
+
+    if @employee_object.save
+      redirect_to employee_path(User.get_current_user_profile(current_account).id) and return
+    else
+      #redirect_to new_employee_path and return
+      @industries = getIndustries
+      render "new" and return
+    end
+
+    '''
     if @employer_object
       @employee_object = Employee.new(user_profile_id: @user_profile_id,
                                       employer_id: @employer_object.id, employee_position: @form_params[:employee_position],
@@ -72,6 +95,7 @@ class EmployeesController < ApplicationController
         redirect_to new_employee_path
       end
     end
+    '''
   end
 
   def edit
@@ -87,11 +111,7 @@ class EmployeesController < ApplicationController
     @form_params = params[:employee]
     @employee_object = Employee.find(params[:id])
 
-    # change to session id later
     @user_profile_id = User.get_current_user_profile(current_account).id
-
-    @employer_name = @form_params[:employer_name]
-    @employer_object = Employer.where(employer_name: @employer_name).first
 
     @start_date = Date.new(@form_params["position_start_date(1i)"].to_i, @form_params["position_start_date(2i)"].to_i)
     if @form_params[:current_role] == "1"
@@ -100,6 +120,30 @@ class EmployeesController < ApplicationController
       @end_date = Date.new(@form_params["position_end_date(1i)"].to_i, @form_params["position_end_date(2i)"].to_i)
     end
 
+    @employer_name = @form_params[:employer_name]
+    @employer_object = Employer.where(employer_name: @employer_name).first
+
+    if !@employer_object
+      @employer_object = Employer.new(employer_name: @employer_name)
+      if !@employer_object.save
+        @industries = getIndustries
+        render "edit"
+      end
+    end
+
+    @employee_object.update(user_profile_id: @user_profile_id,
+                                 employer_id: @employer_object.id, employee_position: @form_params[:employee_position],
+                                 position_start_date: @start_date, position_end_date: @end_date, position_location_state: @form_params[:position_location_state],
+                                 position_location_city: @form_params[:position_location_city], position_industry: @form_params[:position_industry])
+
+    if @employee_object.save
+      redirect_to employee_path(User.get_current_user_profile(current_account).id)
+    else
+      @industries = getIndustries
+      render "edit"
+    end
+
+    '''
     if @employer_object
       if @employee_object.update(user_profile_id: @user_profile_id,
                                  employer_id: @employer_object.id, employee_position: @form_params[:employee_position],
@@ -124,6 +168,7 @@ class EmployeesController < ApplicationController
         render :edit
       end
     end
+    '''
   end
 
   def destroy
