@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  devise_for :accounts
 
   resources :user_profiles, only: [:index, :edit, :update] do
     member do
