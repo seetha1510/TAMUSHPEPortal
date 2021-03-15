@@ -12,7 +12,10 @@ RSpec.describe Employee, type: :model do
     described_class.new(
       user_profile_id: 1,
       employer_id: 1,
-      employee_position: 'Software Engineer'
+      employee_position: 'Software Engineer',
+      position_location_state: "texas",
+      position_location_city: "College Station",
+
     )
   end
 
