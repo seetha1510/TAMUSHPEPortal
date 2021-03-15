@@ -7,7 +7,21 @@ class UsersController < ApplicationController
   end
 
   def show
-    redirect_to(new_user_profile_path) unless UserProfile.exists?(user_id: User.get_current_user(current_account).id)
+    
+    if !UserProfile.exists?(user_id: User.get_current_user(current_account).id)
+      redirect_to(new_user_profile_path)
+    else
+      if !User.get_current_user(current_account).approved_status && !(ApprovedEmail.where(email: User.get_current_user(current_account).user_email).length() > 0)
+        redirect_to(approval_path)
+      end
+    end
+    
+    #redirect_to(new_user_profile_path) unless UserProfile.exists?(user_id: User.get_current_user(current_account).id)
+
+    #if !User.get_current_user(current_account).approved_status && !(ApprovedEmail.where(email: User.get_current_user(current_account).user_email).length() > 0)
+      #redirect_to(approval_path) and return
+    #end
+
   end
 
   def new; end

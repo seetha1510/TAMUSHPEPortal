@@ -14,6 +14,25 @@ Rails.application.routes.draw do
   get 'setting', to: 'users#setting', as: 'setting'
   get 'approval', to: 'users#approval', as: 'approval'
 
+
+  #admin routes
+  get 'admin', to: 'admins#home', as: 'admin'
+
+  get 'admin/requests', to: 'admins#requests', as: 'admin_account_requests'
+  get 'admin/request/approve/:id', to: 'admins#request_approve', as: 'admin_request_approve'
+  get 'admin/request/deny/:id', to: 'admins#request_deny', as: 'admin_request_deny'
+
+  get 'admin/emails', to: 'admins#emails', as: 'admin_preapproved_emails'
+  get 'admin/email/add', to: 'admins#email_add', as: 'admin_email_add'
+  get 'admin/email/remove/:id', to: 'admins#email_remove', as: 'admin_email_remove'
+
+  get 'admin/approved', to: 'admins#approved', as: 'admin_approved_users'
+  get 'admin/approved/user/:id', to: 'admins#approved_view', as: 'admin_approved_view'
+  get 'admin/approved/user/edit/:id', to: 'admins#approved_edit', as: 'admin_approved_edit'
+  get 'admin/approved/user/delete/:id', to: 'admins#approved_delete', as: 'admin_approved_delete'
+
+
+
   #get '/account' => 'users#show', :as => :account_root
 
   devise_for :accounts, controllers: {omniauth_callbacks: 'accounts/omniauth_callbacks'}

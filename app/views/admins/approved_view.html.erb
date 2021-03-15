@@ -1,0 +1,17 @@
+<h1>Approved User View</h1>
+<%= link_to "Back", admin_approved_users_path%>
+
+<%= form_with url: admin_approved_edit_path(@user.id), method: :get do |form| %>
+    <ul>
+        <li>
+            <%= form.label :user_first_name, "First Name *" %>
+            <%= form.text_field :user_first_name, value: @user_profile.user_first_name %>
+        </li>
+        <li>
+            <%= form.label :user_last_name, "Last Name *" %>
+            <%= form.text_field :user_last_name, value: @user_profile.user_last_name %>
+        </li>
+    </ul>
+    <%= form.submit "Save" %>
+<% end %>
+<%= link_to "Delete User", admin_approved_delete_path(@user.id) %>

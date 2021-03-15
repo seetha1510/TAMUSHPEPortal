@@ -1,4 +1,4 @@
-<% if User.get_current_user(current_account).approved_status || ApprovedEmail.where(email: User.get_current_user(current_account).user_email).length() > 0%>
+<% if User.get_current_user(current_account).approved_status || ApprovedEmail.where(email: User.get_current_user(current_account).user_email).length() > 0 %>
 
     <% if current_page?(root_url) || current_page?(new_account_session_path) || current_page?(new_user_profile_path) || controller.controller_name == "sessions" || controller.controller_name == "registrations"%> 
 
@@ -45,6 +45,17 @@
                 <%end%>
                     <%= link_to 'Settings', setting_path, class:"nav-link"%>
                 </li>
+                
+                <% if User.get_current_user(current_account).admin_status %>
+                    <% if current_page?(:controller => 'admins', :action => "home") %>
+                        <li class="active">
+                    <% else %>
+                        <li>
+                    <% end %>
+                        <%= link_to 'Admin', admin_path, class:"nav-link"%>
+                    </li>
+                <%else%>
+                <%end%>
             </ul>
             <div class="footer" style="position:absolute;bottom:10px;">
                 &copy; Copyright 2021
