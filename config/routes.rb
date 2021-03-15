@@ -3,11 +3,11 @@
 Rails.application.routes.draw do
   devise_for :accounts
 
-  # resources :user_profiles, only: [:index, :show, :edit, :update] do
-  #   member do
-  #     delete 'delete_image/:image_id', action: 'delete_image', as: 'delete_image'
-  #   end
-  # end
+  resources :user_profiles, only: [:index, :edit, :update] do
+    member do
+      delete 'delete_image/:image_id', action: 'delete_image', as: 'delete_image'
+    end
+  end
   # root "users#home"
   root 'users#index'
 

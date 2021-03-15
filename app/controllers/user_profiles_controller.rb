@@ -48,7 +48,7 @@ class UserProfilesController < ApplicationController
     if @user_profile.save && @user_profile.valid?
       redirect_to(show_path)
     else
-      render 'new'
+      render 'new' 
     end
   end
 
@@ -67,6 +67,16 @@ class UserProfilesController < ApplicationController
 
   def destory; end
 
+  def delete_image
+    image = ActiveStorage::Attachment.find(params[:image_id])
+    if User.get_current_user_profile(current_account) == image.record
+      image.purge
+      redirect_back(fallback_location: request.referer)
+    else
+      redirect_to root_url, notice: "Something is wrong..."
+    end
+  end
+
   private
 
   def user_profile_params
@@ -76,15 +86,5 @@ class UserProfilesController < ApplicationController
                                          :user_linkedin_profile_url, :user_graduating_year,
                                          :user_about_me_description, :user_phone_number,
                                          :user_profile_picture, :user_portfolio_url)
-  end
-
-  def delete_image
-    image = ActiveStorage::Attachment.find(params[:image_id])
-    if current_user == image.record
-      image.purge
-      redirect_bacl(fallback_location: request.referer)
-    else
-      redirect_to root_url, notice: "Something is wrong..."
-    end
   end
 end
