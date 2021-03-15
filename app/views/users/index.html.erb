@@ -5,8 +5,7 @@
                 <%= image_tag "tamuSHPE_app_logo.png", style: 'height:auto;width:70%;' , class:"mb-3"%>
                 <h1 class="blue-text">Welcome to the memberSHPE Portal!</h1>
                 <div class="row" style="padding-left:10vh;padding-right:10vh;">
-                    <%=link_to "Sign Up", new_account_registration_path , class: "btn btn-primary mb-2",style:"color:#FFFFFF;border-color:#FD652F"%>
-                    <%=link_to "Log In", new_account_session_path , class: "btn btn-outline",style:"color:#FD652F;border-color:#FD652F"%>
+                    <%=link_to "Sign in with Google", account_google_oauth2_omniauth_authorize_path , class: "btn btn-outline",style:"color:#FD652F;border-color:#FD652F"%>
                 </div>
             </div>
         </div>

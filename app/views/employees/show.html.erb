@@ -76,7 +76,7 @@
             <td><%= employee.employer.employer_name %></td>
             <td><%= employee.employee_position %></td>
             <% if current_account.email == @true_email %>
-            <td><%= link_to "Edit", edit_employee_path(employee)%></td>
+            <td><%= link_to "Edit", edit_employee_path(employee)%> - <%= link_to "Delete", employee_path(employee), method: :delete %></td>
             <%else%>
             <%end%>
             
