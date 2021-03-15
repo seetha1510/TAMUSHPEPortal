@@ -51,7 +51,7 @@ RSpec.describe 'employee new page', type: :system do
     click_on 'Create User profile'
 
     click_link('Profile', match: :first)
-    click_on 'Add'
+    click_link('Add',match: :first)
 
     fill_in 'Employer Name', with: 'Microsoft'
     fill_in 'Position', with: 'Software Engineer'
@@ -80,7 +80,7 @@ RSpec.describe 'employee new page', type: :system do
     click_on 'Create User profile'
 
     click_link('Profile', match: :first)
-    click_on 'Add'
+    click_link('Add',match: :first)
 
     fill_in 'Employer Name', with: 'Google'
     fill_in 'Position', with: 'Software Engineer'
