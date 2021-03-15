@@ -23,18 +23,6 @@
             <td><%= @membership %></td>
         </tr>
         <tr>
-            <th>FaceBook</th>
-            <td><%= @user_profile.user_facebook_profile_url %></td>
-        </tr>
-        <tr>
-            <th>Instagram</th>
-            <td><%= @user_profile.user_instagram_profile_url %></td>
-        </tr>
-        <tr>
-            <th>Linkedin</th>
-            <td><%= @user_profile.user_linkedin_profile_url %></td>
-        </tr>
-        <tr>
             <th>Graduating Year</th>
             <td><%= @user_profile.user_graduating_year %></td>
         </tr>
@@ -49,6 +37,20 @@
         <tr>
             <th>Selfie</th>
             <td><%#= image_tag image_url(@user_profile.user_profile_picture_url) %></td>
+        </tr>
+        <tr>
+            <th>Social Media</th>
+            <td>
+                <%if @user_profile.user_facebook_profile_url.present?%>
+                    <%= link_to(image_tag("facebook.png", :size => "30x30"), @user_profile.user_facebook_profile_url, target: :_blank) %>
+                <%end%>
+                <%if @user_profile.user_instagram_profile_url.present?%>
+                    <%= link_to(image_tag("instagram.png", :size => "30x30"), @user_profile.user_instagram_profile_url, target: :_blank) %>
+                <%end%>
+                <%if @user_profile.user_linkedin_profile_url.present?%>
+                    <%= link_to(image_tag("linkedin.png", :size => "30x30"), @user_profile.user_linkedin_profile_url, target: :_blank) %>
+                <%end%>
+            </td>
         </tr>
     </table>
     <% if current_account.email == @true_email %>
