@@ -10,4 +10,5 @@ class User < ApplicationRecord
   scope :get_current_user_profile, lambda { |current_account|
                              UserProfile.find_by(user_id: User.find_by(user_email: current_account.email))
                            }
+  #scope :isOnApprovedList, lambda { |current_account| {ApprovedEmail.where(email: current_account.email).length() > 0}}
 end

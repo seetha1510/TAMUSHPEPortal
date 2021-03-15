@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   get 'users/test', to: 'users#test', as: 'test'
   get 'users/show', to: 'users#show', as: 'show'
   get 'setting', to: 'users#setting', as: 'setting'
+  get 'approval', to: 'users#approval', as: 'approval'
 
   #get '/account' => 'users#show', :as => :account_root
 

@@ -32,22 +32,30 @@ class UserProfilesController < ApplicationController
   def create
     #@user_profile = UserProfile.new(user_profile_params)
     @form_params = params[:user_profile]
-    @user_id = User.get_current_user(current_account).id
+    @user = User.get_current_user(current_account)
+    @user_id = @user.id
+      
     @user_profile = UserProfile.new(user_first_name: @form_params[:user_first_name],
-                                    user_last_name: @form_params[:user_last_name],
-                                    user_id: @user_id,
-                                    user_display_email_status: @form_params[:user_display_email_status],
-                                    user_current_member_status: @form_params[:user_current_member_status],
-                                    user_facebook_profile_url: @form_params[:user_facebook_profile_url],
-                                    user_instagram_profile_url: @form_params[:user_instagram_profile_url],
-                                    user_linkedin_profile_url: @form_params[:user_linkedin_profile_url],
-                                    user_graduating_year: @form_params[:user_graduating_year],
-                                    user_about_me_description: @form_params[:user_about_me_description],
-                                    user_phone_number: @form_params[:user_phone_number],
-                                    user_portfolio_url: @form_params[:user_portfolio_url]
-                                    )
+                                  user_last_name: @form_params[:user_last_name],
+                                  user_id: @user_id,
+                                  user_display_email_status: @form_params[:user_display_email_status],
+                                  user_current_member_status: @form_params[:user_current_member_status],
+                                  user_facebook_profile_url: @form_params[:user_facebook_profile_url],
+                                  user_instagram_profile_url: @form_params[:user_instagram_profile_url],
+                                  user_linkedin_profile_url: @form_params[:user_linkedin_profile_url],
+                                  user_graduating_year: @form_params[:user_graduating_year],
+                                  user_about_me_description: @form_params[:user_about_me_description],
+                                  user_phone_number: @form_params[:user_phone_number],
+                                  user_portfolio_url: @form_params[:user_portfolio_url]
+                                  )
+
     if @user_profile.save && @user_profile.valid?
-      redirect_to(show_path)
+      @isOnApprovedList = ApprovedEmail.where(email: @user.user_email).length() > 0
+      if @user.approved_status || @isOnApprovedList
+        redirect_to(show_path)
+      else
+        redirect_to approval_path
+      end
     else
       render 'new'
     end
