@@ -1,7 +1,14 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  
+  devise_for :accounts
+
+  resources :user_profiles, only: [:index, :edit, :update] do
+    member do
+      delete 'delete_image/:image_id', action: 'delete_image', as: 'delete_image'
+    end
+  end
+  # root "users#home"
   root 'users#index'
 
   resources :users
@@ -20,5 +27,4 @@ Rails.application.routes.draw do
     get 'accounts/sign_in', to: 'users#show', as: :new_account_session
     delete 'accounts/sign_out', to: 'accounts/sessions#destroy', as: :destory_account_session
   end
-
 end
