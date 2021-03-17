@@ -14,6 +14,8 @@ Rails.application.routes.draw do
   resources :user_profiles
   resources :employees
   resources :employers
+  resources :students
+  resources :schools
 
   get 'users/test', to: 'users#test', as: 'test'
   get 'users/show', to: 'users#show', as: 'show'

@@ -46,7 +46,7 @@ end
     click_on 'Create User profile'
 
     click_link('Profile', match: :first)
-    click_on 'Add'
+    click_link('Add',match: :first)
 
     fill_in 'Company *', with: 'Microsoft'
     fill_in 'Title *', with: 'Software Engineer'
@@ -73,7 +73,7 @@ end
     click_on 'Create User profile'
 
     click_link('Profile', match: :first)
-    click_on 'Add'
+    click_link('Add',match: :first)
 
     fill_in 'Company *', with: 'Microsoft'
     fill_in 'Title *', with: 'Software Engineer'
