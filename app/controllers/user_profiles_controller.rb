@@ -5,10 +5,33 @@ class UserProfilesController < ApplicationController
   
   def index
     @user_profiles = UserProfile.all
-    return unless params[:search_by_first_name] && params[:search_by_first_name] != ''
+    search_type = params[:search_type]
+    search_word = params[:search_word]
 
-    @user_profiles = @user_profiles.where('user_first_name LIKE ?',
-                                          "%#{params[:search_by_first_name].downcase}%")
+    if search_word && search_word != ""
+      if(search_type == "First Name")
+        @user_profiles = @user_profiles.where("user_first_name LIKE ?",
+        "%" + search_word.downcase + "%" ).to_set
+      end
+      if(search_type == "Last Name")
+        @user_profiles = @user_profiles.where("user_last_name LIKE ?",
+        "%" + search_word.downcase + "%" ).to_set
+      end 
+      if(search_type == "Employer")   
+        @user_profiles = UserProfile.joins(:employers).where("lower(employers.employer_name) LIKE ?",
+          "%" + search_word.downcase  + "%" ).to_set
+      end 
+      if(search_type == "School")
+        @user_profiles = UserProfile.joins(:schools).where("lower(schools.school_name) LIKE ?",
+          "%" + search_word.downcase  + "%" ).to_set
+      end
+      if(search_type == "Field of Study")
+        @user_profiles = UserProfile.joins(:students).where("lower(students.student_field_of_study) LIKE ?",
+          "%" + search_word.downcase  + "%" ).to_set
+      end
+      
+      ## add more
+    end
   end
 
   def show
