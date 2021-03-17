@@ -10,20 +10,20 @@ class EmployeesController < ApplicationController
   end
 
   def show
-    @user_profile = UserProfile.find(params[:id])
-    @employees = Employee.where(user_profile_id: params[:id])
-    @true_email = User.find(UserProfile.find(params[:id]).user_id).user_email
+    # @user_profile = UserProfile.find(params[:id])
+    # @employees = Employee.where(user_profile_id: params[:id])
+    # @true_email = User.find(UserProfile.find(params[:id]).user_id).user_email
 
-    @email = if @user_profile.user_display_email_status
-               '*************'
-             else
-                User.get_current_user(current_account).user_email
-             end
-    @membership = if @user_profile.user_current_member_status
-                    'Current Member'
-                  else
-                    'Alumni'
-                  end
+    # @email = if @user_profile.user_display_email_status
+    #            '*************'
+    #          else
+    #            User.get_current_user(current_account).user_email
+    #          end
+    # @membership = if @user_profile.user_current_member_status
+    #                 'Current Member'
+    #               else
+    #                 'Alumni'
+    #               end
   end
 
   def new
@@ -61,7 +61,7 @@ class EmployeesController < ApplicationController
                                       position_location_city: @form_params[:position_location_city], position_industry: @form_params[:position_industry])
 
     if @employee_object.save
-      redirect_to employee_path(User.get_current_user_profile(current_account).id) and return
+      redirect_to user_profile_path(User.get_current_user_profile(current_account).id) and return
     else
       #redirect_to new_employee_path and return
       @industries = getIndustries
@@ -75,7 +75,7 @@ class EmployeesController < ApplicationController
                                       position_start_date: @start_date, position_end_date: @end_date, position_location_state: @form_params[:position_location_state],
                                       position_location_city: @form_params[:position_location_city], position_industry: @form_params[:position_industry])
       if @employee_object.save
-        redirect_to employee_path(User.get_current_user_profile(current_account).id)
+        redirect_to user_profile_path(User.get_current_user_profile(current_account).id)
       else
         redirect_to new_employee_path
       end
@@ -87,7 +87,7 @@ class EmployeesController < ApplicationController
                                         position_start_date: @start_date, position_end_date: @end_date, position_location_state: @form_params[:position_location_state],
                                         position_location_city: @form_params[:position_location_city], position_industry: @form_params[:position_industry])
         if @employee_object.save
-          redirect_to employee_path(User.get_current_user_profile(current_account).id)
+          redirect_to user_profile_path(User.get_current_user_profile(current_account).id)
         else
           redirect_to new_employee_path
         end
@@ -137,7 +137,7 @@ class EmployeesController < ApplicationController
                                  position_location_city: @form_params[:position_location_city], position_industry: @form_params[:position_industry])
 
     if @employee_object.save
-      redirect_to employee_path(User.get_current_user_profile(current_account).id)
+      redirect_to user_profile_path(User.get_current_user_profile(current_account).id)
     else
       @industries = getIndustries
       render "edit"
@@ -181,7 +181,7 @@ class EmployeesController < ApplicationController
       @employer.destroy
     end
 
-    redirect_to employee_path(User.get_current_user_profile(current_account).id)
+    redirect_to user_profile_path(User.get_current_user_profile(current_account).id)
   end
 
   def getIndustries
