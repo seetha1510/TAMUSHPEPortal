@@ -61,7 +61,7 @@ class EmployeesController < ApplicationController
                                       position_location_city: @form_params[:position_location_city], position_industry: @form_params[:position_industry])
 
     if @employee_object.save
-      redirect_to employee_path(User.get_current_user_profile(current_account).id) and return
+      redirect_to user_profile_path(User.get_current_user_profile(current_account).id) and return
     else
       #redirect_to new_employee_path and return
       @industries = getIndustries
@@ -137,7 +137,7 @@ class EmployeesController < ApplicationController
                                  position_location_city: @form_params[:position_location_city], position_industry: @form_params[:position_industry])
 
     if @employee_object.save
-      redirect_to employee_path(User.get_current_user_profile(current_account).id)
+      redirect_to user_profile_path(User.get_current_user_profile(current_account).id)
     else
       @industries = getIndustries
       render "edit"
@@ -181,7 +181,7 @@ class EmployeesController < ApplicationController
       @employer.destroy
     end
 
-    redirect_to employee_path(User.get_current_user_profile(current_account).id)
+    redirect_to user_profile_path(User.get_current_user_profile(current_account).id)
   end
 
   def getIndustries
