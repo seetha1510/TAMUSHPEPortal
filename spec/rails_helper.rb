@@ -41,6 +41,20 @@ rescue ActiveRecord::PendingMigrationError => e
   puts e.to_s.strip
   exit 1
 end
+OmniAuth.config.test_mode = true
+OmniAuth.config.mock_auth[:google_oauth2] = OmniAuth::AuthHash.new({
+    :provider => "google_oauth2",
+    :uid => "123456789",
+    :info => {
+      :name => "Tony Stark",
+      :email => "tony@stark.com"
+    },
+    :credentials => {
+      :token => "token",
+      :refresh_token => "refresh token"
+    }
+  }
+)
 RSpec.configure do |config|
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"

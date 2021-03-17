@@ -15,9 +15,6 @@ class CreateUserProfiles < ActiveRecord::Migration[6.1]
       t.string :user_last_name
       t.string :user_portfolio_url
 
-      #profile picture may need to be url to hosted image
-      t.string :user_profile_picture_url
-
       t.timestamps  
     end
 

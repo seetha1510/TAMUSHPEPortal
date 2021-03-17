@@ -48,7 +48,7 @@
         </tr>
         <tr>
             <th>Selfie</th>
-            <td><%#= image_tag image_url(@user_profile.user_profile_picture_url) %></td>
+            <td><%#= image_tag image_url(@user_profile.user_profile_picture) %></td>
         </tr>
     </table>
     <% if current_account.email == @true_email %>
@@ -76,7 +76,7 @@
             <td><%= employee.employer.employer_name %></td>
             <td><%= employee.employee_position %></td>
             <% if current_account.email == @true_email %>
-            <td><%= link_to "Edit", edit_employee_path(employee)%></td>
+            <td><%= link_to "Edit", edit_employee_path(employee)%> - <%= link_to "Delete", employee_path(employee), method: :delete %></td>
             <%else%>
             <%end%>
             

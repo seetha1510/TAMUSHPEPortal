@@ -3,13 +3,13 @@
 require 'rails_helper'
 
 RSpec.describe 'employee edit page', type: :system do
+  before(:each) do
+    Rails.application.env_config["devise.mapping"] = Devise.mappings[:user]
+    Rails.application.env_config["omniauth.auth"] = OmniAuth.config.mock_auth[:google_oauth2]
+end
   it 'displays the edit employee form correctly' do
-    visit new_account_registration_path
-    ## to get an account to log in
-    fill_in 'Email',	with: 'yifei.liang@tamu.edu'
-    fill_in 'Password', with: 'zx453359523'
-    fill_in 'Password confirmation', with: 'zx453359523'
-    click_on 'Sign up'
+    visit root_path
+    click_on "Sign in with Google"
 
     ## create new profile page
     fill_in 'Enter First Name',	with: 'Yifei'
@@ -24,26 +24,24 @@ RSpec.describe 'employee edit page', type: :system do
     click_link('Profile', match: :first)
     click_link('Add',match: :first)
 
-    fill_in 'Employer Name', with: 'Microsoft'
-    fill_in 'Position', with: 'Software Engineer'
+    fill_in 'Company *', with: 'Microsoft'
+    fill_in 'Title *', with: 'Software Engineer'
+    fill_in 'City *', with: "Missouri City"
+    fill_in 'State *', with: "Texas"
     click_on 'Create Employee'
 
     within('tbody', id: 'positions') do
       click_link('Edit', match: :first)
     end
 
-    expect(page).to have_field('Employer Name')
-    expect(page).to have_field('Position')
+    expect(page).to have_field('Company *')
+    expect(page).to have_field('Title *')
     expect(page).to have_button('Update Employee')
   end
 
   it 'updates an employee upon submitting' do
-    visit new_account_registration_path
-    ## to get an account to log in
-    fill_in 'Email',	with: 'yifei.liang@tamu.edu'
-    fill_in 'Password', with: 'zx453359523'
-    fill_in 'Password confirmation', with: 'zx453359523'
-    click_on 'Sign up'
+    visit root_path
+    click_on "Sign in with Google"
 
     ## create new profile page
     fill_in 'Enter First Name',	with: 'Yifei'
@@ -58,28 +56,27 @@ RSpec.describe 'employee edit page', type: :system do
     click_link('Profile', match: :first)
     click_link('Add',match: :first)
 
-    fill_in 'Employer Name', with: 'Microsoft'
-    fill_in 'Position', with: 'Software Engineer'
+    fill_in 'Company *', with: 'Microsoft'
+    fill_in 'Title *', with: 'Software Engineer'
+    fill_in 'City *', with: "Missouri City"
+    fill_in 'State *', with: "Texas"
     click_on 'Create Employee'
 
     within('tbody', id: 'positions') do
       click_link('Edit', match: :first)
     end
 
-    fill_in 'Employer Name', with: 'Google'
-    fill_in 'Position', with: 'Software Engineer'
-    click_on 'Update Employee'
-
+    fill_in 'Company *', with: 'Google'
+    fill_in 'Title *', with: 'Software Engineer'
+    fill_in 'City *', with: "Missouri City"
+    fill_in 'State *', with: "Texas"
+    click_on "Update Employee"
     expect(page).to have_content('Google')
   end
 
   it 'redirects to the correct page after updating' do
-    visit new_account_registration_path
-    ## to get an account to log in
-    fill_in 'Email',	with: 'yifei.liang@tamu.edu'
-    fill_in 'Password', with: 'zx453359523'
-    fill_in 'Password confirmation', with: 'zx453359523'
-    click_on 'Sign up'
+    visit root_path
+    click_on "Sign in with Google"
 
     ## create new profile page
     fill_in 'Enter First Name',	with: 'Yifei'
@@ -94,17 +91,20 @@ RSpec.describe 'employee edit page', type: :system do
     click_link('Profile', match: :first)
     click_link('Add',match: :first)
 
-    fill_in 'Employer Name', with: 'Microsoft'
-    fill_in 'Position', with: 'Software Engineer'
+    fill_in 'Company *', with: 'Microsoft'
+    fill_in 'Title *', with: 'Software Engineer'
+    fill_in 'City *', with: "Missouri City"
+    fill_in 'State *', with: "Texas"
     click_on 'Create Employee'
     within('tbody', id: 'positions') do
       click_link('Edit', match: :first)
     end
 
-    fill_in 'Employer Name', with: 'Google'
-    fill_in 'Position', with: 'Software Engineer'
-    click_on 'Update Employee'
-
+    fill_in 'Company *', with: 'Google'
+    fill_in 'Title *', with: 'Software Engineer'
+    fill_in 'City *', with: "Missouri City"
+    fill_in 'State *', with: "Texas"
+    click_on "Update Employee"
     expect(page).to have_content('My Profile')
   end
 end

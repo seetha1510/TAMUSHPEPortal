@@ -7,4 +7,9 @@ class Employee < ApplicationRecord
                               allow_blank: false
   validates :employer_id, presence: true, allow_blank: false
   validates :employee_position, presence: true, allow_blank: false
+  validates :position_start_date, presence: true, allow_blank: false
+  validates :position_end_date, presence: false, allow_blank: true
+  validates :position_location_state, presence: true, allow_blank: false
+  validates :position_location_city, presence: true, allow_blank: false
+  validates :position_industry, presence: false, allow_blank: true
 end
