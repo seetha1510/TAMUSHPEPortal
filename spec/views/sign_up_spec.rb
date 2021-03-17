@@ -5,30 +5,19 @@ require 'rails_helper'
 RSpec.describe 'Tamu ship ', type: :system do
   describe 'Successful' do
     it 'shows the right content' do
-      visit new_account_registration_path
-
-      expect(page).to have_content('Email')
-      expect(page).to have_content('Password (6 characters minimum)')
-      expect(page).to have_content('Password confirmation')
+      visit root_path
+      click_on "Sign in with Google"
     end
 
     it 'goes to the right page after sign up' do
-      visit new_account_registration_path
-
-      fill_in 'Email',    with: 'yifei.liang@tamu.edu'
-      fill_in 'Password', with: 'zx453359523'
-      fill_in 'Password confirmation', with: 'zx453359523'
-      click_on 'Sign up'
+      visit root_path
+      click_on "Sign in with Google"
       expect(page).to have_content('Facebook')
     end
 
     it 'shows the right content' do
-      visit new_account_registration_path
-      ## to get an account to log in
-      fill_in 'Email',    with: 'yifei.liang@tamu.edu'
-      fill_in 'Password', with: 'zx453359523'
-      fill_in 'Password confirmation', with: 'zx453359523'
-      click_on 'Sign up'
+      visit root_path
+      click_on "Sign in with Google"
 
       expect(page).to have_content('First Name')
       expect(page).to have_content('Last Name')
@@ -46,12 +35,8 @@ RSpec.describe 'Tamu ship ', type: :system do
     end
 
     it 'can create new profile page' do
-      visit new_account_registration_path
-      ## to get an account to log in
-      fill_in 'Email',    with: 'yifei.liang@tamu.edu'
-      fill_in 'Password', with: 'zx453359523'
-      fill_in 'Password confirmation', with: 'zx453359523'
-      click_on 'Sign up'
+      visit root_path
+      click_on "Sign in with Google"
 
       ## to do test creating new profile page
       fill_in 'Enter First Name', with: 'Yifei'
@@ -69,12 +54,8 @@ RSpec.describe 'Tamu ship ', type: :system do
 
   describe 'Unsucessful' do
     it 'go back to create new profile page after failing' do
-      visit new_account_registration_path
-      ## to get an account to log in
-      fill_in 'Email',    with: 'yifei.liang@tamu.edu'
-      fill_in 'Password', with: 'zx453359523'
-      fill_in 'Password confirmation', with: 'zx453359523'
-      click_on 'Sign up'
+      visit root_path
+      click_on "Sign in with Google"
 
       ## to do test creating new profile page
       fill_in 'Enter First Name', with: 'Yifei'
@@ -89,12 +70,8 @@ RSpec.describe 'Tamu ship ', type: :system do
     end
 
     it 'shows error message for wrong first name' do
-      visit new_account_registration_path
-      ## to get an account to log in
-      fill_in 'Email',    with: 'yifei.liang@tamu.edu'
-      fill_in 'Password', with: 'zx453359523'
-      fill_in 'Password confirmation', with: 'zx453359523'
-      click_on 'Sign up'
+      visit root_path
+      click_on "Sign in with Google"
 
       ## to do test creating new profile page
       fill_in 'Enter First Name', with: ''
@@ -109,12 +86,8 @@ RSpec.describe 'Tamu ship ', type: :system do
     end
 
     it 'shows error message for wrong last name' do
-      visit new_account_registration_path
-      ## to get an account to log in
-      fill_in 'Email',    with: 'yifei.liang@tamu.edu'
-      fill_in 'Password', with: 'zx453359523'
-      fill_in 'Password confirmation', with: 'zx453359523'
-      click_on 'Sign up'
+      visit root_path
+      click_on "Sign in with Google"
 
       ## to do test creating new profile page
       fill_in 'Enter First Name', with: 'Yifei'
@@ -129,13 +102,8 @@ RSpec.describe 'Tamu ship ', type: :system do
     end
 
     it 'shows error message for wrong format facebook url' do
-      visit new_account_registration_path
-      ## to get an account to log in
-      fill_in 'Email',    with: 'yifei.liang@tamu.edu'
-      fill_in 'Password', with: 'zx453359523'
-      fill_in 'Password confirmation', with: 'zx453359523'
-      click_on 'Sign up'
-
+      visit root_path
+      click_on "Sign in with Google"
       ## to do test creating new profile page
       fill_in 'Enter First Name', with: 'Yifei'
       fill_in 'Enter Last Name',  with: 'Liang'
@@ -149,12 +117,8 @@ RSpec.describe 'Tamu ship ', type: :system do
     end
 
     it 'shows error message for wrong format instagram url' do
-      visit new_account_registration_path
-      ## to get an account to log in
-      fill_in 'Email',    with: 'yifei.liang@tamu.edu'
-      fill_in 'Password', with: 'zx453359523'
-      fill_in 'Password confirmation', with: 'zx453359523'
-      click_on 'Sign up'
+      visit root_path
+      click_on "Sign in with Google"
 
       ## to do test creating new profile page
       fill_in 'Enter First Name', with: 'Yifei'
@@ -169,12 +133,8 @@ RSpec.describe 'Tamu ship ', type: :system do
     end
 
     it 'shows error message for wrong format linkedin url' do
-      visit new_account_registration_path
-      ## to get an account to log in
-      fill_in 'Email',    with: 'yifei.liang@tamu.edu'
-      fill_in 'Password', with: 'zx453359523'
-      fill_in 'Password confirmation', with: 'zx453359523'
-      click_on 'Sign up'
+      visit root_path
+      click_on "Sign in with Google"
 
       ## to do test creating new profile page
       fill_in 'Enter First Name', with: 'Yifei'
@@ -189,12 +149,8 @@ RSpec.describe 'Tamu ship ', type: :system do
     end
 
     it 'shows error message for wrong format year' do
-      visit new_account_registration_path
-      ## to get an account to log in
-      fill_in 'Email',    with: 'yifei.liang@tamu.edu'
-      fill_in 'Password', with: 'zx453359523'
-      fill_in 'Password confirmation', with: 'zx453359523'
-      click_on 'Sign up'
+      visit root_path
+      click_on "Sign in with Google"
 
       ## to do test creating new profile page
       fill_in 'Enter First Name', with: 'Yifei'
@@ -209,12 +165,8 @@ RSpec.describe 'Tamu ship ', type: :system do
     end
 
     it 'shows error message for wrong format phone number' do
-      visit new_account_registration_path
-      ## to get an account to log in
-      fill_in 'Email',    with: 'yifei.liang@tamu.edu'
-      fill_in 'Password', with: 'zx453359523'
-      fill_in 'Password confirmation', with: 'zx453359523'
-      click_on 'Sign up'
+      visit root_path
+      click_on "Sign in with Google"
 
       ## to do test creating new profile page
       fill_in 'Enter First Name', with: 'Yifei'

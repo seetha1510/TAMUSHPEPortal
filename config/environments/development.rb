@@ -33,7 +33,7 @@ Rails.application.configure do
   end
 
   # Store uploaded files on the local file system (see config/storage.yml for options).
-  config.active_storage.service = :local
+  config.active_storage.service = :amazon_dev
 
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false
@@ -78,4 +78,8 @@ Rails.application.configure do
 
   # requirements for devise
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+
+
+  ENV['GOOGLE_OAUTH_CLIENT_ID'] = '1078956556387-eb2fljvrg16n12s5j6qd7252f399jbqh.apps.googleusercontent.com'
+  ENV['GOOGLE_OAUTH_CLIENT_SECRET'] = 'Zi-ZBlDmaPlyB3Y11wkhUcMI'
 end

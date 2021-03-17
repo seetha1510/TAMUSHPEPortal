@@ -3,6 +3,10 @@
 require 'rails_helper'
 
 RSpec.describe 'user profile edit page', type: :system do
+  before(:each) do
+    Rails.application.env_config["devise.mapping"] = Devise.mappings[:user]
+    Rails.application.env_config["omniauth.auth"] = OmniAuth.config.mock_auth[:google_oauth2]
+end
   # before do
   #     @user1 = User.create(user_email: 'jonathan09@tamu.edu',
   #         admin_status: false)
@@ -20,7 +24,7 @@ RSpec.describe 'user profile edit page', type: :system do
   #     user_first_name: 'Jonathan',
   #     user_last_name: "Gaytan",
   #     user_portfolio_url: "",
-  #     user_profile_picture_url: "")
+  #     user_profile_picture: "")
   # end
 
   #
@@ -28,12 +32,8 @@ RSpec.describe 'user profile edit page', type: :system do
   #
   describe 'Edit Profile Page' do
     it 'Can access the edit page' do
-      visit new_account_registration_path
-      ## to get an account to log in
-      fill_in 'Email',    with: 'jonathan09@tamu.edu'
-      fill_in 'Password', with: 'Hello123!'
-      fill_in 'Password confirmation', with: 'Hello123!'
-      click_on 'Sign up'
+      visit root_path
+      click_on "Sign in with Google"
 
       ## to do test creating new profile page
       fill_in 'Enter First Name', with: 'Jonathan'
@@ -54,17 +54,13 @@ RSpec.describe 'user profile edit page', type: :system do
         click_on 'Edit'
       end
       expect(page).to have_content('Update General Information')
-      visit edit_user_profile_path(UserProfile.find_by(user_id: User.find_by(user_email: 'jonathan09@tamu.edu').id).id)
+      visit edit_user_profile_path(UserProfile.find_by(user_id: User.find_by(user_email: 'tony@stark.com').id).id)
       expect(page).to have_content('Update General Information')
     end
 
     it 'can edit general information' do
-      visit new_account_registration_path
-      ## to get an account to log in
-      fill_in 'Email',    with: 'jonathan09@tamu.edu'
-      fill_in 'Password', with: 'Hello123!'
-      fill_in 'Password confirmation', with: 'Hello123!'
-      click_on 'Sign up'
+      visit root_path
+      click_on "Sign in with Google"
 
       ## to do test creating new profile page
       fill_in 'Enter First Name', with: 'Jonathan'
@@ -76,7 +72,7 @@ RSpec.describe 'user profile edit page', type: :system do
       fill_in 'Enter Graduating Year', with: '2022'
       click_on 'Create User profile'
       expect(page).to have_content('Profile')
-      visit edit_user_profile_path(UserProfile.find_by(user_id: User.find_by(user_email: 'jonathan09@tamu.edu').id).id)
+      visit edit_user_profile_path(UserProfile.find_by(user_id: User.find_by(user_email: 'tony@stark.com').id).id)
       expect(page).to have_content('Update General Information')
       fill_in 'Enter Facebook URL', with: 'facebook.com/jonathan'
       fill_in 'Enter Instagram URL', with: 'instagram.com/jonathan'
@@ -89,12 +85,8 @@ RSpec.describe 'user profile edit page', type: :system do
     end
 
     it 'cannot edit general information with no first name' do
-      visit new_account_registration_path
-      ## to get an account to log in
-      fill_in 'Email',    with: 'jonathan09@tamu.edu'
-      fill_in 'Password', with: 'Hello123!'
-      fill_in 'Password confirmation', with: 'Hello123!'
-      click_on 'Sign up'
+      visit root_path
+      click_on "Sign in with Google"
 
       ## to do test creating new profile page
       fill_in 'Enter First Name', with: 'Jonathan'
@@ -106,7 +98,7 @@ RSpec.describe 'user profile edit page', type: :system do
       fill_in 'Enter Graduating Year', with: '2022'
       click_on 'Create User profile'
       expect(page).to have_content('Profile')
-      visit edit_user_profile_path(UserProfile.find_by(user_id: User.find_by(user_email: 'jonathan09@tamu.edu').id).id)
+      visit edit_user_profile_path(UserProfile.find_by(user_id: User.find_by(user_email: 'tony@stark.com').id).id)
       expect(page).to have_content('Update General Information')
       fill_in 'Enter First Name', with: ''
       click_on 'Update User profile'
@@ -114,12 +106,8 @@ RSpec.describe 'user profile edit page', type: :system do
     end
 
     it 'cannot edit general information with no last name' do
-      visit new_account_registration_path
-      ## to get an account to log in
-      fill_in 'Email',    with: 'jonathan09@tamu.edu'
-      fill_in 'Password', with: 'Hello123!'
-      fill_in 'Password confirmation', with: 'Hello123!'
-      click_on 'Sign up'
+      visit root_path
+      click_on "Sign in with Google"
 
       ## to do test creating new profile page
       fill_in 'Enter First Name', with: 'Jonathan'
@@ -131,7 +119,7 @@ RSpec.describe 'user profile edit page', type: :system do
       fill_in 'Enter Graduating Year', with: '2022'
       click_on 'Create User profile'
       expect(page).to have_content('Profile')
-      visit edit_user_profile_path(UserProfile.find_by(user_id: User.find_by(user_email: 'jonathan09@tamu.edu').id).id)
+      visit edit_user_profile_path(UserProfile.find_by(user_id: User.find_by(user_email: 'tony@stark.com').id).id)
       expect(page).to have_content('Update General Information')
       fill_in 'Enter Last Name', with: ''
       click_on 'Update User profile'
@@ -139,12 +127,8 @@ RSpec.describe 'user profile edit page', type: :system do
     end
 
     it 'cannot edit general information with invalid facebook URL' do
-      visit new_account_registration_path
-      ## to get an account to log in
-      fill_in 'Email',    with: 'jonathan09@tamu.edu'
-      fill_in 'Password', with: 'Hello123!'
-      fill_in 'Password confirmation', with: 'Hello123!'
-      click_on 'Sign up'
+      visit root_path
+      click_on "Sign in with Google"
 
       ## to do test creating new profile page
       fill_in 'Enter First Name', with: 'Jonathan'
@@ -156,7 +140,7 @@ RSpec.describe 'user profile edit page', type: :system do
       fill_in 'Enter Graduating Year', with: '2022'
       click_on 'Create User profile'
       expect(page).to have_content('Profile')
-      visit edit_user_profile_path(UserProfile.find_by(user_id: User.find_by(user_email: 'jonathan09@tamu.edu').id).id)
+      visit edit_user_profile_path(UserProfile.find_by(user_id: User.find_by(user_email: 'tony@stark.com').id).id)
       expect(page).to have_content('Update General Information')
       fill_in 'Enter Facebook URL', with: 'faceboo.com'
       click_on 'Update User profile'
@@ -164,12 +148,8 @@ RSpec.describe 'user profile edit page', type: :system do
     end
 
     it 'cannot edit general information with invalid Instagram URL' do
-      visit new_account_registration_path
-      ## to get an account to log in
-      fill_in 'Email',    with: 'jonathan09@tamu.edu'
-      fill_in 'Password', with: 'Hello123!'
-      fill_in 'Password confirmation', with: 'Hello123!'
-      click_on 'Sign up'
+      visit root_path
+      click_on "Sign in with Google"
 
       ## to do test creating new profile page
       fill_in 'Enter First Name', with: 'Jonathan'
@@ -181,7 +161,7 @@ RSpec.describe 'user profile edit page', type: :system do
       fill_in 'Enter Graduating Year', with: '2022'
       click_on 'Create User profile'
       expect(page).to have_content('Profile')
-      visit edit_user_profile_path(UserProfile.find_by(user_id: User.find_by(user_email: 'jonathan09@tamu.edu').id).id)
+      visit edit_user_profile_path(UserProfile.find_by(user_id: User.find_by(user_email: 'tony@stark.com').id).id)
       expect(page).to have_content('Update General Information')
       fill_in 'Enter Instagram URL', with: 'insta.com'
       click_on 'Update User profile'
@@ -189,12 +169,8 @@ RSpec.describe 'user profile edit page', type: :system do
     end
 
     it 'cannot edit general information with invalid Linkedin URL' do
-      visit new_account_registration_path
-      ## to get an account to log in
-      fill_in 'Email',    with: 'jonathan09@tamu.edu'
-      fill_in 'Password', with: 'Hello123!'
-      fill_in 'Password confirmation', with: 'Hello123!'
-      click_on 'Sign up'
+      visit root_path
+      click_on "Sign in with Google"
 
       ## to do test creating new profile page
       fill_in 'Enter First Name', with: 'Jonathan'
@@ -206,7 +182,7 @@ RSpec.describe 'user profile edit page', type: :system do
       fill_in 'Enter Graduating Year', with: '2022'
       click_on 'Create User profile'
       expect(page).to have_content('Profile')
-      visit edit_user_profile_path(UserProfile.find_by(user_id: User.find_by(user_email: 'jonathan09@tamu.edu').id).id)
+      visit edit_user_profile_path(UserProfile.find_by(user_id: User.find_by(user_email: 'tony@stark.com').id).id)
       expect(page).to have_content('Update General Information')
       fill_in 'Enter Linkedin URL', with: 'link.com'
       click_on 'Update User profile'
@@ -214,12 +190,8 @@ RSpec.describe 'user profile edit page', type: :system do
     end
 
     it 'cannot edit general information with all invalid inputs together' do
-      visit new_account_registration_path
-      ## to get an account to log in
-      fill_in 'Email',    with: 'jonathan09@tamu.edu'
-      fill_in 'Password', with: 'Hello123!'
-      fill_in 'Password confirmation', with: 'Hello123!'
-      click_on 'Sign up'
+      visit root_path
+      click_on "Sign in with Google"
 
       ## to do test creating new profile page
       fill_in 'Enter First Name', with: 'Jonathan'
@@ -231,7 +203,7 @@ RSpec.describe 'user profile edit page', type: :system do
       fill_in 'Enter Graduating Year', with: '2022'
       click_on 'Create User profile'
       expect(page).to have_content('Profile')
-      visit edit_user_profile_path(UserProfile.find_by(user_id: User.find_by(user_email: 'jonathan09@tamu.edu').id).id)
+      visit edit_user_profile_path(UserProfile.find_by(user_id: User.find_by(user_email: 'tony@stark.com').id).id)
       expect(page).to have_content('Update General Information')
       fill_in 'Enter First Name', with: ''
       fill_in 'Enter Last Name', with: ''

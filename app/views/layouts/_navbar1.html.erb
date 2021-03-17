@@ -1,4 +1,4 @@
- <% if current_page?(new_account_registration_path) || current_page?(root_url) || current_page?(new_account_session_path) || current_page?(new_user_profile_path) || controller.controller_name == "sessions" || controller.controller_name == "registrations"%> 
+ <% if current_page?(root_url) || current_page?(new_account_session_path) || current_page?(new_user_profile_path) || controller.controller_name == "sessions" || controller.controller_name == "registrations"%> 
 
 <% else %>
 <nav id="sidebar">
@@ -7,7 +7,11 @@
             <%= image_tag "tamuSHPE_app_logo.png", style: 'height:auto;width:90%;' %>
         </div>
         
-        <a href="#" class="img logo rounded-circle mb-4" style="background-image: url(<%= asset_path 'default_profile_picture.jpg' %>);"></a>
+        <% if User.get_current_user_profile(current_account).user_profile_picture.attached? && User.get_current_user_profile(current_account).user_profile_picture.representable?%>
+            <a href="#" class="img logo rounded-circle mb-4" style="background-image: url(<%= url_for(User.get_current_user_profile(current_account).user_profile_picture )%>);"></a> 
+        <% else %>
+            <a href="#" class="img logo rounded-circle mb-4" style="background-image: url(<%= asset_path 'default_profile_picture.jpg' %>);"></a> 
+        <% end %>
         <h2 style="color:white;">Welcome, <%= User.get_current_user_profile(current_account).user_first_name[0].upcase %><%= User.get_current_user_profile(current_account).user_first_name[1..-1] %></h2>
         <ul class="list-unstyled components mb-5">
             <% if current_page?(:controller => 'users', :action => 'show') %>
@@ -15,7 +19,9 @@
             <% else %>
                 <li>
             <%end%>
-                <%= link_to 'Home' , show_path, class:"nav-link"%>
+                <%= link_to show_path, class:"nav-link" do%>
+                <i class="fa fa-home" aria-hidden="true"></i> Home
+                <% end %>
             </li>
 
             <% if current_page?(:controller => 'user_profiles', :action => 'index') %>
@@ -23,15 +29,19 @@
             <% else %>
                 <li>
             <%end%>
-                <%= link_to 'People' , user_profiles_path, class:"nav-link"%>
+                <%= link_to user_profiles_path, class:"nav-link" do%>
+                    <i class="fa fa-search" aria-hidden="true"></i> Search
+                <% end %>
             </li>
 
-            <% if current_page?(:controller => 'employees', :action => 'index') %>
+            <% if current_page?(employee_path(User.get_current_user_profile(current_account).id)) %>
                 <li class="active">
             <% else %>
                 <li>
             <%end%>
-                <%= link_to 'Profile' , employee_path(User.get_current_user_profile(current_account).id), class:"nav-link"%>
+                <%= link_to employee_path(User.get_current_user_profile(current_account).id), class:"nav-link" do%>
+                    <i class="fa fa-user" aria-hidden="true"></i> Profile
+                <% end %>
             </li>
             <%# <li>
                 <a href="#">Settings</a>
@@ -41,7 +51,9 @@
             <% else %>
                 <li>
             <%end%>
-                <%= link_to 'Settings', setting_path, class:"nav-link"%>
+                <%= link_to setting_path, class:"nav-link" do%>
+                    <i class="fa fa-cog" aria-hidden="true"></i> Settings
+                <% end %>
             </li>
         </ul>
         <div class="footer" style="position:absolute;bottom:10px;">

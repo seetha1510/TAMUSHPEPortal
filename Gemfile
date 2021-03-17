@@ -26,13 +26,14 @@ gem 'jbuilder', '~> 2.7'
 # gem 'bcrypt', '~> 3.1.7'
 
 # Use Active Storage variant
-# gem 'image_processing', '~> 1.2'
+gem 'image_processing', '~> 1.2'
+
+gem 'aws-sdk-s3', require: false
+gem 'active_storage_validations'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
 
-# For account sign in/sign up/sign out - devise gem
-gem 'devise', '~> 4.7', '>= 4.7.3'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -74,3 +75,8 @@ gem 'simplecov', require: false, group: :test
 gem 'rexml'
 
 gem 'selenium-webdriver'
+
+gem 'omniauth', '~> 1.9.1'
+
+gem 'omniauth-google-oauth2'
+gem 'devise', github: 'heartcombo/devise', branch: 'ca-omniauth-2'
