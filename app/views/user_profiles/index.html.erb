@@ -4,15 +4,11 @@
 
  <div class="input-group mb-3">
  <div class="col-sm-2">
-    <select class="form-select" id="inputGroupSelect02">
-      <option selected>Name</option>
-      <option value="1">Major</option>
-      <option value="2">Industry</option>
-      <option value="3">Class Year</option>
-    </select>
-  </div>
+    <%= select_tag :search_type, options_for_select([["First Name"],["Last Name"],["Employer"],["School"],["Field of Study"]],params[:search_type]), :class  => 'form-select'%>
+    
+  </div>  
   <div class="col-sm-9">
-    <%= text_field_tag :search_by_first_name, params[:search_by_first_name], aria_label: "Text input with dropdown button",  class: "form-control", type: "text",placeholder:"Search" %>
+    <%= text_field_tag :search_word, params[:search_word], aria_label: "Text input with dropdown button",  class: "form-control", type: "text",placeholder:"Search" %>
   </div>
   <div class="col-sm-1">
     <%= submit_tag "Search" , class: "btn btn-primary"%>
