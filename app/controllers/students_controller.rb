@@ -66,14 +66,14 @@ class StudentsController < ApplicationController
             @degree_end_date = Date.new(@form_params["degree_end_date(1i)"].to_i, @form_params["degree_end_date(2i)"].to_i)
         end
 
-        @student = Student.find(params[:id])
-        @existing_school = School.find(@student.school_id)
-        if @school_name != @existing_school.school_name
-            @students_with_same_school = Student.where(school_id: @existing_school.id)
-            if @students_with_same_school.length() == 0
-                @existing_school.destroy
-            end
-        end
+        # @student = Student.find(params[:id])
+        # @existing_school = School.find(@student.school_id)
+        # if @school_name != @existing_school.school_name
+        #     @students_with_same_school = Student.where(school_id: @existing_school.id)
+        #     if @students_with_same_school.length() == 0
+        #         @existing_school.destroy
+        #     end
+        # end
 
         if !@school_object
             @school_object = School.new(school_name: @school_name)
