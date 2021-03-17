@@ -1,0 +1,16 @@
+<div class="books edit">
+    <h2>Edit a degree</h2>
+
+    <%= form_with model: @student do |f| %>
+    <% if @student.errors.any? %>
+    <div id="error_explanation ">
+        <% @student.errors.full_messages.each do |msg| %>
+        <h4 class="mb-1" id="error-message" style="color:#D30000"><%= msg %></h4>
+        <% end %>
+    </div>
+    <% end %>
+    <%= render(:partial => 'form', :locals => {:f=>f})%>
+
+    <% end %>
+    <%= link_to("Back", user_profile_path(User.get_current_user_profile(current_account).id), :class => 'btn btn-secondary mt-2') %>
+</div>

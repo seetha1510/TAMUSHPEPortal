@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_11_060642) do
+ActiveRecord::Schema.define(version: 2021_03_11_204938) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -74,6 +74,24 @@ ActiveRecord::Schema.define(version: 2021_03_11_060642) do
     t.index ["employer_name"], name: "index_employers_on_employer_name"
   end
 
+  create_table "schools", force: :cascade do |t|
+    t.string "school_name", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["school_name"], name: "index_schools_on_school_name"
+  end
+
+  create_table "students", force: :cascade do |t|
+    t.integer "user_profile_id"
+    t.integer "school_id"
+    t.string "student_degree"
+    t.string "student_field_of_study"
+    t.datetime "degree_start_date"
+    t.datetime "degree_end_date"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "user_profiles", force: :cascade do |t|
     t.integer "user_id"
     t.boolean "user_display_email_status"
@@ -103,5 +121,7 @@ ActiveRecord::Schema.define(version: 2021_03_11_060642) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "employees", "employers"
   add_foreign_key "employees", "user_profiles"
+  add_foreign_key "students", "schools"
+  add_foreign_key "students", "user_profiles"
   add_foreign_key "user_profiles", "users"
 end
