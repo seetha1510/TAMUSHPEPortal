@@ -59,38 +59,29 @@
     <%end%>
 </div>
 
+<br>
 <h3>Positions</h3>
-
-<table class="table table-hover mt-3">
-    <thead class="table" style="background-color:#001F5B;color:white">
-        <tr>
-            <th scope="col">User ID</th>
-            <th scope="col">Company</th>
-            <th scope="col">Position</th>
-            <th scope="col">Action</th>
-        </tr>
-    </thead>
-    <tbody id = "positions">
-    
-        <% @employees.each do |employee| %>
-        <tr class="table-light">
-            <td><%= employee.user_profile_id %></td>
-            <td><%= employee.employer.employer_name %></td>
-            <td><%= employee.employee_position %></td>
-            <% if current_account.email == @true_email %>
-            <td><%= link_to "Edit", edit_employee_path(employee)%></td>
-            <%else%>
+    <div class="row">
+    <% @employees.each do |employee| %>
+        <div class="col col-md-6 px-1">
+        <div class="rounded-3 shadow p-3 mb-2 bg-light card body">
+            <h5><%= employee.employee_position%> at <%= Employer.find(employee.employer_id).employer_name%></h5>
+            <h6><%= employee.position_location_city%>, <%= employee.position_location_state%></h6>
+            <p><%= employee.position_start_date.strftime("%B") %> <%= employee.position_start_date.year %>
+            <%if employee.position_end_date.present?%> 
+            to <%= employee.position_end_date.strftime("%B") %> <%= employee.position_end_date.year %>
             <%end%>
-            
-        </tr>
-        <% end %>
-    </tbody>
-    <table>
-        <% if current_account.email == @true_email %>
-        <%= link_to "Add", new_employee_path ,class:"btn btn-secondary mt-2"%>
-        <%else%>
-        <%end%>
+            </p>
+            <% if current_account.email == @true_email %>
+                <p><%= link_to '<i class="fa fa-edit fa-lg" aria-hidden="true"></i>'.html_safe, edit_employee_path(employee) %> 
+                <%= link_to '<i class="fa fa-trash fa-lg" aria-hidden="true"></i>'.html_safe, employee_path(employee), method: :delete, :data => {:confirm => "Are you sure you want to delete this position?"} %></p>
+            <%end%>
+        </div>
+        </div>
+    <%end%>
+    </div>
 
+<br><br><br>
 <h3>Degrees</h3>
     <div class="row">
     <% @students.each do |student| %>
