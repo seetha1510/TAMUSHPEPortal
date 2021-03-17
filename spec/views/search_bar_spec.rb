@@ -24,9 +24,11 @@ end
       expect(page).to have_content('Yifei')
       expect(page).to have_content('Setting')
       click_link('People', match: :first)
-
-      fill_in 'Search', with: 'Yifei'
-      click_on 'Search'
+      
+        fill_in 'Search', with: 'Yifei'
+      within("form") do
+        click_on 'Search'
+      end
       expect(page).to have_content('Yifei')
     end
   end
