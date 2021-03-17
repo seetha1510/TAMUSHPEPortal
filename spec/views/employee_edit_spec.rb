@@ -30,9 +30,7 @@ end
     fill_in 'State *', with: "Texas"
     click_on 'Create Employee'
 
-    within('tbody', id: 'positions') do
-      click_link('Edit', match: :first)
-    end
+    find(:css, 'i.fa.fa-edit.fa-lg').click
 
     expect(page).to have_field('Company *')
     expect(page).to have_field('Title *')
@@ -62,9 +60,7 @@ end
     fill_in 'State *', with: "Texas"
     click_on 'Create Employee'
 
-    within('tbody', id: 'positions') do
-      click_link('Edit', match: :first)
-    end
+    find(:css, 'i.fa.fa-edit.fa-lg').click
 
     fill_in 'Company *', with: 'Google'
     fill_in 'Title *', with: 'Software Engineer'
@@ -96,9 +92,9 @@ end
     fill_in 'City *', with: "Missouri City"
     fill_in 'State *', with: "Texas"
     click_on 'Create Employee'
-    within('tbody', id: 'positions') do
-      click_link('Edit', match: :first)
-    end
+
+    find(:css, 'i.fa.fa-edit.fa-lg').click
+
 
     fill_in 'Company *', with: 'Google'
     fill_in 'Title *', with: 'Software Engineer'
