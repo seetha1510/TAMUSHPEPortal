@@ -1,7 +1,7 @@
 <div class="books edit">
     <h2>Edit a degree</h2>
 
-    <%= form_for(@student) do |f| %>
+    <%= form_with model: @student do |f| %>
     <% if @student.errors.any? %>
     <div id="error_explanation ">
         <% @student.errors.full_messages.each do |msg| %>

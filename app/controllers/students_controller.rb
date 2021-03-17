@@ -19,7 +19,7 @@ class StudentsController < ApplicationController
         @school_object = School.where(school_name: @school_name).first
 
         @degree_start_date = Date.new(@form_params["degree_start_date(1i)"].to_i, @form_params["degree_start_date(2i)"].to_i)
-        if @form_params[:current_role] == "1"
+        if @form_params[:current_degree] == "1"
             @degree_end_date = nil
         else
             @degree_end_date = Date.new(@form_params["degree_end_date(1i)"].to_i, @form_params["degree_end_date(2i)"].to_i)
@@ -45,10 +45,10 @@ class StudentsController < ApplicationController
   
     def edit
         @student = Student.find(params[:id])
-        @school_name = @student.school_name
+        @school_name = School.find(@student.school_id).school_name
         @edit_student = Student.find(params[:id])
         @student_degree = @edit_student.student_degree
-        @current_degree = @degree_end_date == nil
+        @current_degree = @edit_student.degree_end_date == nil
     end
   
     def update
@@ -60,10 +60,19 @@ class StudentsController < ApplicationController
         @school_object = School.where(school_name: @school_name).first
 
         @degree_start_date = Date.new(@form_params["degree_start_date(1i)"].to_i, @form_params["degree_start_date(2i)"].to_i)
-        if @form_params[:current_role] == "1"
+        if @form_params[:current_degree] == "1"
             @degree_end_date = nil
         else
             @degree_end_date = Date.new(@form_params["degree_end_date(1i)"].to_i, @form_params["degree_end_date(2i)"].to_i)
+        end
+
+        @student = Student.find(params[:id])
+        @existing_school = School.find(@student.school_id)
+        if @school_name != @existing_school.school_name
+            @students_with_same_school = Student.where(school_id: @existing_school.id)
+            if @students_with_same_school.length() == 0
+                @existing_school.destroy
+            end
         end
 
         if !@school_object

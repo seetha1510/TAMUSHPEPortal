@@ -1,7 +1,7 @@
 <div class="books edit">
     <h2>Add a degree</h2>
 
-    <%= form_for(@student, :url => students_path, :method => 'post') do |f| %>
+    <%= form_with model: @student do |f| %>
     <% if @student.errors.any? %>
     <div id="error_explanation ">
         <% @student.errors.full_messages.each do |msg| %>
@@ -14,3 +14,4 @@
     <% end %>
     <%= link_to("Back", user_profile_path(User.get_current_user_profile(current_account).id), :class => 'btn btn-secondary mt-2') %>
 </div>
+
