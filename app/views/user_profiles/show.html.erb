@@ -80,6 +80,11 @@
         </div>
     <%end%>
     </div>
+    <% if current_account.email == @true_email %>
+        <%= link_to "Add", new_employee_path ,class:"btn btn-secondary mt-2", id:"employee_add"%>
+    <%end%>
+
+
 
 <br><br><br>
 <h3>Degrees</h3>
@@ -91,7 +96,7 @@
             <h6><%= School.find(student.school_id).school_name%></h6>
             <p><%= student.degree_start_date.strftime("%B") %> <%= student.degree_start_date.year %>
             <%if student.degree_end_date.present?%> 
-            to <%= student.degree_end_date.strftime("%B") %> <%= student.degree_end_date.year %>
+            - <%= student.degree_end_date.strftime("%B") %> <%= student.degree_end_date.year %>
             <%end%>
             </p>
             <% if current_account.email == @true_email %>
