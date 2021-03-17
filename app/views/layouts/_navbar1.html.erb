@@ -34,7 +34,7 @@
                 <% end %>
             </li>
 
-            <% if current_page?(:controller => 'employees', :action => 'show') %>
+            <% if current_page?(employee_path(User.get_current_user_profile(current_account).id)) %>
                 <li class="active">
             <% else %>
                 <li>
