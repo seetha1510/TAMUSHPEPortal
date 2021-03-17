@@ -62,11 +62,11 @@
   </div>
   <div class="col-lg-3">
   <%if current_page?(new_student_path)%>
-    <label id="newEmployeeEndDateLabel" style="display:none;">Present</label>
+    <label id="endDate" style="display:none;">Present</label>
     <%= f.date_select :degree_end_date, {order: [:month, :year], start_year: 1950, end_year: Date.today.year, discard_day: true, pompt: {month: "Month", year: "Year"}}, {style: "margin-bottom: 10px;", class:"form-select"} %>
   <%else%>
     <label id="endDate" style=<%= @current_degree ? "display:inline-block;" : "display:none;"%>>Present</label>
-    <%= f.date_select :degree_end_date, {order: [:month, :year], start_year: 1950, end_year: Date.today.year + 4, discard_day: true, pompt: {month: "Month", year: "Year"}}, {style:  @current_degree ? "display:none;" : "display:block;margin-bottom:10px;", class:"form-select"} %>
+    <%= f.date_select :degree_end_date, {order: [:month, :year], start_year: 1950, end_year: Date.today.year, discard_day: true, pompt: {month: "Month", year: "Year"}}, {style:  @current_degree ? "display:none;" : "display:block;margin-bottom:10px;", class:"form-select"} %>
   <%end%>
   </div>
 </div>
