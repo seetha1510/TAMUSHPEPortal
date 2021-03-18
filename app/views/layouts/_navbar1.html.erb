@@ -20,7 +20,7 @@
                 <li>
             <%end%>
                 <%= link_to show_path, class:"nav-link" do%>
-                <i class="fa fa-home" aria-hidden="true"></i> Home
+                <i class="fa fa-home fa-nav" aria-hidden="true"></i> Home
                 <% end %>
             </li>
 
@@ -30,7 +30,7 @@
                 <li>
             <%end%>
                 <%= link_to user_profiles_path, class:"nav-link" do%>
-                    <i class="fa fa-search" aria-hidden="true"></i> Search
+                    <i class="fa fa-search fa-nav" aria-hidden="true"></i> Search
                 <% end %>
             </li>
 
@@ -40,7 +40,7 @@
                 <li>
             <%end%>
                 <%= link_to user_profile_path(User.get_current_user_profile(current_account).id), class:"nav-link" do%>
-                    <i class="fa fa-user" aria-hidden="true"></i> Profile
+                    <i class="fa fa-user fa-nav" aria-hidden="true"></i> Profile
                 <% end %>
             </li>
             <%# <li>
@@ -52,7 +52,7 @@
                 <li>
             <%end%>
                 <%= link_to setting_path, class:"nav-link" do%>
-                    <i class="fa fa-cog" aria-hidden="true"></i> Settings
+                    <i class="fa fa-cog fa-nav" aria-hidden="true"></i> Settings
                 <% end %>
             </li>
         </ul>

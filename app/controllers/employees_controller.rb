@@ -99,8 +99,8 @@ class EmployeesController < ApplicationController
   end
 
   def edit
-    @employees = Employee.find(params[:id])
-    @employer_name = Employer.find(@employees.employer_id).employer_name
+    @employee = Employee.find(params[:id])
+    @employer_name = Employer.find(@employee.employer_id).employer_name
     @edit_employee = Employee.find(params[:id])
     @employee_position = @edit_employee.employee_position
     @current_position = @edit_employee.position_end_date == nil
@@ -110,7 +110,6 @@ class EmployeesController < ApplicationController
   def update
     @form_params = params[:employee]
     @employee = Employee.find(params[:id])
-
     @user_profile_id = User.get_current_user_profile(current_account).id
 
     @start_date = Date.new(@form_params["position_start_date(1i)"].to_i, @form_params["position_start_date(2i)"].to_i)
@@ -123,24 +122,19 @@ class EmployeesController < ApplicationController
     @employer_name = @form_params[:employer_name]
     @employer_object = Employer.where(employer_name: @employer_name).first
 
-    if !@employer_object
-      @employer_object = Employer.new(employer_name: @employer_name)
-      if !@employer_object.save
-        @industries = getIndustries
-        render "edit"
-      end
+    if @employer_object.nil?
+      @employer_object = Employer.create(employer_name: @employer_name)
     end
 
-    @employee.update(user_profile_id: @user_profile_id,
-                                 employer_id: @employer_object.id, employee_position: @form_params[:employee_position],
-                                 position_start_date: @start_date, position_end_date: @end_date, position_location_state: @form_params[:position_location_state],
-                                 position_location_city: @form_params[:position_location_city], position_industry: @form_params[:position_industry])
-
-    if @employee.save
+    if @employee.update(user_profile_id: @user_profile_id,
+      employer_id: @employer_object.id, employee_position: @form_params[:employee_position],
+      position_start_date: @start_date, position_end_date: @end_date, position_location_state: @form_params[:position_location_state],
+      position_location_city: @form_params[:position_location_city], position_industry: @form_params[:position_industry])
       redirect_to user_profile_path(User.get_current_user_profile(current_account).id)
     else
       @industries = getIndustries
-      render "edit"
+      puts "TESTING\n\n\n\n\n\n\n"
+      render 'edit'
     end
 
     '''
