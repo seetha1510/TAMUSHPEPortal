@@ -3,13 +3,13 @@
 class UserProfile < ApplicationRecord
   validates :user_id, presence: true
   validates :user_facebook_profile_url,
-            format: { with: /.*facebook.com.*/, message: 'Use a Valid Facebook URL' }, allow_blank: true
+            format: { with: /\A.*facebook.com.*\z/, message: 'Use a Valid Facebook URL' }, allow_blank: true
   validates :user_instagram_profile_url,
-            format: { with: /.*instagram.com.*/, message: 'Use a Valid Instagram URL' }, allow_blank: true
+            format: { with: /\A.*instagram.com.*\z/, message: 'Use a Valid Instagram URL' }, allow_blank: true
   validates :user_linkedin_profile_url,
-            format: { with: /.*linkedin.com.*/, message: 'Use a Valid Linkedin URL' }, allow_blank: true
+            format: { with: /\A.*linkedin.com.*\z/, message: 'Use a Valid Linkedin URL' }, allow_blank: true
   validates :user_graduating_year,
-            format: { with: /[0-9]{4}/, message: 'Enter 4 Digit Year' }, allow_blank: true
+            format: { with: /\A[0-9]{4}\z/, message: 'Enter 4 Digit Year' }, allow_blank: true
   validates :user_phone_number,
             format: { with: /\A(\+1)?[0-9]{10}\z/, message: 'Use a Valid Phone Number' }, allow_blank: true
   validates :user_first_name, presence: { message: 'Enter Your First Name' },
