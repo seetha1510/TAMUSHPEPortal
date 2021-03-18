@@ -123,6 +123,10 @@ class EmployeesController < ApplicationController
     @employer_name = @form_params[:employer_name]
     @employer_object = Employer.where(employer_name: @employer_name).first
 
+    @employee = Employee.find(params[:id])
+    @existing_employer = Employer.find(@employee.employer_id)
+    
+
     if !@employer_object
       @employer_object = Employer.new(employer_name: @employer_name)
       if !@employer_object.save
@@ -141,6 +145,13 @@ class EmployeesController < ApplicationController
     else
       @industries = getIndustries
       render "edit"
+    end
+
+    if @employer_name != @existing_employer.employer_name
+      @employee_with_same_employer = Employee.where(employer_id: @existing_employer.id)
+        if @employee_with_same_employer.length() == 0
+          @existing_employer.destroy
+        end
     end
 
     '''
