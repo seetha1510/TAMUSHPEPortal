@@ -1,5 +1,7 @@
-class AdminsController < ActionController::Base
+class AdminsController < ApplicationController
     before_action :authenticate_account!
+
+    helper_method :getIndustries
 
     def home
         
@@ -60,15 +62,48 @@ class AdminsController < ActionController::Base
     def approved_view
         @user = User.find(params[:id])
         @user_profile = @user.user_profile
+        @employees = Employee.where(user_profile_id: @user_profile.id)
     end
 
     def approved_edit
         @user = User.find(params[:id])
-        @user_profile = @user.user_profile
 
-        if @user_profile.update(user_first_name: params[:user_first_name], 
-                             user_last_name: params[:user_last_name])
-        
+        @user_profile = @user.user_profile
+        @user_profile_did_update = @user_profile.update(
+            user_first_name: params[:user_first_name], 
+            user_last_name: params[:user_last_name],
+            user_display_email_status: params[:user_display_email_status],
+            user_current_member_status: params[:user_current_member_status],
+            user_facebook_profile_url: params[:user_facebook_profile_url],
+            user_instagram_profile_url: params[:user_instagram_profile_url],
+            user_linkedin_profile_url: params[:user_linkedin_profile_url],
+            user_graduating_year: params[:user_graduating_year],
+            user_about_me_description: params[:user_about_me_description],
+            user_phone_number: params[:user_phone_number],
+            user_portfolio_url: params[:user_portfolio_url],
+            user_profile_picture_url: params[:user_profile_picture_url])
+
+        @employees = Employee.where(user_profile_id: @user_profile.id)
+        @employees_did_update = true
+        @employees.each.with_index(1) do |employee, index|
+            @employee_attr = getThisEmployeesAttributes(params, index)
+            
+            @employer_object = Employer.where(employer_name: @employee_attr["employer_name"]).first
+            if @employer_object.nil?
+                @employer_object = Employer.create(employer_name: @employee_attr["employer_name"])
+            end
+
+            @employees_did_update = employee.update(employer_id: @employer_object.id,
+                employee_position: @employee_attr["employee_position"],
+                position_start_date: @employee_attr["start_date"],
+                position_end_date: @employee_attr["end_date"],
+                position_location_state: @employee_attr["position_state"],
+                position_location_city: @employee_attr["position_city"])
+
+            break if !@employees_did_update
+        end
+
+        if @user_profile_did_update && @employees_did_update
             redirect_to admin_approved_users_path
         else
             render :approved_view
@@ -95,5 +130,25 @@ class AdminsController < ActionController::Base
         @account.destroy
 
         redirect_to admin_approved_users_path
+    end
+
+    def getThisEmployeesAttributes(params ,index)
+        @start_date = Date.new(params["position_start_date_#{index}(1i)".to_sym].to_i,
+            params["position_start_date_#{index}(2i)".to_sym].to_i)
+        if params["current_role_#{index}".to_sym] == "1"
+            @end_date = nil
+        else
+            @end_date = Date.new(params["position_end_date_#{index}(1i)".to_sym].to_i,
+                params["position_end_date_#{index}(2i)".to_sym].to_i)
+        end
+       
+        return {
+            "employer_name" => params["employer_name_#{index}".to_sym],
+            "employee_position" => params["employee_position_#{index}".to_sym],
+            "start_date" => @start_date,
+            "end_date" => @end_date,
+            "position_city" => params["position_location_city_#{index}".to_sym],
+            "position_state" => params["position_location_state_#{index}".to_sym]
+        }
     end
 end

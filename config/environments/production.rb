@@ -122,4 +122,7 @@ Rails.application.configure do
 
   # Devise : need to uncomment and change the host for production (heroku url)
   # config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+
+  ENV['GOOGLE_OAUTH_CLIENT_ID'] = '1078956556387-eb2fljvrg16n12s5j6qd7252f399jbqh.apps.googleusercontent.com'
+  ENV['GOOGLE_OAUTH_CLIENT_SECRET'] = 'Zi-ZBlDmaPlyB3Y11wkhUcMI'
 end
