@@ -1,54 +1,111 @@
-<%# <%= link_to("<< Back to List", subjects_path, :class => 'back-link') %> %>
-
-<div class="subjects show">
-  <h2>Show Profile</h2>
-
-  <table summary="Subject detail view">
-    <tr>
-      <th>First name</th>
-      <td><%= @user_profile.user_first_name  %></td>
-    </tr>
-    <tr>
-      <th>Last name</th>
-      <td><%= @user_profile.user_last_name %></td>
-    </tr>
-    <tr>
-      <th>Email</th>
-      <td><%= @email %></td>
-    </tr>
-    <tr>
-      <th>Membership</th>
-      <td><%= @membership %></td>
-    </tr>
-    <tr>
-      <th>FaceBook</th>
-      <td><%= @user_profile.user_facebook_profile_url %></td>
-    </tr>
-    <tr>
-      <th>Instagram</th>
-      <td><%= @user_profile.user_instagram_profile_url %></td>
-    </tr>
-    <tr>
-      <th>Linkedin</th>
-      <td><%= @user_profile.user_linkedin_profile_url %></td>
-    </tr>
-    <tr>
-      <th>Graduating Year</th>
-      <td><%= @user_profile.user_graduating_year %></td>
-    </tr>
-    <tr>
-      <th>About me</th>
-      <td><%= @user_profile.user_about_me_description %></td>
-    </tr>
-    <tr>
-      <th>Phone Number</th>
-      <td><%= @user_profile.user_phone_number %></td>
-    </tr>
-    <tr>
-      <th>Selfie</th>
-      <td><%= image_tag image_url(@user_profile.user_profile_picture_url) %></td>
-    </tr>
-
-  </table>
-
+<% if current_account.email == @true_email %>
+<h1 class="mb-4">My Profile </h1>
+<%else%>
+<h1><%= @user_profile.user_first_name[0].upcase%><%= @user_profile.user_first_name[1..-1]%>'s Profile</h1>
+<%end%>
+<div class="subjects show mb-4">
+    <h3>General Information</h3>
+    <table summary="Subject detail view">
+        <tr>    
+            <th>First name</th>
+            <td><%= @user_profile.user_first_name[0].upcase%><%= @user_profile.user_first_name[1..-1]  %></td>
+        </tr>
+        <tr>
+            <th>Last name</th>
+            <td><%= @user_profile.user_last_name[0].upcase%><%= @user_profile.user_last_name[1..-1] %></td>
+        </tr>
+        <tr>
+            <th>Email</th>
+            <td><%= @email %></td>
+        </tr>
+        <tr>
+            <th>Membership</th>
+            <td><%= @membership %></td>
+        </tr>
+        <tr>
+            <th>Graduating Year</th>
+            <td><%= @user_profile.user_graduating_year %></td>
+        </tr>
+        <tr>
+            <th>About me</th>
+            <td><%= @user_profile.user_about_me_description %></td>
+        </tr>
+        <tr>
+            <th>Phone Number</th>
+            <td>(<%= @user_profile.user_phone_number[0..2] %>)<%=@user_profile.user_phone_number[3..5] %>-<%=@user_profile.user_phone_number[6..9]%></td>
+        </tr>
+        <tr>
+            <th>Selfie</th>
+            <td><%#= image_tag image_url(@user_profile.user_profile_picture_url) %></td>
+        </tr>
+        <tr>
+            <th>Social Media</th>
+            <td>
+                <%if @user_profile.user_facebook_profile_url.present?%>
+                    <a href="<%= @user_profile.user_facebook_profile_url%>" target="_blank"><i class="fa fa-facebook-square fa-2x" aria-hidden="true" ></i></a>
+                <%end%>
+                <%if @user_profile.user_instagram_profile_url.present?%>
+                    <a href="<%= @user_profile.user_instagram_profile_url%>" target="_blank"><i class="fa fa-instagram fa-2x" aria-hidden="true"></i></a>
+                <%end%>
+                <%if @user_profile.user_linkedin_profile_url.present?%>
+                    <a href="<%= @user_profile.user_linkedin_profile_url%>" target="_blank"><i class="fa fa-linkedin fa-2x" aria-hidden="true"></i></a>
+                <%end%> 
+            </td>
+        </tr>
+    </table>
+    <% if current_account.email == @true_email %>
+    <%= link_to "Edit", edit_user_profile_path ,class:"btn btn-secondary mt-2"%>
+    <%else%>
+    <%end%>
 </div>
+
+<br>
+<h3>Positions</h3>
+    <div class="row">
+    <% @employees.each do |employee| %>
+        <div class="col col-md-6 px-1">
+        <div class="rounded-3 shadow p-3 mb-2 bg-light card body">
+            <h5><%= employee.employee_position%> at <%= Employer.find(employee.employer_id).employer_name%></h5>
+            <h6><%= employee.position_location_city%>, <%= employee.position_location_state%></h6>
+            <p><%= employee.position_start_date.strftime("%B") %> <%= employee.position_start_date.year %>
+            <%if employee.position_end_date.present?%> 
+            to <%= employee.position_end_date.strftime("%B") %> <%= employee.position_end_date.year %>
+            <%end%>
+            </p>
+            <% if current_account.email == @true_email %>
+                <p><%= link_to '<i class="fa fa-edit fa-lg" aria-hidden="true"></i>'.html_safe, edit_employee_path(employee) %> 
+                <%= link_to '<i class="fa fa-trash fa-lg" aria-hidden="true"></i>'.html_safe, employee_path(employee), method: :delete, :data => {:confirm => "Are you sure you want to delete this position?"} %></p>
+            <%end%>
+        </div>
+        </div>
+    <%end%>
+    </div>
+    <% if current_account.email == @true_email %>
+        <%= link_to "Add", new_employee_path ,class:"btn btn-secondary mt-2", id:"employee_add"%>
+    <%end%>
+
+
+
+<br><br><br>
+<h3>Degrees</h3>
+    <div class="row">
+    <% @students.each do |student| %>
+        <div class="col col-md-6 px-1">
+        <div class="rounded-3 shadow p-3 mb-2 bg-light card body">
+            <h5><%= student.student_degree%> in <%= student.student_field_of_study%></h5>
+            <h6><%= School.find(student.school_id).school_name%></h6>
+            <p><%= student.degree_start_date.strftime("%B") %> <%= student.degree_start_date.year %>
+            <%if student.degree_end_date.present?%> 
+            - <%= student.degree_end_date.strftime("%B") %> <%= student.degree_end_date.year %>
+            <%end%>
+            </p>
+            <% if current_account.email == @true_email %>
+                <p><%= link_to '<i class="fa fa-edit fa-lg" aria-hidden="true"></i>'.html_safe, edit_student_path(student) %> 
+                <%= link_to '<i class="fa fa-trash fa-lg" aria-hidden="true"></i>'.html_safe, student_path(student), method: :delete, :data => {:confirm => "Are you sure you want to delete this degree?"} %></p>
+            <%end%>
+        </div>
+        </div>
+    <%end%>
+    </div>
+
+<%= link_to "Add", new_student_path,class:"btn btn-secondary mt-2", id: "student_add"%>

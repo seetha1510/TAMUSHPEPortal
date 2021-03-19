@@ -36,6 +36,7 @@ class UsersController < ApplicationController
     @user = User.get_current_user(current_account)
     @user_profile = User.get_current_user_profile(current_account)
     @employees = Employee.where(user_profile_id: @user_profile.id)
+    @profile_pic = User.get_current_user_profile(current_account).user_profile_picture
     
     @employees.each do |employee|
       @employer = Employer.find(employee.employer_id)
@@ -45,7 +46,7 @@ class UsersController < ApplicationController
         @employer.destroy
       end
     end
-    
+    @profile_pic.purge
     @user_profile.destroy
     @user.destroy
     current_account.destroy

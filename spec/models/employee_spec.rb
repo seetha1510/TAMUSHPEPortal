@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
-
+require 'date'
 RSpec.describe Employee, type: :model do
   #
   # Test Employee creation
@@ -12,7 +12,11 @@ RSpec.describe Employee, type: :model do
     described_class.new(
       user_profile_id: 1,
       employer_id: 1,
-      employee_position: 'Software Engineer'
+      employee_position: 'Software Engineer',
+      position_start_date: Date.new(2020,2,2),
+      position_location_state: "texas",
+      position_location_city: "College Station",
+
     )
   end
 

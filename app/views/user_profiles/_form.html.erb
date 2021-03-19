@@ -30,7 +30,7 @@
     <label class="col-form-label">Email Address</label>
   </div>
   <div class="col-lg-9">
-    <%= f.text_field :user_email,class:"form-control",placeholder:"Enter Email", value:current_account.email, readonly:true %>
+ <%= f.text_field :user_email,class:"form-control",placeholder:"Enter Email", value:current_account.email, readonly:true %> 
   </div>
 </div>
 
@@ -95,7 +95,16 @@
     <label class="col-form-label">Image</label>
   </div>
   <div class="col-lg-9">
-  <%= f.text_field :user_profile_picture_url,class:"form-control",placeholder:"Enter Image URL" %>
+
+  <% if !current_page?(new_user_profile_path)%>
+    <% if @user_profile.user_profile_picture.attached? && @user_profile.user_profile_picture.representable? %>
+      <%= link_to 'Remove Image', delete_image_user_profile_url(image_id: @user_profile.user_profile_picture.id), method: :delete, data: { confirm: 'Are you sure?' },class: "btn btn-sm btn-danger" %>
+    <% else %>
+      <%= f.file_field :user_profile_picture,class:"form-control" %>
+    <% end %>
+  <% else %>
+    <%= f.file_field :user_profile_picture,class:"form-control" %>
+  <% end %>
   </div>
 </div>
 

@@ -10,28 +10,27 @@
                 <span class="sr-only">Toggle Menu</span>
             </button>
 
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="nav navbar-nav ml-auto">
-                    <li class="nav-item active">
-                        <%= link_to 'Home' , show_path, class:"nav-link"%>
-                    </li>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="nav navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <%= link_to 'Home' , show_path, class:"nav-link"%>
+                </li>
+                <li class="nav-item">
+                    <%= link_to 'People' , user_profiles_path, class:"nav-link"%>
+                </li>
+                <li class="nav-item">
+                    <%= link_to 'Profile' , user_profile_path(User.get_current_user_profile(current_account).id), class:"nav-link"%>
+                </li>
+                <li class="nav-item">
+                     <%= link_to 'Settings' , setting_path, class:"nav-link"%>
+                </li>
+                <% if User.get_current_user(current_account).admin_status %>
                     <li class="nav-item">
-                        <%= link_to 'People' , user_profiles_path, class:"nav-link"%>
+                        <%= link_to "Admin", admin_path, class: "nav-link" %>
                     </li>
-                    <li class="nav-item">
-                        <%= link_to 'Profile' , employee_path(User.get_current_user_profile(current_account).id), class:"nav-link"%>
-                    </li>
-                    <li class="nav-item">
-                        <%= link_to 'Settings' , setting_path, class:"nav-link"%>
-                    </li>
-                    <% if User.get_current_user(current_account).admin_status %>
-                        <li class="nav-item">
-                            <%= link_to "Admin", admin_path, class: "nav-link" %>
-                        </li>
-                    <%else%>
-                    <%end%>
-                </ul>
-            </div>
+                <%else%>
+                <%end%>
+            </ul>
         </div>
     </nav>
     <%end%>

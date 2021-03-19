@@ -1,0 +1,101 @@
+<div class="books edit">
+    <h2>Edit a degree</h2>
+
+    <%= form_with model: @student do |f| %>
+    <% if @student.errors.any? %>
+    <div id="error_explanation ">
+        <% @student.errors.full_messages.each do |msg| %>
+        <h4 class="mb-1" id="error-message" style="color:#D30000"><%= msg %></h4>
+        <% end %>
+    </div>
+    <% end %>
+    <div class="row g-3 align-items-center mb-3">
+  <div class="col-lg-3">
+    <label class="col-form-label">School Name</label>
+  </div>
+
+  <div class="col-lg-9">
+      <%= f.text_field :school_name,class:"form-control", value: @school_name  %>
+    </div>
+  </div>
+
+
+<div class="row g-3 align-items-center mb-3">
+  <div class="col-lg-3">
+    <label class="col-form-label">Degree</label>
+  </div>
+  <div class="col-lg-9">
+    <%= f.select :student_degree, ["Bachelors", "Masters", "PhD", "Postdoctorate"], {}, {class:"form-select"} %>
+  </div>
+</div>
+
+<div class="row g-3 align-items-center mb-3">
+  <div class="col-lg-3">
+    <label class="col-form-label">Field of Study</label>
+  </div>
+  <div class="col-lg-9">
+    <%= f.text_field :student_field_of_study,class:"form-control",placeholder:"Enter field of study/major" %>
+  </div>
+</div>
+
+ <div class="row g-3 align-items-center mb-3">
+    <div class="col-lg-3">
+      <%= f.label :current_degree, "I'm currently studying here"%>
+    </div>
+    <div class="col-lg-3">
+        <%= f.check_box :current_degree, {checked: @current_degree, class:"form-check-input"}, checked_value="1", unchecked_value="0" %>
+    </div>
+  </div>
+
+<div class="row g-3 align-items-center mb-3">
+  <div class="col-lg-3">
+    <label class="col-form-label">Start date</label>
+  </div>
+  <div class="col-lg-9">
+    <%= f.date_select :degree_start_date, {order: [:month, :year], start_year: 1950, end_year: Date.today.year, discard_day: true, pompt: {month: "Month", year: "Year"}}, {style: "margin-bottom: 10px;", class:"form-select"} %>
+  </div>
+</div>
+
+<div class="row g-3 align-items-center mb-3">
+  <div class="col-lg-3">
+    <label class="col-form-label">End date</label>
+  </div>
+  <div class="col-lg-3">
+    <label id="endDate" style=<%= @current_degree ? "display:inline-block;" : "display:none;"%>>Present</label>
+    <%= f.date_select :degree_end_date, {order: [:month, :year], start_year: 1950, end_year: Date.today.year, discard_day: true, pompt: {month: "Month", year: "Year"}}, {style:  @current_degree ? "display:none;" : "display:block;margin-bottom:10px;", class:"form-select"} %>
+  </div>
+</div>
+
+<div class="form-buttons">
+    <%= f.submit class:"btn btn-primary"%>
+</div>
+
+<script>
+  var checkbox = document.getElementById("student_current_degree");
+  var endDateSelectYear = document.getElementById("student_degree_end_date_1i");
+  var endDateSelectMonth = document.getElementById("student_degree_end_date_2i");
+  var endDateLabel = document.getElementById("endDate");
+
+  checkbox.addEventListener("change", function() {
+    if(this.checked)
+    {
+      //position is current
+      endDateSelectYear.style.display = "none";
+      endDateSelectMonth.style.display = "none";
+      endDateLabel.style.display = "inline-block";
+    }
+    else
+    {
+      //position is not current
+       endDateLabel.style.display = "none";
+      endDateSelectYear.style.display = "block";
+      endDateSelectMonth.style.display = "block";
+      // endDateSelectMonth.style.marginBottom = "10px";
+      // endDateSelectYear.style.marginBottom = "10px";
+    }
+  });
+</script>
+
+    <% end %>
+    <%= link_to("Back", user_profile_path(User.get_current_user_profile(current_account).id), :class => 'btn btn-secondary mt-2') %>
+</div>

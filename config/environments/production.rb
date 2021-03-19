@@ -40,7 +40,7 @@ Rails.application.configure do
   # config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect' # for NGINX
 
   # Store uploaded files on the local file system (see config/storage.yml for options).
-  config.active_storage.service = :local
+  config.active_storage.service = :amazon_prod
 
   # Mount Action Cable outside main process or domain.
   # config.action_cable.mount_path = nil
@@ -122,7 +122,6 @@ Rails.application.configure do
 
   # Devise : need to uncomment and change the host for production (heroku url)
   # config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
-
   ENV['GOOGLE_OAUTH_CLIENT_ID'] = '1078956556387-eb2fljvrg16n12s5j6qd7252f399jbqh.apps.googleusercontent.com'
   ENV['GOOGLE_OAUTH_CLIENT_SECRET'] = 'Zi-ZBlDmaPlyB3Y11wkhUcMI'
 end

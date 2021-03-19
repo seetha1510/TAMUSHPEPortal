@@ -9,57 +9,68 @@
                 <%= image_tag "tamuSHPE_app_logo.png", style: 'height:auto;width:90%;' %>
             </div>
         
-            <a href="#" class="img logo rounded-circle mb-4" style="background-image: url(<%= asset_path 'default_profile_picture.jpg' %>);"></a>
-            <h2 style="color:white;">Welcome, <%= User.get_current_user_profile(current_account).user_first_name[0].upcase %><%= User.get_current_user_profile(current_account).user_first_name[1..-1] %></h2>
-            <ul class="list-unstyled components mb-5">
-                <% if current_page?(:controller => 'users', :action => 'show') %>
-                    <li class="active">
-                <% else %>
-                    <li>
-                <%end%>
-                    <%= link_to 'Home' , show_path, class:"nav-link"%>
-                </li>
+        <% if User.get_current_user_profile(current_account).user_profile_picture.attached? && User.get_current_user_profile(current_account).user_profile_picture.representable?%>
+            <a href="#" class="img logo rounded-circle mb-4" style="background-image: url(<%= url_for(User.get_current_user_profile(current_account).user_profile_picture )%>);"></a> 
+        <% else %>
+            <a href="#" class="img logo rounded-circle mb-4" style="background-image: url(<%= asset_path 'default_profile_picture.jpg' %>);"></a> 
+        <% end %>
+        <h2 style="color:white;">Welcome, <%= User.get_current_user_profile(current_account).user_first_name[0].upcase %><%= User.get_current_user_profile(current_account).user_first_name[1..-1] %></h2>
+        <ul class="list-unstyled components mb-5">
+            <% if current_page?(:controller => 'users', :action => 'show') %>
+                <li class="active">
+            <% else %>
+                <li>
+            <%end%>
+                <%= link_to show_path, class:"nav-link" do%>
+                <i class="fa fa-home fa-nav" aria-hidden="true"></i> Home
+                <% end %>
+            </li>
 
-                <% if current_page?(:controller => 'user_profiles', :action => 'index') %>
-                    <li class="active">
-                <% else %>
-                    <li>
-                <%end%>
-                    <%= link_to 'People' , user_profiles_path, class:"nav-link"%>
-                </li>
+            <% if current_page?(:controller => 'user_profiles', :action => 'index') %>
+                <li class="active">
+            <% else %>
+                <li>
+            <%end%>
+                <%= link_to user_profiles_path, class:"nav-link" do%>
+                    <i class="fa fa-search fa-nav" aria-hidden="true"></i> Search
+                <% end %>
+            </li>
 
-                <% if current_page?(:controller => 'employees', :action => 'index') %>
+            <% if current_page?(user_profile_path(User.get_current_user_profile(current_account).id)) %>
+                <li class="active">
+            <% else %>
+                <li>
+            <%end%>
+                <%= link_to user_profile_path(User.get_current_user_profile(current_account).id), class:"nav-link" do%>
+                    <i class="fa fa-user fa-nav" aria-hidden="true"></i> Profile
+                <% end %>
+            </li>
+            <%# <li>
+                <a href="#">Settings</a>
+            </li> %>
+            <% if current_page?(:controller => 'users', :action => 'setting') %>
+                <li class="active">
+            <% else %>
+                <li>
+            <%end%>
+                <%= link_to setting_path, class:"nav-link" do%>
+                    <i class="fa fa-cog fa-nav" aria-hidden="true"></i> Settings
+                <% end %>
+            </li>
+
+            <% if User.get_current_user(current_account).admin_status %>
+                <% if current_page?(:controller => 'admins', :action => "home") %>
                     <li class="active">
                 <% else %>
                     <li>
-                <%end%>
-                    <%= link_to 'Profile' , employee_path(User.get_current_user_profile(current_account).id), class:"nav-link"%>
+                <% end %>
+                    <%= link_to 'Admin', admin_path, class:"nav-link"%>
                 </li>
-                <%# <li>
-                    <a href="#">Settings</a>
-                </li> %>
-                <% if current_page?(:controller => 'users', :action => 'setting') %>
-                    <li class="active">
-                <% else %>
-                    <li>
-                <%end%>
-                    <%= link_to 'Settings', setting_path, class:"nav-link"%>
-                </li>
-                
-                <% if User.get_current_user(current_account).admin_status %>
-                    <% if current_page?(:controller => 'admins', :action => "home") %>
-                        <li class="active">
-                    <% else %>
-                        <li>
-                    <% end %>
-                        <%= link_to 'Admin', admin_path, class:"nav-link"%>
-                    </li>
-                <%else%>
-                <%end%>
-            </ul>
-            <div class="footer" style="position:absolute;bottom:10px;">
-                &copy; Copyright 2021
-            </div>
+            <%else%>
+            <%end%>
+        </ul>
+        <div class="footer" style="position:absolute;bottom:10px;">
+            &copy; Copyright 2021
         </div>
     </nav>
     <%end%>

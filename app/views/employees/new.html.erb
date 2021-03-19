@@ -1,7 +1,12 @@
 <h1>Add a Position</h1>
-
+<% if @employee.errors.any? %>
+  <div id="error_explanation ">
+      <% @employee.errors.full_messages.each do |msg| %>
+        <h4 class="mb-1" id="error-message" style="color:#D30000"><%= msg %></h4>
+      <% end %>
+  </div>
+<% end %>
 <%= form_with model: @employee do |form| %>
-
   <div class="row g-3 align-items-center mb-3">
     <div class="col-lg-3">
       <%= form.label :employer_name, "Company *"%>
@@ -77,7 +82,7 @@
     
   <%= form.submit class:"btn btn-primary", style:"margin-bottom:15px;"%>
 <% end %>
-<td><%= link_to "Back", employee_path(User.get_current_user_profile(current_account).id) , class:"btn btn-secondary"%></td>
+<td><%= link_to "Back", user_profile_path(User.get_current_user_profile(current_account).id) , class:"btn btn-secondary"%></td>
 
 
 <script>
