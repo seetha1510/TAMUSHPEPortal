@@ -28,7 +28,6 @@ class EmployeesController < ApplicationController
 
   def new
     @employee = Employee.new
-    @industries = getIndustries
   end
 
   def create
@@ -48,17 +47,12 @@ class EmployeesController < ApplicationController
 
     if @employer_object.nil?
       @employer_object = Employer.create(employer_name: @employer_name)
-      # if !@employer_object.save
-      #   #redirect_to new_employee_path and return
-      #   @industries = getIndustries
-      #   puts "HELLO1\n\n\n\n\n"
-      #   render 'new'
-      # end
     end
+
     @employee = Employee.new(user_profile_id: @user_profile_id,
                                       employer_id: @employer_object.id, employee_position: @form_params[:employee_position],
                                       position_start_date: @start_date, position_end_date: @end_date, position_location_state: @form_params[:position_location_state],
-                                      position_location_city: @form_params[:position_location_city], position_industry: @form_params[:position_industry])
+                                      position_location_city: @form_params[:position_location_city])
 
     if @employee.save
       redirect_to user_profile_path(User.get_current_user_profile(current_account).id) and return
@@ -67,35 +61,6 @@ class EmployeesController < ApplicationController
       @industries = getIndustries
       render 'new'
     end
-
-    '''
-    if @employer_object
-      @employee = Employee.new(user_profile_id: @user_profile_id,
-                                      employer_id: @employer_object.id, employee_position: @form_params[:employee_position],
-                                      position_start_date: @start_date, position_end_date: @end_date, position_location_state: @form_params[:position_location_state],
-                                      position_location_city: @form_params[:position_location_city], position_industry: @form_params[:position_industry])
-      if @employee.save
-        redirect_to user_profile_path(User.get_current_user_profile(current_account).id)
-      else
-        redirect_to new_employee_path
-      end
-    else
-      @new_employer = Employer.new(employer_name: @employer_name)
-      if @new_employer.save
-        @employee = Employee.new(user_profile_id: @user_profile_id,
-                                        employer_id: @new_employer.id, employee_position: @form_params[:employee_position],
-                                        position_start_date: @start_date, position_end_date: @end_date, position_location_state: @form_params[:position_location_state],
-                                        position_location_city: @form_params[:position_location_city], position_industry: @form_params[:position_industry])
-        if @employee.save
-          redirect_to user_profile_path(User.get_current_user_profile(current_account).id)
-        else
-          redirect_to new_employee_path
-        end
-      else
-        redirect_to new_employee_path
-      end
-    end
-    '''
   end
 
   def edit
@@ -104,7 +69,6 @@ class EmployeesController < ApplicationController
     @edit_employee = Employee.find(params[:id])
     @employee_position = @edit_employee.employee_position
     @current_position = @edit_employee.position_end_date == nil
-    @industries = getIndustries
   end
 
   def update
@@ -129,40 +93,11 @@ class EmployeesController < ApplicationController
     if @employee.update(user_profile_id: @user_profile_id,
       employer_id: @employer_object.id, employee_position: @form_params[:employee_position],
       position_start_date: @start_date, position_end_date: @end_date, position_location_state: @form_params[:position_location_state],
-      position_location_city: @form_params[:position_location_city], position_industry: @form_params[:position_industry])
+      position_location_city: @form_params[:position_location_city])
       redirect_to user_profile_path(User.get_current_user_profile(current_account).id)
     else
-      @industries = getIndustries
-      puts "TESTING\n\n\n\n\n\n\n"
       render 'edit'
     end
-
-    '''
-    if @employer_object
-      if @employee.update(user_profile_id: @user_profile_id,
-                                 employer_id: @employer_object.id, employee_position: @form_params[:employee_position],
-                                 position_start_date: @start_date, position_end_date: @end_date, position_location_state: @form_params[:position_location_state],
-                                 position_location_city: @form_params[:position_location_city], position_industry: @form_params[:position_industry])
-        redirect_to employee_path(User.get_current_user_profile(current_account).id)
-      else
-        render :edit
-      end
-    else
-      @new_employer = Employer.new(employer_name: @employer_name)
-      if @new_employer.save
-        if @employee.update(user_profile_id: @user_profile_id,
-                                   employer_id: @new_employer.id, employee_position: @form_params[:employee_position],
-                                   position_start_date: @start_date, position_end_date: @end_date, position_location_state: @form_params[:position_location_state],
-                                   position_location_city: @form_params[:position_location_city], position_industry: @form_params[:position_industry])
-          redirect_to employee_path(User.get_current_user_profile(current_account).id)
-        else
-          render :edit
-        end
-      else
-        render :edit
-      end
-    end
-    '''
   end
 
   def destroy

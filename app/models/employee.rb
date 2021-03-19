@@ -11,5 +11,4 @@ class Employee < ApplicationRecord
   validates :position_end_date, presence: false, allow_blank: true
   validates :position_location_state, presence: { message: 'Enter a State' }, allow_blank: false
   validates :position_location_city, presence: { message: 'Enter a City' }, allow_blank: false
-  validates :position_industry, presence: false, allow_blank: true
 end

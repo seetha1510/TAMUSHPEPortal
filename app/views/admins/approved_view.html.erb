@@ -6,7 +6,9 @@
         <div class="row g-3 align-items-center mb-3" style="margin-top:25px;">
             <%= link_to "Back", admin_approved_users_path, class:"btn btn-primary", style: "max-width:max-content;" %>
             <button id="approved_view_submit2" class="btn btn-primary" style="max-width:max-content;margin-left:5px;">Save</button>
-            <%= link_to "Delete User", admin_approved_delete_path(@user.id), class:"btn btn-primary", style: "max-width:max-content;margin-left:5px;" %>
+            <% if User.get_current_user(current_account).user_email != @user.user_email %>
+                <%= link_to "Delete User", admin_approved_delete_path(@user.id), class:"btn btn-primary", style: "max-width:max-content;margin-left:5px;" %>
+            <% end %>        
         </div>
         
         <%= form_with url: admin_approved_edit_path(@user.id), method: :get, id: "approved_view_form" do |form| %>
@@ -98,12 +100,6 @@
                             <%= form.text_field :user_portfolio_url, value: @user_profile.user_portfolio_url, class:"form-control" %>
                         </li>
                     </div>
-                    <div class="col-lg-6">
-                        <li class="list-group-item" style="background-color:#f8f9fa!important;">
-                            <%= form.label :user_profile_picture_url, "Profile Picture" %>
-                            <%= form.text_field :user_profile_picture_url, value: @user_profile.user_profile_picture_url, class:"form-control" %>
-                        </li>
-                    </div>
                 </div>
 
 
@@ -140,7 +136,7 @@
                                             <label></label>
                                         </div>
                                     </div>
-                                    <%= form.date_select "position_start_date_#{index}".to_sym, {order: [:month, :year], start_year: 1950, end_year: Date.today.year, discard_day: true, pompt: {month: "Month", year: "Year"}}, {style: "margin-bottom: 10px;", class:"form-select"} %>
+                                    <%= form.date_select "position_start_date_#{index}".to_sym, {order: [:month, :year], selected: employee.position_start_date, start_year: 1950, end_year: Date.today.year, discard_day: true, pompt: {month: "Month", year: "Year"}}, {style: "margin-bottom: 10px;", class:"form-select"} %>
                                 </li>
                             </div>
                             <div class="col-lg-6">
@@ -153,7 +149,7 @@
                                         </div>
                                     </div>
                                     <label id=<%= "newEmployeeEndDateLabel_#{index}" %> style=<%= employee.position_end_date.nil? ? "display:inline-block;margin-top:35px;margin-bottom:36px;" : "display:none;"%>>Present</label>
-                                    <%= form.date_select "position_end_date_#{index}".to_sym, {order: [:month, :year], start_year: 1950, end_year: Date.today.year, discard_day: true, pompt: {month: "Month", year: "Year"}}, {style:  employee.position_end_date.nil? ? "display:none;" : "display:block;margin-bottom:10px;", class:"form-select"} %>
+                                    <%= form.date_select "position_end_date_#{index}".to_sym, {order: [:month, :year], selected: employee.position_end_date, start_year: 1950, end_year: Date.today.year, discard_day: true, pompt: {month: "Month", year: "Year"}}, {style:  employee.position_end_date.nil? ? "display:none;" : "display:block;margin-bottom:10px;", class:"form-select"} %>
                                 </li>
                             </div>
                         </div>
@@ -212,12 +208,114 @@
                     </script>
                     
                 <% end %>
+            
+
+
+                <% @students.each.with_index(1) do |student, index| %>
+
+                    <div class="row g-3 align-items-center mb-3" style="margin-top:50px;">
+                        <h3 style="max-width:max-content;"><%= @user_profile.user_first_name %>'s Degree <%= index %></h3>
+                        <button id=<%= "degree_btn_#{index}" %> class="btn btn-primary" style="margin-bottom:8px;margin-left:25px;max-width:max-content;">Show</button>
+                    </div>
+
+                    <div id=<%= "degree_form_#{index}" %> style="display:none;">
+                        <div class="row g-3 align-items-center mb-3">
+                            <div class="col-lg-6">
+                                <li class="list-group-item" style="background-color:#f8f9fa!important;">
+                                    <%= form.label "school_name_#{index}".to_sym, "School Name *" %>
+                                    <%= form.text_field "school_name_#{index}".to_sym, value: student.school.school_name, class:"form-control" %>
+                                </li>
+                            </div>
+                            <div class="col-lg-6">
+                                <li class="list-group-item" style="background-color:#f8f9fa!important;">
+                                    <%= form.label "student_degree_#{index}".to_sym, "Degree *" %>
+                                    <%= form.select "student_degree_#{index}".to_sym, ["Bachelors", "Masters", "PhD", "Postdoctorate"], {selected: student.student_degree}, {class:"form-select"} %>
+                                </li>
+                            </div>
+                        </div>
+
+                        <div class="row g-3 align-items-center mb-3">
+                            <div class="col-lg-12">
+                                <li class="list-group-item" style="background-color:#f8f9fa!important;">
+                                    <%= form.label "student_field_of_study_#{index}".to_sym, "Field of Study *" %>
+                                    <%= form.text_field "student_field_of_study_#{index}".to_sym, value: student.student_field_of_study, class:"form-control" %>
+                                </li>
+                            </div>
+                        </div>
+
+                        <div class="row g-3 align-items-center mb-3">
+                            <div class="col-lg-6">
+                                <li class="list-group-item" style="background-color:#f8f9fa!important;">
+                                    <%= form.label "degree_start_date_#{index}".to_sym, "Start Date *" %>
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <label></label>
+                                        </div>
+                                    </div>
+                                    <%= form.date_select "degree_start_date_#{index}".to_sym, {order: [:month, :year], selected: student.degree_start_date, start_year: 1950, end_year: Date.today.year, discard_day: true, pompt: {month: "Month", year: "Year"}}, {style: "margin-bottom: 10px;", class:"form-select"} %>
+                                </li>
+                            </div>
+                            <div class="col-lg-6">
+                                <li class="list-group-item" style="background-color:#f8f9fa!important;">
+                                    <%= form.label "degree_end_date_#{index}".to_sym, "End Date *" %>
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <%= form.label "current_study_#{index}".to_sym, "Current Study?" %>
+                                            <%= form.check_box "current_study_#{index}".to_sym, {checked: student.degree_end_date.nil?, class:"form-check-input"}, checked_value="1", unchecked_value="0" %>
+                                        </div>
+                                    </div>
+                                    <label id=<%= "newStudentEndDateLabel_#{index}" %> style=<%= student.degree_end_date.nil? ? "display:inline-block;margin-top:35px;margin-bottom:36px;" : "display:none;"%>>Present</label>
+                                    <%= form.date_select "degree_end_date_#{index}".to_sym, {order: [:month, :year], selected: student.degree_end_date, start_year: 1950, end_year: Date.today.year, discard_day: true, pompt: {month: "Month", year: "Year"}}, {style:  student.degree_end_date.nil? ? "display:none;" : "display:block;margin-bottom:10px;", class:"form-select"} %>
+                                </li>
+                            </div>
+                        </div>
+                    </div>
+
+                    <script>
+                        document.getElementById('<%= "degree_btn_#{index}" %>').addEventListener('click', function(e) {
+                            e.preventDefault();
+                            if(document.getElementById('<%= "degree_btn_#{index}" %>').textContent == "Show")
+                            {
+                                document.getElementById('<%= "degree_form_#{index}" %>').style.display = "block";
+                                document.getElementById('<%= "degree_btn_#{index}" %>').textContent = "Hide";
+                            }
+                            else if(document.getElementById('<%= "degree_btn_#{index}" %>').textContent == "Hide")
+                            {
+                                document.getElementById('<%= "degree_form_#{index}" %>').style.display = "none";
+                                document.getElementById('<%= "degree_btn_#{index}" %>').textContent = "Show";
+                            }
+                        });
+                    </script>
+
+                    <script>
+                        document.getElementById("<%= "current_study_#{index}" %>").addEventListener("change", function() {
+                            if(this.checked)
+                            {
+                                document.getElementById("<%= "_degree_end_date_#{index}_1i" %>").style.display = "none";
+                                document.getElementById("<%= "_degree_end_date_#{index}_2i" %>").style.display = "none";
+                                document.getElementById("<%= "newStudentEndDateLabel_#{index}" %>").style.display = "inline-block";
+                                document.getElementById("<%= "newStudentEndDateLabel_#{index}" %>").style.marginTop = "35px";
+                                document.getElementById("<%= "newStudentEndDateLabel_#{index}" %>").style.marginBottom = "36px";
+                            }
+                            else
+                            {
+                                document.getElementById("<%= "newStudentEndDateLabel_#{index}" %>").style.display = "none";
+                                document.getElementById("<%= "_degree_end_date_#{index}_1i" %>").style.display = "block";
+                                document.getElementById("<%= "_degree_end_date_#{index}_2i" %>").style.display = "block";
+                                document.getElementById("<%= "_degree_end_date_#{index}_1i" %>").style.marginBottom = "10px";
+                                document.getElementById("<%= "_degree_end_date_#{index}_2i" %>").style.marginBottom = "10px";
+                            }
+                        });
+                    </script>
+                <% end %>
             </ul>
         <% end %>
         <div class="row g-3 align-items-center mb-3" style="margin-top:25px;">
             <%= link_to "Back", admin_approved_users_path, class:"btn btn-primary", style: "max-width:max-content;" %>
             <button id="approved_view_submit" class="btn btn-primary" style="max-width:max-content;margin-left:5px;">Save</button>
-            <%= link_to "Delete User", admin_approved_delete_path(@user.id), class:"btn btn-primary", style: "max-width:max-content;margin-left:5px;" %>
+            <% if User.get_current_user(current_account).user_email != @user.user_email %>
+                <%= link_to "Delete User", admin_approved_delete_path(@user.id), class:"btn btn-primary", style: "max-width:max-content;margin-left:5px;" %>
+            <% end %>
         </div>
     </div>
 </div>

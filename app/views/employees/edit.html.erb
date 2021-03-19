@@ -72,15 +72,6 @@
         </div>
     </div>
     
-    <div class="row g-3 align-items-center mb-3">
-        <div class="col-lg-3">
-            <%= form.label :position_industry, "Industry"%>
-        </div>
-        <div class="col-lg-3">
-            <%= form.select :position_industry, @industries, {}, {class:"form-select"}%>
-        </div>
-    </div>
-    
     <%= form.submit class:"btn btn-primary", style:"margin-bottom:15px;" %>
 <% end %>
 <%= link_to "Back", user_profile_path(User.get_current_user_profile(current_account).id) , class:"btn btn-primary"%>
