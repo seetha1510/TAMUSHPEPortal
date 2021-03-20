@@ -8,6 +8,8 @@ class CreateStudents < ActiveRecord::Migration[6.1]
       t.datetime :degree_start_date
       t.datetime :degree_end_date
 
+      t.index [:user_profile_id, :school_id, :student_degree, :student_field_of_study], unique: true, name: "educated"
+
       t.timestamps
     end
     add_foreign_key :students, :user_profiles

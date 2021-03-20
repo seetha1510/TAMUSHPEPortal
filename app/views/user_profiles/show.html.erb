@@ -97,6 +97,9 @@
             <p><%= student.degree_start_date.strftime("%B") %> <%= student.degree_start_date.year %>
             <%if student.degree_end_date.present?%> 
             - <%= student.degree_end_date.strftime("%B") %> <%= student.degree_end_date.year %>
+            <%else%>
+            - Present
+
             <%end%>
             </p>
             <% if current_account.email == @true_email %>

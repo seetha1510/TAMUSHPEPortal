@@ -20,6 +20,7 @@ class UserProfile < ApplicationRecord
   has_many :employers, through: :employees
   has_many :students
   has_many :schools, through: :students
+
   # Profile Picture 
   has_one_attached :user_profile_picture, dependent: :destroy
   validates :user_profile_picture, content_type: [:png, :jpg, :jpeg]
