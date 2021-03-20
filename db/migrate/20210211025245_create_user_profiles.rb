@@ -14,6 +14,7 @@ class CreateUserProfiles < ActiveRecord::Migration[6.1]
       t.string :user_first_name
       t.string :user_last_name
       t.string :user_portfolio_url
+      t.string :user_industry
 
       t.timestamps  
     end

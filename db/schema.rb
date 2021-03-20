@@ -111,6 +111,7 @@ ActiveRecord::Schema.define(version: 2021_03_15_032903) do
     t.string "user_first_name"
     t.string "user_last_name"
     t.string "user_portfolio_url"
+    t.string "user_industry"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

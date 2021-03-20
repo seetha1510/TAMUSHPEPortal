@@ -83,6 +83,15 @@
 
 <div class="row g-3 align-items-center mb-3">
   <div class="col-lg-3">
+    <label class="col-form-label">Industry</label>
+  </div>
+  <div class="col-lg-9">
+  <%= f.select :user_industry,  @industries, {}, class:"form-select" %>
+  </div>
+</div>
+
+<div class="row g-3 align-items-center mb-3">
+  <div class="col-lg-3">
     <label class="col-form-label">Portfolio</label>
   </div>
   <div class="col-lg-9">
