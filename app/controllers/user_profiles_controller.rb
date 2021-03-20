@@ -29,6 +29,15 @@ class UserProfilesController < ApplicationController
         @user_profiles = UserProfile.joins(:students).where("lower(students.student_field_of_study) LIKE ?",
           "%" + search_word.downcase  + "%" ).to_set
       end
+      if(search_type == "Position Industry")
+        @user_profiles = UserProfile.joins(:employees).where("lower(employees.position_industry) LIKE ?",
+          "%" + search_word.downcase  + "%" ).to_set
+      end
+      if(search_type == "Position Title")
+        @user_profiles = UserProfile.joins(:employees).where("lower(employees.employee_position) LIKE ?",
+          "%" + search_word.downcase  + "%" ).to_set
+      end
+
       
       ## add more
     end
