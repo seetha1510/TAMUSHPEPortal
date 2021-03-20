@@ -15,6 +15,7 @@ class UserProfile < ApplicationRecord
   validates :user_first_name, presence: { message: 'Enter Your First Name' },
                               allow_blank: false
   validates :user_last_name, presence: { message: 'Enter Your Last Name' }, allow_blank: false
+  validates :user_industry, presence: false, allow_blank: true
   belongs_to :user
   has_many :employees
   has_many :employers, through: :employees
