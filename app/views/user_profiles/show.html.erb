@@ -27,6 +27,10 @@
             <td><%= @user_profile.user_graduating_year %></td>
         </tr>
         <tr>
+            <th>Industry</th>
+            <td><%= @user_profile.user_industry %></td>
+        </tr>
+        <tr>
             <th>About me</th>
             <td><%= @user_profile.user_about_me_description %></td>
         </tr>
@@ -42,13 +46,13 @@
             <th>Social Media</th>
             <td>
                 <%if @user_profile.user_facebook_profile_url.present?%>
-                    <a href="<%= @user_profile.user_facebook_profile_url%>" target="_blank"><i class="fa fa-facebook-square fa-2x" aria-hidden="true" ></i></a>
+                    <%= link_to '<i class="fa fa-facebook-square fa-2x" aria-hidden="true"></i>'.html_safe, @user_profile.user_facebook_profile_url, target: :_blank %>
                 <%end%>
                 <%if @user_profile.user_instagram_profile_url.present?%>
-                    <a href="<%= @user_profile.user_instagram_profile_url%>" target="_blank"><i class="fa fa-instagram fa-2x" aria-hidden="true"></i></a>
+                    <%= link_to '<i class="fa fa-instagram fa-2x" aria-hidden="true"></i>'.html_safe, @user_profile.user_instagram_profile_url, target: :_blank %>
                 <%end%>
                 <%if @user_profile.user_linkedin_profile_url.present?%>
-                    <a href="<%= @user_profile.user_linkedin_profile_url%>" target="_blank"><i class="fa fa-linkedin fa-2x" aria-hidden="true"></i></a>
+                    <%= link_to '<i class="fa fa-linkedin-square fa-2x" aria-hidden="true"></i>'.html_safe, @user_profile.user_linkedin_profile_url, target: :_blank %>
                 <%end%> 
             </td>
         </tr>
@@ -97,6 +101,9 @@
             <p><%= student.degree_start_date.strftime("%B") %> <%= student.degree_start_date.year %>
             <%if student.degree_end_date.present?%> 
             - <%= student.degree_end_date.strftime("%B") %> <%= student.degree_end_date.year %>
+            <%else%>
+            - Present
+
             <%end%>
             </p>
             <% if current_account.email == @true_email %>
@@ -107,5 +114,6 @@
         </div>
     <%end%>
     </div>
-
-<%= link_to "Add", new_student_path,class:"btn btn-secondary mt-2", id: "student_add"%>
+<% if current_account.email == @true_email %>
+    <%= link_to "Add", new_student_path,class:"btn btn-secondary mt-2", id: "student_add"%>
+<%end%>

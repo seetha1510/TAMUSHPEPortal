@@ -39,7 +39,7 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   # The RSpec testing framework
-  gem 'rspec-rails'
+ 
   gem 'rubocop'
   gem 'rubocop-performance'
   gem 'rubocop-rails'
@@ -49,6 +49,7 @@ end
 group :test do
   # Capybara, the library that allows us to interact with the browser using Ruby
   gem 'capybara'
+  gem 'rspec-rails'
   # The following gems aids with the nuts and bolts
   # of interacting with the browser.
   gem 'webdrivers', '~> 4.0', require: false
@@ -80,3 +81,4 @@ gem 'omniauth', '~> 1.9.1'
 
 gem 'omniauth-google-oauth2'
 gem 'devise', github: 'heartcombo/devise', branch: 'ca-omniauth-2'
+ gem 'rspec-rails'

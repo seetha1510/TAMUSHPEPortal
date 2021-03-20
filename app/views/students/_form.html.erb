@@ -5,11 +5,11 @@
     <label class="col-form-label">School Name</label>
   </div>
   <%if current_page?(new_student_path)%>
-    <div class="col-lg-9">
+    <div class="col-lg-3">
     <%= f.text_field :school_name,class:"form-control",placeholder:"Enter School Name" %>
   </div>
   <%else%>
-  <div class="col-lg-9">
+  <div class="col-lg-3">
       <%= f.text_field :school_name,class:"form-control", value: School.find(@student.school_id).school_name  %>
     </div>
   <%end%>
@@ -20,7 +20,7 @@
   <div class="col-lg-3">
     <label class="col-form-label">Degree</label>
   </div>
-  <div class="col-lg-9">
+  <div class="col-lg-3">
     <%= f.select :student_degree, ["Bachelors", "Masters", "PhD", "Postdoctorate"], {}, {class:"form-select"} %>
   </div>
 </div>
@@ -29,7 +29,7 @@
   <div class="col-lg-3">
     <label class="col-form-label">Field of Study</label>
   </div>
-  <div class="col-lg-9">
+  <div class="col-lg-3">
     <%= f.text_field :student_field_of_study,class:"form-control",placeholder:"Enter field of study/major" %>
   </div>
 </div>
@@ -51,12 +51,12 @@
   <div class="col-lg-3">
     <label class="col-form-label">Start date</label>
   </div>
-  <div class="col-lg-9">
+  <div class="col-lg-3">
     <%= f.date_select :degree_start_date, {order: [:month, :year], start_year: 1950, end_year: Date.today.year, discard_day: true, pompt: {month: "Month", year: "Year"}}, {style: "margin-bottom: 10px;", class:"form-select"} %>
   </div>
 </div>
 
-<div class="row g-3 align-items-center mb-3">
+<div class="row g-3 align-items-center mb-3"> 
   <div class="col-lg-3">
     <label class="col-form-label">End date</label>
   </div>

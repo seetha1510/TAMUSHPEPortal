@@ -3,6 +3,12 @@
 require 'rails_helper'
 
 RSpec.describe 'Tamu ship ', type: :system do
+  before(:each) do
+    Rails.application.env_config["devise.mapping"] = Devise.mappings[:user]
+    Rails.application.env_config["omniauth.auth"] = OmniAuth.config.mock_auth[:google_oauth2]
+    approvedUser = ApprovedEmail.new(:email => "tony@stark.com")
+    approvedUser.save()
+end
   describe 'Successful' do
     it 'shows the right content' do
       visit root_path

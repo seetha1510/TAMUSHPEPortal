@@ -2,6 +2,7 @@
 
 class UserProfilesController < ApplicationController
   before_action :authenticate_account!
+  helper_method :getIndustries  
   
   def index
     @user_profiles = UserProfile.all
@@ -63,12 +64,14 @@ class UserProfilesController < ApplicationController
 
   def new
     @user_profile = UserProfile.new
+    @industries = getIndustries
   end
 
   def create
-    # @user_profile = UserProfile.new(user_profile_params)
     @form_params = params[:user_profile]
-    @user_id = User.get_current_user(current_account).id
+    @user = User.get_current_user(current_account)
+    @user_id = @user.id
+      
     @user_profile = UserProfile.new(user_first_name: @form_params[:user_first_name],
                                     user_last_name: @form_params[:user_last_name],
                                     user_id: @user_id,
@@ -81,17 +84,28 @@ class UserProfilesController < ApplicationController
                                     user_about_me_description: @form_params[:user_about_me_description],
                                     user_phone_number: @form_params[:user_phone_number],
                                     user_profile_picture: @form_params[:user_profile_picture],
-                                    user_portfolio_url: @form_params[:user_portfolio_url]
+                                    user_portfolio_url: @form_params[:user_portfolio_url],
+                                    user_industry: @form_params[:user_industry]
                                     )
     if @user_profile.save && @user_profile.valid?
-      redirect_to(show_path)
+      @isOnApprovedList = ApprovedEmail.where(email: @user.user_email).length() > 0
+      if @user.approved_status
+        redirect_to(show_path) and return
+      elsif @isOnApprovedList
+        @user.update(approved_status: true)
+        redirect_to(show_path) and return
+      else
+        redirect_to approval_path and return
+      end
     else
+      @industries = getIndustries
       render 'new' 
     end
   end
 
   def edit
     @user_profile = UserProfile.find(params[:id])
+    @industries = getIndustries
   end
 
   def update
@@ -99,6 +113,7 @@ class UserProfilesController < ApplicationController
     if @user_profile.update(user_profile_params)
       redirect_to(user_profile_path(User.get_current_user_profile(current_account).id))
     else
+      @industries = getIndustries
       render 'edit'
     end
   end
@@ -115,6 +130,33 @@ class UserProfilesController < ApplicationController
     end
   end
 
+  def getIndustries
+    return ["Accounting", "Airline/Aviation", "Alternative Dispute Resolution", "Alternative Medicine", "Animation", "Apparel & Fashion",
+            "Architecture & Planning", "Arts & Crafts", "Automotive", "Aviation & Aerospace", "Banking", "Biotechnology", "Broadcast Media",
+            "Building Materials", "Business Supplies & Equipment", "Capital Markets", "Chemicals", "Civic & Social Organization",
+            "Civil Engineering", "Commercial Real Estate", "Computer & Network Securtiy", "Computer Engineering", "Computer Games", "Computer Hardware",
+            "Computer Networking", "Computer Software", "Construction", "Consumer Electronics", "Consumer Goods", "Consumer Services", "Cosmetics",
+            "Dairy", "Defense & Space", "Design", "E-learning", "Education Management", "Electrical & Electronic Manufacturing",
+            "Entertainment", "Environmental Science", "Events Services", "Executive Office", "Facilities Services", "Farming", "Financial Services",
+            "Fine Art", "Fishery", "Food & Beverages", "Food Production", "Fundrasing", "Furniture", "Gambling & Casinos", "Glass, Ceramics & Concrete",
+            "Government Administration", "Government Relations", "Graphic Design", "Health, Wellness & Fitness", "Higher Education", "Hospital & Health Care",
+            "Hospitality", "Human Resources", "Import & Export", "Individual & Family Services", "Industrial Automation", "Information Services",
+            "Information Technology & Services", "Insurance", "International Affairs", "International Trade & Development", "Internet", 
+            "Investment Banking", "Investment Management", "Judiciary", "Law Enforcement", "Law Practice", "Legal Services", "Legislative Office",
+            "Leisure,  Travel & Tourism", "Libraries", "Logistics & Supply Chain", "Luxury Goods & Jewelry", "Machinery", "Management Consulting",
+            "Maritime", "Market Research", "Marketing & Advertising", "Mechanical Or Industrial Engineering", "Media Production", "Medical Device",
+            "Medical Practice", "Mental Health Care", "Military", "Mining & Metals", "Mobile Games", "Motion Pictures & Film", "Museums & Institutions",
+            "Music", "Nanotechnology", "Newspapers", "Non-profit Organization Management", "Oil & Energy", "Online Media", "Outsourcing/Offshoring",
+            "Package/Freight Delivery", "Packaging & Containers", "Paper & Forest Products", "Performing Arts", "Pharmaceuticals", "Philanthropy",
+            "Photography", "Plastics", "Political Organization", "Primary/Secondary Education", "Printing", "Professional Training & Coaching",
+            "Program Development", "Public Policy", "Public Relations & Communications", "Public Saftey", "Publishing", "Railroad Manufacture",
+            "Ranching", "Real Estate", "Recreational Facilities & Services", "Religous Institutions", "Renewables & Environment", "Research",
+            "Restaurants", "Retail", "Security & Investigations", "Semiconductors", "Shipbuilding", "Sporting Goods", "Sports", "Staffing & Recruiting",
+            "Supermarkets", "Telecommunications", "Textiles", "Think Tanks", "Tobacco", "Translation & Localization", "Transportation/Trucking/Railroad",
+            "Utilities", "Venture Capital & Private Equity", "Veterinary", "Warehousing", "Wholesale", "Wine & Spirits", "Wireless", "Writing & Editing"]
+  end
+
+
   private
 
   def user_profile_params
@@ -123,6 +165,7 @@ class UserProfilesController < ApplicationController
                                          :user_facebook_profile_url, :user_instagram_profile_url,
                                          :user_linkedin_profile_url, :user_graduating_year,
                                          :user_about_me_description, :user_phone_number,
-                                         :user_profile_picture, :user_portfolio_url)
+                                         :user_profile_picture, :user_portfolio_url,
+                                         :user_industry)
   end
 end

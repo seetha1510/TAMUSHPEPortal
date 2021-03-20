@@ -4,10 +4,10 @@ class Accounts::OmniauthCallbacksController < Devise::OmniauthCallbacksControlle
   
       if account.present?
         sign_out_all_scopes
-        flash[:success] = t 'devise.omniauth_callbacks.success', kind: 'Google'
+        #flash[:success] = t 'devise.omniauth_callbacks.success', kind: 'Google'
         sign_in_and_redirect account, event: :authentication
       else
-        flash[:alert] = t 'devise.omniauth_callbacks.failure', kind: 'Google', reason: "#{auth.info.email} is not authorized."
+        #flash[:alert] = t 'devise.omniauth_callbacks.failure', kind: 'Google', reason: "#{auth.info.email} is not authorized."
         redirect_to new_account_session_path
       end
     end
