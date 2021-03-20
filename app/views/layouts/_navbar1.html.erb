@@ -1,11 +1,13 @@
- <% if current_page?(root_url) || current_page?(new_account_session_path) || current_page?(new_user_profile_path) || controller.controller_name == "sessions" || controller.controller_name == "registrations"%> 
+<% if User.get_current_user(current_account).approved_status || ApprovedEmail.where(email: User.get_current_user(current_account).user_email).length() > 0 %>
 
-<% else %>
-<nav id="sidebar">
-    <div class="p-4 pt-3" style="min-height:100%;position: relative;">
-        <div class="header mb-4" style="top:50px;">
-            <%= image_tag "tamuSHPE_app_logo.png", style: 'height:auto;width:90%;' %>
-        </div>
+    <% if current_page?(root_url) || current_page?(new_account_session_path) || current_page?(new_user_profile_path) || controller.controller_name == "sessions" || controller.controller_name == "registrations"%> 
+
+    <% else %>
+    <nav id="sidebar">
+        <div class="p-4 pt-3" style="min-height:100%;position: relative;">
+            <div class="header mb-4" style="top:50px;">
+                <%= image_tag "tamuSHPE_app_logo.png", style: 'height:auto;width:90%;' %>
+            </div>
         
         <% if User.get_current_user_profile(current_account).user_profile_picture.attached? && User.get_current_user_profile(current_account).user_profile_picture.representable?%>
             <a href="#" class="img logo rounded-circle mb-4" style="background-image: url(<%= url_for(User.get_current_user_profile(current_account).user_profile_picture )%>);"></a> 
@@ -20,7 +22,7 @@
                 <li>
             <%end%>
                 <%= link_to show_path, class:"nav-link" do%>
-                <i class="fa fa-home" aria-hidden="true"></i> Home
+                <i class="fa fa-home fa-nav" aria-hidden="true"></i> Home
                 <% end %>
             </li>
 
@@ -30,7 +32,7 @@
                 <li>
             <%end%>
                 <%= link_to user_profiles_path, class:"nav-link" do%>
-                    <i class="fa fa-search" aria-hidden="true"></i> Search
+                    <i class="fa fa-search fa-nav" aria-hidden="true"></i> Search
                 <% end %>
             </li>
 
@@ -40,7 +42,7 @@
                 <li>
             <%end%>
                 <%= link_to user_profile_path(User.get_current_user_profile(current_account).id), class:"nav-link" do%>
-                    <i class="fa fa-user" aria-hidden="true"></i> Profile
+                    <i class="fa fa-user fa-nav" aria-hidden="true"></i> Profile
                 <% end %>
             </li>
             <%# <li>
@@ -52,13 +54,25 @@
                 <li>
             <%end%>
                 <%= link_to setting_path, class:"nav-link" do%>
-                    <i class="fa fa-cog" aria-hidden="true"></i> Settings
+                    <i class="fa fa-cog fa-nav" aria-hidden="true"></i> Settings
                 <% end %>
             </li>
+
+            <% if User.get_current_user(current_account).admin_status %>
+                <% if current_page?(:controller => 'admins', :action => "home") %>
+                    <li class="active">
+                <% else %>
+                    <li>
+                <% end %>
+                    <%= link_to 'Admin', admin_path, class:"nav-link"%>
+                </li>
+            <%else%>
+            <%end%>
         </ul>
         <div class="footer" style="position:absolute;bottom:10px;">
             &copy; Copyright 2021
         </div>
-    </div>
-</nav>
-<%end%>
+    </nav>
+    <%end%>
+<% else %>
+<% end %>

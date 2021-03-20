@@ -13,7 +13,7 @@ class Account < ApplicationRecord
   def create_in_user_table
     @doesUserExist = User.where(user_email: email)
     if @doesUserExist.length() == 0
-      User.create!(user_email: email, admin_status: false)
+      User.create!(user_email: email, admin_status: false, approved_status: false)
     end
   end
 end

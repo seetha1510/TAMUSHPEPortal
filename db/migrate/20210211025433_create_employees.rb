@@ -9,7 +9,6 @@ class CreateEmployees < ActiveRecord::Migration[6.1]
       t.datetime :position_end_date
       t.string :position_location_state
       t.string :position_location_city
-      t.string :position_industry
       
       t.index [:user_profile_id, :employer_id, :employee_position], unique: true, name: "employed"
 

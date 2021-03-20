@@ -2,12 +2,25 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Search bar ', type: :system do
+RSpec.describe 'Search bar on XSS attack ', type: :system do
   before(:each) do
     Rails.application.env_config["devise.mapping"] = Devise.mappings[:user]
     Rails.application.env_config["omniauth.auth"] = OmniAuth.config.mock_auth[:google_oauth2]
-end
+    end
+
   describe 'Successful' do
+    it 'can create new profile page' do
+        visit root_path
+        click_on "Sign in with Google"
+  
+        ## to do test creating new profile page
+        fill_in 'Enter First Name', with: '<script>alert()</script>'
+        fill_in 'Enter Last Name',  with: '<script>alert()</script>'
+        click_on 'Create User profile'
+        expect(page).to have_content('<script>alert()</script>')
+        expect(page).to have_content('Setting')
+      end
+
     it 'can search' do
       visit root_path
       click_on "Sign in with Google"
@@ -25,11 +38,13 @@ end
       expect(page).to have_content('Setting')
       click_link('People', match: :first)
       
-        fill_in 'Search', with: 'Yifei'
+    fill_in 'Search', with: '<script>alert()</script>'
       within("form") do
         click_on 'Search'
       end
-      expect(page).to have_content('Yifei')
+      within("form") do
+        click_on 'Search'
+      end
     end
   end
 end
