@@ -25,21 +25,19 @@ class StudentsController < ApplicationController
             @degree_end_date = Date.new(@form_params["degree_end_date(1i)"].to_i, @form_params["degree_end_date(2i)"].to_i)
         end
 
-        if !@school_object
-            @school_object = School.new(school_name: @school_name)
-            if !@school_object.save
-                redirect_to new_student_path
-            end
+        if @school_object.nil?
+            @school_object = School.create(school_name: @school_name)
         end
         
-        @student_object = Student.new(user_profile_id: @user_profile_id,
+        @student = Student.new(user_profile_id: @user_profile_id,
                                     school_id: @school_object.id, student_degree: @form_params[:student_degree],
                                     student_field_of_study: @form_params[:student_field_of_study], 
                                     degree_start_date: @degree_start_date, degree_end_date: @degree_end_date)
-        if @student_object.save
+        if @student.save
             redirect_to user_profile_path(User.get_current_user_profile(current_account).id)
         else
-            redirect_to new_student_path
+            puts "\n\n\n\n\n\n"
+            render 'new'
         end
     end
   
@@ -53,7 +51,7 @@ class StudentsController < ApplicationController
   
     def update
         @form_params = params[:student]
-
+        @student = Student.find(params[:id])
         @user_profile_id = User.get_current_user_profile(current_account).id
 
         @school_name = @form_params[:school_name]
@@ -69,20 +67,17 @@ class StudentsController < ApplicationController
         @student = Student.find(params[:id])
         @existing_school = School.find(@student.school_id)
 
-        if !@school_object
-            @school_object = School.new(school_name: @school_name)
-            if !@school_object.save
-                render :edit
-            end
+        if @school_object.nil?
+            @school_object = School.create(school_name: @school_name)
         end
         
-        if Student.update(user_profile_id: @user_profile_id,
+        if @student.update(user_profile_id: @user_profile_id,
                                     school_id: @school_object.id, student_degree: @form_params[:student_degree],
                                     student_field_of_study: @form_params[:student_field_of_study], 
                                     degree_start_date: @degree_start_date, degree_end_date: @degree_end_date)
             redirect_to user_profile_path(User.get_current_user_profile(current_account).id)
         else
-            render :edit
+            render 'edit'
         end
         
         # if @school_name != @existing_school.school_name
