@@ -1,13 +1,14 @@
- <% if current_page?(root_url) || current_page?(new_account_session_path) || current_page?(new_user_profile_path)  %> 
+<% if User.get_current_user(current_account).approved_status || ApprovedEmail.where(email: User.get_current_user(current_account).user_email).length() > 0 %>   
+    <% if current_page?(root_url) || current_page?(new_account_session_path) || current_page?(new_user_profile_path)  %> 
 
-<% else %>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container-fluid">
+    <% else %>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
 
-        <button type="button" id="sidebarCollapse" class="btn btn-primary mr-2">
-            <i class="fa fa-bars" style="color:white;"></i>
-            <span class="sr-only">Toggle Menu</span>
-        </button>
+            <button type="button" id="sidebarCollapse" class="btn btn-primary mr-2">
+                <i class="fa fa-bars" style="color:white;"></i>
+                <span class="sr-only">Toggle Menu</span>
+            </button>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="nav navbar-nav ml-auto">
@@ -23,8 +24,15 @@
                 <li class="nav-item">
                      <%= link_to 'Settings' , setting_path, class:"nav-link"%>
                 </li>
+                <% if User.get_current_user(current_account).admin_status %>
+                    <li class="nav-item">
+                        <%= link_to "Admin", admin_path, class: "nav-link" %>
+                    </li>
+                <%else%>
+                <%end%>
             </ul>
         </div>
-    </div>
-</nav>
-<%end%>
+    </nav>
+    <%end%>
+<% else %>
+<% end %>

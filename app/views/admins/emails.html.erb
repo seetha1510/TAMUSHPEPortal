@@ -1,0 +1,29 @@
+<div class="container-fluid" style="background-color:#001F5B!important;height:100vh;">        
+    <div class="container" style="background-color:#f8f9fa!important;padding-top:50px;padding-right:25px;padding-left:25px;padding-bottom:25px;height:100vh;">
+        <h1>Pre-Approved Emails</h1>
+        <%= link_to "Back", admin_path%>
+
+        <%= form_with url: admin_email_add_path, method: :get do |form| %>
+            <table class="table table-hover mt-3">
+                <thead class="table" style="background-color:#001F5B;color:white">
+                    <tr>
+                        <th scope="col">Email</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% @emails.each do |email| %>
+                        <tr class="table-light">
+                            <td><%= email.email %></td>
+                            <td><%= link_to "Delete", admin_email_remove_path(email.id) %></td>
+                        </tr>
+                    <% end %>
+                    <tr>
+                        <td><%= form.text_field :email, class:"form-control"%></td>
+                        <td><%= form.submit "+", class:"btn btn-primary"%></td>
+                    </tr>
+                </tbody>
+            <table>
+        <% end %>
+    </div>
+</div>

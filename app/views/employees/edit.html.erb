@@ -1,7 +1,13 @@
 <h1>Edit Position</h1>
 
-<%= form_with model: @employees do |form| %>
-
+<%= form_with model: @employee do |form| %>
+    <% if @employee.errors.any? %>
+    <div id="error_explanation ">
+        <% @employee.errors.full_messages.each do |msg| %>
+            <h4 class="mb-1" id="error-message" style="color:#D30000"><%= msg %></h4>
+        <% end %>
+    </div>
+    <% end %>
     <div class="row g-3 align-items-center mb-3">
         <div class="col-lg-3">
             <%= form.label :employer_name, "Company *"%>
@@ -63,15 +69,6 @@
         </div>
         <div class="col-lg-3">
             <%= form.text_field :position_location_state, class:"form-control"%>
-        </div>
-    </div>
-    
-    <div class="row g-3 align-items-center mb-3">
-        <div class="col-lg-3">
-            <%= form.label :position_industry, "Industry"%>
-        </div>
-        <div class="col-lg-3">
-            <%= form.select :position_industry, @industries, {}, {class:"form-select"}%>
         </div>
     </div>
     
