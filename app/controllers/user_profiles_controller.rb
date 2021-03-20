@@ -57,9 +57,10 @@ class UserProfilesController < ApplicationController
   end
 
   def create
-    # @user_profile = UserProfile.new(user_profile_params)
     @form_params = params[:user_profile]
-    @user_id = User.get_current_user(current_account).id
+    @user = User.get_current_user(current_account)
+    @user_id = @user.id
+      
     @user_profile = UserProfile.new(user_first_name: @form_params[:user_first_name],
                                     user_last_name: @form_params[:user_last_name],
                                     user_id: @user_id,
@@ -75,7 +76,15 @@ class UserProfilesController < ApplicationController
                                     user_portfolio_url: @form_params[:user_portfolio_url]
                                     )
     if @user_profile.save && @user_profile.valid?
-      redirect_to(show_path)
+      @isOnApprovedList = ApprovedEmail.where(email: @user.user_email).length() > 0
+      if @user.approved_status
+        redirect_to(show_path) and return
+      elsif @isOnApprovedList
+        @user.update(approved_status: true)
+        redirect_to(show_path) and return
+      else
+        redirect_to approval_path and return
+      end
     else
       render 'new' 
     end

@@ -32,6 +32,8 @@
             <%= yield %>
         </div>
     </div>
+    <% elsif controller.controller_name == "admins" %>
+        <%= yield %>
     <% else %>
     <div class="wrapper d-flex align-items-stretch">
         <%= render 'layouts/navbar1' unless @disable_nav %>
