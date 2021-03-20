@@ -9,6 +9,8 @@ RSpec.describe 'employee new page', type: :system do
   before(:each) do
     Rails.application.env_config["devise.mapping"] = Devise.mappings[:user]
     Rails.application.env_config["omniauth.auth"] = OmniAuth.config.mock_auth[:google_oauth2]
+    approvedUser = ApprovedEmail.new(:email => "tony@stark.com")
+    approvedUser.save()
 end
   it 'displays the add employee form correctly' do
     visit root_path
