@@ -90,6 +90,7 @@ ActiveRecord::Schema.define(version: 2021_03_11_204938) do
     t.datetime "degree_end_date"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_profile_id", "school_id", "student_degree", "student_field_of_study"], name: "educated", unique: true
   end
 
   create_table "user_profiles", force: :cascade do |t|
