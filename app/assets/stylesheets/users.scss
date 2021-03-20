@@ -227,6 +227,10 @@ a[data-toggle="collapse"] {
   font-size: calc(1.825rem + 0.9vw) !important;
 }
 
+  .fa-linkedin-square:hover{
+    color: #0e76a8;
+  }
+
 .fa-facebook-square:hover {
   color: #4267b2;
 }
@@ -267,7 +271,7 @@ a[data-toggle="collapse"] {
   padding: 0.2rem;
 }
 
-.fa-linkedin {
+.fa-linkedin-square {
   color: #999999;
   padding: 0.2rem;
 }
@@ -281,3 +285,4 @@ a[data-toggle="collapse"] {
   color: #999999;
   padding: 0.2rem;
 }
+
