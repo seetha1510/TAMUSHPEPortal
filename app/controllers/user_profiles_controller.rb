@@ -31,7 +31,7 @@ class UserProfilesController < ApplicationController
           "%" + search_word.downcase  + "%" ).to_set
       end
       if(search_type == "Position Industry")
-        @user_profiles = @user_profiles.where("user_industry LIKE ?",
+        @user_profiles = @user_profiles.where("lower(user_industry) LIKE ?",
           "%" + search_word.downcase + "%" ).to_set
       end
       if(search_type == "Position Title")
