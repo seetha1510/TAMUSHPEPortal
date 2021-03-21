@@ -13,10 +13,9 @@ RSpec.describe Employee, type: :model do
       user_profile_id: 1,
       employer_id: 1,
       employee_position: 'Software Engineer',
-      position_start_date: Date.new(2020,2,2),
-      position_location_state: "texas",
-      position_location_city: "College Station",
-
+      position_start_date: Date.new(2020, 2, 2),
+      position_location_state: 'texas',
+      position_location_city: 'College Station'
     )
   end
 

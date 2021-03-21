@@ -3,15 +3,16 @@
 require 'rails_helper'
 
 RSpec.describe 'My Profile', type: :system do
-  before(:each) do
-    Rails.application.env_config["devise.mapping"] = Devise.mappings[:user]
-    Rails.application.env_config["omniauth.auth"] = OmniAuth.config.mock_auth[:google_oauth2]
-    approvedUser = ApprovedEmail.new(:email => "tony@stark.com")
-    approvedUser.save()
-end
+  before do
+    Rails.application.env_config['devise.mapping'] = Devise.mappings[:user]
+    Rails.application.env_config['omniauth.auth'] = OmniAuth.config.mock_auth[:google_oauth2]
+    approvedUser = ApprovedEmail.new(email: 'tony@stark.com')
+    approvedUser.save
+  end
+
   it 'displays my profile correctly' do
     visit root_path
-    click_on "Sign in with Google"
+    click_on 'Sign in with Google'
 
     ## create new profile page
     fill_in 'Enter First Name',	with: 'Yifei'

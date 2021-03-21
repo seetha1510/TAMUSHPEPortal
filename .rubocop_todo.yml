@@ -9,7 +9,7 @@
 # Offense count: 2
 # Configuration parameters: Include.
 # Include: app/models/**/*.rb
-Rails/HasManyOrHasOneDependent:
-  Exclude:
-    - 'app/models/employer.rb'
-    - 'app/models/user_profile.rb'
+# Rails/HasManyOrHasOneDependent:
+#   Exclude:
+#     - 'app/models/employer.rb'
+#     - 'app/models/user_profile.rb'

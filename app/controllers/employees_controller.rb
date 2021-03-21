@@ -2,9 +2,9 @@
 
 class EmployeesController < ApplicationController
   before_action :authenticate_account!
-  
-  helper_method :getIndustries
-  
+
+  # helper_method :get_industries
+
   def index
     @employees = Employee.all
   end
@@ -35,30 +35,28 @@ class EmployeesController < ApplicationController
 
     @user_profile_id = User.get_current_user_profile(current_account).id
 
-    @start_date = Date.new(@form_params["position_start_date(1i)"].to_i, @form_params["position_start_date(2i)"].to_i)
-    if @form_params[:current_role] == "1"
-      @end_date = nil
-    else
-      @end_date = Date.new(@form_params["position_end_date(1i)"].to_i, @form_params["position_end_date(2i)"].to_i)
-    end
+    @start_date = Date.new(@form_params['position_start_date(1i)'].to_i, @form_params['position_start_date(2i)'].to_i)
+    @end_date = if @form_params[:current_role] == '1'
+                  nil
+                else
+                  Date.new(@form_params['position_end_date(1i)'].to_i, @form_params['position_end_date(2i)'].to_i)
+                end
 
     @employer_name = @form_params[:employer_name]
     @employer_object = Employer.where(employer_name: @employer_name).first
 
-    if @employer_object.nil?
-      @employer_object = Employer.create(employer_name: @employer_name)
-    end
+    @employer_object = Employer.create(employer_name: @employer_name) if @employer_object.nil?
 
     @employee = Employee.new(user_profile_id: @user_profile_id,
-                                      employer_id: @employer_object.id, employee_position: @form_params[:employee_position],
-                                      position_start_date: @start_date, position_end_date: @end_date, position_location_state: @form_params[:position_location_state],
-                                      position_location_city: @form_params[:position_location_city])
+                             employer_id: @employer_object.id, employee_position: @form_params[:employee_position],
+                             position_start_date: @start_date, position_end_date: @end_date, position_location_state: @form_params[:position_location_state],
+                             position_location_city: @form_params[:position_location_city])
 
     if @employee.save
       redirect_to user_profile_path(User.get_current_user_profile(current_account).id) and return
     else
-      #redirect_to new_employee_path and return
-      @industries = getIndustries
+      # redirect_to new_employee_path and return
+      # @industries = get_industries
       render 'new'
     end
   end
@@ -68,7 +66,7 @@ class EmployeesController < ApplicationController
     @employer_name = Employer.find(@employee.employer_id).employer_name
     @edit_employee = Employee.find(params[:id])
     @employee_position = @edit_employee.employee_position
-    @current_position = @edit_employee.position_end_date == nil
+    @current_position = @edit_employee.position_end_date.nil?
   end
 
   def update
@@ -76,37 +74,33 @@ class EmployeesController < ApplicationController
     @employee = Employee.find(params[:id])
     @user_profile_id = User.get_current_user_profile(current_account).id
 
-    @start_date = Date.new(@form_params["position_start_date(1i)"].to_i, @form_params["position_start_date(2i)"].to_i)
-    if @form_params[:current_role] == "1"
-      @end_date = nil
-    else
-      @end_date = Date.new(@form_params["position_end_date(1i)"].to_i, @form_params["position_end_date(2i)"].to_i)
-    end
+    @start_date = Date.new(@form_params['position_start_date(1i)'].to_i, @form_params['position_start_date(2i)'].to_i)
+    @end_date = if @form_params[:current_role] == '1'
+                  nil
+                else
+                  Date.new(@form_params['position_end_date(1i)'].to_i, @form_params['position_end_date(2i)'].to_i)
+                end
 
     @employer_name = @form_params[:employer_name]
     @employer_object = Employer.where(employer_name: @employer_name).first
 
     @employee = Employee.find(params[:id])
     @existing_employer = Employer.find(@employee.employer_id)
-    
-    if @employer_object.nil?
-      @employer_object = Employer.create(employer_name: @employer_name)
-    end
+
+    @employer_object = Employer.create(employer_name: @employer_name) if @employer_object.nil?
 
     if @employee.update(user_profile_id: @user_profile_id,
-      employer_id: @employer_object.id, employee_position: @form_params[:employee_position],
-      position_start_date: @start_date, position_end_date: @end_date, position_location_state: @form_params[:position_location_state],
-      position_location_city: @form_params[:position_location_city])
+                        employer_id: @employer_object.id, employee_position: @form_params[:employee_position],
+                        position_start_date: @start_date, position_end_date: @end_date, position_location_state: @form_params[:position_location_state],
+                        position_location_city: @form_params[:position_location_city])
       redirect_to user_profile_path(User.get_current_user_profile(current_account).id)
     else
       render 'edit'
     end
-    
+
     if @employer_name != @existing_employer.employer_name
       @employee_with_same_employer = Employee.where(employer_id: @existing_employer.id)
-        if @employee_with_same_employer.length() == 0
-          @existing_employer.destroy
-        end
+      @existing_employer.destroy if @employee_with_same_employer.length.zero?
     end
   end
 
@@ -116,37 +110,34 @@ class EmployeesController < ApplicationController
     @employee.destroy
 
     @employee_with_same_employer = Employee.where(employer_id: @employer.id)
-    if @employee_with_same_employer.length() == 0
-      @employer.destroy
-    end
+    @employer.destroy if @employee_with_same_employer.length.zero?
 
     redirect_to user_profile_path(User.get_current_user_profile(current_account).id)
   end
 
-  def getIndustries
-    return ["Accounting", "Airline/Aviation", "Alternative Dispute Resolution", "Alternative Medicine", "Animation", "Apparel & Fashion",
-            "Architecture & Planning", "Arts & Crafts", "Automotive", "Aviation & Aerospace", "Banking", "Biotechnology", "Broadcast Media",
-            "Building Materials", "Business Supplies & Equipment", "Capital Markets", "Chemicals", "Civic & Social Organization",
-            "Civil Engineering", "Commercial Real Estate", "Computer & Network Securtiy", "Computer Engineering", "Computer Games", "Computer Hardware",
-            "Computer Networking", "Computer Software", "Construction", "Consumer Electronics", "Consumer Goods", "Consumer Services", "Cosmetics",
-            "Dairy", "Defense & Space", "Design", "E-learning", "Education Management", "Electrical & Electronic Manufacturing",
-            "Entertainment", "Environmental Science", "Events Services", "Executive Office", "Facilities Services", "Farming", "Financial Services",
-            "Fine Art", "Fishery", "Food & Beverages", "Food Production", "Fundrasing", "Furniture", "Gambling & Casinos", "Glass, Ceramics & Concrete",
-            "Government Administration", "Government Relations", "Graphic Design", "Health, Wellness & Fitness", "Higher Education", "Hospital & Health Care",
-            "Hospitality", "Human Resources", "Import & Export", "Individual & Family Services", "Industrial Automation", "Information Services",
-            "Information Technology & Services", "Insurance", "International Affairs", "International Trade & Development", "Internet", 
-            "Investment Banking", "Investment Management", "Judiciary", "Law Enforcement", "Law Practice", "Legal Services", "Legislative Office",
-            "Leisure,  Travel & Tourism", "Libraries", "Logistics & Supply Chain", "Luxury Goods & Jewelry", "Machinery", "Management Consulting",
-            "Maritime", "Market Research", "Marketing & Advertising", "Mechanical Or Industrial Engineering", "Media Production", "Medical Device",
-            "Medical Practice", "Mental Health Care", "Military", "Mining & Metals", "Mobile Games", "Motion Pictures & Film", "Museums & Institutions",
-            "Music", "Nanotechnology", "Newspapers", "Non-profit Organization Management", "Oil & Energy", "Online Media", "Outsourcing/Offshoring",
-            "Package/Freight Delivery", "Packaging & Containers", "Paper & Forest Products", "Performing Arts", "Pharmaceuticals", "Philanthropy",
-            "Photography", "Plastics", "Political Organization", "Primary/Secondary Education", "Printing", "Professional Training & Coaching",
-            "Program Development", "Public Policy", "Public Relations & Communications", "Public Saftey", "Publishing", "Railroad Manufacture",
-            "Ranching", "Real Estate", "Recreational Facilities & Services", "Religous Institutions", "Renewables & Environment", "Research",
-            "Restaurants", "Retail", "Security & Investigations", "Semiconductors", "Shipbuilding", "Sporting Goods", "Sports", "Staffing & Recruiting",
-            "Supermarkets", "Telecommunications", "Textiles", "Think Tanks", "Tobacco", "Translation & Localization", "Transportation/Trucking/Railroad",
-            "Utilities", "Venture Capital & Private Equity", "Veterinary", "Warehousing", "Wholesale", "Wine & Spirits", "Wireless", "Writing & Editing"]
-  end
-
+  # def get_industries
+  #   ['Accounting', 'Airline/Aviation', 'Alternative Dispute Resolution', 'Alternative Medicine', 'Animation', 'Apparel & Fashion',
+  #    'Architecture & Planning', 'Arts & Crafts', 'Automotive', 'Aviation & Aerospace', 'Banking', 'Biotechnology', 'Broadcast Media',
+  #    'Building Materials', 'Business Supplies & Equipment', 'Capital Markets', 'Chemicals', 'Civic & Social Organization',
+  #    'Civil Engineering', 'Commercial Real Estate', 'Computer & Network Securtiy', 'Computer Engineering', 'Computer Games', 'Computer Hardware',
+  #    'Computer Networking', 'Computer Software', 'Construction', 'Consumer Electronics', 'Consumer Goods', 'Consumer Services', 'Cosmetics',
+  #    'Dairy', 'Defense & Space', 'Design', 'E-learning', 'Education Management', 'Electrical & Electronic Manufacturing',
+  #    'Entertainment', 'Environmental Science', 'Events Services', 'Executive Office', 'Facilities Services', 'Farming', 'Financial Services',
+  #    'Fine Art', 'Fishery', 'Food & Beverages', 'Food Production', 'Fundrasing', 'Furniture', 'Gambling & Casinos', 'Glass, Ceramics & Concrete',
+  #    'Government Administration', 'Government Relations', 'Graphic Design', 'Health, Wellness & Fitness', 'Higher Education', 'Hospital & Health Care',
+  #    'Hospitality', 'Human Resources', 'Import & Export', 'Individual & Family Services', 'Industrial Automation', 'Information Services',
+  #    'Information Technology & Services', 'Insurance', 'International Affairs', 'International Trade & Development', 'Internet',
+  #    'Investment Banking', 'Investment Management', 'Judiciary', 'Law Enforcement', 'Law Practice', 'Legal Services', 'Legislative Office',
+  #    'Leisure,  Travel & Tourism', 'Libraries', 'Logistics & Supply Chain', 'Luxury Goods & Jewelry', 'Machinery', 'Management Consulting',
+  #    'Maritime', 'Market Research', 'Marketing & Advertising', 'Mechanical Or Industrial Engineering', 'Media Production', 'Medical Device',
+  #    'Medical Practice', 'Mental Health Care', 'Military', 'Mining & Metals', 'Mobile Games', 'Motion Pictures & Film', 'Museums & Institutions',
+  #    'Music', 'Nanotechnology', 'Newspapers', 'Non-profit Organization Management', 'Oil & Energy', 'Online Media', 'Outsourcing/Offshoring',
+  #    'Package/Freight Delivery', 'Packaging & Containers', 'Paper & Forest Products', 'Performing Arts', 'Pharmaceuticals', 'Philanthropy',
+  #    'Photography', 'Plastics', 'Political Organization', 'Primary/Secondary Education', 'Printing', 'Professional Training & Coaching',
+  #    'Program Development', 'Public Policy', 'Public Relations & Communications', 'Public Saftey', 'Publishing', 'Railroad Manufacture',
+  #    'Ranching', 'Real Estate', 'Recreational Facilities & Services', 'Religous Institutions', 'Renewables & Environment', 'Research',
+  #    'Restaurants', 'Retail', 'Security & Investigations', 'Semiconductors', 'Shipbuilding', 'Sporting Goods', 'Sports', 'Staffing & Recruiting',
+  #    'Supermarkets', 'Telecommunications', 'Textiles', 'Think Tanks', 'Tobacco', 'Translation & Localization', 'Transportation/Trucking/Railroad',
+  #    'Utilities', 'Venture Capital & Private Equity', 'Veterinary', 'Warehousing', 'Wholesale', 'Wine & Spirits', 'Wireless', 'Writing & Editing']
+  # end
 end

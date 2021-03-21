@@ -3,12 +3,12 @@
 require 'rails_helper'
 
 RSpec.describe 'user profile edit page', type: :system do
-  before(:each) do
-    Rails.application.env_config["devise.mapping"] = Devise.mappings[:user]
-    Rails.application.env_config["omniauth.auth"] = OmniAuth.config.mock_auth[:google_oauth2]
-    approvedUser = ApprovedEmail.new(:email => "tony@stark.com")
-    approvedUser.save()
-end
+  before do
+    Rails.application.env_config['devise.mapping'] = Devise.mappings[:user]
+    Rails.application.env_config['omniauth.auth'] = OmniAuth.config.mock_auth[:google_oauth2]
+    approvedUser = ApprovedEmail.new(email: 'tony@stark.com')
+    approvedUser.save
+  end
   # before do
   #     @user1 = User.create(user_email: 'jonathan09@tamu.edu',
   #         admin_status: false)
@@ -35,7 +35,7 @@ end
   describe 'Edit Profile Page' do
     it 'Can access the edit page' do
       visit root_path
-      click_on "Sign in with Google"
+      click_on 'Sign in with Google'
 
       ## to do test creating new profile page
       fill_in 'Enter First Name', with: 'Jonathan'
@@ -62,7 +62,7 @@ end
 
     it 'can edit general information' do
       visit root_path
-      click_on "Sign in with Google"
+      click_on 'Sign in with Google'
 
       ## to do test creating new profile page
       fill_in 'Enter First Name', with: 'Jonathan'
@@ -81,12 +81,11 @@ end
       fill_in 'Enter Linkedin URL', with: 'linkedin.com/jonathan'
       fill_in 'Enter Portfolio URL', with: 'jonathangaytan.com'
       click_on 'Update User profile'
-
     end
 
     it 'cannot edit general information with no first name' do
       visit root_path
-      click_on "Sign in with Google"
+      click_on 'Sign in with Google'
 
       ## to do test creating new profile page
       fill_in 'Enter First Name', with: 'Jonathan'
@@ -107,7 +106,7 @@ end
 
     it 'cannot edit general information with no last name' do
       visit root_path
-      click_on "Sign in with Google"
+      click_on 'Sign in with Google'
 
       ## to do test creating new profile page
       fill_in 'Enter First Name', with: 'Jonathan'
@@ -128,7 +127,7 @@ end
 
     it 'cannot edit general information with invalid facebook URL' do
       visit root_path
-      click_on "Sign in with Google"
+      click_on 'Sign in with Google'
 
       ## to do test creating new profile page
       fill_in 'Enter First Name', with: 'Jonathan'
@@ -149,7 +148,7 @@ end
 
     it 'cannot edit general information with invalid Instagram URL' do
       visit root_path
-      click_on "Sign in with Google"
+      click_on 'Sign in with Google'
 
       ## to do test creating new profile page
       fill_in 'Enter First Name', with: 'Jonathan'
@@ -170,7 +169,7 @@ end
 
     it 'cannot edit general information with invalid Linkedin URL' do
       visit root_path
-      click_on "Sign in with Google"
+      click_on 'Sign in with Google'
 
       ## to do test creating new profile page
       fill_in 'Enter First Name', with: 'Jonathan'
@@ -191,7 +190,7 @@ end
 
     it 'cannot edit general information with all invalid inputs together' do
       visit root_path
-      click_on "Sign in with Google"
+      click_on 'Sign in with Google'
 
       ## to do test creating new profile page
       fill_in 'Enter First Name', with: 'Jonathan'

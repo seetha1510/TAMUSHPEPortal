@@ -12,7 +12,9 @@ require 'rspec/rails'
 
 Capybara.register_driver :headless_chrome do |app|
   capabilities = Selenium::WebDriver::Remote::Capabilities.chrome(
-      'goog:chromeOptions': { args: %w(headless window-size=1280,1024 no-sandbox enable-features=NetworkService,NetworkServiceInProcess  disable-features=VizDisplayCompositor) } )
+    'goog:chromeOptions': { args: %w[headless window-size=1280,1024 no-sandbox enable-features=NetworkService,NetworkServiceInProcess
+                                     disable-features=VizDisplayCompositor] }
+  )
 
   Capybara::Selenium::Driver.new(app, browser: :chrome, desired_capabilities: capabilities)
 end
@@ -43,18 +45,17 @@ rescue ActiveRecord::PendingMigrationError => e
 end
 OmniAuth.config.test_mode = true
 OmniAuth.config.mock_auth[:google_oauth2] = OmniAuth::AuthHash.new({
-    :provider => "google_oauth2",
-    :uid => "123456789",
-    :info => {
-      :name => "Tony Stark",
-      :email => "tony@stark.com"
-    },
-    :credentials => {
-      :token => "token",
-      :refresh_token => "refresh token"
-    }
-  }
-)
+                                                                     provider: 'google_oauth2',
+                                                                     uid: '123456789',
+                                                                     info: {
+                                                                       name: 'Tony Stark',
+                                                                       email: 'tony@stark.com'
+                                                                     },
+                                                                     credentials: {
+                                                                       token: 'token',
+                                                                       refresh_token: 'refresh token'
+                                                                     }
+                                                                   })
 RSpec.configure do |config|
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"

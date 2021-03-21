@@ -22,12 +22,12 @@ class UserProfile < ApplicationRecord
   has_many :students
   has_many :schools, through: :students
 
-  # Profile Picture 
+  # Profile Picture
   has_one_attached :user_profile_picture, dependent: :destroy
-  validates :user_profile_picture, content_type: [:png, :jpg, :jpeg]
+  validates :user_profile_picture, content_type: %i[png jpg jpeg]
 
   before_save :make_lower_case, :add_url
-  
+
   protected
 
   def make_lower_case
@@ -36,29 +36,20 @@ class UserProfile < ApplicationRecord
   end
 
   def add_url
-    if user_facebook_profile_url.present?
-      unless self.user_facebook_profile_url[/^http:\/\//] || self.user_facebook_profile_url[/^https:\/\//]
-        self.user_facebook_profile_url = "https://#{self.user_facebook_profile_url}"
-      end
+    if user_facebook_profile_url.present? && !(user_facebook_profile_url[%r{^http://}] || user_facebook_profile_url[%r{^https://}])
+      self.user_facebook_profile_url = "https://#{user_facebook_profile_url}"
     end
 
-    if user_instagram_profile_url.present?
-      unless self.user_instagram_profile_url[/^http:\/\//] || self.user_instagram_profile_url[/^https:\/\//]
-        self.user_instagram_profile_url = "https://#{self.user_instagram_profile_url}"
-      end
+    if user_instagram_profile_url.present? && !(user_instagram_profile_url[%r{^http://}] || user_instagram_profile_url[%r{^https://}])
+      self.user_instagram_profile_url = "https://#{user_instagram_profile_url}"
     end
 
-    if user_linkedin_profile_url.present?
-      unless self.user_linkedin_profile_url[/^http:\/\//] || self.user_linkedin_profile_url[/^https:\/\//]
-        self.user_linkedin_profile_url = "https://#{self.user_linkedin_profile_url}"
-      end
+    if user_linkedin_profile_url.present? && !(user_linkedin_profile_url[%r{^http://}] || user_linkedin_profile_url[%r{^https://}])
+      self.user_linkedin_profile_url = "https://#{user_linkedin_profile_url}"
     end
 
-    if user_portfolio_url.present?
-      unless self.user_portfolio_url[/^http:\/\//] || self.user_portfolio_url[/^https:\/\//]
-        self.user_portfolio_url = "https://#{self.user_portfolio_url}"
-      end
+    if user_portfolio_url.present? && !(user_portfolio_url[%r{^http://}] || user_portfolio_url[%r{^https://}])
+      self.user_portfolio_url = "https://#{user_portfolio_url}"
     end
   end
-
 end
