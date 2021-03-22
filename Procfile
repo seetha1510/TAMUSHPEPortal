@@ -1,2 +1,3 @@
 release: rake db:migrate
-web: bundle exec puma -t 5:5 -p ${PORT:-3000} -e ${RACK_ENV:-development}
+heroku config:set AWS_ACCESS_KEY_ID=AKIA5AQTLGYVQAIIXCB2 AWS_SECRET_ACCESS_KEY=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
+heroku config:set S3_BUCKET_NAME=membershpe-profile-pictures
