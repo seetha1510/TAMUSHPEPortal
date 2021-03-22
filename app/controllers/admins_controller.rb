@@ -3,7 +3,7 @@
 class AdminsController < ApplicationController
   before_action :authenticate_account!
 
-  helper_method :get_industries
+  helper_method :industries
 
   def home; end
 

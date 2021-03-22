@@ -2,7 +2,7 @@
 
 class UserProfilesController < ApplicationController
   before_action :authenticate_account!
-  helper_method :get_industries
+  helper_method :industries
 
   def index
     @user_profiles = UserProfile.all
@@ -63,7 +63,7 @@ class UserProfilesController < ApplicationController
 
   def new
     @user_profile = UserProfile.new
-    @industries = get_industries
+    @industries = industries
   end
 
   def create
@@ -96,14 +96,14 @@ class UserProfilesController < ApplicationController
         redirect_to approval_path and return
       end
     else
-      @industries = get_industries
+      @industries = industries
       render 'new'
     end
   end
 
   def edit
     @user_profile = UserProfile.find(params[:id])
-    @industries = get_industries
+    @industries = industries
   end
 
   def update
@@ -111,7 +111,7 @@ class UserProfilesController < ApplicationController
     if @user_profile.update(user_profile_params)
       redirect_to(user_profile_path(User.get_current_user_profile(current_account).id))
     else
-      @industries = get_industries
+      @industries = industries
       render 'edit'
     end
   end
@@ -128,7 +128,7 @@ class UserProfilesController < ApplicationController
     end
   end
 
-  def get_industries
+  def industries
     ['Accounting', 'Airline/Aviation', 'Alternative Dispute Resolution', 'Alternative Medicine', 'Animation', 'Apparel & Fashion',
      'Architecture & Planning', 'Arts & Crafts', 'Automotive', 'Aviation & Aerospace', 'Banking', 'Biotechnology', 'Broadcast Media',
      'Building Materials', 'Business Supplies & Equipment', 'Capital Markets', 'Chemicals', 'Civic & Social Organization',

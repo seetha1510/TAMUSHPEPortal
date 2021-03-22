@@ -3,7 +3,7 @@
 class EmployeesController < ApplicationController
   before_action :authenticate_account!
 
-  # helper_method :get_industries
+  # helper_method :industries
 
   def index
     @employees = Employee.all
@@ -53,10 +53,10 @@ class EmployeesController < ApplicationController
                              position_location_city: @form_params[:position_location_city])
 
     if @employee.save
-      redirect_to user_profile_path(User.get_current_user_profile(current_account).id) and return
+      redirect_to user_profile_path(User.get_current_user_profile(current_account).id)
     else
       # redirect_to new_employee_path and return
-      # @industries = get_industries
+      # @industries = industries
       render 'new'
     end
   end
@@ -115,7 +115,7 @@ class EmployeesController < ApplicationController
     redirect_to user_profile_path(User.get_current_user_profile(current_account).id)
   end
 
-  # def get_industries
+  # def industries
   #   ['Accounting', 'Airline/Aviation', 'Alternative Dispute Resolution', 'Alternative Medicine', 'Animation', 'Apparel & Fashion',
   #    'Architecture & Planning', 'Arts & Crafts', 'Automotive', 'Aviation & Aerospace', 'Banking', 'Biotechnology', 'Broadcast Media',
   #    'Building Materials', 'Business Supplies & Equipment', 'Capital Markets', 'Chemicals', 'Civic & Social Organization',

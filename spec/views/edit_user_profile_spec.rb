@@ -6,8 +6,8 @@ RSpec.describe 'user profile edit page', type: :system do
   before do
     Rails.application.env_config['devise.mapping'] = Devise.mappings[:user]
     Rails.application.env_config['omniauth.auth'] = OmniAuth.config.mock_auth[:google_oauth2]
-    approvedUser = ApprovedEmail.new(email: 'tony@stark.com')
-    approvedUser.save
+    approved_user = ApprovedEmail.new(email: 'tony@stark.com')
+    approved_user.save
   end
   # before do
   #     @user1 = User.create(user_email: 'jonathan09@tamu.edu',

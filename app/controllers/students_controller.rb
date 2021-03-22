@@ -35,7 +35,6 @@ class StudentsController < ApplicationController
     if @student.save
       redirect_to user_profile_path(User.get_current_user_profile(current_account).id)
     else
-      puts "\n\n\n\n\n\n"
       render 'new'
     end
   end

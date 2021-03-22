@@ -6,8 +6,8 @@ RSpec.describe 'Search bar ', type: :system do
   before do
     Rails.application.env_config['devise.mapping'] = Devise.mappings[:user]
     Rails.application.env_config['omniauth.auth'] = OmniAuth.config.mock_auth[:google_oauth2]
-    approvedUser = ApprovedEmail.new(email: 'tony@stark.com')
-    approvedUser.save
+    approved_user = ApprovedEmail.new(email: 'tony@stark.com')
+    approved_user.save
   end
 
   describe 'Successful' do

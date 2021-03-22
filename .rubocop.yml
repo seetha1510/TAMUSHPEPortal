@@ -13,17 +13,20 @@ AllCops:
     - 'bin/**/*'
     - 'node_modules/**/*'
     - 'config/**/*'
-    - 'spec/**/*'
 
+# All the following cops are not part of the coding standard so they are disabled
 Metrics:
   Enabled: false
 
-Lint/AmbiguousBlockAssociation:
-  Exclude:
-    - spec/**/*
+Style/GuardClause: 
+  Enabled: false
 
 Style/Documentation:
   Enabled: false
 
+RSpec:
+  Enabled: false
+
+# There isn't a line length limit in the coding so it is set to 165 characters
 Layout/LineLength:
   Max: 165
