@@ -3,15 +3,16 @@
 require 'rails_helper'
 
 RSpec.describe 'employee edit page', type: :system do
-  before(:each) do
-    Rails.application.env_config["devise.mapping"] = Devise.mappings[:user]
-    Rails.application.env_config["omniauth.auth"] = OmniAuth.config.mock_auth[:google_oauth2]
-    approvedUser = ApprovedEmail.new(:email => "tony@stark.com")
-    approvedUser.save()
-end
+  before do
+    Rails.application.env_config['devise.mapping'] = Devise.mappings[:user]
+    Rails.application.env_config['omniauth.auth'] = OmniAuth.config.mock_auth[:google_oauth2]
+    approved_user = ApprovedEmail.new(email: 'tony@stark.com')
+    approved_user.save
+  end
+
   it 'displays the edit employee form correctly' do
     visit root_path
-    click_on "Sign in with Google"
+    click_on 'Sign in with Google'
 
     ## create new profile page
     fill_in 'Enter First Name',	with: 'Yifei'
@@ -24,12 +25,12 @@ end
     click_on 'Create User profile'
 
     click_link('Profile', match: :first)
-    click_link('Add',match: :first)
+    click_link('Add', match: :first)
 
     fill_in 'Company *', with: 'Microsoft'
     fill_in 'Title *', with: 'Software Engineer'
-    fill_in 'City *', with: "Missouri City"
-    fill_in 'State *', with: "Texas"
+    fill_in 'City *', with: 'Missouri City'
+    fill_in 'State *', with: 'Texas'
     click_on 'Create Employee'
 
     find(:css, 'i.fa.fa-edit.fa-lg').click
@@ -41,7 +42,7 @@ end
 
   it 'updates an employee upon submitting' do
     visit root_path
-    click_on "Sign in with Google"
+    click_on 'Sign in with Google'
 
     ## create new profile page
     fill_in 'Enter First Name',	with: 'Yifei'
@@ -54,27 +55,27 @@ end
     click_on 'Create User profile'
 
     click_link('Profile', match: :first)
-    click_link('Add',match: :first)
+    click_link('Add', match: :first)
 
     fill_in 'Company *', with: 'Microsoft'
     fill_in 'Title *', with: 'Software Engineer'
-    fill_in 'City *', with: "Missouri City"
-    fill_in 'State *', with: "Texas"
+    fill_in 'City *', with: 'Missouri City'
+    fill_in 'State *', with: 'Texas'
     click_on 'Create Employee'
 
     find(:css, 'i.fa.fa-edit.fa-lg').click
 
     fill_in 'Company *', with: 'Google'
     fill_in 'Title *', with: 'Software Engineer'
-    fill_in 'City *', with: "Missouri City"
-    fill_in 'State *', with: "Texas"
-    click_on "Update Employee"
+    fill_in 'City *', with: 'Missouri City'
+    fill_in 'State *', with: 'Texas'
+    click_on 'Update Employee'
     expect(page).to have_content('Google')
   end
 
   it 'redirects to the correct page after updating' do
     visit root_path
-    click_on "Sign in with Google"
+    click_on 'Sign in with Google'
 
     ## create new profile page
     fill_in 'Enter First Name',	with: 'Yifei'
@@ -87,22 +88,21 @@ end
     click_on 'Create User profile'
 
     click_link('Profile', match: :first)
-    click_link('Add',match: :first)
+    click_link('Add', match: :first)
 
     fill_in 'Company *', with: 'Microsoft'
     fill_in 'Title *', with: 'Software Engineer'
-    fill_in 'City *', with: "Missouri City"
-    fill_in 'State *', with: "Texas"
+    fill_in 'City *', with: 'Missouri City'
+    fill_in 'State *', with: 'Texas'
     click_on 'Create Employee'
 
     find(:css, 'i.fa.fa-edit.fa-lg').click
 
-
     fill_in 'Company *', with: 'Google'
     fill_in 'Title *', with: 'Software Engineer'
-    fill_in 'City *', with: "Missouri City"
-    fill_in 'State *', with: "Texas"
-    click_on "Update Employee"
+    fill_in 'City *', with: 'Missouri City'
+    fill_in 'State *', with: 'Texas'
+    click_on 'Update Employee'
     expect(page).to have_content('My Profile')
   end
 end

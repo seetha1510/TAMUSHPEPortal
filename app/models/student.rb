@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Student < ApplicationRecord
   belongs_to :user_profile, inverse_of: :students
   belongs_to :school

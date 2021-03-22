@@ -11,9 +11,7 @@ class Account < ApplicationRecord
   end
 
   def create_in_user_table
-    @doesUserExist = User.where(user_email: email)
-    if @doesUserExist.length() == 0
-      User.create!(user_email: email, admin_status: false, approved_status: false)
-    end
+    @does_user_exist = User.where(user_email: email)
+    User.create!(user_email: email, admin_status: false, approved_status: false) if @does_user_exist.length.zero?
   end
 end

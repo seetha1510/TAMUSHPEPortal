@@ -3,27 +3,28 @@
 require 'rails_helper'
 
 RSpec.describe 'Tamu ship ', type: :system do
-  before(:each) do
-    Rails.application.env_config["devise.mapping"] = Devise.mappings[:user]
-    Rails.application.env_config["omniauth.auth"] = OmniAuth.config.mock_auth[:google_oauth2]
-    approvedUser = ApprovedEmail.new(:email => "tony@stark.com")
-    approvedUser.save()
-end
+  before do
+    Rails.application.env_config['devise.mapping'] = Devise.mappings[:user]
+    Rails.application.env_config['omniauth.auth'] = OmniAuth.config.mock_auth[:google_oauth2]
+    approved_user = ApprovedEmail.new(email: 'tony@stark.com')
+    approved_user.save
+  end
+
   describe 'Successful' do
     it 'shows the right content' do
       visit root_path
-      click_on "Sign in with Google"
+      click_on 'Sign in with Google'
     end
 
     it 'goes to the right page after sign up' do
       visit root_path
-      click_on "Sign in with Google"
+      click_on 'Sign in with Google'
       expect(page).to have_content('Facebook')
     end
 
     it 'shows the right content' do
       visit root_path
-      click_on "Sign in with Google"
+      click_on 'Sign in with Google'
 
       expect(page).to have_content('First Name')
       expect(page).to have_content('Last Name')
@@ -42,7 +43,7 @@ end
 
     it 'can create new profile page' do
       visit root_path
-      click_on "Sign in with Google"
+      click_on 'Sign in with Google'
 
       ## to do test creating new profile page
       fill_in 'Enter First Name', with: 'Yifei'
@@ -61,7 +62,7 @@ end
   describe 'Unsucessful' do
     it 'go back to create new profile page after failing' do
       visit root_path
-      click_on "Sign in with Google"
+      click_on 'Sign in with Google'
 
       ## to do test creating new profile page
       fill_in 'Enter First Name', with: 'Yifei'
@@ -77,7 +78,7 @@ end
 
     it 'shows error message for wrong first name' do
       visit root_path
-      click_on "Sign in with Google"
+      click_on 'Sign in with Google'
 
       ## to do test creating new profile page
       fill_in 'Enter First Name', with: ''
@@ -93,7 +94,7 @@ end
 
     it 'shows error message for wrong last name' do
       visit root_path
-      click_on "Sign in with Google"
+      click_on 'Sign in with Google'
 
       ## to do test creating new profile page
       fill_in 'Enter First Name', with: 'Yifei'
@@ -109,7 +110,7 @@ end
 
     it 'shows error message for wrong format facebook url' do
       visit root_path
-      click_on "Sign in with Google"
+      click_on 'Sign in with Google'
       ## to do test creating new profile page
       fill_in 'Enter First Name', with: 'Yifei'
       fill_in 'Enter Last Name',  with: 'Liang'
@@ -124,7 +125,7 @@ end
 
     it 'shows error message for wrong format instagram url' do
       visit root_path
-      click_on "Sign in with Google"
+      click_on 'Sign in with Google'
 
       ## to do test creating new profile page
       fill_in 'Enter First Name', with: 'Yifei'
@@ -140,7 +141,7 @@ end
 
     it 'shows error message for wrong format linkedin url' do
       visit root_path
-      click_on "Sign in with Google"
+      click_on 'Sign in with Google'
 
       ## to do test creating new profile page
       fill_in 'Enter First Name', with: 'Yifei'
@@ -156,7 +157,7 @@ end
 
     it 'shows error message for wrong format year' do
       visit root_path
-      click_on "Sign in with Google"
+      click_on 'Sign in with Google'
 
       ## to do test creating new profile page
       fill_in 'Enter First Name', with: 'Yifei'
@@ -172,7 +173,7 @@ end
 
     it 'shows error message for wrong format phone number' do
       visit root_path
-      click_on "Sign in with Google"
+      click_on 'Sign in with Google'
 
       ## to do test creating new profile page
       fill_in 'Enter First Name', with: 'Yifei'
