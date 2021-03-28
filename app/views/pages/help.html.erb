@@ -1,0 +1,19 @@
+
+<h2>Contact Information</h2>
+ <% @admins.each do |admin| %>
+ <%=admin.user_first_name[0].capitalize+admin.user_first_name.slice(1..-1)+" " + admin.user_last_name[0].capitalize+admin.user_last_name.slice(1..-1)%>
+
+<%= mail_to admin.user_email do %>
+  <i class="fa fa-envelope" aria-hidden="true"></i>
+<% end %>
+<br/>
+ <%end%>
+ <h2>User Documentation</h2>
+
+
+
+
+
+
+
+

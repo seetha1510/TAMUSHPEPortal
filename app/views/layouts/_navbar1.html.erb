@@ -23,6 +23,7 @@
             <%end%>
                 <%= link_to show_path, class:"nav-link" do%>
                 <i class="fa fa-home fa-nav" aria-hidden="true"></i> Home
+                
                 <% end %>
             </li>
 
@@ -48,6 +49,15 @@
             <%# <li>
                 <a href="#">Settings</a>
             </li> %>
+            <% if current_page?(:controller => 'user_profiles', :action => 'index') %>
+                <li class="active">
+            <% else %>
+                <li>
+            <%end%>
+                <%= link_to help_path, class:"nav-link" do%>
+                    <i class="fa fa-question     fa-nav" aria-hidden="true"></i> Help
+                <% end %>
+            </li>
             <% if current_page?(:controller => 'users', :action => 'setting') %>
                 <li class="active">
             <% else %>
@@ -69,6 +79,7 @@
             <%else%>
             <%end%>
         </ul>
+
         <div class="footer" style="position:absolute;bottom:10px;">
             &copy; Copyright 2021
         </div>
