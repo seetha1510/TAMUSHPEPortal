@@ -1,5 +1,4 @@
-<style>
-h2 {
+<style>h2 {
     font-family: Arial, Verdana;
     font-weight: 800;
     font-size: 2.5rem;
@@ -33,14 +32,20 @@ h2 {
 }
 </style>
 
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 
-<!-- jQuery library -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
 
 <!-- Latest compiled JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <h2>Contact Information</h2>
  <% @admins.each do |admin| %>
  <%=admin.user_first_name[0].capitalize+admin.user_first_name.slice(1..-1)+" " + admin.user_last_name[0].capitalize+admin.user_last_name.slice(1..-1)%>
@@ -50,17 +55,16 @@ h2 {
 <% end %>
 <br/>
  <%end%>
+  <h2>Frequently Asked Questions </h2>
 <section class="accordion-section clearfix mt-3" aria-label="Question Accordions">
-<h2>Frequently Asked Questions </h2>
-
   <div class="container">
   
-	  
+	 
 	  <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
 		<div class="panel panel-default">
 		  <div class="panel-heading p-3 mb-3" role="tab" id="heading0">
 			<h3 class="panel-title">
-			  <a class="collapsed" role="button" title="" data-toggle="collapse" data-parent="#accordion" href="#collapse0" aria-expanded="true" aria-controls="collapse0">
+			  <a class="collapsed" role="button" title="" data-bs-toggle="collapse" data-bs-parent="#accordion" href="#collapse0" aria-expanded="true" aria-controls="collapse0">
 				What are the benefits of Solodev CMS?
 			  </a>
 			</h3>
