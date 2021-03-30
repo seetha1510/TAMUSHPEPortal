@@ -10,6 +10,8 @@ class AdminsController < ApplicationController
   def committees
     @committees = Committee.all
     @approved_users = get_valid_users()
+    @member = Member.new
+    @committee = Committee.new
   end
 
   def committees_new
