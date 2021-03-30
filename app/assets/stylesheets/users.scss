@@ -261,6 +261,10 @@ a[data-toggle="collapse"] {
   color: #f55f5f;
 }
 
+.fa-link:hover {
+  color: #000000;
+}
+
 .fa-facebook-square {
   color: #999999;
   padding: 0.2rem;
@@ -286,3 +290,40 @@ a[data-toggle="collapse"] {
   padding: 0.2rem;
 }
 
+.fa-link {
+  color: #999999;
+  padding: 0.2rem;
+}
+
+// Search CSS
+
+.card {
+  width: 400px;
+  border: none;
+  border-radius: 10px;
+  background-color: #fff
+}
+
+.card,h4 {
+  font-size: calc(1.275rem + .3vw);
+  font-weight: 500;
+}
+
+.card,span {
+  font-size: calc(0.8rem + .3vw);
+  font-weight: 400;
+}
+
+.stats {
+  background: #f2f5f8 !important;
+  color: #000 !important
+}
+
+.articles {
+  font-size: 10px;
+  color: #a1aab9
+}
+
+.card-content{
+  margin-left: 1rem!important;
+}
