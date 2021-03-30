@@ -11,9 +11,10 @@
     <%= text_field_tag :search_word, params[:search_word], aria_label: "Text input with dropdown button",  class: "form-control", type: "text",placeholder:"Search" %>
     
   </div>
-  <div class="col-sm-9" name = "selectfield">
+
+  <div class="col-sm-9" name = "industryselectfield">
     
-    <%= select_tag :search_word, options_for_select([["First Name"],["Last Name"],["Employer"],["School"],["Field of Study"],["Industry"],["Position Title"]],params[:search_type]), :class  => 'form-select'%>
+    <%= select_tag :search_word,options_for_select(@industries, @industries[0]), :class  => 'form-select'%>
   </div>
   <div class="col-sm-1">
     <%= submit_tag "Search" , class: "btn btn-primary"%>
@@ -79,14 +80,14 @@
 
 <script>
 $(document).ready(function() {
-  $('[name="selectfield"]').hide();
+  $('[name="industryselectfield"]').hide();
 
   $('[name="search_type"]').change(function() {
-    if ($('[name="search_type"]').val() === "Position Title") {
-      $('[name="selectfield"]').show();
+    if ($('[name="search_type"]').val() === "Industry") {
+      $('[name="industryselectfield"]').show();
       $('[name="textfield"]').hide();
     } else {
-      $('[name="selectfield"]').hide();
+      $('[name="industryselectfield"]').hide();
       $('[name="textfield"]').show();
     }
   })

@@ -5,6 +5,7 @@ class UserProfilesController < ApplicationController
   helper_method :industries
 
   def index
+    @industries = industries
     @user_profiles = UserProfile.all
     search_type = params[:search_type]
     search_word = params[:search_word]
