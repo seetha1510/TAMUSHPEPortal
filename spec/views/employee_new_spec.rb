@@ -31,7 +31,7 @@ RSpec.describe 'employee new page', type: :system do
 
     expect(page).to have_field('Company *')
     expect(page).to have_field('Title *')
-    expect(page).to have_button('Create Employee')
+    expect(page).to have_button('New')
   end
 
   it 'creates an employee upon submitting' do
@@ -55,7 +55,7 @@ RSpec.describe 'employee new page', type: :system do
     fill_in 'Title *', with: 'Software Engineer'
     fill_in 'City *', with: 'Missouri City'
     fill_in 'State *', with: 'Texas'
-    click_on 'Create Employee'
+    click_on 'New'
 
     expect(page).to have_content('Microsoft')
     expect(page).to have_content('Software Engineer')
@@ -82,7 +82,7 @@ RSpec.describe 'employee new page', type: :system do
     fill_in 'Title *', with: 'Software Engineer'
     fill_in 'City *', with: 'Missouri City'
     fill_in 'State *', with: 'Texas'
-    click_on 'Create Employee'
+    click_on 'New'
 
     expect(page).to have_content('My Profile')
     expect(page).to have_content('General Information')
