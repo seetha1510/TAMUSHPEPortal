@@ -4,10 +4,9 @@ class CreateCommittees < ActiveRecord::Migration[6.1]
 
       t.string :committee_name
 
+      t.index :committee_name, unique: true
+
       t.timestamps
     end
-
-    add_index :committees, :committee_name, unique: true
-
   end
 end
