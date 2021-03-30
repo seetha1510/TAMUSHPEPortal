@@ -4,11 +4,16 @@
 
  <div class="input-group mb-3">
  <div class="col-sm-2">
-    <%= select_tag :search_type, options_for_select([["First Name"],["Last Name"],["Employer"],["School"],["Field of Study"],["Position Industry"],["Position Title"]],params[:search_type]), :class  => 'form-select'%>
+    <%= select_tag :search_type, options_for_select([["First Name"],["Last Name"],["Employer"],["School"],["Field of Study"],["Industry"],["Position Title"]],params[:search_type]), :class  => 'form-select'%>
     
   </div>  
-  <div class="col-sm-9">
+  <div class="col-sm-9" name = "textfield">
     <%= text_field_tag :search_word, params[:search_word], aria_label: "Text input with dropdown button",  class: "form-control", type: "text",placeholder:"Search" %>
+    
+  </div>
+  <div class="col-sm-9" name = "selectfield">
+    
+    <%= select_tag :search_word, options_for_select([["First Name"],["Last Name"],["Employer"],["School"],["Field of Study"],["Industry"],["Position Title"]],params[:search_type]), :class  => 'form-select'%>
   </div>
   <div class="col-sm-1">
     <%= submit_tag "Search" , class: "btn btn-primary"%>
@@ -70,3 +75,20 @@
     <% end %>
   </tbody>
 </table>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+<script>
+$(document).ready(function() {
+  $('[name="selectfield"]').hide();
+
+  $('[name="search_type"]').change(function() {
+    if ($('[name="search_type"]').val() === "Position Title") {
+      $('[name="selectfield"]').show();
+      $('[name="textfield"]').hide();
+    } else {
+      $('[name="selectfield"]').hide();
+      $('[name="textfield"]').show();
+    }
+  })
+});
+</script>
