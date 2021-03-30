@@ -20,6 +20,18 @@ class AdminsController < ApplicationController
     redirect_to admin_committees_path 
   end
 
+  def committees_delete
+    @committee_id = params[:id]
+    @members = Member.where(committee_id: @committee_id)
+    @members.each do |member|
+      member.destroy
+    end
+    @committee = Committee.find(@committee_id)
+    @committee.destroy
+
+    redirect_to admin_committees_path
+  end
+
   def committees_add_member
     @committee_id = params[:id]
     @member_name = params[:member_name]

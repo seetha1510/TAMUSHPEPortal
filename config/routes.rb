@@ -28,6 +28,7 @@ Rails.application.routes.draw do
 
   get 'admin/committees', to: 'admins#committees', as: 'admin_committees'
   post 'admin/committees/new', to: 'admins#committees_new', as: 'admin_committees_new'
+  get 'admin/committees/delete/:id', to: 'admins#committees_delete', as: 'admin_committees_delete'
   post 'admin/committees/add/:id', to: 'admins#committees_add_member', as: 'admin_committees_add_member'
   get 'admin/committees/remove/:id', to: 'admins#committees_remove_member', as: 'admin_committees_remove_member'
 

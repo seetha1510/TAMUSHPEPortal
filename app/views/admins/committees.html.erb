@@ -4,10 +4,11 @@
         <%= link_to "Back", admin_path%>
 
         <% @committees.each do |committee| %>
-            <h3><%= committee.committee_name %></h3>
+            <h3><%= committee.committee_name %> Committee</h3>
+            <%= link_to "Delete", admin_committees_delete_path(committee.id), class: "btn btn-primary" %>
             <%= form_with url: admin_committees_add_member_path(committee.id), method: :post do |form| %>
                 <table class="table table-hover mt-3">
-                    <thead>
+                    <thead class="table" style="background-color:#001F5B;color:white">
                         <tr>
                             <th scope="col">First Name</th>
                             <th scope="col">Last Name</th>
@@ -17,14 +18,14 @@
                     </thead>
                     <tbody>
                         <% Member.where(committee_id: committee.id).each do |member| %>
-                            <tr>
+                            <tr class="table-light">
                                 <td><%= UserProfile.find(member.user_profile_id).user_first_name %></td>
                                 <td><%= UserProfile.find(member.user_profile_id).user_last_name %></td>
                                 <td><%= member.member_position %></td>
                                 <td><%= link_to "Delete", admin_committees_remove_member_path(member.id) %></td>
                             </tr>
                         <% end %>
-                        <tr>
+                        <tr class="table-light">
                             <td><%= form.select :member_name, @approved_users, {}, {class: "form-select"}%></td>
                             <td><%= form.text_field :member_position, class: "form-control"%>
                             <td><%= form.submit "+", class:"btn btn-primary"%></td>
