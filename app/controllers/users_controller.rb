@@ -33,6 +33,7 @@ class UsersController < ApplicationController
     @employees = Employee.where(user_profile_id: @user_profile.id)
     @profile_pic = User.get_current_user_profile(current_account).user_profile_picture
     @students = Student.where(user_profile_id: @user_profile.id)
+    @members = Member.where(user_profile_id: @user_profile.id)
 
     @employees.each do |employee|
       @employer = Employer.find(employee.employer_id)
@@ -46,6 +47,10 @@ class UsersController < ApplicationController
       student.destroy
       @students_with_same_school = Student.where(school_id: @school.id)
       @school.destroy if @students_with_same_school.length.zero?
+    end
+
+    @members.each do |member|
+      member.destroy
     end
 
     @profile_pic.purge

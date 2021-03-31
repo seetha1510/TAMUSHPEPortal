@@ -1,0 +1,42 @@
+<div class="container-fluid" style="background-color:#001F5B!important;min-height:100vh;height:100%;">        
+    <div class="container" style="background-color:#f8f9fa!important;padding-top:50px;padding-right:25px;padding-left:25px;padding-bottom:25px;min-height:100vh;height:100%;">
+        <h1>Set Committees</h1>
+        <%= link_to "Back", admin_path%>
+
+        <% @committees.each do |committee| %>
+            <h3 style="margin-top: 50px;"><%= committee.committee_name %></h3>
+            <%= form_with url: admin_committees_add_member_path(committee.id), method: :post do |form| %>
+                <table class="table table-hover mt-3">
+                    <thead class="table" style="background-color:#001F5B;color:white">
+                        <tr>
+                            <th scope="width" style="width:45%;">First Name</th>
+                            <th scope="col" style="width:45%;">Last Name</th>
+                            <th scope="col" style="width:10%;">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% Member.where(committee_id: committee.id).each do |member| %>
+                            <tr class="table-light">
+                                <td><%= UserProfile.find(member.user_profile_id).user_first_name %></td>
+                                <td><%= UserProfile.find(member.user_profile_id).user_last_name %></td>
+                                <td><%= link_to "Delete", admin_committees_remove_member_path(member.id) %></td>
+                            </tr>
+                        <% end %>
+                        <tr class="table-light">
+                            <td><%= form.select :member_name, @approved_users, {}, {class: "form-select"}%></td>
+                            <td></td>
+                            <td><%= form.submit "+", class:"btn btn-primary"%></td>
+                        </tr>
+                    </tbody>
+                </table>
+            <% end %>
+        <% end %>
+
+        <h3 style="margin-top:50px;">New Committee</h3>
+        <%= form_with url: admin_committees_new_path, method: :post do |form| %>
+            <%= form.text_field :committee_name, class: "form-control"%>
+            <%= form.submit "Add", class: "btn btn-primary", style: "margin-top:25px;"%>
+        <% end %>
+        
+    </div>
+</div>
