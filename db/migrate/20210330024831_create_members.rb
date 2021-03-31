@@ -4,7 +4,6 @@ class CreateMembers < ActiveRecord::Migration[6.1]
 
       t.integer :user_profile_id
       t.integer :committee_id
-      t.string :member_position
 
       t.index [:user_profile_id, :committee_id], unique: true
 

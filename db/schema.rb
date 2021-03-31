@@ -89,7 +89,6 @@ ActiveRecord::Schema.define(version: 2021_03_30_024831) do
   create_table "members", force: :cascade do |t|
     t.integer "user_profile_id"
     t.integer "committee_id"
-    t.string "member_position"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_profile_id", "committee_id"], name: "index_members_on_user_profile_id_and_committee_id", unique: true

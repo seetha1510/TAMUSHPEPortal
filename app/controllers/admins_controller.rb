@@ -22,29 +22,15 @@ class AdminsController < ApplicationController
     redirect_to admin_committees_path 
   end
 
-  def committees_delete
-    @committee_id = params[:id]
-    @members = Member.where(committee_id: @committee_id)
-    @members.each do |member|
-      member.destroy
-    end
-    @committee = Committee.find(@committee_id)
-    @committee.destroy
-
-    redirect_to admin_committees_path
-  end
-
   def committees_add_member
     @committee_id = params[:id]
     @member_name = params[:member_name]
-    @member_position = params[:member_position]
-
 
     @index = @member_name.index('-')
     @email = @member_name[@index+2..-1]
     @user_profile_id = UserProfile.find_by(user_id: User.find_by(user_email: @email).id).id
 
-    @member = Member.new(user_profile_id: @user_profile_id, committee_id: @committee_id, member_position: @member_position)
+    @member = Member.new(user_profile_id: @user_profile_id, committee_id: @committee_id)
     @member.save
 
     redirect_to admin_committees_path
@@ -192,6 +178,7 @@ class AdminsController < ApplicationController
     @students = Student.where(user_profile_id: @user_profile.id)
     @profile_pic = User.get_current_user_profile(current_account).user_profile_picture
     @account = Account.find_by(email: @user.user_email)
+    @members = Member.where(user_profile_id: @user_profile.id)
 
     @employees.each do |employee|
       @employer = Employer.find(employee.employer_id)
@@ -205,6 +192,10 @@ class AdminsController < ApplicationController
       student.destroy
       @students_with_same_school = Student.where(school_id: @school.id)
       @school.destroy if @students_with_same_school.length.zero?
+    end
+
+    @members.each do |member|
+      member.destroy
     end
 
     @profile_pic.purge
