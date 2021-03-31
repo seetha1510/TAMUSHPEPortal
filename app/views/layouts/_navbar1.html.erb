@@ -5,8 +5,8 @@
     <% else %>
     <nav id="sidebar">
         <div class="p-4 pt-3" style="min-height:100%;position: relative;">
-            <div class="header mb-4" style="top:50px;">
-                <%= image_tag "tamuSHPE_app_logo.png", style: 'height:auto;width:90%;' %>
+            <div class="header mb-4 " style="top:50px; display:flex;align-items:center;">
+                <%= image_tag "tamuSHPE_app_logo.png", style: 'height:auto;width:90%;', class:'mr-2' %><i id="close-button" class="fa fa-times fa-3x" aria-hidden="true"></i>                
             </div>
         
         <% if User.get_current_user_profile(current_account).user_profile_picture.attached? && User.get_current_user_profile(current_account).user_profile_picture.representable?%>

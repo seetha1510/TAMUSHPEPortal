@@ -80,6 +80,9 @@ h5,
   background-position: center center;
 }
 
+#close-button{
+  display: none;
+}
 .navbar {
   padding: 15px 10px;
   background: #fff;
@@ -156,12 +159,22 @@ h5,
   background: transparent;
   color: #fd652f;
 }
-@media (max-width: 991.98px) {
-  #sidebar {
-    margin-left: -300px;
+@media (max-width: 1050px) {
+  #sidebar{
+    // margin-left: -300px;
+    z-index: 100;
+    display: none;
+    transform: translateX(-300px);
+    
   }
   #sidebar.active {
-    margin-left: 0;
+    // margin-left: 0;
+    display: block;
+    transform: translateX(300px);
+  }
+  #close-button{
+    display: block;
+    transform: translateX(5px);
   }
 }
 
@@ -182,6 +195,10 @@ a[data-toggle="collapse"] {
 @media (max-width: 991.98px) {
   #sidebarCollapse span {
     display: none;
+  }
+  #search-results{
+    padding-left: 0px;
+    padding-right: 0px;
   }
 }
 
@@ -298,7 +315,7 @@ a[data-toggle="collapse"] {
 // Search CSS
 
 .card {
-  width: 400px;
+  width: 450px;
   border: none;
   border-radius: 10px;
   background-color: #fff
@@ -307,11 +324,16 @@ a[data-toggle="collapse"] {
 .card,h4 {
   font-size: calc(1.275rem + .3vw);
   font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .card,span {
-  font-size: calc(0.8rem + .3vw);
-  font-weight: 400;
+  font-size: calc(1.0rem + .3vw);
+  font-weight: 400 !important;
+  max-width: 100%;
+  
 }
 
 .stats {
@@ -326,4 +348,5 @@ a[data-toggle="collapse"] {
 
 .card-content{
   margin-left: 1rem!important;
+  width: calc(100% - 121px);
 }
