@@ -1,10 +1,15 @@
-<div class="container-fluid" style="background-color:#001F5B!important;min-height:100vh;height:100%;">        
+<div class="container-fluid" style="background-color:#001F5B!important;min-height:100vh;height:100%;">       
     <div class="container" style="background-color:#f8f9fa!important;padding-top:50px;padding-right:25px;padding-left:25px;padding-bottom:25px;min-height:100vh;height:100%;">
         <h1>Set Committees</h1>
-        <%= link_to "Back", admin_path%>
+        <%= link_to "Back", admin_path, style: "display: block;"%>
 
         <% @committees.each do |committee| %>
-            <h3 style="margin-top: 50px;"><%= committee.committee_name %></h3>
+
+            <div class="row g-3 align-items-center mb-3" style="margin-top:50px;">
+                <h3 style="margin-bottom: 0px;display: inline-block;max-width:max-content;"><%= committee.committee_name %></h3>
+                <%= link_to "Delete", admin_committees_delete_path(committee.id), data: { confirm: "Are you sure you want to delete the committee #{committee.committee_name}?\nThis action cannot be undone." }, class:"btn btn-primary", style: "max-width:max-content;margin-left: 25px;"%>
+            </div>
+            
             <%= form_with url: admin_committees_add_member_path(committee.id), method: :post do |form| %>
                 <table class="table table-hover mt-3">
                     <thead class="table" style="background-color:#001F5B;color:white">
