@@ -7,7 +7,7 @@
             <%= link_to "Back", admin_approved_users_path, class:"btn btn-primary", style: "max-width:max-content;" %>
             <button id="approved_view_submit2" class="btn btn-primary" style="max-width:max-content;margin-left:5px;">Save</button>
             <% if User.get_current_user(current_account).user_email != @user.user_email %>
-                <%= link_to "Delete User", admin_approved_delete_path(@user.id), class:"btn btn-primary", style: "max-width:max-content;margin-left:5px;" %>
+                <%= link_to "Delete User", admin_approved_delete_path(@user.id), data: { confirm: "Are you sure you want to delete user #{@user_profile.user_first_name} #{@user_profile.user_last_name}?\nThis action cannot be undone." }, class:"btn btn-primary", style: "max-width:max-content;margin-left:5px;" %>
             <% end %>        
         </div>
         
@@ -15,7 +15,14 @@
             <ul class="list-group">
                 
                 <div class="row g-3 align-items-center mb-3" style="margin-top:25px;">
-                    <h3><%= @user_profile.user_first_name %>'s Profile</h3>
+
+                    <% if UserProfile.find_by(user_id: @user.id).user_profile_picture.attached? && UserProfile.find_by(user_id: @user.id).user_profile_picture.representable?%>
+                        <a href="#" class="img logo rounded-circle mb-4" style="margin-left:25px;height:100px;width:100px;background-image: url(<%= url_for(UserProfile.find_by(user_id: @user.id).user_profile_picture )%>);"></a> 
+                    <% else %>
+                        <a href="#" class="img logo rounded-circle mb-4" style="margin-left:25px;height:100px;width:100px;background-image: url(<%= asset_path 'default_profile_picture.jpg' %>);"></a> 
+                    <% end %>
+
+                    <h3 style="max-width:max-content;margin-left:25px;"><%= @user_profile.user_first_name %>'s Profile</h3>
                 </div>
 
                 <div class="row g-3 align-items-center mb-3">
@@ -98,6 +105,15 @@
                         <li class="list-group-item" style="background-color:#f8f9fa!important;">
                             <%= form.label :user_portfolio_url, "Portfolio Url" %>
                             <%= form.text_field :user_portfolio_url, value: @user_profile.user_portfolio_url, class:"form-control" %>
+                        </li>
+                    </div>
+                    <div class="col-lg-6">
+                        <li class="list-group-item" style="background-color:#f8f9fa!important;height:81px;display:flex;align-items:center;">
+                            <% if @user_profile.user_profile_picture.attached? && @user_profile.user_profile_picture.representable? %>
+                                <%= link_to 'Remove Profile Picture', delete_image_user_profile_url(image_id: @user_profile.user_profile_picture.id), method: :delete, data: { confirm: 'Are you sure?' },class: "btn btn-sm btn-danger" %>
+                            <% else %>
+                                <%= form.label "User currently has the default profile picture" %>
+                            <% end %>
                         </li>
                     </div>
                 </div>

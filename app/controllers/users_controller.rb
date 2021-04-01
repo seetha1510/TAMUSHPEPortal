@@ -10,13 +10,15 @@ class UsersController < ApplicationController
       redirect_to(new_user_profile_path)
     elsif !User.get_current_user(current_account).approved_status && ApprovedEmail.where(email: User.get_current_user(current_account).user_email).length <= 0
       redirect_to(approval_path)
+    elsif ApprovedEmail.where(email: User.get_current_user(current_account).user_email).length > 0
+      @user = User.get_current_user(current_account)
+      @user.update(approved_status: true)
+      @remove_email = ApprovedEmail.where(email: User.get_current_user(current_account).user_email)
+      @remove_email.each do |email|
+        email.destroy
+      end
     end
 
-    # redirect_to(new_user_profile_path) unless UserProfile.exists?(user_id: User.get_current_user(current_account).id)
-
-    # if !User.get_current_user(current_account).approved_status && !(ApprovedEmail.where(email: User.get_current_user(current_account).user_email).length() > 0)
-    # redirect_to(approval_path) and return
-    # end
   end
 
   def new; end
