@@ -25,5 +25,11 @@
                 </tbody>
             <table>
         <% end %>
+
+        <h2> Import with CSV file </h2>
+        <%= form_tag admin_email_import_path, multipart: true do%>
+            <%= file_field_tag :file%>
+            <%= submit_tag "Import csv"%>
+        <%end%>
     </div>
 </div>

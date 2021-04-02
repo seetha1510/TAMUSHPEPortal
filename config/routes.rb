@@ -33,6 +33,7 @@ Rails.application.routes.draw do
   get 'admin/emails', to: 'admins#emails', as: 'admin_preapproved_emails'
   get 'admin/email/add', to: 'admins#email_add', as: 'admin_email_add'
   get 'admin/email/remove/:id', to: 'admins#email_remove', as: 'admin_email_remove'
+  post 'admin/email/import', to: 'admins#email_import', as: 'admin_email_import'
 
   get 'admin/approved', to: 'admins#approved', as: 'admin_approved_users'
   get 'admin/approved/user/:id', to: 'admins#approved_view', as: 'admin_approved_view'

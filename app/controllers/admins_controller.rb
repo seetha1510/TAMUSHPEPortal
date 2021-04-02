@@ -194,4 +194,15 @@ class AdminsController < ApplicationController
       'student_field_of_study' => params["student_field_of_study_#{index}".to_sym]
     }
   end
+
+  def email_import
+    @num = ApprovedEmail.import(params[:file])
+    if @num.nil?
+      redirect_to admin_preapproved_emails_path, alert: "The file uploaded was not of CSV format"
+    elsif @num == -1
+      redirect_to admin_preapproved_emails_path, alert: "There was a problem with adding pre-approved emails"
+    else
+      redirect_to admin_preapproved_emails_path, notice: "Successfully added #{@num} Pre-approved Emails"
+    end
+  end
 end
