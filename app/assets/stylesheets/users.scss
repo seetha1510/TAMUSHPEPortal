@@ -338,7 +338,8 @@ a[data-toggle="collapse"] {
 
 .stats {
   background: #f2f5f8 !important;
-  color: #000 !important
+  color: #000 !important;
+  min-height: 43px;
 }
 
 .articles {
@@ -349,4 +350,10 @@ a[data-toggle="collapse"] {
 .card-content{
   margin-left: 1rem!important;
   width: calc(100% - 121px);
+}
+
+.logo2{
+  display: block;
+  width: 100px;
+  height: 100px;
 }
