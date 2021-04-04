@@ -121,6 +121,7 @@ class AdminsController < ApplicationController
     @user_profile = @user.user_profile
     @employees = Employee.where(user_profile_id: @user_profile.id)
     @students = Student.where(user_profile_id: @user_profile.id)
+    @members = Member.where(user_profile_id:@user_profile.id)
   end
 
   def approved_edit
@@ -176,7 +177,20 @@ class AdminsController < ApplicationController
       break unless @students_did_update
     end
 
-    if @user_profile_did_update && @employees_did_update && @students_did_update
+    @members = Member.where(user_profile_id: @user_profile.id)
+    @members_did_update = true
+    @members.each.with_index(1) do |member, index|
+      @member_attr = get_this_members_attributes(params, index)
+
+      @committee_object = Committee.where(committee_name: @member_attr['committee_name']).first
+      @committee_object = Committee.create(committee_name: @member_attr['committee_name']) if @committee_object.nil?
+
+      @members_did_update = member.update(committee_id: @committee_object.id)
+      
+      break unless @members_did_update
+    end
+
+    if @user_profile_did_update && @employees_did_update && @students_did_update && @members_did_update
       redirect_to admin_approved_users_path
     else
       render :approved_view
@@ -236,6 +250,14 @@ class AdminsController < ApplicationController
       'position_city' => params["position_location_city_#{index}".to_sym],
       'position_state' => params["position_location_state_#{index}".to_sym]
     }
+  end
+
+  def get_this_members_attributes(params, index)
+
+    {
+      'committee_name' => params["committee_name_#{index}".to_sym],
+    }
+    
   end
 
   def get_this_students_attributes(params, index)
