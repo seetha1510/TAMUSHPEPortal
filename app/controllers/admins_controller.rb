@@ -7,8 +7,65 @@ class AdminsController < ApplicationController
 
   def home; end
 
+  def committees
+    @committees = Committee.all
+    @approved_users = get_valid_users()
+    @member = Member.new
+    @committee = Committee.new
+  end
+
+  def committees_new
+    @committee_name = params[:committee_name]
+    @committee = Committee.new(committee_name: @committee_name)
+    @committee.save
+
+    redirect_to admin_committees_path 
+  end
+
+  def committees_delete
+    @committee_id = params[:id]
+    @committee = Committee.find(@committee_id)
+    @members = Member.where(committee_id: @committee_id)
+    @members.each do |member|
+      member.destroy
+    end
+    @committee.destroy
+
+    redirect_to admin_committees_path
+  end
+
+  def committees_add_member
+    @committee_id = params[:id]
+    @member_name = params[:member_name]
+
+    @index = @member_name.index('-')
+    @email = @member_name[@index+2..-1]
+    @user_profile_id = UserProfile.find_by(user_id: User.find_by(user_email: @email).id).id
+
+    @member = Member.new(user_profile_id: @user_profile_id, committee_id: @committee_id)
+    @member.save
+
+    redirect_to admin_committees_path
+  end
+
+  def committees_remove_member
+    @member_id = params[:id]
+    @member = Member.find(@member_id)
+    @member.destroy
+
+    redirect_to admin_committees_path
+  end
+
   def requests
-    @accounts_requested = User.where(approved_status: false)
+    @accounts = []
+    @requested_users = User.where(approved_status: false)
+    @requested_users.each do |user|
+      @user_profile = UserProfile.find_by(user_id: user.id)
+      if @user_profile
+        @accounts.append(user)
+      end
+    end
+    @accounts_requested = @accounts 
   end
 
   def request_approve
@@ -133,6 +190,7 @@ class AdminsController < ApplicationController
     @students = Student.where(user_profile_id: @user_profile.id)
     @profile_pic = User.get_current_user_profile(current_account).user_profile_picture
     @account = Account.find_by(email: @user.user_email)
+    @members = Member.where(user_profile_id: @user_profile.id)
 
     @employees.each do |employee|
       @employer = Employer.find(employee.employer_id)
@@ -146,6 +204,10 @@ class AdminsController < ApplicationController
       student.destroy
       @students_with_same_school = Student.where(school_id: @school.id)
       @school.destroy if @students_with_same_school.length.zero?
+    end
+
+    @members.each do |member|
+      member.destroy
     end
 
     @profile_pic.purge
@@ -193,5 +255,20 @@ class AdminsController < ApplicationController
       'end_date' => @end_date,
       'student_field_of_study' => params["student_field_of_study_#{index}".to_sym]
     }
+  end
+
+  def get_valid_users
+    @approved_users = []
+    @users = User.where(approved_status: true)
+    @users.each do |user|
+      @user_profile = UserProfile.find_by(user_id: user.id)
+      if @user_profile
+        @first = @user_profile.user_first_name
+        @last = @user_profile.user_last_name
+        @approved_users.append("#{@last}, #{@first} - #{user.user_email}")
+      end
+    end
+
+    @approved_users.sort
   end
 end
