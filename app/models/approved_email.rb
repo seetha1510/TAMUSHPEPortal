@@ -14,7 +14,7 @@ class ApprovedEmail < ApplicationRecord
     @counter = 0
     @header = nil
     @headers = CSV.open(file.path) { |csv| csv.first }
-    @headers.each { |e| @header = e if e.downcase.gsub('-','')=~/^(|e)mail$/ }
+    @headers.each { |e| @header = e if e.downcase.gsub('-','')=~/^(|e)mail$/  }
     if @header != nil
       CSV.foreach(file.path, headers: true) do |row|
         @email = row[@header]

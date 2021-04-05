@@ -7,7 +7,7 @@ Rails.application.routes.draw do
       delete 'delete_image/:image_id', action: 'delete_image', as: 'delete_image'
     end
   end
-  # root "users#home"
+
   root 'users#index'
 
   resources :users
@@ -39,10 +39,6 @@ Rails.application.routes.draw do
   get 'admin/approved/user/:id', to: 'admins#approved_view', as: 'admin_approved_view'
   get 'admin/approved/user/edit/:id', to: 'admins#approved_edit', as: 'admin_approved_edit'
   get 'admin/approved/user/delete/:id', to: 'admins#approved_delete', as: 'admin_approved_delete'
-
-
-
-  #get '/account' => 'users#show', :as => :account_root
 
   devise_for :accounts, controllers: {omniauth_callbacks: 'accounts/omniauth_callbacks'}
   devise_scope :account do
