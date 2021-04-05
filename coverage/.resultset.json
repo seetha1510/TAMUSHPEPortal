@@ -409,6 +409,8 @@
           1,
           1,
           1,
+          1,
+          1,
           null,
           null,
           1,
@@ -484,7 +486,7 @@
           1,
           1,
           1,
-          437,
+          508,
           null,
           1,
           491,
@@ -1510,10 +1512,12 @@
           34,
           25,
           0,
-          null,
-          null,
-          null,
-          null,
+          25,
+          23,
+          23,
+          23,
+          23,
+          23,
           null,
           null,
           null,
@@ -1527,6 +1531,7 @@
           null,
           1,
           null,
+          1,
           1,
           1,
           1,
@@ -1545,6 +1550,10 @@
           0,
           0,
           0,
+          0,
+          null,
+          null,
+          1,
           0,
           null,
           null,
@@ -1945,8 +1954,19 @@
           null,
           null
         ]
+      },
+      "/Users/yifeiliang/Documents/GitHub/TAMUSHPEMemberPortal/app/models/member.rb": {
+        "lines": [
+          1,
+          1,
+          1,
+          1,
+          null,
+          1,
+          null
+        ]
       }
     },
-    "timestamp": 1616385852
+    "timestamp": 1617587424
   }
 }
