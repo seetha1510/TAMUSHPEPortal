@@ -6,6 +6,7 @@
         <br><br>
 
         <h2> Import with CSV file </h2>
+        <p>Upload a CSV file with at least one column with header "Email" and this column should contain all emails that are to be added</p>
         <%= form_tag admin_email_import_path, multipart: true do%>
             <%= file_field_tag :file, class:"form-control"%> <br>
             <%= submit_tag "Import csv", class:"btn btn-primary"%>
