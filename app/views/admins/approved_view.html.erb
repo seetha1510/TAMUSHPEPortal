@@ -347,7 +347,7 @@ label {
                 <% @members.each.with_index(1) do |member, index| %>
                     
                     <div class="row g-3 align-items-center mb-3" style="margin-top:50px;">
-                        <h3 style="max-width:max-content;"><%= @user_profile.user_first_name %>'s Position <%= index %></h3>
+                        <h3 style="max-width:max-content;"><%= @user_profile.user_first_name %>'s Committee <%= index %></h3>
                         <button id=<%= "committee_btn_#{index}" %> class="btn btn-primary" style="margin-bottom:8px;margin-left:25px;max-width:max-content;">Show</button>
                     </div>
 

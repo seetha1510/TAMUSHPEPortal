@@ -7,6 +7,12 @@ label {
     <div class="container" style="background-color:#f8f9fa!important;padding-top:50px;padding-right:25px;padding-left:25px;padding-bottom:25px;min-height:100vh;height:100%;">
         <h1>Set Committees</h1>
         <%= link_to "Back", admin_path, style: "display: block;"%>
+                <h3 style="margin-top:50px;">New Committee</h3>
+        <%= form_with url: admin_committees_new_path, method: :post do |form| %>
+            <%= form.label "Committee Name"%>
+            <%= form.text_field :committee_name, class: "form-control"%>
+            <%= form.submit "Add", class: "btn btn-primary", style: "margin-top:25px;"%>
+        <% end %>
 
         <% @committees.each do |committee| %>
 
@@ -35,7 +41,7 @@ label {
                         <tr class="table-light">
                             
                             <td>
-                            <%=form.label "Member Name and Email"%>
+                            <%=form.label "Member Name-Email"%>
                             <%= form.select :member_name, @approved_users, {}, {class: "form-select"}%></td>
                             <td></td>
                             
@@ -46,12 +52,7 @@ label {
             <% end %>
         <% end %>
 
-        <h3 style="margin-top:50px;">New Committee</h3>
-        <%= form_with url: admin_committees_new_path, method: :post do |form| %>
-            <%= form.label "Committee Name"%>
-            <%= form.text_field :committee_name, class: "form-control"%>
-            <%= form.submit "Add", class: "btn btn-primary", style: "margin-top:25px;"%>
-        <% end %>
+
         
     </div>
 </div>
