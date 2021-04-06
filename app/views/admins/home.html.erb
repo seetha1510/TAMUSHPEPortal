@@ -23,8 +23,8 @@
  <%= link_to 'Return to normal app', root_path, class: "nav-link" %>
 <h1>Admin Home</h1>
 <div class="card-deck">
-    <div class="row row-auto mb-3">
-        <div class="col-sm-6">
+    <div class="row row-auto ">
+        <div class="col-sm-6 mb-3">
             <div class="card p-2 justify-content-center" style="height:18rem;">  
                 <%= link_to admin_preapproved_emails_path, class:    "card-block stretched-link text-decoration-none" do%>
                 <h4 class="card-title card_title_text"  >Pre-Approved Emails</h4>
@@ -33,7 +33,7 @@
                 <%end%>
             </div>
         </div>
-        <div class="col-sm-6">
+        <div class="col-sm-6 mb-3">
             <div class="card p-2  justify-content-center" style="height:18rem;">
                 <%= link_to admin_committees_path, class:    "card-block stretched-link text-decoration-none " do%>
                 <h4 class="card-title card_title_text"  >Set Committees</h4>
@@ -46,8 +46,8 @@
 
 
 
-    <div class="row row-auto mb-3">
-        <div class="col-sm-6">
+    <div class="row row-auto ">
+        <div class="col-sm-6 mb-3">
             <div class="card p-2  justify-content-center" style="height:18rem;">
         <%= link_to admin_account_requests_path, class:    "card-block stretched-link text-decoration-none" do%>
         <h4 class="card-title card_title_text"  >Account Requests</h4>
@@ -56,7 +56,7 @@
         <%end%>
     </div>
         </div>
-        <div class="col-sm-6">
+        <div class="col-sm-6 mb-3">
            <div class="card p-2  justify-content-center" style="height:18rem;">
         <%= link_to admin_approved_users_path, class:    "card-block stretched-link text-decoration-none" do%>
         <h4 class="card-title card_title_text"  >Approved Users</h4>
