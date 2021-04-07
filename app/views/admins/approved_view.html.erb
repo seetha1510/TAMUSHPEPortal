@@ -1,3 +1,13 @@
+<style>
+label {
+    font-weight:bold;
+    cursor: pointer;
+    color: #555;
+    display: block;
+    padding: 0px;
+    margin: 0px;
+}
+</style>
 <div class="container-fluid" style="background-color:#001F5B!important;min-height:100vh;height:100%;">
     <div class="container" style="background-color:#f8f9fa!important;padding-top:50px;padding-right:25px;padding-left:25px;padding-bottom:25px;min-height:100vh;height:100%;">
 
@@ -324,6 +334,68 @@
                         });
                     </script>
                 <% end %>
+
+
+
+
+
+
+
+
+
+
+                <% @members.each.with_index(1) do |member, index| %>
+                    
+                    <div class="row g-3 align-items-center mb-3" style="margin-top:50px;">
+                        <h3 style="max-width:max-content;"><%= @user_profile.user_first_name %>'s Committee <%= index %></h3>
+                        <button id=<%= "committee_btn_#{index}" %> class="btn btn-primary" style="margin-bottom:8px;margin-left:25px;max-width:max-content;">Show</button>
+                    </div>
+
+                    <div id=<%= "committee_form_#{index}" %> style="display:none;">
+                        <div class="row g-3 align-items-center mb-3">
+                            <div class="col-lg-6">
+                                <li class="list-group-item" style="background-color:#f8f9fa!important;">
+                                    <%= form.label "committee_name_#{index}".to_sym, "committee Name *" %>
+                                    <%= form.text_field "committee_name_#{index}".to_sym, value: member.committee.committee_name, class:"form-control" %>
+                                </li>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <script>
+                        document.getElementById('<%= "committee_btn_#{index}" %>').addEventListener('click', function(e) {
+                            e.preventDefault();
+                            if(document.getElementById('<%= "committee_btn_#{index}" %>').textContent == "Show")
+                            {
+                                document.getElementById('<%= "committee_form_#{index}" %>').style.display = "block";
+                                document.getElementById('<%= "committee_btn_#{index}" %>').textContent = "Hide";
+                            }
+                            else if(document.getElementById('<%= "committee_btn_#{index}" %>').textContent == "Hide")
+                            {
+                                document.getElementById('<%= "committee_form_#{index}" %>').style.display = "none";
+                                document.getElementById('<%= "committee_btn_#{index}" %>').textContent = "Show";
+                            }
+                        });
+                    </script>
+
+                    
+                    
+                <% end %>
+
+
+
+
+
+
+
+
+
+
+
+
+                
             </ul>
         <% end %>
         <div class="row g-3 align-items-center mb-3" style="margin-top:25px;">

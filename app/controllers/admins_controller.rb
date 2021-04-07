@@ -9,7 +9,7 @@ class AdminsController < ApplicationController
 
   def committees
     @committees = Committee.all
-    @approved_users = get_valid_users()
+    @approved_users = valid_users_get
     @member = Member.new
     @committee = Committee.new
   end
@@ -19,16 +19,14 @@ class AdminsController < ApplicationController
     @committee = Committee.new(committee_name: @committee_name)
     @committee.save
 
-    redirect_to admin_committees_path 
+    redirect_to admin_committees_path
   end
 
   def committees_delete
     @committee_id = params[:id]
     @committee = Committee.find(@committee_id)
     @members = Member.where(committee_id: @committee_id)
-    @members.each do |member|
-      member.destroy
-    end
+    @members.each(&:destroy)
     @committee.destroy
 
     redirect_to admin_committees_path
@@ -39,7 +37,7 @@ class AdminsController < ApplicationController
     @member_name = params[:member_name]
 
     @index = @member_name.index('-')
-    @email = @member_name[@index+2..-1]
+    @email = @member_name[@index + 2..]
     @user_profile_id = UserProfile.find_by(user_id: User.find_by(user_email: @email).id).id
 
     @member = Member.new(user_profile_id: @user_profile_id, committee_id: @committee_id)
@@ -61,11 +59,9 @@ class AdminsController < ApplicationController
     @requested_users = User.where(approved_status: false)
     @requested_users.each do |user|
       @user_profile = UserProfile.find_by(user_id: user.id)
-      if @user_profile
-        @accounts.append(user)
-      end
+      @accounts.append(user) if @user_profile
     end
-    @accounts_requested = @accounts 
+    @accounts_requested = @accounts
   end
 
   def request_approve
@@ -121,6 +117,7 @@ class AdminsController < ApplicationController
     @user_profile = @user.user_profile
     @employees = Employee.where(user_profile_id: @user_profile.id)
     @students = Student.where(user_profile_id: @user_profile.id)
+    @members = Member.where(user_profile_id:@user_profile.id)
   end
 
   def approved_edit
@@ -176,7 +173,20 @@ class AdminsController < ApplicationController
       break unless @students_did_update
     end
 
-    if @user_profile_did_update && @employees_did_update && @students_did_update
+    @members = Member.where(user_profile_id: @user_profile.id)
+    @members_did_update = true
+    @members.each.with_index(1) do |member, index|
+      @member_attr = get_this_members_attributes(params, index)
+
+      @committee_object = Committee.where(committee_name: @member_attr['committee_name']).first
+      @committee_object = Committee.create(committee_name: @member_attr['committee_name']) if @committee_object.nil?
+
+      @members_did_update = member.update(committee_id: @committee_object.id)
+      
+      break unless @members_did_update
+    end
+
+    if @user_profile_did_update && @employees_did_update && @students_did_update && @members_did_update
       redirect_to admin_approved_users_path
     else
       render :approved_view
@@ -206,9 +216,7 @@ class AdminsController < ApplicationController
       @school.destroy if @students_with_same_school.length.zero?
     end
 
-    @members.each do |member|
-      member.destroy
-    end
+    @members.each(&:destroy)
 
     @profile_pic.purge
     @user_profile.destroy
@@ -238,6 +246,14 @@ class AdminsController < ApplicationController
     }
   end
 
+  def get_this_members_attributes(params, index)
+
+    {
+      'committee_name' => params["committee_name_#{index}".to_sym],
+    }
+    
+  end
+
   def get_this_students_attributes(params, index)
     @start_date = Date.new(params["degree_start_date_#{index}(1i)".to_sym].to_i,
                            params["degree_start_date_#{index}(2i)".to_sym].to_i)
@@ -257,16 +273,16 @@ class AdminsController < ApplicationController
     }
   end
 
-  def get_valid_users
+  def valid_users_get
     @approved_users = []
     @users = User.where(approved_status: true)
     @users.each do |user|
       @user_profile = UserProfile.find_by(user_id: user.id)
-      if @user_profile
-        @first = @user_profile.user_first_name
-        @last = @user_profile.user_last_name
-        @approved_users.append("#{@last}, #{@first} - #{user.user_email}")
-      end
+      next unless @user_profile
+
+      @first = @user_profile.user_first_name
+      @last = @user_profile.user_last_name
+      @approved_users.append("#{@last}, #{@first} - #{user.user_email}")
     end
 
     @approved_users.sort
