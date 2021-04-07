@@ -10,13 +10,12 @@ class UsersController < ApplicationController
       redirect_to(new_user_profile_path)
     elsif !User.get_current_user(current_account).approved_status && ApprovedEmail.where(email: User.get_current_user(current_account).user_email).length <= 0
       redirect_to(approval_path)
+    elsif ApprovedEmail.where(email: User.get_current_user(current_account).user_email).length.positive?
+      @user = User.get_current_user(current_account)
+      @user.update(approved_status: true)
+      @remove_email = ApprovedEmail.where(email: User.get_current_user(current_account).user_email)
+      @remove_email.each(&:destroy)
     end
-
-    # redirect_to(new_user_profile_path) unless UserProfile.exists?(user_id: User.get_current_user(current_account).id)
-
-    # if !User.get_current_user(current_account).approved_status && !(ApprovedEmail.where(email: User.get_current_user(current_account).user_email).length() > 0)
-    # redirect_to(approval_path) and return
-    # end
   end
 
   def new; end
@@ -33,6 +32,7 @@ class UsersController < ApplicationController
     @employees = Employee.where(user_profile_id: @user_profile.id)
     @profile_pic = User.get_current_user_profile(current_account).user_profile_picture
     @students = Student.where(user_profile_id: @user_profile.id)
+    @members = Member.where(user_profile_id: @user_profile.id)
 
     @employees.each do |employee|
       @employer = Employer.find(employee.employer_id)
@@ -47,6 +47,8 @@ class UsersController < ApplicationController
       @students_with_same_school = Student.where(school_id: @school.id)
       @school.destroy if @students_with_same_school.length.zero?
     end
+
+    @members.each(&:destroy)
 
     @profile_pic.purge
     @user_profile.destroy
