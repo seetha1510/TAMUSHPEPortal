@@ -9,29 +9,6 @@ RSpec.describe 'user profile edit page', type: :system do
     approved_user = ApprovedEmail.new(email: 'tony@stark.com')
     approved_user.save
   end
-  # before do
-  #     @user1 = User.create(user_email: 'jonathan09@tamu.edu',
-  #         admin_status: false)
-
-  #     @user_profile = UserProfile.create!(
-  #     user_email: 'jonathan09@tamu.edu',
-  #     user_display_email_status: true,
-  #     user_current_member_status: true,
-  #     user_facebook_profile_url: "facebook.com",
-  #     user_instagram_profile_url: "instagram.com",
-  #     user_linkedin_profile_url: "linkedin.com",
-  #     user_graduating_year: 2021,
-  #     user_about_me_description: "",
-  #     user_phone_number: "9729849423",
-  #     user_first_name: 'Jonathan',
-  #     user_last_name: "Gaytan",
-  #     user_portfolio_url: "",
-  #     user_profile_picture: "")
-  # end
-
-  #
-  # Test user profile edit form funcitonality
-  #
   describe 'Edit Profile Page' do
     it 'Can access the edit page' do
       visit root_path
@@ -52,9 +29,9 @@ RSpec.describe 'user profile edit page', type: :system do
         click_on 'Profile'
       end
 
-      within '.subjects' do
-        click_on 'Edit'
-      end
+
+        click_on 'Edit Profile'
+
       expect(page).to have_content('Update General Information')
       visit edit_user_profile_path(UserProfile.find_by(user_id: User.find_by(user_email: 'tony@stark.com').id).id)
       expect(page).to have_content('Update General Information')
