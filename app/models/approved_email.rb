@@ -38,5 +38,6 @@ class ApprovedEmail < ApplicationRecord
 
       return @counter
     end
+    
   end
 end

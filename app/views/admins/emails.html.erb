@@ -1,14 +1,14 @@
-<div class="container-fluid" style="background-color:#001F5B!important;height:100vh;">        
-    <div class="container" style="background-color:#f8f9fa!important;padding-top:50px;padding-right:25px;padding-left:25px;padding-bottom:25px;height:100vh;">
+<div class="container-fluid" style="background-color:#001F5B!important;min-height:100vh;height:100%">        
+    <div class="container" style="background-color:#f8f9fa!important;padding-top:50px;padding-right:25px;padding-left:25px;padding-bottom:25px;min-height:100vh;height:100%">
         <h1>Pre-Approved Emails</h1>
         <%= link_to "Back", admin_path%>
-
+        
         <br><br>
 
         <h2> Import with CSV file </h2>
         <p>Upload a CSV file with at least one column with header "Email" and this column should contain all emails that are to be added</p>
         <%= form_tag admin_email_import_path, multipart: true do%>
-            <%= file_field_tag :file, class:"form-control"%> <br>
+           <div class="col-6"> <%= file_field_tag :file, class:"form-control"%></div> <br>
             <%= submit_tag "Import csv", class:"btn btn-primary"%>
         <%end%>
 
@@ -36,5 +36,8 @@
                 </tbody>
             <table>
         <% end %>
+
+        
+
     </div>
 </div>
