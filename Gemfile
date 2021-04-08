@@ -80,4 +80,3 @@ gem 'omniauth', '~> 1.9.1'
 
 gem 'devise', github: 'heartcombo/devise', branch: 'ca-omniauth-2'
 gem 'omniauth-google-oauth2'
-
