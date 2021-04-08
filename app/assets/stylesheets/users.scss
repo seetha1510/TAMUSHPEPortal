@@ -174,7 +174,7 @@ h5,
   }
   #close-button{
     display: block;
-    transform: translateX(5px);
+    transform: translateX(10px);
   }
 }
 
@@ -183,7 +183,7 @@ a[data-toggle="collapse"] {
 }
 
 .dropdown-toggle::after {
-  margin-left: 11em;
+  margin-left: 9.7em;
 }
 
 @media (max-width: 991.98px) {
