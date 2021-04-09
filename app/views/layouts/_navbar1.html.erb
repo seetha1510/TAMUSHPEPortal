@@ -23,6 +23,7 @@
             <%end%>
                 <%= link_to show_path, class:"nav-link" do%>
                 <i class="fa fa-home fa-nav" aria-hidden="true"></i> Home
+                
                 <% end %>
             </li>
 
@@ -62,9 +63,6 @@
                 </li>
               </ul>
 	        </li>
-
-
-
             <% if current_page?(:controller => 'users', :action => 'setting') %>
                 <li class="active">
             <% else %>
@@ -86,6 +84,7 @@
             <%else%>
             <%end%>
         </ul>
+
         <div class="footer" style="position:absolute;bottom:10px;">
             &copy; Copyright 2021
         </div>
