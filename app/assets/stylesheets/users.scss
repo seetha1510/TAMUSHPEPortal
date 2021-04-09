@@ -308,14 +308,14 @@ a[data-toggle="collapse"] {
 
 // Search CSS
 
-.card {
+.search-card {
   width: 450px;
   border: none;
   border-radius: 10px;
   background-color: #fff
 }
 
-.card,h4 {
+.search-card,h4 {
   font-size: calc(1.275rem + .3vw);
   font-weight: 500;
   white-space: nowrap;
@@ -323,7 +323,7 @@ a[data-toggle="collapse"] {
   text-overflow: ellipsis;
 }
 
-.card,span {
+.search-card,span {
   font-size: calc(1.0rem + .3vw);
   font-weight: 400 !important;
   max-width: 100%;
@@ -336,12 +336,8 @@ a[data-toggle="collapse"] {
   min-height: 43px;
 }
 
-.articles {
-  font-size: 10px;
-  color: #a1aab9
-}
 
-.card-content{
+.search-card-content{
   margin-left: 1rem!important;
   width: calc(100% - 121px);
 }
@@ -350,4 +346,10 @@ a[data-toggle="collapse"] {
   display: block;
   width: 100px;
   height: 100px;
+}
+
+.logo3{
+  display: block;
+  width: 150px;
+  height: 150px;
 }
