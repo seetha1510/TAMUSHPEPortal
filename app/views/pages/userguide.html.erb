@@ -1,0 +1,115 @@
+<style>
+.accordion-section .panel-default > .panel-heading {
+    border: 0;
+    background: #f4f4f4;
+    padding: 0;
+}
+.accordion-section .panel-default .panel-title a {
+    display: block;
+    font-style: italic;
+    font-size: 1.2rem;
+}
+.accordion-section .panel-default .panel-title a:after {
+    font-family: 'FontAwesome';
+    font-style: normal;
+    font-size: 3rem;
+    content: "\f106";
+    color: #1f7de2;
+    float: right;
+    margin-top: -12px;
+}
+.accordion-section .panel-default .panel-title a.collapsed:after {
+    content: "\f107";
+}
+.accordion-section .panel-default .panel-body {
+    font-size: 1rem;
+}
+</style>
+
+
+
+  <h3>Functionality </h3>
+
+        <section class="accordion-section clearfix mt-3" aria-label="Question Accordions">
+        <div class="container">
+  
+	 
+	  <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+		<div class="panel panel-default">
+		  <div class="panel-heading p-3 mb-3" role="tab" id="heading0">
+			<h3 class="panel-title">
+			  <a class="collapsed" role="button" title="" data-bs-toggle="collapse" data-bs-parent="#accordion" href="#collapse0" aria-expanded="true" aria-controls="collapse0">
+				Profile page
+			  </a>
+			</h3>
+		  </div>
+		  <div id="collapse0" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading0">
+			<div class="panel-body px-3 mb-4">
+			  <p>Admins can add emails to pre-approved list to let users have access to the website as soon as they claim the account. The emails can be added one at a time or mulitple emails 
+			  can be uploaded at once using the file upload option.</p>
+			  <p>The following is the constraints on uploading a file</p>
+			  <ul>
+				<li>Must be a .csv file</li>
+				<li>At least one header in the file must be named "Email" </li>
+				<li>The email column should only have emails</li>
+				<li>There can be duplicates in the email column</li>
+			  </ul>
+			</div>
+		  </div>
+		</div>
+		
+		<div class="panel panel-default">
+		  <div class="panel-heading p-3 mb-3" role="tab" id="heading1">
+			<h3 class="panel-title">
+			  <a class="collapsed" role="button" title="" data-bs-toggle="collapse" data-bs-parent="#accordion" href="#collapse1" aria-expanded="true" aria-controls="collapse1">
+				Search
+			  </a>
+			</h3>
+		  </div>
+		  <div id="collapse1" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading1">
+			<div class="panel-body px-3 mb-4">
+			  <p>Admins can make committees and assign mutliple members to each committee. 
+			  </p>
+			  <ul>
+				<li>Two committees can not have the same name</li>
+				<li>A committee can be deleted </li>
+				<li>A member can be part of different committees</li>
+				<li>A member can be removed from a committee using the "Delete" button</li>
+			  </ul>
+			</div>
+		  </div>
+		</div>
+		
+		<div class="panel panel-default">
+		  <div class="panel-heading p-3 mb-3" role="tab" id="heading2">
+			<h3 class="panel-title">
+			  <a class="collapsed" role="button" title="" data-bs-toggle="collapse" data-bs-parent="#accordion" href="#collapse2" aria-expanded="true" aria-controls="collapse2">
+				Help
+			  </a>
+			</h3>
+		  </div>
+		  <div id="collapse2" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading2">
+			<div class="panel-body px-3 mb-4">
+			  <p>Account requests from users not on the approved list will be found here</p>
+			</div>
+		  </div>
+		</div>
+		
+		<div class="panel panel-default">
+		  <div class="panel-heading p-3 mb-3" role="tab" id="heading3">
+			<h3 class="panel-title">
+			  <a class="collapsed" role="button" title="" data-bs-toggle="collapse" data-bs-parent="#accordion" href="#collapse3" aria-expanded="true" aria-controls="collapse3">
+				Settings
+			  </a>
+			</h3>
+		  </div>
+		  <div id="collapse3" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading3">
+			<div class="panel-body px-3 mb-4">
+			  <p>Users that are approved and have already claimed an account will be found here</p>
+			</div>
+		  </div>
+		</div>
+	  </div>
+  
+  </div>
+</section>

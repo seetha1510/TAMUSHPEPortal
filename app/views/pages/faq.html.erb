@@ -7,7 +7,7 @@
 .accordion-section .panel-default .panel-title a {
     display: block;
     font-style: italic;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
 }
 .accordion-section .panel-default .panel-title a:after {
     font-family: 'FontAwesome';
@@ -22,7 +22,7 @@
     content: "\f107";
 }
 .accordion-section .panel-default .panel-body {
-    font-size: 1.2rem;
+    font-size: 1rem;
 }
 </style>
 
@@ -51,8 +51,9 @@
 <br/><br/>
  <%end%>
   <h3>Frequently Asked Questions </h3>
-<section class="accordion-section clearfix mt-3" aria-label="Question Accordions">
-  <div class="container">
+
+        <section class="accordion-section clearfix mt-3" aria-label="Question Accordions">
+        <div class="container">
   
 	 
 	  <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
@@ -60,18 +61,20 @@
 		  <div class="panel-heading p-3 mb-3" role="tab" id="heading0">
 			<h3 class="panel-title">
 			  <a class="collapsed" role="button" title="" data-bs-toggle="collapse" data-bs-parent="#accordion" href="#collapse0" aria-expanded="true" aria-controls="collapse0">
-				What are the benefits of Solodev CMS?
+				What do I do if my picture is not loading?
 			  </a>
 			</h3>
 		  </div>
 		  <div id="collapse0" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading0">
 			<div class="panel-body px-3 mb-4">
-			  <p>With Solodev CMS, you and your visitors will benefit from a finely-tuned technology stack that drives the highest levels of site performance, speed and engagement - and contributes more to your bottom line. Our users fell in love with:</p>
+			  <p>Admins can add emails to pre-approved list to let users have access to the website as soon as they claim the account. The emails can be added one at a time or mulitple emails 
+			  can be uploaded at once using the file upload option.</p>
+			  <p>The following is the constraints on uploading a file</p>
 			  <ul>
-				<li>Light speed deployment on the most secure and stable cloud infrastructure available on the market.</li>
-				<li>Scalability – pay for what you need today and add-on options as you grow.</li>
-				<li>All of the bells and whistles of other enterprise CMS options but without the design limitations - this CMS simply lets you realize your creative visions.</li>
-				<li>Amazing support backed by a team of Solodev pros – here when you need them.</li>
+				<li>Must be a .csv file</li>
+				<li>At least one header in the file must be named "Email" </li>
+				<li>The email column should only have emails</li>
+				<li>There can be duplicates in the email column</li>
 			  </ul>
 			</div>
 		  </div>
@@ -81,13 +84,20 @@
 		  <div class="panel-heading p-3 mb-3" role="tab" id="heading1">
 			<h3 class="panel-title">
 			  <a class="collapsed" role="button" title="" data-bs-toggle="collapse" data-bs-parent="#accordion" href="#collapse1" aria-expanded="true" aria-controls="collapse1">
-				How easy is it to build a website with Solodev CMS?
+				Set Committes
 			  </a>
 			</h3>
 		  </div>
 		  <div id="collapse1" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading1">
 			<div class="panel-body px-3 mb-4">
-			  <p>Building a website is extremely easy. With a working knowledge of HTML and CSS you will be able to have a site up and running in no time.</p>
+			  <p>Admins can make committees and assign mutliple members to each committee. 
+			  </p>
+			  <ul>
+				<li>Two committees can not have the same name</li>
+				<li>A committee can be deleted </li>
+				<li>A member can be part of different committees</li>
+				<li>A member can be removed from a committee using the "Delete" button</li>
+			  </ul>
 			</div>
 		  </div>
 		</div>
@@ -96,13 +106,13 @@
 		  <div class="panel-heading p-3 mb-3" role="tab" id="heading2">
 			<h3 class="panel-title">
 			  <a class="collapsed" role="button" title="" data-bs-toggle="collapse" data-bs-parent="#accordion" href="#collapse2" aria-expanded="true" aria-controls="collapse2">
-				What is the uptime for Solodev CMS?
+				Account Requests
 			  </a>
 			</h3>
 		  </div>
 		  <div id="collapse2" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading2">
 			<div class="panel-body px-3 mb-4">
-			  <p>Using Amazon AWS technology which is an industry leader for reliability you will be able to experience an uptime in the vicinity of 99.95%.</p>
+			  <p>Account requests from users not on the approved list will be found here</p>
 			</div>
 		  </div>
 		</div>
@@ -111,13 +121,13 @@
 		  <div class="panel-heading p-3 mb-3" role="tab" id="heading3">
 			<h3 class="panel-title">
 			  <a class="collapsed" role="button" title="" data-bs-toggle="collapse" data-bs-parent="#accordion" href="#collapse3" aria-expanded="true" aria-controls="collapse3">
-				Can Solodev CMS handle multiple websites for my company?
+				Approved Users
 			  </a>
 			</h3>
 		  </div>
 		  <div id="collapse3" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading3">
 			<div class="panel-body px-3 mb-4">
-			  <p>Yes, Solodev CMS is built to handle the needs of any size company. With our Multi-Site Management, you will be able to easily manage all of your websites.</p>
+			  <p>Users that are approved and have already claimed an account will be found here</p>
 			</div>
 		  </div>
 		</div>
