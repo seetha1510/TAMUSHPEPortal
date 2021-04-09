@@ -3,9 +3,19 @@
 
     <%= form_for(@user_profile) do |f| %>
     <% if @user_profile.errors.any? %>
-    <div id="error_explanation ">
+    <%
+=begin%>
+ <div id="error_explanation ">
         <% @user_profile.errors.full_messages.each do |msg| %>
         <h4 class="mb-1" id="error-message" style="color:#D30000"><%= msg %></h4>
+        <% end %>
+    </div> 
+<%
+=end%>
+
+    <div class="alert alert-danger">
+        <% @user_profile.errors.full_messages.each do |msg| %>
+        <div><%= msg %></div>
         <% end %>
     </div>
     <% end %>
