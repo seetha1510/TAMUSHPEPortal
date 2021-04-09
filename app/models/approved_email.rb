@@ -5,9 +5,9 @@ class ApprovedEmail < ApplicationRecord
   validates :email, presence: true
 
   def self.import(file)
-    # if MIME::Types.type_for(@file).first.content_type != 'text/csv'
-    #   return nil
-    # end
+    if file == nil
+      return -3
+    end
     if File.extname(file) != ".csv"
       return nil
     end
@@ -26,7 +26,8 @@ class ApprovedEmail < ApplicationRecord
         
         if !@email.nil?
           @email_object = ApprovedEmail.where(email: @email).first
-          if @email_object.nil?
+          @existing_user_email = User.where(user_email:@email).first
+          if @email_object.nil? and @existing_user_email.nil?
             @approved_email = ApprovedEmail.new(email: @email)
             if !@approved_email.save
               return -1
@@ -37,6 +38,8 @@ class ApprovedEmail < ApplicationRecord
       end
 
       return @counter
+    else
+      return -2
     end
     
   end
