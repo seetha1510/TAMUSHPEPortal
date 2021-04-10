@@ -1,6 +1,5 @@
 <style>
 body{
-    margin-top:20px;
     color: #1a201c;
     text-align: left;
     background-color: #f8f9fa;    
@@ -106,7 +105,7 @@ body{
                 <div class="card-body">
                 <h5 class="card-title">About Me</h5>
 
-                <p class="card-text">
+                <p class="text-secondary card-text">
                 <%if @user_profile.user_about_me_description != "" && @user_profile.user_about_me_description.present?%>
                 <%=@user_profile.user_about_me_description%>
                 <%else%>
@@ -192,6 +191,10 @@ body{
                 <%end%>
                 <%if @user_profile.user_linkedin_profile_url.present?%>
                     <%= link_to '<i class="fa fa-linkedin-square fa-2x" aria-hidden="true"></i>'.html_safe, @user_profile.user_linkedin_profile_url, target: :_blank %>
+                <%end%> 
+                <%if @user_profile.user_portfolio_url.present?%>
+                    <%= link_to '<i class="fa fa-link fa-2x" aria-hidden="true"></i>'.html_safe, @user_profile.user_portfolio_url, target: :_blank %>
+                  </div>
                 <%end%> 
             </td>
                     </div>

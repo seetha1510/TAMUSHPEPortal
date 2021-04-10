@@ -1,4 +1,4 @@
-<h1 >People</h1>
+<h1 >Find People</h1>
 <%= form_tag "/user_profiles/", method: "GET" do %>
 
 
@@ -45,33 +45,33 @@
                     
                     <%if user_profile.user_facebook_profile_url.present?%>
                       <div class="d-flex flex-column"> 
-                        <%= link_to '<i class="fa fa-facebook-square fa-lg" aria-hidden="true"></i>'.html_safe, user_profile.user_facebook_profile_url, target: :_blank %>
+                        <%= link_to '<i class="fa fa-facebook-square fa-2x" aria-hidden="true"></i>'.html_safe, user_profile.user_facebook_profile_url, target: :_blank %>
                       </div>
                     <%end%>
                     
                     
                     <%if user_profile.user_instagram_profile_url.present?%>
                       <div class="d-flex flex-column">
-                        <%= link_to '<i class="fa fa-instagram fa-lg" aria-hidden="true"></i>'.html_safe, user_profile.user_instagram_profile_url, target: :_blank %>
+                        <%= link_to '<i class="fa fa-instagram fa-2x" aria-hidden="true"></i>'.html_safe, user_profile.user_instagram_profile_url, target: :_blank %>
                       </div>
                     <%end%> 
                     
                     <%if user_profile.user_linkedin_profile_url.present?%>
                       <div class="d-flex flex-column">
-                        <%= link_to '<i class="fa fa-linkedin-square fa-lg" aria-hidden="true"></i>'.html_safe, user_profile.user_linkedin_profile_url, target: :_blank %>
+                        <%= link_to '<i class="fa fa-linkedin-square fa-2x" aria-hidden="true"></i>'.html_safe, user_profile.user_linkedin_profile_url, target: :_blank %>
                       </div>
                     <%end%> 
 
                     <%if user_profile.user_portfolio_url.present?%>
                       <div class="d-flex flex-column">
-                        <%= link_to '<i class="fa fa-link fa-lg" aria-hidden="true"></i>'.html_safe, user_profile.user_portfolio_url, target: :_blank %>
+                        <%= link_to '<i class="fa fa-link fa-2x" aria-hidden="true"></i>'.html_safe, user_profile.user_portfolio_url, target: :_blank %>
                       </div>
                     <%end%> 
 
                     <%if !user_profile.user_facebook_profile_url.present? && 
                     !user_profile.user_instagram_profile_url.present? && !user_profile.user_linkedin_profile_url.present? &&
                     !user_profile.user_portfolio_url.present? && %>
-                      <div class="d-flex flex-column">
+                      <div class="d-flex flex-column justify-content-center">
                         No Links
                       </div>
                     <%end%> 

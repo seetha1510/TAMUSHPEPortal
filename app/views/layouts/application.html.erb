@@ -39,12 +39,18 @@
         <%= render 'layouts/navbar1' unless @disable_nav %>
         <!-- Page Content  -->
         <div id="content" class="p-4 p-md-5">
-            <%= render 'layouts/navbar2' unless @disable_nav %>
+            <%
+=begin%>
+ <%= render 'layouts/navbar2' unless @disable_nav %> 
+<%
+=end%>
             <%# need flash notices for devise%>
             <% if notice  %>
                 <%=render 'layouts/alerts'%>
             <%end%>
-            <p class="alert"><%= alert %></p>
+            <% if alert  %>
+                <p class="alert"><%= alert %></p>
+            <%end%> 
             <%= yield %>
         </div>
     </div>
