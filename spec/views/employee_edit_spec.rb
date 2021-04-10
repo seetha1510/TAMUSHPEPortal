@@ -31,13 +31,13 @@ RSpec.describe 'employee edit page', type: :system do
     fill_in 'Title *', with: 'Software Engineer'
     fill_in 'City *', with: 'Missouri City'
     fill_in 'State *', with: 'Texas'
-    click_on 'Create Employee'
+    click_on 'Add'
 
     find(:css, 'i.fa.fa-edit.fa-lg').click
 
     expect(page).to have_field('Company *')
     expect(page).to have_field('Title *')
-    expect(page).to have_button('Update Employee')
+    expect(page).to have_button('Update')
   end
 
   it 'updates an employee upon submitting' do
@@ -61,7 +61,7 @@ RSpec.describe 'employee edit page', type: :system do
     fill_in 'Title *', with: 'Software Engineer'
     fill_in 'City *', with: 'Missouri City'
     fill_in 'State *', with: 'Texas'
-    click_on 'Create Employee'
+    click_on 'Add'
 
     find(:css, 'i.fa.fa-edit.fa-lg').click
 
@@ -69,7 +69,7 @@ RSpec.describe 'employee edit page', type: :system do
     fill_in 'Title *', with: 'Software Engineer'
     fill_in 'City *', with: 'Missouri City'
     fill_in 'State *', with: 'Texas'
-    click_on 'Update Employee'
+    click_on 'Update'
     expect(page).to have_content('Google')
   end
 
@@ -94,7 +94,7 @@ RSpec.describe 'employee edit page', type: :system do
     fill_in 'Title *', with: 'Software Engineer'
     fill_in 'City *', with: 'Missouri City'
     fill_in 'State *', with: 'Texas'
-    click_on 'Create Employee'
+    click_on 'Add'
 
     find(:css, 'i.fa.fa-edit.fa-lg').click
 
@@ -102,7 +102,7 @@ RSpec.describe 'employee edit page', type: :system do
     fill_in 'Title *', with: 'Software Engineer'
     fill_in 'City *', with: 'Missouri City'
     fill_in 'State *', with: 'Texas'
-    click_on 'Update Employee'
+    click_on 'Update'
     expect(page).to have_content('My Profile')
   end
 end
