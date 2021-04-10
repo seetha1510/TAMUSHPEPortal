@@ -72,17 +72,6 @@ body{
               <div class="card shadow">
                 <div class="card-body">
                   <div class="d-flex flex-column align-items-center text-center">
-
-                   <%
-=begin%>
- <% if @user_profile.user_profile_picture.attached? && @user_profile.user_profile_picture.representable?%>
-                    <%= image_tag(@user_profile.user_profile_picture, class: "rounded-circle", width: "150", height: "150")%>
-                   <% else %>
-                    <%= image_tag("default_profile_picture.jpg", class: "rounded-circle", width: "150", height: "150")%>
-                    <% end %> 
-<%
-=end%>
-
                     <% if @user_profile.user_profile_picture.attached? && @user_profile.user_profile_picture.representable?%>
                       <a  class="img logo3 rounded-circle" style="background-image: url(<%= url_for(@user_profile.user_profile_picture )%>);"></a>
                     <% else %>
@@ -95,8 +84,6 @@ body{
                       <%= link_to "Edit Profile", edit_user_profile_path ,class:"btn btn-outline-primary"%>
                       <%else%>
                     <%end%>
-
-
                     </div>
                   </div>
                 </div>
@@ -111,10 +98,7 @@ body{
                 <%else%>
                 <%="Create and Share your a liitle bit about yourself here"%>
                 <%end%>      
-                
-                
                 </p>
-                
               </div>
               </div>
             </div>

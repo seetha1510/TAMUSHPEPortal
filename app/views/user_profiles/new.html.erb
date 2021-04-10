@@ -6,12 +6,12 @@
         <div class="col-md-12">
         
             <% if @user_profile.errors.any? %>
-                <div id="error_explanation">
+                <div class="alert alert-danger">
                     <% @user_profile.errors.full_messages.each do |msg| %>
-                        <p class="mb-1" id="error-message" style="color:#D30000"><%= msg %></p>
+                        <div><%= msg %></div>
                     <% end %>
                 </div>
-            <% end %> 
+            <% end %>
 
             <%= render(:partial => 'form', :locals => {:f=>f})%>          
         </div>
