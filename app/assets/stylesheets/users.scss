@@ -80,6 +80,9 @@ h5,
   background-position: center center;
 }
 
+#close-button{
+  display: none;
+}
 .navbar {
   padding: 15px 10px;
   background: #fff;
@@ -134,13 +137,13 @@ h5,
   padding: 0;
 }
 #sidebar ul li {
-  font-size: 20px;
+  font-size: 18px;
 }
 #sidebar ul li > ul {
-  margin-left: 10px;
+  margin-left: 15px;
 }
 #sidebar ul li > ul li {
-  font-size: 18px;
+  font-size: 15px;
 }
 #sidebar ul li a {
   padding: 10px 0;
@@ -156,12 +159,22 @@ h5,
   background: transparent;
   color: #fd652f;
 }
-@media (max-width: 991.98px) {
-  #sidebar {
-    margin-left: -300px;
+@media (max-width: 1050px) {
+  #sidebar{
+    // margin-left: -300px;
+    z-index: 100;
+    display: none;
+    transform: translateX(-300px);
+    
   }
   #sidebar.active {
-    margin-left: 0;
+    // margin-left: 0;
+    display: block;
+    transform: translateX(300px);
+  }
+  #close-button{
+    display: block;
+    transform: translateX(10px);
   }
 }
 
@@ -170,18 +183,16 @@ a[data-toggle="collapse"] {
 }
 
 .dropdown-toggle::after {
-  display: block;
-  position: absolute;
-  top: 50%;
-  right: 0;
-  -webkit-transform: translateY(-50%);
-  -ms-transform: translateY(-50%);
-  transform: translateY(-50%);
+  margin-left: 9.7em;
 }
 
 @media (max-width: 991.98px) {
   #sidebarCollapse span {
     display: none;
+  }
+  #search-results{
+    padding-left: 0px;
+    padding-right: 0px;
   }
 }
 
@@ -261,6 +272,10 @@ a[data-toggle="collapse"] {
   color: #f55f5f;
 }
 
+.fa-link:hover {
+  color: #000000;
+}
+
 .fa-facebook-square {
   color: #999999;
   padding: 0.2rem;
@@ -286,3 +301,55 @@ a[data-toggle="collapse"] {
   padding: 0.2rem;
 }
 
+.fa-link {
+  color: #999999;
+  padding: 0.2rem;
+}
+
+// Search CSS
+
+.search-card {
+  width: 450px;
+  border: none;
+  border-radius: 10px;
+  background-color: #fff
+}
+
+.search-card,h4 {
+  font-size: calc(1.275rem + .3vw);
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.search-card,span {
+  font-size: calc(1.0rem + .3vw);
+  font-weight: 400 !important;
+  max-width: 100%;
+  
+}
+
+.stats {
+  background: #f2f5f8 !important;
+  color: #000 !important;
+  min-height: 43px;
+}
+
+
+.search-card-content{
+  margin-left: 1rem!important;
+  width: calc(100% - 121px);
+}
+
+.logo2{
+  display: block;
+  width: 100px;
+  height: 100px;
+}
+
+.logo3{
+  display: block;
+  width: 150px;
+  height: 150px;
+}
