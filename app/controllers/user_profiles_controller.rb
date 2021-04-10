@@ -5,7 +5,12 @@ class UserProfilesController < ApplicationController
   helper_method :industries
 
   def index
+
+    @industries = industries
+
+
     @user_profiles = UserProfile.joins(:user).select("user_profiles.*,users.admin_status").where("users.admin_status")
+
     search_type = params[:search_type]
     search_word = params[:search_word]
 

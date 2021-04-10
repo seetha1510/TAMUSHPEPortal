@@ -3,12 +3,20 @@
 
 
  <div class="input-group mb-3">
+
  <div class="col-sm-2 pb-2">
-    <%= select_tag :search_type, options_for_select([["First Name"],["Last Name"],["Employer"],["School"],["Field of Study"],["Position Industry"],["Position Title"]],params[:search_type]), :class  => 'form-select'%>
+    <%= select_tag :search_type, options_for_select([["First Name"],["Last Name"],["Employer"],["School"],["Field of Study"],["Industry"],["Position Title"]],params[:search_type]), :class  => 'form-select'%>
     
   </div>  
-  <div class="col-sm-9 pb-2">
+  <div class="col-sm-9 pb-2" name = "textfield">
+
     <%= text_field_tag :search_word, params[:search_word], aria_label: "Text input with dropdown button",  class: "form-control", type: "text",placeholder:"Search" %>
+    
+  </div>
+
+  <div class="col-sm-9" name = "industryselectfield">
+    
+    <%= select_tag :search_word,options_for_select(@industries, @industries[0]), :class  => 'form-select'%>
   </div>
   <div class="col-sm-1 pb-2">
     <%
@@ -83,7 +91,23 @@
   </div>
   </div>
   <% end %>
-  </div>
+</div>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+<script>
+$(document).ready(function() {
+  $('[name="industryselectfield"]').hide();
+
+  $('[name="search_type"]').change(function() {
+    if ($('[name="search_type"]').val() === "Industry") {
+      $('[name="industryselectfield"]').show();
+      $('[name="textfield"]').hide();
+    } else {
+      $('[name="industryselectfield"]').hide();
+      $('[name="textfield"]').show();
+    }
+  })
+});
+</script>
 
 
-</table>
