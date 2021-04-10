@@ -42,10 +42,7 @@ RSpec.describe 'Search bar on XSS attack ', type: :system do
 
       fill_in 'Search', with: '<script>alert()</script>'
       within('form') do
-        click_on 'Search'
-      end
-      within('form') do
-        click_on 'Search'
+        find(:css, 'i.mx-2.fa.fa-search').click
       end
     end
   end
