@@ -5,12 +5,8 @@ class UserProfilesController < ApplicationController
   helper_method :industries
 
   def index
-
     @industries = industries
-
-
-    @user_profiles = UserProfile.joins(:user).select("user_profiles.*,users.admin_status").where("users.admin_status")
-
+    @user_profiles = UserProfile.all
     search_type = params[:search_type]
     search_word = params[:search_word]
 
@@ -57,7 +53,7 @@ class UserProfilesController < ApplicationController
     @email = if @user_profile.user_display_email_status
                '*************'
              else
-               @true_email
+               User.get_current_user(current_account).user_email
              end
     @membership = if @user_profile.user_current_member_status
                     'Current Member'

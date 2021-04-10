@@ -1,13 +1,2 @@
-<div class="col-md-6 text-center">
-    <%= image_tag "tamuSHPE_app_logo.png", style: 'height:auto;width:50%;' , class:"mb-3"%>
-    <div class="container white-text form-div" style="margin-top:25px;">
-        <h1>Thanks for Requesting an Account!</h1>
-
-        <h4 style="margin-top:25px;">Please allow some time for an admin to process your request.</h4>
-        
-        <h6 style="margin-top:25px;">You must sign out and sign back in to see changes in your account approval status.</h6>
-        <h6>If you have any questions send us an email at <a href="mailto:tamushpe@gmail.com">tamushpe@gmail.com</a>!</h6>
-
-        <%=link_to "Sign out", destory_account_session_path, method: :delete , class:"btn btn-primary mb-3", style:"margin-top:50px;"%>
-    </div>
-</div>
+<h1>Approval</h1>
+<%=link_to "Home", destory_account_session_path, method: :delete , class:"btn btn-primary mb-3"%>

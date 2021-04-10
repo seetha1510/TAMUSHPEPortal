@@ -2,18 +2,9 @@
 
 <%= form_with model: @employee do |form| %>
     <% if @employee.errors.any? %>
-    <%
-=begin%>
- <div id="error_explanation ">
+    <div id="error_explanation ">
         <% @employee.errors.full_messages.each do |msg| %>
             <h4 class="mb-1" id="error-message" style="color:#D30000"><%= msg %></h4>
-        <% end %>
-    </div> 
-<%
-=end%>
-    <div class="alert alert-danger">
-        <% @employee.errors.full_messages.each do |msg| %>
-        <div><%= msg %></div>
         <% end %>
     </div>
     <% end %>

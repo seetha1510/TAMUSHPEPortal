@@ -1,189 +1,50 @@
-<style>
-body{
-    margin-top:20px;
-    color: #1a201c;
-    text-align: left;
-    background-color: #f8f9fa;    
-}
-.main-body {
-    padding: 0px;
-}
-/* .card {
-    box-shadow: 0 1px 3px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.06);
-} */
-
-.card {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    min-width: 0;
-    word-wrap: break-word;
-    background-color: #f8f9fa;
-    background-clip: border-box;
-    border: 0 solid rgba(0,0,0,.125);
-    border-radius: .25rem;
-
-}
-
-.card-body {
-    flex: 1 1 auto;
-    min-height: 1px;
-    padding: 1rem;
-}
-
-.gutters-sm {
-    margin-right: 0px;
-    margin-left: 0px;
-}
-
-.gutters-sm>.col, .gutters-sm>[class*=col-] {
-    padding-right: 8px;
-    padding-left: 8px;
-}
-.mb-3, .my-3 {
-    margin-bottom: 1rem!important;
-}
-
-.bg-gray-300 {
-    background-color: #e2e8f0;
-}
-.h-100 {
-    height: 100%!important;
-}
-.shadow-none {
-    box-shadow: none!important;
-}
-
-
-</style>
 <% if current_account.email == @true_email %>
 <h1 class="mb-4">My Profile </h1>
 <%else%>
 <h1><%= @user_profile.user_first_name[0].upcase%><%= @user_profile.user_first_name[1..-1]%>'s Profile</h1>
 <%end%>
-<div class="container">
-    <div class="main-body">
-    
-          <!-- Breadcrumb -->
-
-          <!-- /Breadcrumb -->
-    
-          <div class="row gutters-sm">
-            <div class="col-md-4 mb-3">
-              <div class="card shadow">
-                <div class="card-body">
-                  <div class="d-flex flex-column align-items-center text-center">
-
-                   <%
-=begin%>
- <% if @user_profile.user_profile_picture.attached? && @user_profile.user_profile_picture.representable?%>
-                    <%= image_tag(@user_profile.user_profile_picture, class: "rounded-circle", width: "150", height: "150")%>
-                   <% else %>
-                    <%= image_tag("default_profile_picture.jpg", class: "rounded-circle", width: "150", height: "150")%>
-                    <% end %> 
-<%
-=end%>
-
-                    <% if @user_profile.user_profile_picture.attached? && @user_profile.user_profile_picture.representable?%>
-                      <a  class="img logo3 rounded-circle" style="background-image: url(<%= url_for(@user_profile.user_profile_picture )%>);"></a>
-                    <% else %>
-                      <%= image_tag("default_profile_picture.jpg", class: "rounded-circle img", width: "150" , height: "150")%>
-                    <% end %>
-                    <div class="mt-3">
-                      <h4><%=@user_profile.user_first_name[0].capitalize+@user_profile.user_first_name.slice(1..-1)+" " + @user_profile.user_last_name[0].capitalize+@user_profile.user_last_name.slice(1..-1)%></h4>
-                      <p class="text-secondary mb-1"><%=@user_profile.user_industry%></p>
-                    <% if current_account.email == @true_email %>
-                      <%= link_to "Edit Profile", edit_user_profile_path ,class:"btn btn-outline-primary"%>
-                      <%else%>
-                    <%end%>
-
-
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="card mt-3 shadow">
-                <div class="card-body">
-                <h5 class="card-title">About Me</h5>
-
-                <p class="card-text">
-                <%if @user_profile.user_about_me_description != "" && @user_profile.user_about_me_description.present?%>
-                <%=@user_profile.user_about_me_description%>
-                <%else%>
-                <%="Create and Share your a liitle bit about yourself here"%>
-                <%end%>      
-                
-                
-                </p>
-                
-              </div>
-              </div>
-            </div>
-            <div class="col-md-8">
-              <div class="card mb-3 shadow">
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col-sm-3">
-                      <h6 class="mb-0">Full Name</h6>
-                    </div>
-                    <div class="col-sm-9 text-secondary">
-                      <%=@user_profile.user_first_name[0].capitalize+@user_profile.user_first_name.slice(1..-1)+" " + @user_profile.user_last_name[0].capitalize+@user_profile.user_last_name.slice(1..-1)%>
-                    </div>
-                  </div>
-                  <hr>
-                  <div class="row">
-                    <div class="col-sm-3">
-                      <h6 class="mb-0">Email</h6>
-                    </div>
-                    <div class="col-sm-9 text-secondary">
-                      <%=@true_email%>
-                    </div>
-                  </div>
-                  <hr>
-                  <div class="row">
-                    <div class="col-sm-3">
-                      <h6 class="mb-0">Membership</h6>
-                    </div>
-                    <div class="col-sm-9 text-secondary">
-                      <%= @membership %>
-                    </div>
-                  </div>
-                  <hr>
-                  <div class="row">
-                    <div class="col-sm-3">
-                      <h6 class="mb-0">Graduating Year</h6>
-                    </div>
-                    <div class="col-sm-9 text-secondary">
-                      <%= @user_profile.user_graduating_year %>
-                    </div>
-                  </div>
-                  <hr>
-                  <div class="row">
-                    <div class="col-sm-3">
-                      <h6 class="mb-0">Industry</h6>
-                    </div>
-                    <div class="col-sm-9 text-secondary">
-                      <td><%= @user_profile.user_industry %></td>
-                    </div>
-                  </div>
-                  <hr>
-                  <div class="row">
-                    <div class="col-sm-3">
-                      <h6 class="mb-0">Phone Number</h6>
-                    </div>
-                    <div class="col-sm-9 text-secondary">
-                    <%if @user_profile.user_phone_number.present?%>
-                      <td>(<%= @user_profile.user_phone_number[0..2] %>)<%=@user_profile.user_phone_number[3..5] %>-<%=@user_profile.user_phone_number[6..9]%></td>
-                      <%end%>
-                    </div>
-                  </div>
-                  <hr>
-                  <div class="row">
-                    <div class="col-sm-3">
-                      <h6 class="mb-0">Social Media</h6>
-                    </div>
-                    <div class="col-sm-9 text-secondary">
-                      <td>
+<div class="subjects show mb-4">
+    <h3>General Information</h3>
+    <table summary="Subject detail view">
+        <tr>    
+            <th>First name</th>
+            <td><%= @user_profile.user_first_name[0].upcase%><%= @user_profile.user_first_name[1..-1]  %></td>
+        </tr>
+        <tr>
+            <th>Last name</th>
+            <td><%= @user_profile.user_last_name[0].upcase%><%= @user_profile.user_last_name[1..-1] %></td>
+        </tr>
+        <tr>
+            <th>Email</th>
+            <td><%= @email %></td>
+        </tr>
+        <tr>
+            <th>Membership</th>
+            <td><%= @membership %></td>
+        </tr>
+        <tr>
+            <th>Graduating Year</th>
+            <td><%= @user_profile.user_graduating_year %></td>
+        </tr>
+        <tr>
+            <th>Industry</th>
+            <td><%= @user_profile.user_industry %></td>
+        </tr>
+        <tr>
+            <th>About me</th>
+            <td><%= @user_profile.user_about_me_description %></td>
+        </tr>
+        <tr>
+            <th>Phone Number</th>
+            <td>(<%= @user_profile.user_phone_number[0..2] %>)<%=@user_profile.user_phone_number[3..5] %>-<%=@user_profile.user_phone_number[6..9]%></td>
+        </tr>
+        <tr>
+            <th>Selfie</th>
+            <td><%#= image_tag image_url(@user_profile.user_profile_picture_url) %></td>
+        </tr>
+        <tr>
+            <th>Social Media</th>
+            <td>
                 <%if @user_profile.user_facebook_profile_url.present?%>
                     <%= link_to '<i class="fa fa-facebook-square fa-2x" aria-hidden="true"></i>'.html_safe, @user_profile.user_facebook_profile_url, target: :_blank %>
                 <%end%>
@@ -194,25 +55,17 @@ body{
                     <%= link_to '<i class="fa fa-linkedin-square fa-2x" aria-hidden="true"></i>'.html_safe, @user_profile.user_linkedin_profile_url, target: :_blank %>
                 <%end%> 
             </td>
-                    </div>
-                  </div>
-                
-
-
-
-
-                  
-                </div>
-              
-            </div>
-          </div>
-        </div>
-    </div>
-
+        </tr>
+    </table>
+    <% if current_account.email == @true_email %>
+    <%= link_to "Edit", edit_user_profile_path ,class:"btn btn-secondary mt-2"%>
+    <%else%>
+    <%end%>
+</div>
 
 <br>
 <h3>Positions</h3>
-    <div class="row gutters-sm">
+    <div class="row">
     <% @employees.each do |employee| %>
         <div class="col col-md-6 px-1">
         <div class="rounded-3 shadow p-3 mb-2 bg-light card body">
@@ -239,7 +92,7 @@ body{
 
 <br><br><br>
 <h3>Degrees</h3>
-    <div class="row gutters-sm">
+    <div class="row">
     <% @students.each do |student| %>
         <div class="col col-md-6 px-1">
         <div class="rounded-3 shadow p-3 mb-2 bg-light card body">

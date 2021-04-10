@@ -30,7 +30,7 @@ RSpec.describe 'Search bar ', type: :system do
 
       fill_in 'Search', with: 'Yifei'
       within('form') do
-        find(:css, 'i.mx-2.fa.fa-search').click
+        click_on 'Search'
       end
       expect(page).to have_content('Yifei')
     end

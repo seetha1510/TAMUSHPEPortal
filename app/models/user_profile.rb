@@ -21,8 +21,6 @@ class UserProfile < ApplicationRecord
   has_many :employers, through: :employees
   has_many :students
   has_many :schools, through: :students
-  has_many :members
-  has_many :committees, through: :members
 
   # Profile Picture
   has_one_attached :user_profile_picture, dependent: :destroy
