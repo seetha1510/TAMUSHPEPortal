@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_15_032903) do
+ActiveRecord::Schema.define(version: 2021_03_30_024831) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -59,6 +59,13 @@ ActiveRecord::Schema.define(version: 2021_03_15_032903) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "committees", force: :cascade do |t|
+    t.string "committee_name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["committee_name"], name: "index_committees_on_committee_name", unique: true
+  end
+
   create_table "employees", force: :cascade do |t|
     t.integer "user_profile_id"
     t.integer "employer_id"
@@ -77,6 +84,14 @@ ActiveRecord::Schema.define(version: 2021_03_15_032903) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["employer_name"], name: "index_employers_on_employer_name"
+  end
+
+  create_table "members", force: :cascade do |t|
+    t.integer "user_profile_id"
+    t.integer "committee_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_profile_id", "committee_id"], name: "index_members_on_user_profile_id_and_committee_id", unique: true
   end
 
   create_table "schools", force: :cascade do |t|
@@ -129,6 +144,8 @@ ActiveRecord::Schema.define(version: 2021_03_15_032903) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "employees", "employers"
   add_foreign_key "employees", "user_profiles"
+  add_foreign_key "members", "committees"
+  add_foreign_key "members", "user_profiles"
   add_foreign_key "students", "schools"
   add_foreign_key "students", "user_profiles"
   add_foreign_key "user_profiles", "users"
