@@ -24,15 +24,13 @@
             <% if notice && !current_page?(new_user_profile_path)%>
                 <%=render 'layouts/alerts'%>
             <%end%>
-            <%
-=begin%>
- <p class="alert"><%= alert %></p> 
-<%
-=end%>
             <%= yield %>
         </div>
     </div>
     <% elsif controller.controller_name == "admins" %>
+        <% if notice || alert%>
+            <%=render 'layouts/alerts'%>
+        <%end%>
         <%= yield %>
     <% else %>
     <div class="wrapper d-flex align-items-stretch">
