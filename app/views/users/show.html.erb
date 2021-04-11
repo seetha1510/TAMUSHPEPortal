@@ -1,4 +1,52 @@
-<h1 class="mb-4">Home</h1>
-<h4>Welcome to the TAMU SHPE memberSHPE Portal!</h4>
-<h4 style="color:grey">This website facilitates networking between current members and alumni.
-You can get started by searching for members on the <%= link_to 'People' , user_profiles_path, class:"btn btn-primary"%> page.</h4>
+<h1 class="mb-3">Home</h1>
+<h4>Welcome to your memberSHPE Portal!</h4>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 d-flex align-items-stretch">
+            <div class="card mt-3 home-card shadow-lg" style="width:auto;">
+                <%= image_tag "home_search.svg", class:"card-img-top p-4 mx-auto", style:"width:90%" %>
+                <div class="card-body">
+                    <h5 class="card-title">Search For People</h5>
+                    <p class="card-text">
+                        You can search for current and past members of TAMUSHPE based off of different attributes such as first name, last name,
+                        industry, and much more!
+                    </p>
+                    <div class="text-center">
+                        <%= link_to 'Search People' , user_profiles_path, class:"btn btn-primary"%>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-4 d-flex align-items-stretch">
+            <div class="card mt-3 home-card shadow-lg" style="width:auto;">
+                <%= image_tag "home_profile.svg", class:"card-img-top p-4 mx-auto", style:"width:90%" %>
+                <div class="card-body">
+                    <h5 class="card-title">Create a Profile</h5>
+                    <p class="card-text">
+                        Help others get to know you better by creating a profile where you can upload an image, add work experience, and share your 
+                        social media links.
+                    </p>
+                    <div class="text-center">
+                        <%= link_to 'Edit Profile' , user_profile_path(User.get_current_user_profile(current_account).id), class:"btn btn-primary"%>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 d-flex align-items-stretch">
+            <div class="card mt-3 home-card shadow-lg" style="width:auto;">
+                <%= image_tag "home_help.svg", class:"card-img-top p-4 mx-auto", style:"width:90%" %>
+                <div class="card-body">
+                    <h5 class="card-title">Still Confused?</h5>
+                    <p class="card-text">
+                        If you're still having trouble using this website, we've created an extensive help page to answer some FAQ's and provide you our contact information.
+                    </p>
+                    <div class="text-center">
+                        <%= link_to 'Help Page' , faq_path, class:"btn btn-primary"%>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
