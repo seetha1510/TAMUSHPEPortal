@@ -31,7 +31,13 @@ class UserProfilesController < ApplicationController
         @user_profiles = UserProfile.joins(:students).where('lower(students.student_field_of_study) LIKE ?',
                                                             "%#{search_word.downcase}%").to_set
       end
-      if search_type == 'Position Industry'
+      if search_type == "Committee Name"
+        puts(params[:search_word])
+        @user_profiles = UserProfile.joins(:committees).where('lower(committees.committee_name) LIKE ?',
+                                                           "%#{search_word.downcase}%").to_set
+      end
+      if search_type == 'Industry'
+        search_word = params[:select_word]
         @user_profiles = @user_profiles.where('lower(user_industry) LIKE ?',
                                               "%#{search_word.downcase}%").to_set
       end
