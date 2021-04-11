@@ -26,17 +26,25 @@ class ApprovedEmail < ApplicationRecord
         
         if !@email.nil?
           @email_object = ApprovedEmail.where(email: @email).first
-          @existing_user_email = User.where(user_email:@email).first
-          if @email_object.nil? and @existing_user_email.nil?
+          @existing_user = User.where(user_email:@email).first
+          if @email_object.nil? and @existing_user.nil?
             @approved_email = ApprovedEmail.new(email: @email)
             if !@approved_email.save
               return -1
             end
             @counter += 1
+          elsif !@existing_user.nil? 
+            @existing_user_profile = UserProfile.where(user_id: @existing_user.id)
+            if @existing_user.approved_status==false and @existing_user_profile.exists?
+              @approved_email = ApprovedEmail.new(email: @email)
+              if !@approved_email.save
+                return -1
+              end
+              @counter += 1
+            end
           end
         end
       end
-
       return @counter
     else
       return -2
