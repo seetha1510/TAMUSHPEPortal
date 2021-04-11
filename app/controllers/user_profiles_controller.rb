@@ -46,10 +46,10 @@ class UserProfilesController < ApplicationController
 
   def show
     @user_profile = UserProfile.find(params[:id])
-    @facebook_url = @user_profile.user_facebook_profile_url
-    @instagram_url = @user_profile.user_instagram_profile_url
-    @linkedin_url = @user_profile.user_linkedin_profile_url
-    @portfolio_url = @user_profile.user_portfolio_url
+    @facebook_url = @user_profile.user_facebook_profile_url.html_safe
+    @instagram_url = @user_profile.user_instagram_profile_url.html_safe
+    @linkedin_url = @user_profile.user_linkedin_profile_url.html_safe
+    @portfolio_url = @user_profile.user_portfolio_url.html_safe
     @employees = Employee.where(user_profile_id: params[:id])
     @students = Student.where(user_profile_id: params[:id])
     @true_email = User.find(UserProfile.find(params[:id]).user_id).user_email
