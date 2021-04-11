@@ -286,6 +286,7 @@ class AdminsController < ApplicationController
     else
       redirect_to admin_preapproved_emails_path, notice: "Successfully added #{@num} new Pre-approved Emails"
     end
+  end
 
   def valid_users_get
     @approved_users = []
