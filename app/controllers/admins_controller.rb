@@ -273,6 +273,20 @@ class AdminsController < ApplicationController
     }
   end
 
+  def email_import
+    @num = ApprovedEmail.import(params[:file])
+    if @num.nil?
+      redirect_to admin_preapproved_emails_path, alert: "The file uploaded was not of CSV format"
+    elsif @num == -1
+      redirect_to admin_preapproved_emails_path, alert: "There was a problem with adding pre-approved emails"
+    elsif @num == -2
+      redirect_to admin_preapproved_emails_path, alert: "There was a no column with header named 'Email' in the CSV file"
+    elsif @num == -3
+      redirect_to admin_preapproved_emails_path, alert: "A file must be choosen before importing"
+    else
+      redirect_to admin_preapproved_emails_path, notice: "Successfully added #{@num} new Pre-approved Emails"
+    end
+
   def valid_users_get
     @approved_users = []
     @users = User.where(approved_status: true)
@@ -286,5 +300,8 @@ class AdminsController < ApplicationController
     end
 
     @approved_users.sort
+  end
+
+  def documentation
   end
 end
