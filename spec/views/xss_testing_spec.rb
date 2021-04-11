@@ -20,7 +20,7 @@ RSpec.describe 'Search bar on XSS attack ', type: :system do
       fill_in 'Enter Last Name',  with: '<script>alert()</script>'
       click_on 'Create User profile'
       expect(page).to have_content('<script>alert()</script>')
-      expect(page).to have_content('Setting')
+      expect(page).to have_content('Settings')
     end
 
     it 'can search' do
@@ -37,8 +37,8 @@ RSpec.describe 'Search bar on XSS attack ', type: :system do
       fill_in 'Enter Graduating Year', with: '2022'
       click_on 'Create User profile'
       expect(page).to have_content('Yifei')
-      expect(page).to have_content('Setting')
-      click_link('People', match: :first)
+      expect(page).to have_content('Settings')
+      click_link('Search', match: :first)
 
       fill_in 'Search', with: '<script>alert()</script>'
       within('form') do

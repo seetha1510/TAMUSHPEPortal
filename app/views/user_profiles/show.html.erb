@@ -1,6 +1,5 @@
 <style>
 body{
-    margin-top:20px;
     color: #1a201c;
     text-align: left;
     background-color: #f8f9fa;    
@@ -73,17 +72,6 @@ body{
               <div class="card shadow">
                 <div class="card-body">
                   <div class="d-flex flex-column align-items-center text-center">
-
-                   <%
-=begin%>
- <% if @user_profile.user_profile_picture.attached? && @user_profile.user_profile_picture.representable?%>
-                    <%= image_tag(@user_profile.user_profile_picture, class: "rounded-circle", width: "150", height: "150")%>
-                   <% else %>
-                    <%= image_tag("default_profile_picture.jpg", class: "rounded-circle", width: "150", height: "150")%>
-                    <% end %> 
-<%
-=end%>
-
                     <% if @user_profile.user_profile_picture.attached? && @user_profile.user_profile_picture.representable?%>
                       <a  class="img logo3 rounded-circle" style="background-image: url(<%= url_for(@user_profile.user_profile_picture )%>);"></a>
                     <% else %>
@@ -96,8 +84,6 @@ body{
                       <%= link_to "Edit Profile", edit_user_profile_path ,class:"btn btn-outline-primary"%>
                       <%else%>
                     <%end%>
-
-
                     </div>
                   </div>
                 </div>
@@ -106,16 +92,13 @@ body{
                 <div class="card-body">
                 <h5 class="card-title">About Me</h5>
 
-                <p class="card-text">
+                <p class="text-secondary card-text">
                 <%if @user_profile.user_about_me_description != "" && @user_profile.user_about_me_description.present?%>
                 <%=@user_profile.user_about_me_description%>
                 <%else%>
                 <%="Create and Share your a liitle bit about yourself here"%>
                 <%end%>      
-                
-                
                 </p>
-                
               </div>
               </div>
             </div>
@@ -151,7 +134,7 @@ body{
                   <hr>
                   <div class="row">
                     <div class="col-sm-3">
-                      <h6 class="mb-0">Graduating Year</h6>
+                      <h6 class="mb-0">Graduation Year</h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
                       <%= @user_profile.user_graduating_year %>
@@ -182,35 +165,61 @@ body{
                     <div class="col-sm-3">
                       <h6 class="mb-0">Social Media</h6>
                     </div>
-                    <div class="col-sm-9 text-secondary">
-                      <td>
-                <%if @user_profile.user_facebook_profile_url.present?%>
-                    <%= link_to '<i class="fa fa-facebook-square fa-2x" aria-hidden="true"></i>'.html_safe, @user_profile.user_facebook_profile_url, target: :_blank %>
-                <%end%>
-                <%if @user_profile.user_instagram_profile_url.present?%>
-                    <%= link_to '<i class="fa fa-instagram fa-2x" aria-hidden="true"></i>'.html_safe, @user_profile.user_instagram_profile_url, target: :_blank %>
-                <%end%>
-                <%if @user_profile.user_linkedin_profile_url.present?%>
-                    <%= link_to '<i class="fa fa-linkedin-square fa-2x" aria-hidden="true"></i>'.html_safe, @user_profile.user_linkedin_profile_url, target: :_blank %>
-                <%end%> 
-            </td>
+                    <div class="col-sm-9 text-secondary d-flex">
+                      
+                      <%if @user_profile.user_facebook_profile_url.present?%>
+                      <div class="d-flex flex-column"> 
+                        <%= link_to '<i class="fa fa-facebook-square fa-2x" aria-hidden="true"></i>'.html_safe, @user_profile.user_facebook_profile_url, target: :_blank %>
+                      </div>
+                    <%end%>
+                    
+                    
+                    <%if @user_profile.user_instagram_profile_url.present?%>
+                      <div class="d-flex flex-column">
+                        <%= link_to '<i class="fa fa-instagram fa-2x" aria-hidden="true"></i>'.html_safe, @user_profile.user_instagram_profile_url, target: :_blank %>
+                      </div>
+                    <%end%> 
+                    
+                    <%if @user_profile.user_linkedin_profile_url.present?%>
+                      <div class="d-flex flex-column">
+                        <%= link_to '<i class="fa fa-linkedin-square fa-2x" aria-hidden="true"></i>'.html_safe, @user_profile.user_linkedin_profile_url, target: :_blank %>
+                      </div>
+                    <%end%> 
+
+                    <%if @user_profile.user_portfolio_url.present?%>
+                      <div class="d-flex flex-column">
+                        <%= link_to '<i class="fa fa-link fa-2x" aria-hidden="true"></i>'.html_safe, @user_profile.user_portfolio_url, target: :_blank %>
+                      </div>
+                    <%end%>  
+                    </div>
+                    </div>
+                
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Committees</h6>
+                    </div>
+                    <div class="col-sm-9 show-badges">
+                      <%if !@user_profile.committees.first.nil? %>
+                        <% @user_profile.committees.each do |committee| %>
+                          <span class="badge bg-primary"><%= committee.committee_name %></span>
+                        <%end%>
+                      <% elsif @user_profile.user_current_member_status %>
+                        <span class="badge bg-secondary">Member</span>
+                      <%else%>
+                        <span class="badge bg-secondary">Alumni</span>
+                      <% end %>
                     </div>
                   </div>
-                
-
-
-
-
-                  
-                </div>
-              
+                  </div>
+                </div>    
             </div>
           </div>
         </div>
     </div>
 
 
-<br>
+<hr class="middle-divider">
 <h3>Positions</h3>
     <div class="row gutters-sm">
     <% @employees.each do |employee| %>
@@ -235,9 +244,7 @@ body{
         <%= link_to "Add", new_employee_path ,class:"btn btn-secondary mt-2", id:"employee_add"%>
     <%end%>
 
-
-
-<br><br><br>
+<hr class="middle-divider">
 <h3>Degrees</h3>
     <div class="row gutters-sm">
     <% @students.each do |student| %>

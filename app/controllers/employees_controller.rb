@@ -43,7 +43,7 @@ class EmployeesController < ApplicationController
                 end
 
     @employer_name = @form_params[:employer_name]
-    @employer_object = Employer.where(employer_name: @employer_name).first
+    @employer_object = Employer.where(employer_name: @form_params[:employer_name]).first
 
     @employer_object = Employer.create(employer_name: @employer_name) if @employer_object.nil?
 
