@@ -169,26 +169,26 @@ body{
                       
                       <%if @user_profile.user_facebook_profile_url.present?%>
                       <div class="d-flex flex-column"> 
-                        <%= link_to '<i class="fa fa-facebook-square fa-2x" aria-hidden="true"></i>'.html_safe, @user_profile.user_facebook_profile_url, target: :_blank %>
+                        <%= link_to '<i class="fa fa-facebook-square fa-2x" aria-hidden="true"></i>'.html_safe, @facebook_url, target: :_blank %>
                       </div>
                     <%end%>
                     
                     
                     <%if @user_profile.user_instagram_profile_url.present?%>
                       <div class="d-flex flex-column">
-                        <%= link_to '<i class="fa fa-instagram fa-2x" aria-hidden="true"></i>'.html_safe, @user_profile.user_instagram_profile_url, target: :_blank %>
+                        <%= link_to '<i class="fa fa-instagram fa-2x" aria-hidden="true"></i>'.html_safe, @instagram_url, target: :_blank %>
                       </div>
                     <%end%> 
                     
                     <%if @user_profile.user_linkedin_profile_url.present?%>
                       <div class="d-flex flex-column">
-                        <%= link_to '<i class="fa fa-linkedin-square fa-2x" aria-hidden="true"></i>'.html_safe, @user_profile.user_linkedin_profile_url, target: :_blank %>
+                        <%= link_to '<i class="fa fa-linkedin-square fa-2x" aria-hidden="true"></i>'.html_safe, @linkedin_url, target: :_blank %>
                       </div>
                     <%end%> 
 
                     <%if @user_profile.user_portfolio_url.present?%>
                       <div class="d-flex flex-column">
-                        <%= link_to '<i class="fa fa-link fa-2x" aria-hidden="true"></i>'.html_safe, @user_profile.user_portfolio_url, target: :_blank %>
+                        <%= link_to '<i class="fa fa-link fa-2x" aria-hidden="true"></i>'.html_safe, @portfolio_url, target: :_blank %>
                       </div>
                     <%end%>  
                     </div>
