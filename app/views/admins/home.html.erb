@@ -1,12 +1,76 @@
-<div class="container-fluid" style="background-color:#001F5B!important;height:100vh;">
-    <div class="container" style="background-color:#f8f9fa!important;padding-top:50px;padding-right:25px;padding-left:25px;padding-bottom:25px;height:100vh;">
-        <h1>Admin Home</h1>
+<style>
 
-        <div class="navbar navbar-expand-lg navbar-light bg-light">
-            <%= link_to 'Return to normal app', root_path, class: "nav-link" %>
-            <%= link_to 'Account Requests', admin_account_requests_path, class: "nav-link" %>
-            <%= link_to 'Pre-Approved Emails', admin_preapproved_emails_path, class: "nav-link" %>
-            <%= link_to 'Approved Users', admin_approved_users_path, class: "nav-link" %>
+.card_title_text{
+
+text-align: center;
+font-size: 300%;}
+.card-title{
+color:rgba(128, 0, 0, 1);
+}
+
+.center-text{
+    text-align:center;
+}
+
+.top-right {
+    position: absolute;
+     padding-top: 10px;
+  padding-right: 10px;
+    top: 0;
+    right: 0;
+    padding: 
+}
+
+</style>
+
+
+<div class="container-fluid" style="background-color:#001F5B!important;min-height:100vh;height:100%;">
+<div class="container" style="background-color:#f8f9fa!important;padding-top:50px;padding-right:25px;padding-left:25px;padding-bottom:25px;min-height:100vh;height:100%;">
+ <%= link_to 'Return to normal app', root_path, class: "nav-link" %>
+<h1>Admin Home</h1>
+<div class="card-deck">
+    <div class="row row-auto ">
+        <div class="col-sm-6 mb-3">
+            <div class="card p-2 justify-content-center" style="height:18rem;">  
+                <%= link_to admin_preapproved_emails_path, class:    "card-block stretched-link text-decoration-none" do%>
+                <h4 class="card-title card_title_text"  >Pre-Approved Emails</h4>
+                <p class="card-text center-text">Add and Delete Pre-Approved Emails  </p>
+                <i  class="fa fa-external-link top-right" style = "font-size:36px"></i>
+                <%end%>
+            </div>
+        </div>
+        <div class="col-sm-6 mb-3">
+            <div class="card p-2  justify-content-center" style="height:18rem;">
+                <%= link_to admin_committees_path, class:    "card-block stretched-link text-decoration-none " do%>
+                <h4 class="card-title card_title_text"  >Set Committees</h4>
+                <p class="card-text center-text">   Create and Delete Committees or Add  Members</p>
+                 <i  class="fa fa-external-link top-right" style = "font-size:36px"></i>
+                <%end%>
+            </div>
         </div>
     </div>
+
+
+
+    <div class="row row-auto ">
+        <div class="col-sm-6 mb-3">
+            <div class="card p-2  justify-content-center" style="height:18rem;">
+        <%= link_to admin_account_requests_path, class:    "card-block stretched-link text-decoration-none" do%>
+        <h4 class="card-title card_title_text"  >Account Requests</h4>
+        <p class="card-text center-text">Approve New Members</p>
+         <i  class="fa fa-external-link top-right" style = "font-size:36px"></i>
+        <%end%>
+    </div>
+        </div>
+        <div class="col-sm-6 mb-3">
+           <div class="card p-2  justify-content-center" style="height:18rem;">
+        <%= link_to admin_approved_users_path, class:    "card-block stretched-link text-decoration-none" do%>
+        <h4 class="card-title card_title_text"  >Approved Users</h4>
+        <p class="card-text center-text">View Current Members</p>
+         <i  class="fa fa-external-link top-right" style = "font-size:36px"></i>
+        <%end%>
+    </div>
+        </div>
+    </div>
+    
 </div>

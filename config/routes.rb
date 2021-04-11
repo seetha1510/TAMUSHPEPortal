@@ -17,6 +17,10 @@ Rails.application.routes.draw do
   resources :students
   resources :schools
 
+
+  get 'pages/faq', to: 'pages#faq', as: 'faq'
+  get 'pages/userguide', to: 'pages#userguide', as: 'userguide'
+
   get 'users/test', to: 'users#test', as: 'test'
   get 'users/show', to: 'users#show', as: 'show'
   get 'setting', to: 'users#setting', as: 'setting'
@@ -25,6 +29,12 @@ Rails.application.routes.draw do
 
   #admin routes
   get 'admin', to: 'admins#home', as: 'admin'
+
+  get 'admin/committees', to: 'admins#committees', as: 'admin_committees'
+  post 'admin/committees/new', to: 'admins#committees_new', as: 'admin_committees_new'
+  get 'admin/committees/delete/:id', to: 'admins#committees_delete', as: 'admin_committees_delete'
+  post 'admin/committees/add/:id', to: 'admins#committees_add_member', as: 'admin_committees_add_member'
+  get 'admin/committees/remove/:id', to: 'admins#committees_remove_member', as: 'admin_committees_remove_member'
 
   get 'admin/requests', to: 'admins#requests', as: 'admin_account_requests'
   get 'admin/request/approve/:id', to: 'admins#request_approve', as: 'admin_request_approve'

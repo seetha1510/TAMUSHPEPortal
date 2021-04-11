@@ -3,9 +3,18 @@
 
     <%= form_with model: @student do |f| %>
     <% if @student.errors.any? %>
-    <div id="error_explanation ">
+    <%
+=begin%>
+ <div id="error_explanation ">
         <% @student.errors.full_messages.each do |msg| %>
         <h4 class="mb-1" id="error-message" style="color:#D30000"><%= msg %></h4>
+        <% end %>
+    </div> 
+<%
+=end%>
+    <div class="alert alert-danger">
+        <% @student.errors.full_messages.each do |msg| %>
+        <div><%= msg %></div>
         <% end %>
     </div>
     <% end %>
@@ -67,7 +76,7 @@
 </div>
 
 <div class="form-buttons">
-    <%= f.submit class:"btn btn-primary"%>
+    <%= f.submit "Update",class:"btn btn-primary"%>
 </div>
 
 <script>
