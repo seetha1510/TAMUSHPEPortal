@@ -7,7 +7,7 @@ Rails.application.routes.draw do
       delete 'delete_image/:image_id', action: 'delete_image', as: 'delete_image'
     end
   end
-  # root "users#home"
+
   root 'users#index'
 
   resources :users
@@ -17,7 +17,10 @@ Rails.application.routes.draw do
   resources :students
   resources :schools
 
-  get 'pages/help', to: 'pages#help', as: 'help'
+
+  get 'pages/faq', to: 'pages#faq', as: 'faq'
+  get 'pages/userguide', to: 'pages#userguide', as: 'userguide'
+
   get 'users/test', to: 'users#test', as: 'test'
   get 'users/show', to: 'users#show', as: 'show'
   get 'setting', to: 'users#setting', as: 'setting'
@@ -40,11 +43,14 @@ Rails.application.routes.draw do
   get 'admin/emails', to: 'admins#emails', as: 'admin_preapproved_emails'
   get 'admin/email/add', to: 'admins#email_add', as: 'admin_email_add'
   get 'admin/email/remove/:id', to: 'admins#email_remove', as: 'admin_email_remove'
+  post 'admin/email/import', to: 'admins#email_import', as: 'admin_email_import'
 
   get 'admin/approved', to: 'admins#approved', as: 'admin_approved_users'
   get 'admin/approved/user/:id', to: 'admins#approved_view', as: 'admin_approved_view'
   get 'admin/approved/user/edit/:id', to: 'admins#approved_edit', as: 'admin_approved_edit'
   get 'admin/approved/user/delete/:id', to: 'admins#approved_delete', as: 'admin_approved_delete'
+
+  get 'admin/documentation', to: 'admins#documentation', as: 'admin_documentation'
 
 
 

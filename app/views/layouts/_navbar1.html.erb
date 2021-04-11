@@ -49,20 +49,33 @@
             <%# <li>
                 <a href="#">Settings</a>
             </li> %>
-            
+
             <li>
               <a href="#pageSubmenu" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
               <i class="fa fa-question-circle fa-nav" aria-hidden="true"></i> Help
               </a>
               <ul class="collapse list-unstyled" id="pageSubmenu">
-                <li>
-                    <a href="#">FAQ</a>
+                <% if current_page?(faq_path) %>
+                <li class="active">
+                <% else %>
+                    <li>
+                <%end%>
+                    <%= link_to faq_path, class:"nav-link" do%>
+                        <i class="fa fa-question-circle fa-nav" aria-hidden="true"></i> FAQ
+                    <% end %>
                 </li>
-                <li>
-                    <a href="#">User Guide</a>
+                <% if current_page?(userguide_path) %>
+                <li class="active">
+                <% else %>
+                    <li>
+                <%end%>
+                    <%= link_to userguide_path, class:"nav-link" do%>
+                        <i class="fa fa-question-circle fa-nav" aria-hidden="true"></i> User Guide
+                    <% end %>
                 </li>
               </ul>
 	        </li>
+
             <% if current_page?(:controller => 'users', :action => 'setting') %>
                 <li class="active">
             <% else %>
