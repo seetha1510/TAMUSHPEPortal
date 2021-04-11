@@ -6,7 +6,7 @@ class UserProfilesController < ApplicationController
 
   def index
     @industries = industries
-    @user_profiles = UserProfile.joins(:user).select("user_profiles.*,users.approved_status").where("users.approved_status").where.not("users.admin_status")
+    @user_profiles = UserProfile.joins(:user).select('user_profiles.*,users.approved_status').where('users.approved_status').where.not('users.admin_status')
     search_type = params[:search_type]
     search_word = params[:search_word]
 
@@ -31,10 +31,10 @@ class UserProfilesController < ApplicationController
         @user_profiles = UserProfile.joins(:students).where('lower(students.student_field_of_study) LIKE ?',
                                                             "%#{search_word.downcase}%").to_set
       end
-      if search_type == "Committee Name"
-        puts(params[:search_word])
+      if search_type == 'Committee Name'
+
         @user_profiles = UserProfile.joins(:committees).where('lower(committees.committee_name) LIKE ?',
-                                                           "%#{search_word.downcase}%").to_set
+                                                              "%#{search_word.downcase}%").to_set
       end
       if search_type == 'Industry'
         search_word = params[:select_word]
@@ -52,10 +52,10 @@ class UserProfilesController < ApplicationController
 
   def show
     @user_profile = UserProfile.find(params[:id])
-    @facebook_url = @user_profile.user_facebook_profile_url.html_safe
-    @instagram_url = @user_profile.user_instagram_profile_url.html_safe
-    @linkedin_url = @user_profile.user_linkedin_profile_url.html_safe
-    @portfolio_url = @user_profile.user_portfolio_url.html_safe
+    @facebook_url = @user_profile.user_facebook_profile_url
+    @instagram_url = @user_profile.user_instagram_profile_url
+    @linkedin_url = @user_profile.user_linkedin_profile_url
+    @portfolio_url = @user_profile.user_portfolio_url
     @employees = Employee.where(user_profile_id: params[:id])
     @students = Student.where(user_profile_id: params[:id])
     @true_email = User.find(UserProfile.find(params[:id]).user_id).user_email

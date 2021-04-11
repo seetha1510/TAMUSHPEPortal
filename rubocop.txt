@@ -1,4 +1,24 @@
-Inspecting 63 files
-...............................................................
+Inspecting 65 files
+...........................C.C.C..C..............................
 
-63 files inspected, no offenses detected
+Offenses:
+
+app/models/committee.rb:4:3: C: Rails/HasManyOrHasOneDependent: Specify a :dependent option.
+  has_many :members
+  ^^^^^^^^
+app/models/employer.rb:4:3: C: Rails/HasManyOrHasOneDependent: Specify a :dependent option.
+  has_many :employees
+  ^^^^^^^^
+app/models/school.rb:4:3: C: Rails/HasManyOrHasOneDependent: Specify a :dependent option.
+  has_many :students
+  ^^^^^^^^
+app/models/user_profile.rb:20:3: C: Rails/HasManyOrHasOneDependent: Specify a :dependent option.
+  has_many :employees
+  ^^^^^^^^
+app/models/user_profile.rb:22:3: C: Rails/HasManyOrHasOneDependent: Specify a :dependent option.
+  has_many :students
+  ^^^^^^^^
+app/models/user_profile.rb:24:3: C: Rails/HasManyOrHasOneDependent: Specify a :dependent option.
+  has_many :members
+  ^^^^^^^^
+65 files inspected, 6 offenses detected

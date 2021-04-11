@@ -117,7 +117,7 @@ class AdminsController < ApplicationController
     @user_profile = @user.user_profile
     @employees = Employee.where(user_profile_id: @user_profile.id)
     @students = Student.where(user_profile_id: @user_profile.id)
-    @members = Member.where(user_profile_id:@user_profile.id)
+    @members = Member.where(user_profile_id: @user_profile.id)
   end
 
   def approved_edit
@@ -182,7 +182,7 @@ class AdminsController < ApplicationController
       @committee_object = Committee.create(committee_name: @member_attr['committee_name']) if @committee_object.nil?
 
       @members_did_update = member.update(committee_id: @committee_object.id)
-      
+
       break unless @members_did_update
     end
 
@@ -247,11 +247,9 @@ class AdminsController < ApplicationController
   end
 
   def get_this_members_attributes(params, index)
-
     {
-      'committee_name' => params["committee_name_#{index}".to_sym],
+      'committee_name' => params["committee_name_#{index}".to_sym]
     }
-    
   end
 
   def get_this_students_attributes(params, index)
@@ -276,13 +274,13 @@ class AdminsController < ApplicationController
   def email_import
     @num = ApprovedEmail.import(params[:file])
     if @num.nil?
-      redirect_to admin_preapproved_emails_path, alert: "The file uploaded was not of CSV format"
+      redirect_to admin_preapproved_emails_path, alert: 'The file uploaded was not of CSV format'
     elsif @num == -1
-      redirect_to admin_preapproved_emails_path, alert: "There was a problem with adding pre-approved emails"
+      redirect_to admin_preapproved_emails_path, alert: 'There was a problem with adding pre-approved emails'
     elsif @num == -2
       redirect_to admin_preapproved_emails_path, alert: "There was a no column with header named 'Email' in the CSV file"
     elsif @num == -3
-      redirect_to admin_preapproved_emails_path, alert: "A file must be choosen before importing"
+      redirect_to admin_preapproved_emails_path, alert: 'A file must be choosen before importing'
     else
       redirect_to admin_preapproved_emails_path, notice: "Successfully added #{@num} new Pre-approved Emails"
     end
@@ -303,6 +301,5 @@ class AdminsController < ApplicationController
     @approved_users.sort
   end
 
-  def documentation
-  end
+  def documentation; end
 end
