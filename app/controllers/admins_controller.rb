@@ -301,4 +301,7 @@ class AdminsController < ApplicationController
 
     @approved_users.sort
   end
+
+  def documentation
+  end
 end
