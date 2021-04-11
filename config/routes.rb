@@ -49,6 +49,8 @@ Rails.application.routes.draw do
   get 'admin/approved/user/edit/:id', to: 'admins#approved_edit', as: 'admin_approved_edit'
   get 'admin/approved/user/delete/:id', to: 'admins#approved_delete', as: 'admin_approved_delete'
 
+  get 'admin/documentation', to: 'admins#documentation', as: 'admin_documentation'
+
 
 
   #get '/account' => 'users#show', :as => :account_root
