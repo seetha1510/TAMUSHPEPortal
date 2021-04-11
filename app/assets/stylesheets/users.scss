@@ -3,7 +3,7 @@
 // You can use Sass (SCSS) here: https://sass-lang.com/
 body {
   font-family: "Poppins", Arial, sans-serif;
-  font-size: 14px;
+  font-size: 16px;
   line-height: 1.8;
   font-weight: normal;
   background: #fafafa;
@@ -360,4 +360,17 @@ a[data-toggle="collapse"] {
   display: block;
   width: 150px;
   height: 150px;
+}
+
+.show-badges span {
+  font-size: calc(.75rem + .3vw);
+  font-weight: 400 !important;
+  max-width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.middle-divider{
+  margin: 2rem 0;
 }

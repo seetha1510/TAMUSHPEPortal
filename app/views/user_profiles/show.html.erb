@@ -165,39 +165,61 @@ body{
                     <div class="col-sm-3">
                       <h6 class="mb-0">Social Media</h6>
                     </div>
-                    <div class="col-sm-9 text-secondary">
-                      <td>
-                <%if @user_profile.user_facebook_profile_url.present?%>
-                    <%= link_to '<i class="fa fa-facebook-square fa-2x" aria-hidden="true"></i>'.html_safe, @user_profile.user_facebook_profile_url, target: :_blank %>
-                <%end%>
-                <%if @user_profile.user_instagram_profile_url.present?%>
-                    <%= link_to '<i class="fa fa-instagram fa-2x" aria-hidden="true"></i>'.html_safe, @user_profile.user_instagram_profile_url, target: :_blank %>
-                <%end%>
-                <%if @user_profile.user_linkedin_profile_url.present?%>
-                    <%= link_to '<i class="fa fa-linkedin-square fa-2x" aria-hidden="true"></i>'.html_safe, @user_profile.user_linkedin_profile_url, target: :_blank %>
-                <%end%> 
-                <%if @user_profile.user_portfolio_url.present?%>
-                    <%= link_to '<i class="fa fa-link fa-2x" aria-hidden="true"></i>'.html_safe, @user_profile.user_portfolio_url, target: :_blank %>
-                  </div>
-                <%end%> 
-            </td>
+                    <div class="col-sm-9 text-secondary d-flex">
+                      
+                      <%if @user_profile.user_facebook_profile_url.present?%>
+                      <div class="d-flex flex-column"> 
+                        <%= link_to '<i class="fa fa-facebook-square fa-2x" aria-hidden="true"></i>'.html_safe, @user_profile.user_facebook_profile_url, target: :_blank %>
+                      </div>
+                    <%end%>
+                    
+                    
+                    <%if @user_profile.user_instagram_profile_url.present?%>
+                      <div class="d-flex flex-column">
+                        <%= link_to '<i class="fa fa-instagram fa-2x" aria-hidden="true"></i>'.html_safe, @user_profile.user_instagram_profile_url, target: :_blank %>
+                      </div>
+                    <%end%> 
+                    
+                    <%if @user_profile.user_linkedin_profile_url.present?%>
+                      <div class="d-flex flex-column">
+                        <%= link_to '<i class="fa fa-linkedin-square fa-2x" aria-hidden="true"></i>'.html_safe, @user_profile.user_linkedin_profile_url, target: :_blank %>
+                      </div>
+                    <%end%> 
+
+                    <%if @user_profile.user_portfolio_url.present?%>
+                      <div class="d-flex flex-column">
+                        <%= link_to '<i class="fa fa-link fa-2x" aria-hidden="true"></i>'.html_safe, @user_profile.user_portfolio_url, target: :_blank %>
+                      </div>
+                    <%end%>  
+                    </div>
+                    </div>
+                
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Committees</h6>
+                    </div>
+                    <div class="col-sm-9 show-badges">
+                      <%if !@user_profile.committees.first.nil? %>
+                        <% @user_profile.committees.each do |committee| %>
+                          <span class="badge bg-primary"><%= committee.committee_name %></span>
+                        <%end%>
+                      <% elsif @user_profile.user_current_member_status %>
+                        <span class="badge bg-secondary">Member</span>
+                      <%else%>
+                        <span class="badge bg-secondary">Alumni</span>
+                      <% end %>
                     </div>
                   </div>
-                
-
-
-
-
-                  
-                </div>
-              
+                  </div>
+                </div>    
             </div>
           </div>
         </div>
     </div>
 
 
-<br>
+<hr class="middle-divider">
 <h3>Positions</h3>
     <div class="row gutters-sm">
     <% @employees.each do |employee| %>
@@ -222,9 +244,7 @@ body{
         <%= link_to "Add", new_employee_path ,class:"btn btn-secondary mt-2", id:"employee_add"%>
     <%end%>
 
-
-
-<br><br><br>
+<hr class="middle-divider">
 <h3>Degrees</h3>
     <div class="row gutters-sm">
     <% @students.each do |student| %>
