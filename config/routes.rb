@@ -17,6 +17,10 @@ Rails.application.routes.draw do
   resources :students
   resources :schools
 
+
+  get 'pages/faq', to: 'pages#faq', as: 'faq'
+  get 'pages/userguide', to: 'pages#userguide', as: 'userguide'
+
   get 'users/test', to: 'users#test', as: 'test'
   get 'users/show', to: 'users#show', as: 'show'
   get 'setting', to: 'users#setting', as: 'setting'

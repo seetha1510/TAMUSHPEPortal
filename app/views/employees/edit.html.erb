@@ -2,9 +2,18 @@
 
 <%= form_with model: @employee do |form| %>
     <% if @employee.errors.any? %>
-    <div id="error_explanation ">
+    <%
+=begin%>
+ <div id="error_explanation ">
         <% @employee.errors.full_messages.each do |msg| %>
             <h4 class="mb-1" id="error-message" style="color:#D30000"><%= msg %></h4>
+        <% end %>
+    </div> 
+<%
+=end%>
+    <div class="alert alert-danger">
+        <% @employee.errors.full_messages.each do |msg| %>
+        <div><%= msg %></div>
         <% end %>
     </div>
     <% end %>
@@ -72,7 +81,7 @@
         </div>
     </div>
     
-    <%= form.submit class:"btn btn-primary", style:"margin-bottom:15px;" %>
+    <%= form.submit "Update",class:"btn btn-primary", style:"margin-bottom:15px;" %>
 <% end %>
 <%= link_to "Back", user_profile_path(User.get_current_user_profile(current_account).id) , class:"btn btn-primary"%>
 
