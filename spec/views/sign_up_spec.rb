@@ -38,7 +38,7 @@ RSpec.describe 'Tamu ship ', type: :system do
       expect(page).to have_content('Image')
       expect(page).to have_content('Phone Number')
       expect(page).to have_content('About Me')
-      expect(page).to have_content('Graduating Year')
+      expect(page).to have_content('Graduation Year')
     end
 
     it 'can create new profile page' do
