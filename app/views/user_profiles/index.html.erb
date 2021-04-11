@@ -10,7 +10,7 @@
   </div>  
    <div class="col-sm-9" name = "industryselectfield">
     
-    <%= select_tag :select_word,options_for_select(@industries), :class  => 'form-select'%>
+    <%= select_tag :select_word,options_for_select(@industries,:selected => params[:select_word]),:class  => 'form-select'%>
   </div>
   <div class="col-sm-9 pb-2" name = "textfield">
 
@@ -103,7 +103,11 @@
 
 <script>
 $(document).ready(function() {
+   if ($('[name="search_type"]').val() !== "Industry"){
   $('[name="industryselectfield"]').hide();
+   } else{
+     $('[name="textfield"]').hide();
+   }
 
   $('[name="search_type"]').change(function() {
     if ($('[name="search_type"]').val() === "Industry") {
