@@ -29,8 +29,7 @@ RSpec.describe 'user profile edit page', type: :system do
         click_on 'Profile'
       end
 
-
-        click_on 'Edit Profile'
+      click_on 'Edit Profile'
 
       expect(page).to have_content('Update General Information')
       visit edit_user_profile_path(UserProfile.find_by(user_id: User.find_by(user_email: 'tony@stark.com').id).id)

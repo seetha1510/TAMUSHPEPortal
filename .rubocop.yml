@@ -1,24 +1,23 @@
 inherit_from: .rubocop_todo.yml
 
-require: 
+require:
   - rubocop-performance
   - rubocop-rails
   - rubocop-rspec
 
-
 AllCops:
   Exclude:
-    - 'db/**/*'
-    - 'script/**/*'
-    - 'bin/**/*'
-    - 'node_modules/**/*'
-    - 'config/**/*'
+    - "db/**/*"
+    - "script/**/*"
+    - "bin/**/*"
+    - "node_modules/**/*"
+    - "config/**/*"
 
 # All the following cops are not part of the coding standard so they are disabled
 Metrics:
   Enabled: false
 
-Style/GuardClause: 
+Style/GuardClause:
   Enabled: false
 
 Style/Documentation:
