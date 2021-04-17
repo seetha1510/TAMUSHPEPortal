@@ -10,7 +10,7 @@ class UserProfilesController < ApplicationController
     search_type = params[:search_type]
     search_word = params[:search_word]
 
-    if search_word && search_word != ''
+    if (search_word && search_word != '') ||(search_type == 'Industry')
       if search_type == 'First Name'
         @user_profiles = @user_profiles.where('user_first_name LIKE ?',
                                               "%#{search_word.downcase}%").to_set
