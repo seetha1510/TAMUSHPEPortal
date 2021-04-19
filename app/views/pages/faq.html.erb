@@ -12,11 +12,10 @@
 .accordion-section .panel-default .panel-title a:after {
     font-family: 'FontAwesome';
     font-style: normal;
-    font-size: 3rem;
+    font-size: 2rem;
     content: "\f106";
     color: #1f7de2;
     float: right;
-    margin-top: -12px;
 }
 .accordion-section .panel-default .panel-title a.collapsed:after {
     content: "\f107";
@@ -35,7 +34,7 @@ If you have any other questions, please contact <%= mail_to "tamushpe@gmail.com"
   <h3>Frequently Asked Questions </h3>
 
         <section class="accordion-section clearfix mt-3" aria-label="Question Accordions">
-        <div class="container">
+        <div class="container p-0">
   
 	 
 	  <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
@@ -64,8 +63,7 @@ If you have any other questions, please contact <%= mail_to "tamushpe@gmail.com"
 		  </div>
 		  <div id="collapse1" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading1">
 			<div class="panel-body px-3 mb-4">
-			  <p>Instruction for hiding your email:
-			  </p>
+			  <p>Instruction for hiding your email:</p>
 			  <ul>
 				<li>Go to Profile</li>
 				<li>Click "Edit Profile"</li>
@@ -92,6 +90,7 @@ If you have any other questions, please contact <%= mail_to "tamushpe@gmail.com"
 				<li>Click "Upload Picture"</li>
 				<li>Select the your profile picture and then upload</li>
 			  </ul>
+			  <p>Note: You may want to upload an image which has the content you want displayed near the center. </p>
 			</div>
 		  </div>
 		</div>
@@ -127,8 +126,7 @@ If you have any other questions, please contact <%= mail_to "tamushpe@gmail.com"
 		  </div>
 		  <div id="collapse4" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading3">
 			<div class="panel-body px-3 mb-4">
-			  <p>It might take sometime for the image to load into our database, please come back in 5 mins. If it is not showing up after 5 mins, please contact <%= mail_to "tamushpe@gmail.com"%></p>
-			   
+			  <p>It might take sometime for the image to load into our database. If you dont see it update immediately, try refreshing the page. If it is not showing up after 5 mins, please contact <%= mail_to "tamushpe@gmail.com"%></p>
 			</div>
 		  </div>
 		</div>

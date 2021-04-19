@@ -3,28 +3,29 @@
         
         <h1>Active Users</h1>
         <%= link_to "Back", admin_path%>
-
-        <table class="table table-hover mt-3">
-            <thead class="table" style="background-color:#001F5B;color:white">
-                <tr>
-                    <th scope="col">User ID</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">First Name</th>
-                    <th scope="col">Last Name</th>
-                    <th scope="col">Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                <% @approved_users.each do |user| %>
-                    <tr class="table-light">
-                        <td><%= user.id %></td>
-                        <td><%= user.user_email %></td>
-                        <td><%= user.user_profile.user_first_name %></td>
-                        <td><%= user.user_profile.user_last_name %></td>
-                        <td><%= link_to "View", admin_approved_view_path(user.id) %></td>
+        <div class="table-responsive">
+            <table class="table table-hover mt-3">
+                <thead class="table" style="background-color:#001F5B;color:white">
+                    <tr>
+                        <th scope="col">User ID</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">First Name</th>
+                        <th scope="col">Last Name</th>
+                        <th scope="col">Action</th>
                     </tr>
-                <% end %>
-            </tbody>
-        <table>
+                </thead>
+                <tbody>
+                    <% @approved_users.each do |user| %>
+                        <tr class="table-light">
+                            <td><%= user.id %></td>
+                            <td><%= user.user_email %></td>
+                            <td><%= user.user_profile.user_first_name %></td>
+                            <td><%= user.user_profile.user_last_name %></td>
+                            <td><%= link_to "View", admin_approved_view_path(user.id) %></td>
+                        </tr>
+                    <% end %>
+                </tbody>
+            <table>
+        </div>
     </div>
 </div>
