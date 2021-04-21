@@ -29,7 +29,7 @@ RSpec.describe 'Tamu ship ', type: :system do
       expect(page).to have_content('First Name')
       expect(page).to have_content('Last Name')
       expect(page).to have_content('Email Address')
-      expect(page).to have_content('Current Member')
+      expect(page).to have_content('Alumni')
       expect(page).to have_content('Hide Email')
       expect(page).to have_content('Facebook')
       expect(page).to have_content('Instagram')

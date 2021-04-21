@@ -66,9 +66,9 @@ class UserProfilesController < ApplicationController
                @true_email
              end
     @membership = if @user_profile.user_current_member_status
-                    'Current Member'
-                  else
                     'Alumni'
+                  else
+                    'Current Member'
                   end
   end
 
