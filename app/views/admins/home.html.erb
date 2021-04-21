@@ -1,17 +1,26 @@
 <style>
 
 .card_title_text{
-
-text-align: center;
-font-size: 300%;}
-.card-title{
-color:rgba(128, 0, 0, 1);
+    text-align: center;
+    font-size: 200%;
 }
-
+.doc-btn{
+  float: right;
+}
+@media (max-width: 1050px) {
+    .doc-btn{
+        float: none;
+    }
+}
+.card-title{
+    color: grey;
+}
+.card:hover{
+    background: rgba(0,0,0,0.1);
+}
 .center-text{
     text-align:center;
 }
-
 .top-right {
     position: absolute;
      padding-top: 10px;
@@ -28,7 +37,7 @@ color:rgba(128, 0, 0, 1);
 <div class="container" style="background-color:#f8f9fa!important;padding-top:50px;padding-right:25px;padding-left:25px;padding-bottom:25px;min-height:100vh;height:100%;">
  <%= link_to 'Return to normal app', root_path, class: "nav-link" %>
 <h1 style="display:inline-block">Admin Home</h1>
-<%=link_to '<button type="button" class="btn btn-primary" style="float:right"><i class="fa fa-info fa-lg" aria-hidden="true"></i> Documentation</button>'.html_safe, admin_documentation_path%>
+<%=link_to '<button type="button" class="btn btn-primary mb-2 doc-btn" ><i class="fa fa-info fa-lg" aria-hidden="true"></i> Documentation</button>'.html_safe, admin_documentation_path%>
 <div class="card-deck">
     <div class="row row-auto ">
         <div class="col-sm-6 mb-3">
