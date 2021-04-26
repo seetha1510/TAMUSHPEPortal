@@ -1,4 +1,4 @@
-ReadMe 
+# TAMU SHPE Member Portal
 
 ##  What Does It Do?   
 
