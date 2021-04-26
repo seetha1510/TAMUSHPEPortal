@@ -1,13 +1,13 @@
 ReadMe 
 
-##What Does It Do?   
+##  What Does It Do?   
 
 Our product was developed to serve as a networking application for the TAMU SHPE student organization. TAMU Society of Hispanic Professional Engineers, is a student organization at Texas A&M University and is branch of the SHPE national organization.  
 
 Members and alumni of this organization can create profiles, add personal information, and search for other members and alumni based on several criteria. The intention of the application is to increase the interaction between current members and alumni of the organization. We developed the application using a combination of Ruby on Rails, Heroku, GitHub, RSpec, Jira, and others.  
 
 Our goal for the product we developed is to aid TAMU SHPE in their goals of increasing member’s network outreach potential. 
-##What Is Needed To Use It? 
+##  What Is Needed To Use It? 
 
 The prerequisite of this application are: 
 
@@ -36,7 +36,7 @@ The following packages and tools were used in the project:
 •Devise –To aid in directing application use for authenticated and unauthenticated users   
 
 •Omniauth-google-oauth2 –To configure rails to allow Google Cloud Authentication   
-##How Do I Install It? 
+##  How Do I Install It? 
 
 To install our application, you first need to clone this GitHub repository. After downloading the source code onto your machine, ensure that you have the dependencies listed above installed on your machine. Next, you will need to run the following commands from inside the source code directory, to make our application operational:   
 
@@ -56,13 +56,13 @@ Now, everything should be set up for the application. If you want to run the app
 
  
 
-##How Do I Update the Online App? 
+##  How Do I Update the Online App? 
 
 In order to update the application that is hosted on Heroku, you must add new code to the master branch on you GitHub remote repository. This can be in the form of a git commit, merge, or push. Once this is done, the GitHub actions that are set in place on the repository will handle the CI/CD process such as regression testing, integration testing, and deployment to Heroku. 
 
  
 
-##How Do I Test It? 
+##  How Do I Test It? 
 
 To run the default test for this application, do: 
 
@@ -78,7 +78,7 @@ To add more test for this application:
 
 To learn more about rspec testing, go to rspec documentation 
 
-##How Do I Use It? 
+##  How Do I Use It? 
 
 The product is an interactive website. The website is secure and can be accessed only by those approved by the admins in the organization.  
 
@@ -110,7 +110,7 @@ quit
 
  
 
-##How Do I Get Support? 
+##  How Do I Get Support? 
 
 We have created user and admin documentation for support on how to use the website. Under the “Help” section you will see “FAQ” and “User Guide” pages. The “FAQ” section will provide solutions to issues we think many users will encounter. The “User Guide” page contains extensive user documentation that explains in detail the functionality of each page on the website. Lastly, Admins have access to documentation specific to them which can be found in “Admin” -> “Documentation”. This page provides a detailed description of the features in each page that only Admins have access to. 
 
