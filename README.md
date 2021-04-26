@@ -7,6 +7,10 @@ Our product was developed to serve as a networking application for the TAMU SHPE
 Members and alumni of this organization can create profiles, add personal information, and search for other members and alumni based on several criteria. The intention of the application is to increase the interaction between current members and alumni of the organization. We developed the application using a combination of Ruby on Rails, Heroku, GitHub, RSpec, Jira, and others.  
 
 Our goal for the product we developed is to aid TAMU SHPE in their goals of increasing member’s network outreach potential. 
+
+###Website: https://tamu-member-shpe-portal.herokuapp.com/ 
+
+
 ##  What Is Needed To Use It? 
 
 The prerequisite of this application are: 
