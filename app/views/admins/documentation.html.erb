@@ -218,7 +218,48 @@
 		  <div id="collapse3_0" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading0">
 			<div class="panel-body px-3 mb-4">
 			  <p>
+			  The source code for this website and instructions for installation to further develop are availiable at <a href="https://github.com/JasonGilman18/TAMUSHPEMemberPortal" target="_blank">https://github.com/JasonGilman18/TAMUSHPEMemberPortal</a>.
+			  The instructions are also mentioned below for convenience.
 			  </p>
+			  <p>
+			  The following are the dependencies required
+			  <ul>
+			  	<li> Ruby 3.0.0 </li>
+				<li> Rails 6.1.2 </li>
+				<li> Bootstrap 5.0.0 – To aid in frontend design and mobile friendliness </li>
+				<li> rspec-rails– To aid in testing source code </li>
+				<li> Heroku </li>
+				<li> PostgreSQL13.2 </li>
+				<li> GitHub </li>
+				<li> Active-Storage-Validations – To aid in validating image attachments in rails models </li>
+				<li> AWS-SDK-s3 – To aid in connecting rails to AWS S3 service </li>
+				<li> Omniauth 1.9.1 - To configure rails to allow Google Cloud Authentication </li>
+				<li> Devise – To aid in directing application use for authenticated and unauthenticated users </li>
+				<li> Omniauth-google-oauth2 –To configure rails to allow Google Cloud Authentication </li>
+			  </ul>
+			  </p>
+
+			  <p>To install the application locally, clone the GitHub repository above to get the source code. After downloading the source code onto your machine, 
+			  ensure that you have the dependencies listed above installed on your machine. Next, you will need to run the following commands from inside the source 
+			  code directory, to make our application operational:
+				<ol>
+				<li> bundle install </li>
+				<li> yarn install </li>
+				</ol>
+			 The project is now set up but not operational. The following commands will instantiate the database and populate it with our models.
+				<ol>
+				<li> rails db:create </li>
+				<li> rails db:migrate </li>
+				</ol>
+			Now, everything should be set up for the application. If you want to run the application locally, you may run the following command:
+				<ul>
+				<li> rails server </li>
+				</ul>
+
+			In order to update the application that is hosted on Heroku, you must add new code to the master branch on you GitHub remote repository. 
+			This can be in the form of a git commit, merge, or push. Once this is done, the GitHub actions that are set in place on the repository will 
+			handle the CI/CD process such as regression testing, integration testing, and deployment to Heroku.
+			</p>
 			</div>
 		  </div>
 		</div>
@@ -253,7 +294,7 @@
 			  <p>Links that are required to ensure that the website functions as intended</p>
 			  	<ul>
 				<li> Heroku website link: <a href="https://tamu-member-shpe-portal.herokuapp.com" target="_blank">https://tamu-member-shpe-portal.herokuapp.com</a>
-				<li> AWS for picture storage: 
+				<li> AWS for picture storage: <a href="https://s3.console.aws.amazon.com/s3/buckets/membershpe-profile-pictures?region=us-east-1&tab=objects" target="_blank">https://s3.console.aws.amazon.com/s3/buckets/membershpe-profile-pictures?region=us-east-1&tab=objects</a>
 				</ul>
 			</div>
 		  </div>
