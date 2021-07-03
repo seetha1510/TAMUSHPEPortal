@@ -54,4 +54,11 @@ class UserProfile < ApplicationRecord
       self.user_portfolio_url = "https://#{user_portfolio_url}"
     end
   end
+
+  before_save do
+    if self.anything.attached?
+        ext = '.' + self.anything.blob.filename.extension
+        self.anything.blob.update(filename: self.anything.blob.filename.gsub!(/[^0-9A-Za-z]/, '') + ext)
+    end
+  end
 end
