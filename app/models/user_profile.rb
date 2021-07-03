@@ -56,9 +56,9 @@ class UserProfile < ApplicationRecord
   end
 
   before_save do
-    if self.anything.attached?
-        ext = '.' + self.anything.blob.filename.extension
-        self.anything.blob.update(filename: self.anything.blob.filename.gsub!(/[^0-9A-Za-z]/, '') + ext)
+    if self.user_profile_picture.attached?
+        ext = '.' + self.user_profile_picture.blob.filename.extension
+        self.user_profile_picture.blob.update(filename: self.user_profile_picture.blob.filename.gsub!(/[^0-9A-Za-z]/, '') + ext)
     end
   end
 end
