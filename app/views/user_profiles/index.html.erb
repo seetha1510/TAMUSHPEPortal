@@ -42,7 +42,7 @@
         <div class="d-flex align-items-center">
             <div class="image">
             <% if user_profile.user_profile_picture.attached? && user_profile.user_profile_picture.representable?%>
-              <a  class="img logo2 rounded-circle" style="background-image: url(<%= url_for(user_profile.user_profile_picture).sanitized%>);"></a>
+              <a  class="img logo2 rounded-circle" style="background-image: url(<%= url_for(user_profile.user_profile_picture)%>);"></a>
             <% else %>
               <%= image_tag("default_profile_picture.jpg", class: "rounded-circle img", width: "100" , height: "100")%>
             <% end %>

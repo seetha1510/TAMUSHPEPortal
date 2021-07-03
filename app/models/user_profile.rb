@@ -28,7 +28,7 @@ class UserProfile < ApplicationRecord
   has_one_attached :user_profile_picture, dependent: :destroy
   validates :user_profile_picture, content_type: %i[png jpg jpeg]
 
-  before_save :make_lower_case, :add_url
+  before_save :make_lower_case, :add_url, :sanitize_profile_picture_name
 
   protected
 
@@ -55,4 +55,10 @@ class UserProfile < ApplicationRecord
     end
   end
 
+  def sanitize_profile_picture_name
+    if self.user_profile_picture.attached?
+        ext = '.' + self.user_profile_picture.blob.filename.extension
+        self.user_profile_picture.blob.update(filename: self.user_profile_picture.blob.filename.base.gsub!(/[()]/, '') + ext)
+    end
+  end
 end
