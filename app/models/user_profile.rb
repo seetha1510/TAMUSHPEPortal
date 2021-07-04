@@ -58,7 +58,9 @@ class UserProfile < ApplicationRecord
   def sanitize_profile_picture_name
     if self.user_profile_picture.attached?
         ext = '.' + self.user_profile_picture.blob.filename.extension
-        self.user_profile_picture.blob.update(filename: self.user_profile_picture.blob.filename.base.gsub!(/[()]/, '') + ext)
+        filename = self.user_profile_picture.blob.filename
+        filename = self.user_profile_picture.blob.filename.base.gsub!(/[()]/, '') + ext
+        self.user_profile_picture.blob.update(filename: filename)
     end
   end
 end
