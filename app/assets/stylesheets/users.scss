@@ -180,7 +180,7 @@ h5,
   }
   #close-button{
     display: block;
-    transform: translateX(10px);
+    transform: translate(10px,10px);
   }
   #sidebarCollapse span {
     display: none;
@@ -381,3 +381,11 @@ a[data-toggle="collapse"] {
   margin: 2rem 0;
 }
 
+.default-cursor:hover{
+  cursor: default;
+}
+
+.fa-times:hover{
+  cursor: pointer;
+  color: #fd652f;
+}

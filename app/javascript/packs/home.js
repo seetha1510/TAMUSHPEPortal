@@ -22,4 +22,15 @@
 	$('#content').toggleClass('active');
 });
 
+	var width = $(window).width();
+	$(window).on('resize', function() {
+	if ($(this).width() !== width) {
+		width = $(this).width();
+		if(width >= 1050){
+			$('#sidebar').toggleClass('active',false);
+			$('#content').toggleClass('active',false);
+		}
+	}
+	});
+
 })(jQuery);

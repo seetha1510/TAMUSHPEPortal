@@ -35,7 +35,7 @@
 
 <div class="container-fluid" style="background-color:#001F5B!important;min-height:100vh;height:100%;">
 <div class="container" style="background-color:#f8f9fa!important;padding-top:50px;padding-right:25px;padding-left:25px;padding-bottom:25px;min-height:100vh;height:100%;">
- <%= link_to 'Return to normal app', root_path, class: "nav-link" %>
+<div><%= link_to 'Return to normal app', root_path, class: "nav-link", style: "display: inline;padding-left:0px;" %></div>
 <h1 style="display:inline-block">Admin Home</h1>
 <%=link_to '<button type="button" class="btn btn-primary mb-2 doc-btn" ><i class="fa fa-info fa-lg" aria-hidden="true"></i> Documentation</button>'.html_safe, admin_documentation_path%>
 <div class="card-deck">
@@ -45,7 +45,6 @@
                 <%= link_to admin_preapproved_emails_path, class:    "card-block stretched-link text-decoration-none" do%>
                 <h4 class="card-title card_title_text"  >Pre-Approved Emails</h4>
                 <p class="card-text center-text">Add and Delete Pre-Approved Emails  </p>
-                <i  class="fa fa-external-link top-right" style = "font-size:36px"></i>
                 <%end%>
             </div>
         </div>
@@ -54,7 +53,6 @@
                 <%= link_to admin_committees_path, class:    "card-block stretched-link text-decoration-none " do%>
                 <h4 class="card-title card_title_text"  >Set Committees</h4>
                 <p class="card-text center-text">   Create and Delete Committees or Add  Members</p>
-                 <i  class="fa fa-external-link top-right" style = "font-size:36px"></i>
                 <%end%>
             </div>
         </div>
@@ -68,7 +66,6 @@
         <%= link_to admin_account_requests_path, class:    "card-block stretched-link text-decoration-none" do%>
         <h4 class="card-title card_title_text"  >Account Requests</h4>
         <p class="card-text center-text">Approve New Members</p>
-         <i  class="fa fa-external-link top-right" style = "font-size:36px"></i>
         <%end%>
     </div>
         </div>
@@ -77,7 +74,6 @@
         <%= link_to admin_approved_users_path, class:    "card-block stretched-link text-decoration-none" do%>
         <h4 class="card-title card_title_text"  >Active Users</h4>
         <p class="card-text center-text">View Current Members</p>
-         <i  class="fa fa-external-link top-right" style = "font-size:36px"></i>
         <%end%>
     </div>
         </div>
