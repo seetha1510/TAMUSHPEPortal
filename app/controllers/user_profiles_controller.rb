@@ -59,6 +59,7 @@ class UserProfilesController < ApplicationController
     @employees = Employee.where(user_profile_id: params[:id])
     @students = Student.where(user_profile_id: params[:id])
     @true_email = User.find(UserProfile.find(params[:id]).user_id).user_email
+    @eBoardPositions = ["President","Vice President","Secretary","Treasurer","Director of External Affairs","Director of Internal Affairs","Director of Academic Development","Director of Public Relations","Director of Technical Affairs"]
 
     @email = if @user_profile.user_display_email_status
                '*************'
