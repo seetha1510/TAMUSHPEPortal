@@ -9,6 +9,7 @@ class UserProfilesController < ApplicationController
     @user_profiles = UserProfile.joins(:user).select('user_profiles.*,users.approved_status').where('users.approved_status').where.not('users.admin_status')
     search_type = params[:search_type]
     search_word = params[:search_word]
+    @eBoardPositions = ["President","Vice President","Secretary","Treasurer","Director of External Affairs","Director of Internal Affairs","Director of Academic Development","Director of Public Relations","Director of Technical Affairs"]
 
     if (search_word && search_word != '') ||(search_type == 'Industry')
       if search_type == 'First Name'
