@@ -9,7 +9,7 @@ class UserProfilesController < ApplicationController
     @user_profiles = UserProfile.joins(:user).select('user_profiles.*,users.approved_status').where('users.approved_status').where.not('users.admin_status')
     search_type = params[:search_type]
     search_word = params[:search_word]
-    @eBoardPositions = ["President","Vice President","Secretary","Treasurer","Director of External Affairs","Director of Internal Affairs","Director of Academic Development","Director of Public Relations","Director of Technical Affairs"]
+    @eBoardPositions = ["President","Vice President","Secretary","Treasurer","Dir. of External Affairs","Dir. of Internal Affairs","Dir. of Academic Development","Dir. of Public Relations","Dir. of Technical Affairs"]
 
     if (search_word && search_word != '') ||(search_type == 'Industry')
       if search_type == 'First Name'
@@ -60,7 +60,7 @@ class UserProfilesController < ApplicationController
     @employees = Employee.where(user_profile_id: params[:id])
     @students = Student.where(user_profile_id: params[:id])
     @true_email = User.find(UserProfile.find(params[:id]).user_id).user_email
-    @eBoardPositions = ["President","Vice President","Secretary","Treasurer","Director of External Affairs","Director of Internal Affairs","Director of Academic Development","Director of Public Relations","Director of Technical Affairs"]
+    @eBoardPositions = ["President","Vice President","Secretary","Treasurer","Dir. of External Affairs","Dir. of Internal Affairs","Dir. of Academic Development","Dir. of Public Relations","Dir. of Technical Affairs"]
 
     @email = if @user_profile.user_display_email_status
                '*************'
