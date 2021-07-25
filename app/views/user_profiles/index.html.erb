@@ -56,7 +56,7 @@
                     <span class="badge bg-primary"><%= user_profile.committees.first.committee_name %></span>
                   <%end%>
             
-                <% elsif user_profile.user_current_member_status %>
+                <% elsif !user_profile.user_current_member_status %>
                   <span class="badge bg-secondary">Member</span>
                 <%else%>
                   <span class="badge bg-secondary">Alumni</span>

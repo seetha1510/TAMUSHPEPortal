@@ -208,7 +208,7 @@ body{
                             <span class="badge bg-primary"><%= committee.committee_name %></span>
                           <% end %>
                         <%end%>
-                      <% elsif @user_profile.user_current_member_status %>
+                      <% elsif !@user_profile.user_current_member_status %>
                         <span class="badge bg-secondary">Member</span>
                       <%else%>
                         <span class="badge bg-secondary">Alumni</span>
