@@ -14,37 +14,37 @@ class UserProfilesController < ApplicationController
     if (search_word && search_word != '') ||(search_type == 'Industry')
       if search_type == 'First Name'
         @user_profiles = @user_profiles.where('user_first_name LIKE ?',
-                                              "%#{search_word.downcase}%").to_set
+                                              "%#{search_word.downcase}%")
       end
       if search_type == 'Last Name'
         @user_profiles = @user_profiles.where('user_last_name LIKE ?',
-                                              "%#{search_word.downcase}%").to_set
+                                              "%#{search_word.downcase}%")
       end
       if search_type == 'Employer'
         @user_profiles = UserProfile.joins(:employers).where('lower(employers.employer_name) LIKE ?',
-                                                             "%#{search_word.downcase}%").to_set
+                                                             "%#{search_word.downcase}%")
       end
       if search_type == 'School'
         @user_profiles = UserProfile.joins(:schools).where('lower(schools.school_name) LIKE ?',
-                                                           "%#{search_word.downcase}%").to_set
+                                                           "%#{search_word.downcase}%")
       end
       if search_type == 'Field of Study'
         @user_profiles = UserProfile.joins(:students).where('lower(students.student_field_of_study) LIKE ?',
-                                                            "%#{search_word.downcase}%").to_set
+                                                            "%#{search_word.downcase}%")
       end
       if search_type == 'Committee Name'
 
         @user_profiles = UserProfile.joins(:committees).where('lower(committees.committee_name) LIKE ?',
-                                                              "%#{search_word.downcase}%").to_set
+                                                              "%#{search_word.downcase}%")
       end
       if search_type == 'Industry'
         search_word = params[:select_word]
         @user_profiles = @user_profiles.where('lower(user_industry) LIKE ?',
-                                              "%#{search_word.downcase}%").to_set
+                                              "%#{search_word.downcase}%")
       end
       if search_type == 'Position Title'
         @user_profiles = UserProfile.joins(:employees).where('lower(employees.employee_position) LIKE ?',
-                                                             "%#{search_word.downcase}%").to_set
+                                                             "%#{search_word.downcase}%")
       end
       ## add more
     end
