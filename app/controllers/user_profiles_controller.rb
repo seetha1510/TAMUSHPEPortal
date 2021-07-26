@@ -46,9 +46,9 @@ class UserProfilesController < ApplicationController
         @user_profiles = UserProfile.joins(:employees).where('lower(employees.employee_position) LIKE ?',
                                                              "%#{search_word.downcase}%").to_set
       end
-
       ## add more
     end
+    @user_profiles = @user_profiles.page params[:page]
   end
 
   def show
