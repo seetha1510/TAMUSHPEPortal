@@ -60,7 +60,7 @@
         <p>This is real-time data of member statistics which provides insight into who is involved in our organization.</p>
         <div class="col-md-4 col-sm-6 m-2 p-3 d-flex card align-items-stretch" style="width:31%">
             <p class="mb-1 text-center" style="font-size:18px">Major Distribution</p>
-            <%= pie_chart UserProfile.all.group(:user_industry).count, download: {filename: "Major_Distribution", background: "#ffffff"} %>
+            <%= pie_chart UserProfile.all.group(:user_industry).count, download: {filename: "Major_Distribution", background: "#ffffff"},legend: false  %>
         </div>
         <div class="col-md-4 col-sm-6 m-2 p-3 d-flex card align-items-stretch" style="width:31%">
             <p class="mb-1 text-center" style="font-size:18px">User Status</p>
@@ -70,7 +70,7 @@
         </div>
         <div class="col-md-4 col-sm-6 m-2 p-3 d-flex card align-items-stretch" style="width:31%">
             <p class="mb-1 text-center" style="font-size:18px">Graduation Years</p>
-            <%= pie_chart UserProfile.all.group(:user_graduating_year).count, download: {filename: "Gender_Distribution", background: "#ffffff"} %>
+            <%= pie_chart UserProfile.all.group(:user_graduating_year).count, download: {filename: "Gender_Distribution", background: "#ffffff"},legend: false %>
         </div>
     </div>
 </div>
