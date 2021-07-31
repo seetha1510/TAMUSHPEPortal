@@ -128,6 +128,15 @@ label {
                     </div>
                 </div>
 
+                <div class="row g-3 align-items-center mb-3">
+                    <div class="col-lg-6">
+                        <li class="list-group-item" style="background-color:#f8f9fa!important;">
+                            <%= form.label :user_industry, "Industry" %>
+                            <%= form.select :user_industry,  @industries, selected: @user_profile.user_industry, class:"form-select" %>
+                        </li>
+                    </div>
+                </div>
+
 
 
                 <% @employees.each.with_index(1) do |employee, index| %>
@@ -337,13 +346,6 @@ label {
 
 
 
-
-
-
-
-
-
-
                 <% @members.each.with_index(1) do |member, index| %>
                     
                     <div class="row g-3 align-items-center mb-3" style="margin-top:50px;">
@@ -379,23 +381,9 @@ label {
                             }
                         });
                     </script>
-
-                    
-                    
+                
                 <% end %>
 
-
-
-
-
-
-
-
-
-
-
-
-                
             </ul>
         <% end %>
         <div class="row g-3 align-items-center mb-3" style="margin-top:25px;">

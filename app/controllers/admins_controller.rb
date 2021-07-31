@@ -118,11 +118,11 @@ class AdminsController < ApplicationController
     @employees = Employee.where(user_profile_id: @user_profile.id)
     @students = Student.where(user_profile_id: @user_profile.id)
     @members = Member.where(user_profile_id: @user_profile.id)
+    @industries = industries
   end
 
   def approved_edit
     @user = User.find(params[:id])
-
     @user_profile = @user.user_profile
     @user_profile_did_update = @user_profile.update(
       user_first_name: params[:user_first_name],
@@ -135,7 +135,8 @@ class AdminsController < ApplicationController
       user_graduating_year: params[:user_graduating_year],
       user_about_me_description: params[:user_about_me_description],
       user_phone_number: params[:user_phone_number],
-      user_portfolio_url: params[:user_portfolio_url]
+      user_portfolio_url: params[:user_portfolio_url],
+      user_industry: params[:user_industry]
     )
 
     @employees = Employee.where(user_profile_id: @user_profile.id)
@@ -302,4 +303,30 @@ class AdminsController < ApplicationController
   end
 
   def documentation; end
+end
+
+def industries
+  ['Accounting', 'Aerospace Engineering','Airline/Aviation', 'Alternative Dispute Resolution', 'Alternative Medicine', 'Animation', 'Apparel & Fashion', 'Architectural Engineering',
+   'Architecture & Planning', 'Arts & Crafts', 'Automotive', 'Aviation & Aerospace', 'Banking', 'Biological & Agricultural Engineering', 'Biomedical Engineering', 'Biotechnology', 'Broadcast Media',
+   'Building Materials', 'Business Supplies & Equipment', 'Capital Markets', 'Chemical Engineering', 'Civic & Social Organization',
+   'Civil Engineering', 'Commercial Real Estate', 'Computer & Network Securtiy', 'Computer Engineering', 'Computer Games', 'Computer Hardware',
+   'Computer Science', 'Computer Software', 'Construction', 'Consumer Electronics', 'Consumer Goods', 'Consumer Services', 'Cosmetics',
+   'Dairy', 'Defense & Space', 'Design', 'E-learning', 'Education Management', 'Electrical & Electronic Manufacturing', 'Electrical Engineering', 'Electronic Systems Engineering',
+   'Entertainment', 'Environmental Engineering','Environmental Science', 'Events Services', 'Executive Office', 'Facilities Services', 'Farming', 'Financial Services',
+   'Fine Art', 'Fishery', 'Food & Beverages', 'Food Production', 'Fundrasing', 'Furniture', 'Gambling & Casinos', 'Glass, Ceramics & Concrete',
+   'Government Administration', 'Government Relations', 'Graphic Design', 'Health, Wellness & Fitness', 'Higher Education', 'Hospital & Health Care',
+   'Hospitality', 'Human Resources', 'Import & Export', 'Individual & Family Services', 'Industrial Automation', 'Industrial Distribution', 'Industrial Engineering', 'Information Services',
+   'Information Technology & Services', 'Insurance', 'Interdisciplinary Engineering','International Affairs', 'International Trade & Development', 'Internet',
+   'Investment Banking', 'Investment Management', 'Judiciary', 'Law Enforcement', 'Law Practice', 'Legal Services', 'Legislative Office',
+   'Leisure,  Travel & Tourism', 'Libraries', 'Logistics & Supply Chain', 'Luxury Goods & Jewelry', 'Machinery', 'Management Consulting', 'Material Science & Engineering',
+   'Maritime', 'Market Research', 'Marketing & Advertising', 'Mechanical Engineering', 'Media Production', 'Medical Device',
+   'Medical Practice', 'Mental Health Care', 'Military', 'Mining & Metals', 'Mobile Games', 'Motion Pictures & Film', 'Multidisciplinary Engineering','Museums & Institutions',
+   'Music', 'Nanotechnology', 'Newspapers', 'Non-profit Organization Management', 'Nuclear Engineering', 'Ocean Engineering', 'Oil & Energy', 'Online Media', 'Outsourcing/Offshoring',
+   'Package/Freight Delivery', 'Packaging & Containers', 'Paper & Forest Products', 'Performing Arts', 'Petroleum Engineering', 'Pharmaceuticals', 'Philanthropy',
+   'Photography', 'Plastics', 'Political Organization', 'Primary/Secondary Education', 'Printing', 'Professional Training & Coaching',
+   'Program Development', 'Public Policy', 'Public Relations & Communications', 'Public Saftey', 'Publishing', 'Railroad Manufacture',
+   'Ranching', 'Real Estate', 'Recreational Facilities & Services', 'Religous Institutions', 'Renewables & Environment', 'Research',
+   'Restaurants', 'Retail', 'Security & Investigations', 'Semiconductors', 'Shipbuilding', 'Software Engineering','Sporting Goods', 'Sports', 'Staffing & Recruiting',
+   'Supermarkets', 'Telecommunications', 'Textiles', 'Think Tanks', 'Tobacco', 'Translation & Localization', 'Transportation/Trucking/Railroad',
+   'Utilities', 'Venture Capital & Private Equity', 'Veterinary', 'Warehousing', 'Wholesale', 'Wine & Spirits', 'Wireless', 'Writing & Editing']
 end
