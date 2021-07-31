@@ -179,3 +179,7 @@ class UserProfilesController < ApplicationController
                                          :user_industry)
   end
 end
+
+def capitalize_name(user_profile)
+  user_profile.user_first_name.titleize + " " + user_profile.user_last_name.titleize
+end

@@ -48,7 +48,7 @@
             <% end %>
             </div>
             <div class="ml-3 card-content search-card-content pr-1">
-                <h4 class="mb-0 mt-0"><%= user_profile.user_first_name[0].upcase %><%= user_profile.user_first_name[1..-1].downcase %> <%= user_profile.user_last_name[0].upcase %><%= user_profile.user_last_name[1..-1].downcase %></h4>
+                <h4 class="mb-0 mt-0"><%= capitalize_name(user_profile) %></h4>
                 <%if !user_profile.committees.first.nil? %>
                   <% if @eBoardPositions.include?(user_profile.committees.first.committee_name)%>
                     <span class="badge" style="background-color:#dc3545;"><%= user_profile.committees.first.committee_name %></span>
