@@ -65,8 +65,7 @@
         <div class="col-md-4 col-sm-6 m-2 p-3 d-flex card align-items-stretch" style="width:31%">
             <p class="mb-1 text-center" style="font-size:18px">User Status</p>
             <% @temp = UserProfile.all.group(:user_current_member_status).count%>
-            <% @members = (UserProfile.all.size - @temp[true])%>
-            <% @new = {'Alumni': @temp[true], 'Member': @members} %>
+            <% @new = {'Alumni': @temp[true], 'Member': @temp[false]} %>
             <%= column_chart @new, download: {filename: "User_Status", background: "#ffffff"} %>
         </div>
         <div class="col-md-4 col-sm-6 m-2 p-3 d-flex card align-items-stretch" style="width:31%">
