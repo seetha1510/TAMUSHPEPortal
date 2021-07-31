@@ -9,7 +9,7 @@ class UserProfile < ApplicationRecord
   validates :user_linkedin_profile_url,
             format: { with: /\A.*linkedin.com.*\z/, message: 'Use a Valid Linkedin URL' }, allow_blank: true
   validates :user_graduating_year,
-            format: { with: /\A[0-9]{4}\z/, message: 'Enter 4 Digit Year' }, allow_blank: true
+            format: { with: /\A[0-9]{4}\z/, message: 'Enter 4 Digit Year' }, presence: { message: 'Enter Your Graduation Year' }
   validates :user_phone_number,
             format: { with: /\A(\+1)?[0-9]{10}\z/, message: 'Use a Valid Phone Number' }, allow_blank: true
   validates :user_first_name, presence: { message: 'Enter Your First Name' },
