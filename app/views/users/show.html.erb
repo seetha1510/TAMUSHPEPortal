@@ -58,17 +58,17 @@
     <div class="row mt-4">
         <h4 class="pl-0">MemberSHPE Stats</h4>
         <p>This is real-time data of member statistics which provides insight into who is involved in our organization.</p>
-        <div class="col-md-4 col-sm-6 m-2 p-3 d-flex card align-items-stretch" style="width:31%">
+        <div class="col-md-4 col-sm-6 m-2 p-3 d-flex card align-items-stretch stat-item">
             <p class="mb-1 text-center" style="font-size:18px">Major Distribution</p>
             <%= pie_chart UserProfile.all.group(:user_industry).count, download: {filename: "Major_Distribution", background: "#ffffff"},legend: false  %>
         </div>
-        <div class="col-md-4 col-sm-6 m-2 p-3 d-flex card align-items-stretch" style="width:31%">
+        <div class="col-md-4 col-sm-6 m-2 p-3 d-flex card align-items-stretch stat-item">
             <p class="mb-1 text-center" style="font-size:18px">User Status</p>
             <% @temp = UserProfile.all.group(:user_current_member_status).count%>
             <% @new = {'Alumni': @temp[true], 'Member': @temp[false]} %>
             <%= column_chart @new, download: {filename: "User_Status", background: "#ffffff"} %>
         </div>
-        <div class="col-md-4 col-sm-6 m-2 p-3 d-flex card align-items-stretch" style="width:31%">
+        <div class="col-md-4 col-sm-6 m-2 p-3 d-flex card align-items-stretch stat-item">
             <p class="mb-1 text-center" style="font-size:18px">Graduation Years</p>
             <%= pie_chart UserProfile.all.group(:user_graduating_year).count, download: {filename: "Gender_Distribution", background: "#ffffff"},legend: false %>
         </div>

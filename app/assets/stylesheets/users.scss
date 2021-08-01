@@ -163,6 +163,19 @@ h5,
   background: transparent;
   color: #fd652f;
 }
+.stat-item{
+  width: 31%;
+}
+@media (max-width: 775px) {
+  .stat-item{
+    width: 45%;
+  }
+}
+@media (max-width: 500px) {
+  .stat-item{
+    width: 90%;
+  }
+}
 @media (max-width: 1050px) {
   #sidebar{
     // margin-left: -300px;
