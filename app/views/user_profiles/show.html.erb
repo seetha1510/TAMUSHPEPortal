@@ -75,10 +75,10 @@ body{
                     <% if @user_profile.user_profile_picture.attached? && @user_profile.user_profile_picture.representable?%>
                       <a  class="img logo3 rounded-circle" style="background-image: url(<%= url_for(@user_profile.user_profile_picture )%>);"></a>
                     <% else %>
-                      <%= image_tag('default' + (@user_profile.user_id % 6 + 1).to_s, class: "rounded-circle img", width: "150" , height: "150")%>
+                      <%= image_tag('default' + (@user_profile.user_id % 6 + 1).to_s + ".png", class: "rounded-circle img", width: "150" , height: "150")%>
                     <% end %>
                     <div class="mt-3">
-                      <h4><%=@user_profile.user_first_name[0].capitalize+@user_profile.user_first_name.slice(1..-1)+" " + @user_profile.user_last_name[0].capitalize+@user_profile.user_last_name.slice(1..-1)%></h4>
+                      <h4><%= capitalize_name(@user_profile) %></h4>
                       <p class="text-secondary mb-1"><%=@user_profile.user_industry%></p>
                     <% if current_account.email == @true_email %>
                       <%= link_to "Edit Profile", edit_user_profile_path ,class:"btn btn-outline-primary"%>
