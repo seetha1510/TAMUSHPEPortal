@@ -6,7 +6,7 @@ class UserProfilesController < ApplicationController
 
   def index
     @industries = industries
-    @user_profiles = UserProfile.joins(:user).select('user_profiles.*,users.approved_status').where('users.approved_status').where.not('users.admin_status')
+    @user_profiles = UserProfile.joins(:user).select('user_profiles.*,users.approved_status').where('users.approved_status').where.not('users.admin_status').order('users.created_at DESC')
     search_type = params[:search_type]
     search_word = params[:search_word]
     @eBoardPositions = ["President","Vice President","Secretary","Treasurer","Dir. of External Affairs","Dir. of Internal Affairs","Dir. of Academic Development","Dir. of Public Relations","Dir. of Technical Affairs"]
