@@ -305,6 +305,10 @@ class AdminsController < ApplicationController
   def documentation; end
 end
 
+def default_profile_pic(id)
+  'default' + (id % 6 + 1).to_s + ".png"
+end
+
 def industries
   ['Accounting', 'Aerospace Engineering','Airline/Aviation', 'Alternative Dispute Resolution', 'Alternative Medicine', 'Animation', 'Apparel & Fashion', 'Architectural Engineering',
    'Architecture & Planning', 'Arts & Crafts', 'Automotive', 'Aviation & Aerospace', 'Banking', 'Biological & Agricultural Engineering', 'Biomedical Engineering', 'Biotechnology', 'Broadcast Media',

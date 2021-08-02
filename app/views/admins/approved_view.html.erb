@@ -29,7 +29,7 @@ label {
                     <% if UserProfile.find_by(user_id: @user.id).user_profile_picture.attached? && UserProfile.find_by(user_id: @user.id).user_profile_picture.representable?%>
                         <a href="#" class="img logo rounded-circle mb-4" style="margin-left:25px;height:100px;width:100px;background-image: url(<%= url_for(UserProfile.find_by(user_id: @user.id).user_profile_picture )%>);"></a> 
                     <% else %>
-                        <a href="#" class="img logo rounded-circle mb-4" style="margin-left:25px;height:100px;width:100px;background-image: url(<%= asset_path 'default_profile_picture.jpg' %>);"></a> 
+                        <a href="#" class="img logo rounded-circle mb-4" style="margin-left:25px;height:100px;width:100px;background-image: url(<%= asset_path default_profile_pic(@user.id) %>);"></a> 
                     <% end %>
 
                     <h3 style="max-width:max-content;margin-left:25px;"><%= @user_profile.user_first_name %>'s Profile</h3>
