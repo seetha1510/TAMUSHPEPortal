@@ -9,5 +9,5 @@
     <p> Signed in as <%=current_account.email %> </p>
     <%=link_to "Sign Out", destory_account_session_path, method: :delete , class:"btn btn-primary mb-3"%>
     </br>
-    <%= link_to "Cancel my account", user_path(User.get_current_user(current_account)), data: { confirm: "Are you sure?" }, method: :delete, class:"btn btn-primary" %>
+    <%= link_to "Cancel my account", user_path(User.get_current_user(current_account)), data: { confirm: "Are you sure?" }, method: :delete, class:"btn btn-danger" %>
 <% end %>
