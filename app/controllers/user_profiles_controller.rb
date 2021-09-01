@@ -97,7 +97,8 @@ class UserProfilesController < ApplicationController
                                     user_phone_number: @form_params[:user_phone_number],
                                     user_profile_picture: @form_params[:user_profile_picture],
                                     user_portfolio_url: @form_params[:user_portfolio_url],
-                                    user_industry: @form_params[:user_industry])
+                                    user_industry: @form_params[:user_industry],
+                                    recruiter: @form_params[:recruiter])
     if @user_profile.save && @user_profile.valid?
       @is_on_approved_list = ApprovedEmail.where(email: @user.user_email).length.positive?
       if @user.approved_status
@@ -176,7 +177,7 @@ class UserProfilesController < ApplicationController
                                          :user_linkedin_profile_url, :user_graduating_year,
                                          :user_about_me_description, :user_phone_number,
                                          :user_profile_picture, :user_portfolio_url,
-                                         :user_industry)
+                                         :user_industry, :recruiter)
   end
 end
 

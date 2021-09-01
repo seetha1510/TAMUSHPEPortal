@@ -200,7 +200,9 @@ body{
                       <h6 class="mb-0">Committees</h6>
                     </div>
                     <div class="col-sm-9 show-badges">
-                      <%if !@user_profile.committees.first.nil? %>
+                      <%if @user_profile.recruiter %>
+                        <span class="badge bg-danger" ><i class="fa fa-star" style="color: yellow" aria-hidden="true"></i> Recruiter</span>
+                      <%elsif !@user_profile.committees.first.nil? %>
                         <% @user_profile.committees.each do |committee| %>
                           <% if @eBoardPositions.include?(committee.committee_name)%>
                             <span class="badge" style="background-color:#dc3545;"><%= committee.committee_name %></span>
