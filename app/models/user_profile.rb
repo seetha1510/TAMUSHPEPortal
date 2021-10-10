@@ -61,8 +61,8 @@ class UserProfile < ApplicationRecord
     if self.user_profile_picture.attached?
         ext = '.' + self.user_profile_picture.blob.filename.extension
         filename = ''
-        if filename = self.user_profile_picture.blob.filename.base.gsub!(/[()]/, '')
-          filename = self.user_profile_picture.blob.filename.base.gsub!(/[()]/, '') + ext
+        if filename = self.user_profile_picture.blob.filename.base.gsub!(/[\\(\\)]/, '')
+          filename = self.user_profile_picture.blob.filename.base.gsub!(/[\\(\\)]/, '') + ext
         else
           filename = self.user_profile_picture.blob.filename
         end
