@@ -12,6 +12,8 @@ class UserProfile < ApplicationRecord
             format: { with: /\A[0-9]{4}\z/, message: 'Enter 4 Digit Year' }, presence: { message: 'Enter Your Graduation Year' }
   validates :user_phone_number,
             format: { with: /\A(\+1)?[0-9]{10}\z/, message: 'Use a Valid Phone Number' }, allow_blank: true
+  validates :user_about_me_description,
+            format: { with: /\A(.){0,200}\z/, message: 'About Me should be less than 200 characters' }, allow_blank: true
   validates :user_first_name, presence: { message: 'Enter Your First Name' },
                               allow_blank: false
   validates :user_last_name, presence: { message: 'Enter Your Last Name' }, allow_blank: false
