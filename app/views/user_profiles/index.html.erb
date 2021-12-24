@@ -25,11 +25,33 @@
  <%= submit_tag "Search" , class: "btn btn-primary"%> 
 <%
 =end%>
-  <%= button_tag(type: "submit", class: "btn btn-primary") do %>
+  <%= button_tag(type: "submit", class: "btn btn-primary", id: "search-button") do %>
     <i class="mx-2 fa fa-search"></i>
   <% end %>
   </div>
 </div> 
+
+
+
+<div class="input-group mb-3">
+  <p class="bold-txt">Filter By: </p>
+
+  <div class="form-check form-check-inline">
+    <%= check_box_tag :alumni_filter,  class: "form-check-input", :onclick=>"index"  %>
+    <label class="form-check-label" for="inlineCheckbox1">Alumni</label>
+  </div>
+
+  <div class="form-check form-check-inline">
+    <%= check_box_tag :recruiter_filter, class: "form-check-input", :onclick=>"index"  %>
+    <label class="form-check-label" for="inlineCheckbox2">Recruiter</label>
+  </div>
+
+  <div class="form-check form-check-inline">
+    <%= check_box_tag :member_filter,  class: "form-check-input", :onclick=>"index"  %>
+    <label class="form-check-label" for="inlineCheckbox3">Member</label>
+  </div>
+
+</div>
 
 
 <% end %>
@@ -127,6 +149,57 @@ $(document).ready(function() {
     }
   })
 });
+$(document).ready(function() {
+  aChecked = window.localStorage.getItem('alumni_checked');
+  mChecked = window.localStorage.getItem('member_checked');
+  rChecked = window.localStorage.getItem('recruiter_checked');
+  if(aChecked != null){
+    document.getElementById('alumni_filter').checked = JSON.parse(aChecked);
+  }
+  else{
+    window.localStorage.setItem('alumni_checked', false);
+  }
+  if(mChecked != null){
+    document.getElementById('member_filter').checked = JSON.parse(mChecked);
+  }
+  else{
+    window.localStorage.setItem('member_checked', false);
+  }
+  if(rChecked != null){    
+    document.getElementById('recruiter_filter').checked = JSON.parse(rChecked);
+  }
+  else{
+    window.localStorage.setItem('recruiter_checked', false);
+  }
+});
+
+const search_button = document.getElementById('search-button');
+$('#alumni_filter').click(function(e){ 
+	if (e.target.checked) { 
+  	window.localStorage.setItem('alumni_checked', true);
+  } else { 
+  	window.localStorage.setItem('alumni_checked', false);
+  }
+  search_button.click();
+}) 
+
+$('#member_filter').click(function(e){ 
+	if (e.target.checked) { 
+  	window.localStorage.setItem('member_checked', true);
+  } else { 
+  	window.localStorage.setItem('member_checked', false);
+  } 
+  search_button.click();
+}) 
+
+$('#recruiter_filter').click(function(e){ 
+	if (e.target.checked) { 
+  	window.localStorage.setItem('recruiter_checked', true);
+  } else { 
+  	window.localStorage.setItem('recruiter_checked', false);
+  } 
+  search_button.click();
+}) 
 </script>
 
 

@@ -48,6 +48,31 @@ class UserProfilesController < ApplicationController
       end
       ## add more
     end
+
+    # Handles Filters for Search
+    @user_profiles_recruiters = []
+    @user_profiles_members = []
+    @user_profiles_alumni = []
+    @all_filters = []
+    if params[:recruiter_filter]
+      @user_profiles_recruiters = @user_profiles.where("recruiter")
+      @all_filters += @user_profiles_recruiters
+    end
+
+    if params[:alumni_filter]
+      @user_profiles_alumni = @user_profiles.where("user_current_member_status")
+      @all_filters += @user_profiles_alumni
+    end
+
+    if params[:member_filter]
+      @user_profiles_members = @user_profiles.where.not("user_current_member_status").where.not("recruiter")
+      @all_filters += @user_profiles_members
+    end
+    
+    if params[:recruiter_filter] || params[:alumni_filter] || params[:member_filter]
+      @user_profiles = Kaminari.paginate_array(@all_filters)
+    end
+
     @user_profiles = @user_profiles.page params[:page]
   end
 
