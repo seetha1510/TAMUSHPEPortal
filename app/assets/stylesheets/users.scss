@@ -337,7 +337,16 @@ a[data-toggle="collapse"] {
   width: 450px;
   border: none;
   border-radius: 10px;
-  background-color: #fff
+  background-color: #fff;
+}
+
+@media (min-width: 1051px) {
+  .home-card{
+    transition: transform 0.2s ease;
+  }
+  .home-card:hover{
+    transform: scale(1.05);
+  }
 }
 
 .search-card h4 {
