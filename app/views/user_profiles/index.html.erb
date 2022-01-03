@@ -45,7 +45,6 @@
     <%= check_box_tag :recruiter_filter, class: "form-check-input", :onclick=>"index"  %>
     <label class="form-check-label" for="inlineCheckbox2">Recruiter</label>
   </div>
-
   <div class="form-check form-check-inline">
     <%= check_box_tag :member_filter,  class: "form-check-input", :onclick=>"index"  %>
     <label class="form-check-label" for="inlineCheckbox3">Member</label>
@@ -200,6 +199,13 @@ $('#recruiter_filter').click(function(e){
   } 
   search_button.click();
 }) 
+
+const page_url = window.location.href.split("/");
+if(page_url[page_url.length - 1] == "user_profiles"){
+  window.localStorage.setItem('alumni_checked', false);
+  window.localStorage.setItem('member_checked', false);
+  window.localStorage.setItem('recruiter_checked', false);
+}
 </script>
 
 
