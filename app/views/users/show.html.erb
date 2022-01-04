@@ -55,7 +55,7 @@
         </div>
     </div>
     
-    <div class="row mt-4">
+    <div class="row mt-home">
         <h4 class="pl-0">MemberSHPE Stats</h4>
         <p>This is real-time data of member statistics which provides insight into who is involved in our organization.</p>
         <div class="col-md-4 col-sm-6 m-2 p-3 d-flex card home-card align-items-stretch stat-item">
@@ -73,4 +73,21 @@
             <%= pie_chart UserProfile.all.group(:user_graduating_year).count, download: {filename: "Gender_Distribution", background: "#ffffff"},legend: false %>
         </div>
     </div>
+
+    <div class="row mt-home">
+        <h4 class="pl-0">Chapter Posts</h4>
+        <p>Get an insight into some of our most recent updates!</p>
+
+        <!-- Place <div> tag where you want the feed to appear -->
+        <div id="curator-feed-default-feed-layout" ><a href="https://curator.io" target="_blank" class="crt-logo crt-tag">Powered by Curator.io</a></div>
+    </div>
 </div>
+
+<script type="text/javascript">
+/* curator-feed-default-feed-layout */
+(function(){
+var i,e,d=document,s="script";i=d.createElement("script");i.async=1;i.charset="UTF-8";
+i.src="https://cdn.curator.io/published/d0503b68-80f6-4c7a-ab51-07f9ea98aaaf.js";
+e=d.getElementsByTagName(s)[0];e.parentNode.insertBefore(i, e);
+})();
+</script>

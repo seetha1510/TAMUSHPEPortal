@@ -36,7 +36,7 @@
     <div class="wrapper d-flex align-items-stretch">
         <%= render 'layouts/navbar1' unless @disable_nav %>
         <!-- Page Content  -->
-        <div id="content" class="p-4 p-md-5">
+        <div id="content" class="p-4 p-md-5 pb-2 pb-md-2">
          <%= render 'layouts/navbar2' unless @disable_nav %> 
             <%# need flash notices for devise%>
             <% if notice  %>
@@ -46,6 +46,9 @@
                 <p class="alert"><%= alert %></p>
             <%end%> 
             <%= yield %>
+            <div class="footer text-center mt-5" style="">
+                &copy; Copyright TAMU SHPE 2021
+            </div>
         </div>
     </div>
     <%end%>

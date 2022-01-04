@@ -129,8 +129,8 @@ h5,
 }
 #sidebar .logo {
   display: block;
-  width: 180px;
-  height: 180px;
+  width: 150px;
+  height: 150px;
   margin: 0 auto;
 }
 #sidebar .logo span {
@@ -163,6 +163,20 @@ h5,
   background: transparent;
   color: #fd652f;
 }
+.mt-home{
+  margin-top: 3rem !important;
+}
+#content {
+  width: calc(100% - 300px);
+  padding: 0;
+  min-height: 100vh;
+  max-height: 100vh;
+  overflow-y: scroll;
+
+  -webkit-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  transition: all 0.3s;
+}
 .stat-item{
   width: 31%;
 }
@@ -177,9 +191,17 @@ h5,
   }
 }
 @media (max-width: 1050px) {
+  #content {
+    width: 100%;
+    padding: 0;
+    min-height: 100vh;
+    -webkit-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    transition: all 0.3s;
+  }
   #sidebar{
     // margin-left: -300px;
-    z-index: 100;
+    z-index: 101; // instagram feed has left arrow as index 100
     display: none;
     transform: translateX(-300px);
   }
@@ -216,15 +238,6 @@ a[data-toggle="collapse"] {
   }
 }
 
-#content {
-  width: 100%;
-  padding: 0;
-  min-height: 100vh;
-  -webkit-transition: all 0.3s;
-  -o-transition: all 0.3s;
-  transition: all 0.3s;
-}
-
 .btn.btn-primary {
   background: #fd652f;
   border-color: #fd652f;
@@ -236,7 +249,7 @@ a[data-toggle="collapse"] {
 }
 
 .footer p {
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(255, 0, 0, 0.5);
 }
 
 .blue-text {
@@ -414,4 +427,8 @@ a[data-toggle="collapse"] {
 
 .bold-txt{
   font-weight: 550;
+}
+
+.crt-logo{
+  color: rgba(0, 0, 0, 0) !important;
 }
