@@ -70,7 +70,9 @@
             </div>
             <div class="ml-3 card-content search-card-content pr-1">
                 <h4 class="mb-0 mt-0"><%= capitalize_name(user_profile) %></h4>
-                <%if user_profile.recruiter %>
+                <%if user_profile.external_member %>
+                    <span class="badge bg-info">External</span>
+                <%elsif user_profile.recruiter %>
                     <span class="badge bg-danger" ><i class="fa fa-star" style="color: yellow" aria-hidden="true"></i> Recruiter</span>
                 <%elsif !user_profile.committees.first.nil? %>
                   <% if @eBoardPositions.include?(user_profile.committees.first.committee_name)%>

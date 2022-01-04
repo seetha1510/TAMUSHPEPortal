@@ -34,16 +34,19 @@
   </div>
 </div>
 
+<%if !User.get_current_user(current_account).approved_status %>
 <div class="row g-3 align-items-center mb-3">
   <div class="col-lg-3">
     <label class="col-form-label">Exteral (non-TAMU)</label>
   </div>
   <div class="col-lg-9">
   Yes
-    
+    <%= f.check_box :external_member %>
   </div>
 </div>
+<%end%>
 
+<%if !@user_profile.external_member %>
 <div class="row g-3 align-items-center mb-3" id="alumni-div">
   <div class="col-lg-3">
     <label class="col-form-label">Alumni</label>
@@ -63,6 +66,7 @@
     <%= f.check_box :recruiter %>
   </div>
 </div>
+<% end %>
 
 <div class="row g-3 align-items-center mb-3">
   <div class="col-lg-3">
@@ -169,7 +173,7 @@
 </form>
 
 <script>
-  var external_checkbox = document.getElementById("user_profile_user_current_member_status");
+  var external_checkbox = document.getElementById("user_profile_external_member");
   var alumni_div = document.getElementById("alumni-div");
   var recruiter_div = document.getElementById("recruiter-div");
   external_checkbox.addEventListener("change", function() {

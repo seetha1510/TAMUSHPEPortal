@@ -94,6 +94,8 @@ class UserProfilesController < ApplicationController
              end
     @membership = if @user_profile.user_current_member_status
                     'Alumni'
+                  elsif @user_profile.external_member
+                    'External Member'
                   else
                     'Current Member'
                   end
@@ -123,7 +125,8 @@ class UserProfilesController < ApplicationController
                                     user_profile_picture: @form_params[:user_profile_picture],
                                     user_portfolio_url: @form_params[:user_portfolio_url],
                                     user_industry: @form_params[:user_industry],
-                                    recruiter: @form_params[:recruiter])
+                                    recruiter: @form_params[:recruiter],
+                                    external_member: @form_params[:external_member])
     if @user_profile.save && @user_profile.valid?
       @is_on_approved_list = ApprovedEmail.where(email: @user.user_email).length.positive?
       if @user.approved_status
@@ -202,7 +205,7 @@ class UserProfilesController < ApplicationController
                                          :user_linkedin_profile_url, :user_graduating_year,
                                          :user_about_me_description, :user_phone_number,
                                          :user_profile_picture, :user_portfolio_url,
-                                         :user_industry, :recruiter)
+                                         :user_industry, :recruiter,:external_member)
   end
 end
 

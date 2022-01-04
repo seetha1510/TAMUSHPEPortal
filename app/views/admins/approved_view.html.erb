@@ -36,6 +36,9 @@ label {
                 </div>
 
                 <div class="row g-3 align-items-center mb-3">
+                    <%if @user_profile.external_member %>
+                    <h4 class="required">External Member</h4>
+                    <%end%>
                     <div class="col-lg-6">
                         <li class="list-group-item" style="background-color:#f8f9fa!important;">
                             <%= form.label :user_first_name, "First Name *" %>
@@ -49,6 +52,23 @@ label {
                         </li>
                     </div>
                 <div>
+            
+                <%if !@user_profile.external_member %>
+                <div class="row g-3 align-items-center mb-3">
+                    <div class="col-lg-6">
+                        <li class="list-group-item" style="background-color:#f8f9fa!important;">
+                            <%= form.label :recruiter, "Recruiter *" %>
+                            <%= form.check_box :recruiter, {checked: @user_profile.recruiter, class:"form-check-input"}, checked_value=true, unchecked_value=false %>
+                        </li>
+                    </div>
+                    <div class="col-lg-6">
+                        <li class="list-group-item" style="background-color:#f8f9fa!important;">
+                            <%= form.label :user_current_member_status, "Alumni *" %>
+                            <%= form.check_box :user_current_member_status, {checked: @user_profile.user_current_member_status, class:"form-check-input"}, checked_value=true, unchecked_value=false %>
+                        </li>
+                    </div>
+                </div>
+                <%end%>
 
                 <div class="row g-3 align-items-center mb-3">
                     <div class="col-lg-6">
@@ -59,64 +79,58 @@ label {
                     </div>
                     <div class="col-lg-6">
                         <li class="list-group-item" style="background-color:#f8f9fa!important;">
-                            <%= form.label :user_current_member_status, "Alumni *" %>
-                            <%= form.check_box :user_current_member_status, {checked: @user_profile.user_current_member_status, class:"form-check-input"}, checked_value=true, unchecked_value=false %>
-                        </li>
-                    </div>
-                </div>
-
-                <div class="row g-3 align-items-center mb-3">
-                    <div class="col-lg-6">
-                        <li class="list-group-item" style="background-color:#f8f9fa!important;">
                             <%= form.label :user_facebook_profile_url, "Facebook Profile Url" %>
                             <%= form.text_field :user_facebook_profile_url, value: @user_profile.user_facebook_profile_url, class:"form-control" %>
                         </li>
                     </div>
+                </div>
+                
+                <div class="row g-3 align-items-center mb-3">
                     <div class="col-lg-6">
                         <li class="list-group-item" style="background-color:#f8f9fa!important;">
                             <%= form.label :user_instagram_profile_url, "Instagram Profile Url" %>
                             <%= form.text_field :user_instagram_profile_url, value: @user_profile.user_instagram_profile_url, class:"form-control" %>
                         </li>
                     </div>
-                </div>
-                
-                <div class="row g-3 align-items-center mb-3">
                     <div class="col-lg-6">
                         <li class="list-group-item" style="background-color:#f8f9fa!important;">
                             <%= form.label :user_linkedin_profile_url, "LinkedIn Profile Url" %>
                             <%= form.text_field :user_linkedin_profile_url, value: @user_profile.user_linkedin_profile_url, class:"form-control" %>
                         </li>
                     </div>
+                </div>
+                
+                <div class="row g-3 align-items-center mb-3">
                     <div class="col-lg-6">
                         <li class="list-group-item" style="background-color:#f8f9fa!important;">
                             <%= form.label :user_graduating_year, "Graduation Year" %>
                             <%= form.text_field :user_graduating_year, value: @user_profile.user_graduating_year, class:"form-control" %>
                         </li>
                     </div>
-                </div>
-                
-                <div class="row g-3 align-items-center mb-3">
-                    <div class="col-lg-6">
-                        <li class="list-group-item" style="background-color:#f8f9fa!important;">
-                            <%= form.label :user_about_me_description, "About Me" %>
-                            <%= form.text_field :user_about_me_description, value: @user_profile.user_about_me_description, class:"form-control" %>
-                        </li>
-                    </div>
-                    <div class="col-lg-6">
-                        <li class="list-group-item" style="background-color:#f8f9fa!important;">
-                            <%= form.label :user_phone_number, "Phone Number" %>
-                            <%= form.text_field :user_phone_number, value: @user_profile.user_phone_number, class:"form-control" %>
-                        </li>
-                    </div>
-                </div>
-                
-                <div class="row g-3 align-items-center mb-3">
                     <div class="col-lg-6">
                         <li class="list-group-item" style="background-color:#f8f9fa!important;">
                             <%= form.label :user_portfolio_url, "Portfolio Url" %>
                             <%= form.text_field :user_portfolio_url, value: @user_profile.user_portfolio_url, class:"form-control" %>
                         </li>
                     </div>
+                </div>
+                
+                <div class="row g-3 align-items-center mb-3">
+                    <div class="col-lg-6">
+                        <li class="list-group-item" style="background-color:#f8f9fa!important;">
+                            <%= form.label :user_phone_number, "Phone Number" %>
+                            <%= form.text_field :user_phone_number, value: @user_profile.user_phone_number, class:"form-control" %>
+                        </li>
+                    </div>
+                    <div class="col-lg-6">
+                        <li class="list-group-item" style="background-color:#f8f9fa!important;">
+                            <%= form.label :user_about_me_description, "About Me" %>
+                            <%= form.text_field :user_about_me_description, value: @user_profile.user_about_me_description, class:"form-control" %>
+                        </li>
+                    </div>
+                </div>
+
+                <div class="row g-3 align-items-center mb-3">
                     <div class="col-lg-6">
                         <li class="list-group-item" style="background-color:#f8f9fa!important;height:81px;display:flex;align-items:center;">
                             <% if @user_profile.user_profile_picture.attached? && @user_profile.user_profile_picture.representable? %>
@@ -126,9 +140,6 @@ label {
                             <% end %>
                         </li>
                     </div>
-                </div>
-
-                <div class="row g-3 align-items-center mb-3">
                     <div class="col-lg-6">
                         <li class="list-group-item" style="background-color:#f8f9fa!important;">
                             <%= form.label :user_industry, "Industry" %>
