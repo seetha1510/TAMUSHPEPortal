@@ -53,6 +53,7 @@ class UserProfilesController < ApplicationController
     @user_profiles_recruiters = []
     @user_profiles_members = []
     @user_profiles_alumni = []
+    @user_profiles_external = []
     @all_filters = []
     if params[:recruiter_filter]
       @user_profiles_recruiters = @user_profiles.where("recruiter")
@@ -68,11 +69,15 @@ class UserProfilesController < ApplicationController
       @user_profiles_members = @user_profiles.where.not("user_current_member_status").where.not("recruiter")
       @all_filters += @user_profiles_members
     end
-    
-    if params[:recruiter_filter] || params[:alumni_filter] || params[:member_filter]
-      @user_profiles = Kaminari.paginate_array(@all_filters)
-    end
 
+    if params[:external_filter]
+      @user_profiles_external = @user_profiles.where("external_member")
+      @all_filters += @user_profiles_external
+    end
+    
+    if params[:recruiter_filter] || params[:alumni_filter] || params[:member_filter] || params[:external_filter]
+      @user_profiles = Kaminari.paginate_array(@all_filters.uniq)
+    end
     @user_profiles = @user_profiles.page params[:page]
   end
 

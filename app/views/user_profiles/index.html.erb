@@ -34,20 +34,30 @@
 
 
 <div class="input-group mb-3">
-  <p class="bold-txt">Filter By: </p>
+  <div class="row w-100">
 
-  <div class="form-check form-check-inline">
-    <%= check_box_tag :alumni_filter,  class: "form-check-input", :onclick=>"index"  %>
-    <label class="form-check-label" for="inlineCheckbox1">Alumni</label>
+  <div class="col-2">
+    <p class="bold-txt">Filter By: </p>
   </div>
+  <div class="col-10 mr-auto">
+    <div class="form-check form-check-inline">
+      <%= check_box_tag :alumni_filter,  class: "form-check-input", :onclick=>"index"  %>
+      <label class="form-check-label" for="inlineCheckbox1">Alumni</label>
+    </div>
 
-  <div class="form-check form-check-inline">
-    <%= check_box_tag :recruiter_filter, class: "form-check-input", :onclick=>"index"  %>
-    <label class="form-check-label" for="inlineCheckbox2">Recruiter</label>
-  </div>
-  <div class="form-check form-check-inline">
-    <%= check_box_tag :member_filter,  class: "form-check-input", :onclick=>"index"  %>
-    <label class="form-check-label" for="inlineCheckbox3">Member</label>
+    <div class="form-check form-check-inline">
+      <%= check_box_tag :recruiter_filter, class: "form-check-input", :onclick=>"index"  %>
+      <label class="form-check-label" for="inlineCheckbox2">Recruiter</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <%= check_box_tag :member_filter,  class: "form-check-input", :onclick=>"index"  %>
+      <label class="form-check-label" for="inlineCheckbox3">Member</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <%= check_box_tag :external_filter,  class: "form-check-input", :onclick=>"index"  %>
+      <label class="form-check-label" for="inlineCheckbox4">External</label>
+    </div>
+    </div>
   </div>
 
 </div>
@@ -154,6 +164,7 @@ $(document).ready(function() {
   aChecked = window.localStorage.getItem('alumni_checked');
   mChecked = window.localStorage.getItem('member_checked');
   rChecked = window.localStorage.getItem('recruiter_checked');
+  eChecked = window.localStorage.getItem('external_checked');
   if(aChecked != null){
     document.getElementById('alumni_filter').checked = JSON.parse(aChecked);
   }
@@ -171,6 +182,12 @@ $(document).ready(function() {
   }
   else{
     window.localStorage.setItem('recruiter_checked', false);
+  }
+  if(eChecked != null){    
+    document.getElementById('external_filter').checked = JSON.parse(eChecked);
+  }
+  else{
+    window.localStorage.setItem('external_checked', false);
   }
 });
 
@@ -202,11 +219,21 @@ $('#recruiter_filter').click(function(e){
   search_button.click();
 }) 
 
+$('#external_filter').click(function(e){ 
+	if (e.target.checked) { 
+  	window.localStorage.setItem('external_checked', true);
+  } else { 
+  	window.localStorage.setItem('external_checked', false);
+  } 
+  search_button.click();
+}) 
+
 const page_url = window.location.href.split("/");
 if(page_url[page_url.length - 1] == "user_profiles"){
   window.localStorage.setItem('alumni_checked', false);
   window.localStorage.setItem('member_checked', false);
   window.localStorage.setItem('recruiter_checked', false);
+  window.localStorage.setItem('external_checked', false);
 }
 </script>
 
