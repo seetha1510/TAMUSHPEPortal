@@ -203,7 +203,7 @@ body{
                       <%if @user_profile.external_member %>
                         <span class="badge bg-info">External</span>
                       <%elsif @user_profile.recruiter %>
-                        <span class="badge bg-danger" ><i class="fa fa-star" style="color: yellow" aria-hidden="true"></i> Recruiter</span>
+                        <span class="badge bg-danger" ><i class="fa fa-star" style="color: yellow" aria-hidden="true"></i>Company Rep.</span>
                       <%elsif !@user_profile.committees.first.nil? %>
                         <% @user_profile.committees.each do |committee| %>
                           <% if @eBoardPositions.include?(committee.committee_name)%>

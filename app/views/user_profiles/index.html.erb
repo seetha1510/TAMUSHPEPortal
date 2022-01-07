@@ -47,7 +47,7 @@
 
     <div class="form-check form-check-inline">
       <%= check_box_tag :recruiter_filter, class: "form-check-input", :onclick=>"index"  %>
-      <label class="form-check-label" for="inlineCheckbox2">Recruiter</label>
+      <label class="form-check-label" for="inlineCheckbox2">Company Rep.</label>
     </div>
     <div class="form-check form-check-inline">
       <%= check_box_tag :member_filter,  class: "form-check-input", :onclick=>"index"  %>
@@ -83,7 +83,7 @@
                 <%if user_profile.external_member %>
                     <span class="badge bg-info">External</span>
                 <%elsif user_profile.recruiter %>
-                    <span class="badge bg-danger" ><i class="fa fa-star" style="color: yellow" aria-hidden="true"></i> Recruiter</span>
+                    <span class="badge bg-danger" ><i class="fa fa-star" style="color: yellow" aria-hidden="true"></i>Company Rep.</span>
                 <%elsif !user_profile.committees.first.nil? %>
                   <% if @eBoardPositions.include?(user_profile.committees.first.committee_name)%>
                     <span class="badge" style="background-color:#dc3545;"><%= user_profile.committees.first.committee_name %></span>
