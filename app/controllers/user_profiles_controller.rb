@@ -132,7 +132,9 @@ class UserProfilesController < ApplicationController
                                     user_industry: @form_params[:user_industry],
                                     recruiter: @form_params[:recruiter],
                                     external_member: @form_params[:external_member])
+
     if @user_profile.save && @user_profile.valid?
+      UserMailer.with(user: @user).new_user_email.deliver_later
       @is_on_approved_list = ApprovedEmail.where(email: @user.user_email).length.positive?
       if @user.approved_status
         redirect_to(show_path) and return

@@ -124,4 +124,20 @@ Rails.application.configure do
   # config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
   ENV['GOOGLE_OAUTH_CLIENT_ID'] = '1078956556387-eb2fljvrg16n12s5j6qd7252f399jbqh.apps.googleusercontent.com'
   ENV['GOOGLE_OAUTH_CLIENT_SECRET'] = 'Zi-ZBlDmaPlyB3Y11wkhUcMI'
+
+  config.action_mailer.perform_deliveries = true
+  # This is for sending emails through gmail
+  config.action_mailer.delivery_method = :smtp
+  host = 'www.membershpe.org' #replace with your own url
+  config.action_mailer.default_url_options = { host: host, protocol: 'https'  }
+
+  config.action_mailer.smtp_settings = {
+    address:              'smtp.gmail.com',
+    port:                 587,
+    user_name:            ENV["TAMUSHPE_GMAIL_USERNAME"],
+    password:             ENV["TAMUSHPE_GMAIL_PASSWORD"],
+    authentication:       'plain',
+    enable_starttls_auto: true,
+    open_timeout:         5,
+    read_timeout:         5 }
 end
