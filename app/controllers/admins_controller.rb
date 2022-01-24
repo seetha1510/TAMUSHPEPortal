@@ -69,6 +69,7 @@ class AdminsController < ApplicationController
 
     @user = User.find(@user_id)
     @user.update(approved_status: true)
+    ApprovedMailer.with(user: @user).approved_email.deliver_later
 
     redirect_to admin_account_requests_path
   end
