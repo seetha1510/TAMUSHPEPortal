@@ -217,5 +217,5 @@ class UserProfilesController < ApplicationController
 end
 
 def capitalize_name(user_profile)
-  user_profile.user_first_name.titleize + " " + user_profile.user_last_name.titleize
+  user_profile.user_first_name.humanize.gsub(/\b('?[a-z])/) { $1.capitalize } + " " + user_profile.user_last_name.humanize.gsub(/\b('?[a-z])/) { $1.capitalize }
 end
