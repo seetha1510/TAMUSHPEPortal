@@ -16,8 +16,10 @@ class UserProfile < ApplicationRecord
             format: { with: /\A(.){0,200}\z/, message: 'About Me should be less than 200 characters' }, allow_blank: true
   validates :user_first_name, presence: { message: 'Enter Your First Name' },
                               allow_blank: false
+  validates :user_membership, presence: { message: 'Select MemberSHPE Type' },  allow_blank: false
+  validates :user_industry, presence: { message: 'Select Industry' },  allow_blank: false
+
   validates :user_last_name, presence: { message: 'Enter Your Last Name' }, allow_blank: false
-  validates :user_industry, presence: false, allow_blank: true
   belongs_to :user
   has_many :employees
   has_many :employers, through: :employees

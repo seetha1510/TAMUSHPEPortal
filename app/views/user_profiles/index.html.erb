@@ -45,10 +45,14 @@
       <label class="form-check-label" for="inlineCheckbox1">Alumni</label>
     </div>
 
-    <div class="form-check form-check-inline">
+    <%
+=begin%>
+ <div class="form-check form-check-inline">
       <%= check_box_tag :recruiter_filter, class: "form-check-input", :onclick=>"index"  %>
       <label class="form-check-label" for="inlineCheckbox2">Company Rep.</label>
-    </div>
+    </div> 
+<%
+=end%>
     <div class="form-check form-check-inline">
       <%= check_box_tag :member_filter,  class: "form-check-input", :onclick=>"index"  %>
       <label class="form-check-label" for="inlineCheckbox3">Member</label>
@@ -80,17 +84,18 @@
             </div>
             <div class="ml-3 card-content search-card-content pr-1">
                 <h4 class="mb-0 mt-0"><%= capitalize_name(user_profile) %></h4>
-                <%if user_profile.external_member %>
-                    <span class="badge bg-info">External</span>
-                <%elsif user_profile.recruiter %>
-                    <span class="badge bg-danger" ><i class="fa fa-star" style="color: yellow" aria-hidden="true"></i> Company Rep.</span>
-                <%elsif !user_profile.committees.first.nil? %>
+                <%if !user_profile.committees.first.nil? %>
                   <% if @eBoardPositions.include?(user_profile.committees.first.committee_name)%>
                     <span class="badge" style="background-color:#dc3545;"><%= user_profile.committees.first.committee_name %></span>
                   <%else%>
                     <span class="badge bg-primary"><%= user_profile.committees.first.committee_name %></span>
                   <%end%>
-            
+                <%elsif user_profile.user_membership %>
+                  <span class="badge bg-info <%= user_profile.user_membership.gsub(" ","-") %>"><%= user_profile.user_membership %></span>
+                <%elsif user_profile.external_member %>
+                    <span class="badge bg-info">External</span>
+                <%elsif user_profile.recruiter %>
+                    <span class="badge bg-danger" ><i class="fa fa-star" style="color: yellow" aria-hidden="true"></i> Company Rep.</span>    
                 <% elsif !user_profile.user_current_member_status %>
                   <span class="badge bg-secondary">Member</span>
                 <%else%>

@@ -34,7 +34,19 @@
   </div>
 </div>
 
-<%if !User.get_current_user(current_account).approved_status %>
+<div class="row g-3 align-items-center mb-3">
+  <div class="col-lg-3">
+    <label class="col-form-label">MemberSHPE Type <span class="required">*</span></label>
+  </div>
+  <div class="col-lg-9">
+  <%= f.select :user_membership,  @membership_types, {:include_blank => '--' }, class:"form-select" %>
+  </div>
+</div>
+
+
+<%
+=begin%>
+ <%if !User.get_current_user(current_account).approved_status %>
 <div class="row g-3 align-items-center mb-3">
   <div class="col-lg-3">
     <label class="col-form-label">Exteral (non-TAMU)</label>
@@ -44,9 +56,13 @@
     <%= f.check_box :external_member %>
   </div>
 </div>
-<%end%>
+<%end%> 
+<%
+=end%>
 
-<%if !@user_profile.external_member %>
+<%
+=begin%>
+ <%if !@user_profile.external_member %>
 <div class="row g-3 align-items-center mb-3" id="alumni-div">
   <div class="col-lg-3">
     <label class="col-form-label">Alumni</label>
@@ -66,7 +82,9 @@
     <%= f.check_box :recruiter %>
   </div>
 </div>
-<% end %>
+<% end %> 
+<%
+=end%>
 
 <div class="row g-3 align-items-center mb-3">
   <div class="col-lg-3">
@@ -110,7 +128,7 @@
     <label class="col-form-label">Industry <span class="required">*</span></label>
   </div>
   <div class="col-lg-9">
-  <%= f.select :user_industry,  @industries, {}, class:"form-select" %>
+  <%= f.select :user_industry,  @industries, {:include_blank => '--' }, class:"form-select" %>
   </div>
 </div>
 
@@ -173,19 +191,19 @@
 </form>
 
 <script>
-  var external_checkbox = document.getElementById("user_profile_external_member");
-  var alumni_div = document.getElementById("alumni-div");
-  var recruiter_div = document.getElementById("recruiter-div");
-  external_checkbox.addEventListener("change", function() {
-    if(this.checked)
-    {
-      recruiter_div.style.display = "none";
-      alumni_div.style.display = "none";
-    }
-    else
-    {
-      recruiter_div.style.display = "flex";
-      alumni_div.style.display = "flex";
-    }
-  });
+  // var external_checkbox = document.getElementById("user_profile_external_member");
+  // var alumni_div = document.getElementById("alumni-div");
+  // var recruiter_div = document.getElementById("recruiter-div");
+  // external_checkbox.addEventListener("change", function() {
+  //   if(this.checked)
+  //   {
+  //     recruiter_div.style.display = "none";
+  //     alumni_div.style.display = "none";
+  //   }
+  //   else
+  //   {
+  //     recruiter_div.style.display = "flex";
+  //     alumni_div.style.display = "flex";
+  //   }
+  // });
 </script>

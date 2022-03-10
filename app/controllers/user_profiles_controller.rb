@@ -7,6 +7,7 @@ class UserProfilesController < ApplicationController
   def index
     @industries = industries
     @user_profiles = UserProfile.joins(:user).select('user_profiles.*,users.approved_status').where('users.approved_status').where.not('users.admin_status').order('users.created_at')
+    @user_profiles = @user_profiles.where.not(recruiter: true).or(@user_profiles.where(recruiter: nil))
     search_type = params[:search_type]
     search_word = params[:search_word]
     @eBoardPositions = ["President","Vice President","Secretary","Treasurer","Dir. of External Affairs","Dir. of Internal Affairs","Dir. of Academic Development","Dir. of Public Relations","Dir. of Technical Affairs"]
@@ -61,17 +62,17 @@ class UserProfilesController < ApplicationController
     end
 
     if params[:alumni_filter]
-      @user_profiles_alumni = @user_profiles.where("user_current_member_status")
+      @user_profiles_alumni = @user_profiles.where("user_current_member_status").where(user_membership: nil).or(@user_profiles.where(user_membership: "TAMU SHPE Alumni"))
       @all_filters += @user_profiles_alumni
     end
 
     if params[:member_filter]
-      @user_profiles_members = @user_profiles.where.not("user_current_member_status").where.not("recruiter")
+      @user_profiles_members = @user_profiles.where.not("user_current_member_status").where.not("recruiter").where(user_membership: nil).or(@user_profiles.where(user_membership: "TAMU SHPE Member"))
       @all_filters += @user_profiles_members
     end
 
     if params[:external_filter]
-      @user_profiles_external = @user_profiles.where("external_member")
+      @user_profiles_external = @user_profiles.where("external_member").or(@user_profiles.where.not(user_membership: "TAMU SHPE Member").where.not(user_membership: "TAMU SHPE Alumni"))
       @all_filters += @user_profiles_external
     end
     
@@ -97,7 +98,9 @@ class UserProfilesController < ApplicationController
              else
                @true_email
              end
-    @membership = if @user_profile.user_current_member_status
+    @membership = if @user_profile.user_membership
+                    @user_profile.user_membership
+                  elsif @user_profile.user_current_member_status
                     'Alumni'
                   elsif @user_profile.external_member
                     'External Member'
@@ -109,6 +112,7 @@ class UserProfilesController < ApplicationController
   def new
     @user_profile = UserProfile.new
     @industries = industries
+    @membership_types = membership_types
   end
 
   def create
@@ -131,7 +135,8 @@ class UserProfilesController < ApplicationController
                                     user_portfolio_url: @form_params[:user_portfolio_url],
                                     user_industry: @form_params[:user_industry],
                                     recruiter: @form_params[:recruiter],
-                                    external_member: @form_params[:external_member])
+                                    external_member: @form_params[:external_member],
+                                    user_membership: @form_params[:user_membership])
 
     if @user_profile.save && @user_profile.valid?
       UserMailer.with(user: @user).new_user_email.deliver_later
@@ -146,6 +151,8 @@ class UserProfilesController < ApplicationController
       end
     else
       @industries = industries
+      @membership_types = membership_types
+
       render 'new'
     end
   end
@@ -153,6 +160,7 @@ class UserProfilesController < ApplicationController
   def edit
     @user_profile = UserProfile.find(params[:id])
     @industries = industries
+    @membership_types = membership_types
   end
 
   def update
@@ -175,6 +183,13 @@ class UserProfilesController < ApplicationController
     else
       redirect_to root_url, notice: 'Something is wrong...'
     end
+  end
+
+  def membership_types
+    ['TAMU SHPE Member', 'TAMU SHPE Alumni', 'Company Rep.','Region 5 Team', 'National Team',
+      'SHPE Houston Professional', 'SHPE OU' ,'SHPE Rice', 'SHPE UH', 'SHPE UNT', 'SHPE UTA', 'UT SHPE',
+      'SHPE LSU', 'SHPE UOFA', 'TAMUCC SHPE', 'UTEP SHPE', 'SHPE UTSA', 'SHPE STMU', 'TTU SHPE'
+    ]
   end
 
   def industries
@@ -212,7 +227,7 @@ class UserProfilesController < ApplicationController
                                          :user_linkedin_profile_url, :user_graduating_year,
                                          :user_about_me_description, :user_phone_number,
                                          :user_profile_picture, :user_portfolio_url,
-                                         :user_industry, :recruiter,:external_member)
+                                         :user_industry, :recruiter,:external_member, :user_membership)
   end
 end
 
