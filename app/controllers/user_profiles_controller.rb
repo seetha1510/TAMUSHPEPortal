@@ -188,7 +188,7 @@ class UserProfilesController < ApplicationController
   def membership_types
     ['TAMU SHPE Member', 'TAMU SHPE Alumni', 'Company Rep.','Region 5 Team', 'National Team',
       'SHPE Houston Professional', 'SHPE OU' ,'SHPE Rice', 'SHPE UH', 'SHPE UNT', 'SHPE UTA', 'UT SHPE',
-      'SHPE LSU', 'SHPE UOFA', 'TAMUCC SHPE', 'UTEP SHPE', 'SHPE UTSA', 'SHPE STMU', 'TTU SHPE'
+      'SHPE LSU', 'SHPE UOFA', 'TAMUCC SHPE', 'UTEP SHPE', 'SHPE UTSA', 'SHPE STMU', 'TTU SHPE', 'SHPE TXST'
     ]
   end
 
