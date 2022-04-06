@@ -310,6 +310,13 @@ def default_profile_pic(id)
   'default' + (id % 6 + 1).to_s + ".png"
 end
 
+def send_update_profile_emails
+  @user_profiles = UserProfile.joins(:user).select('user_profiles.*,users.approved_status').where('users.approved_status').where.not('users.admin_status').order('users.created_at')
+
+
+  UserMailer.with(user: user).update_profile.deliver_later
+end
+
 def industries
   ['Accounting', 'Aerospace Engineering','Airline/Aviation', 'Alternative Dispute Resolution', 'Alternative Medicine', 'Animation', 'Apparel & Fashion', 'Architectural Engineering',
    'Architecture & Planning', 'Arts & Crafts', 'Automotive', 'Aviation & Aerospace', 'Banking', 'Biological & Agricultural Engineering', 'Biomedical Engineering', 'Biotechnology', 'Broadcast Media',
